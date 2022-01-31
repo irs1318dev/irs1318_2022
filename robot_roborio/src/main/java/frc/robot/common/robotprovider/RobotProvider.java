@@ -30,6 +30,12 @@ public class RobotProvider implements IRobotProvider
     }
 
     @Override
+    public IDutyCycle getDutyCycle(int digitalInputChannel)
+    {
+        return new DutyCycleWrapper(digitalInputChannel);
+    }
+
+    @Override
     public ITalonSRX getTalonSRX(int deviceNumber)
     {
         return new TalonSRXWrapper(deviceNumber);
@@ -81,6 +87,12 @@ public class RobotProvider implements IRobotProvider
     public IEncoder getEncoder(int channelA, int channelB)
     {
         return new EncoderWrapper(channelA, channelB);
+    }
+
+    @Override
+    public ICANCoder getCANCoder(int deviceNumber)
+    {
+        return new CANCoderWrapper(deviceNumber);
     }
 
     @Override
@@ -153,6 +165,18 @@ public class RobotProvider implements IRobotProvider
     public IPigeonIMU getPigeonIMU(int deviceNumber)
     {
         return new PigeonIMUWrapper(deviceNumber);
+    }
+
+    @Override
+    public IPigeon2 getPigeon2(int deviceNumber)
+    {
+        return new Pigeon2Wrapper(deviceNumber);
+    }
+
+    @Override
+    public ICANdle getCANdle(int deviceNumber)
+    {
+        return new CANdleWrapper(deviceNumber);
     }
 
     @Override
