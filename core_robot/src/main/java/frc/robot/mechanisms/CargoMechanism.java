@@ -12,8 +12,7 @@ import com.google.inject.Singleton;
 /**
  * Controlls intake, conveyor, and shooter
  * 
- * @author Will, kwen perper, perry the platypus
- * @author FWJK
+ * @author Will, kwen perper, perry the platypus, FWJK
  */
 @Singleton
 public class CargoMechanism implements IMechanism 
@@ -32,13 +31,16 @@ public class CargoMechanism implements IMechanism
     private final IDoubleSolenoid intakePiston;
 
     private final IAnalogInput feederSensor;
-    private final IAnalogInput intakeSensor;
+    private final IAnalogInput conveyorSensor;
 
     private double flywheelPosition;
     private double flywheelVelocity;
     private double flywheelError;
 
-    private int slotId;
+    private double feederSensorValue;
+    private double conveyorSensorValue;
+
+    private int slotId = 0;
     
     @Inject
     public CargoMechanism(IDriver driver, LoggingManager logger, ITimer timer, IRobotProvider provider)
@@ -73,10 +75,14 @@ public class CargoMechanism implements IMechanism
         this.flywheelMotor.setVoltageCompensation(TuningConstants.CARGO_FLYWHEEL_MOTOR_MASTER_VELOCITY_VOLTAGE_COMPENSATION_ENABLED, TuningConstants.CARGO_FLYWHEEL_MOTOR_MASTER_VELOCITY_VOLTAGE_COMPENSATION_MAXVOLTAGE);
 
         // serializer
+
+        this.feederSensor= provider.getAnalogInput(ElectronicsConstants.CARGO_FEEDER_THROUGHBEAM_ANALOG_INPUT);
+        this.conveyorSensor = provider.getAnalogInput(ElectronicsConstants.CARGO_CONVEYOR_THROUGHBEAM_ANALOG_INPUT);
+
         this.feederMotor = provider.getTalonSRX(ElectronicsConstants.CARGO_FEEDER_MOTOR_CAN_ID);
         this.feederMotor.setControlMode(TalonXControlMode.PercentOutput);
         this.feederMotor.setInvertOutput(HardwareConstants.CARGO_FEEDER_MOTOR_INVERT_OUTPUT);
-        this.feederMotor.setNeutralMode(MotorNeutralMode.Coast);
+        this.feederMotor.setNeutralMode(MotorNeutralMode.Coast);  // brake?
 
         this.conveyorMotor = provider.getTalonSRX(ElectronicsConstants.CARGO_CONVEYOR_MOTOR_CAN_ID);
         this.conveyorMotor.setControlMode(TalonXControlMode.PercentOutput);
@@ -93,6 +99,9 @@ public class CargoMechanism implements IMechanism
         this.logger.logNumber(LoggingKey.CargoFlywheelPosition, this.flywheelPosition);
         this.logger.logNumber(LoggingKey.CargoFlywheelVelocity, this.flywheelVelocity);
         this.logger.logNumber(LoggingKey.CargoFlywheelError, this.flywheelError);
+
+        this.feederSensorValue = this.feederSensor.getVoltage();
+        this.conveyorSensorValue = this.conveyorSensor.getVoltage();
     }
 
     @Override

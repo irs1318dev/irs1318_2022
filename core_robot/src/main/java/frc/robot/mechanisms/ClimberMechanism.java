@@ -12,8 +12,7 @@ import com.google.inject.Singleton;
 /**
  * Controlls climber and stuff
  * 
- * @author Will, kwen perper
- * @author FWJK
+ * @author Will, kwen perper, FWJK
  */
 @Singleton
 public class ClimberMechanism implements IMechanism 
@@ -38,20 +37,26 @@ public class ClimberMechanism implements IMechanism
         this.timer = timer;
 
         // shooter
-        this.winchMotor = provider.getTalonFX(ElectronicsConstants.CLIMBER_WINCH_MOTOR_MASTER);
-        this.winchMotor.setControlMode(TalonXControlMode.Velocity);
+        this.winchMotor = provider.getTalonFX(ElectronicsConstants.CLIMBER_WINCH_MOTOR_MASTER_CAN_ID);
+        this.winchMotor.setControlMode(TalonXControlMode.Position);
         this.winchMotor.setInvertOutput(HardwareConstants.CARGO_FLYWHEEL_MOTOR_INVERT_OUTPUT);
-        this.winchMotor.setNeutralMode(MotorNeutralMode.Coast);
+        this.winchMotor.setNeutralMode(MotorNeutralMode.Brake);
         this.winchMotor.setPIDF(
             TuningConstants.CLIMBER_WINCH_MOTOR_PID_KP, 
             TuningConstants.CLIMBER_WINCH_MOTOR_PID_KI, 
             TuningConstants.CLIMBER_WINCH_MOTOR_PID_KD, 
             TuningConstants.CLIMBER_WINCH_MOTOR_PID_KF, slotId);
-        this.winchMotor.setVoltageCompensation(TuningConstants.CLIMBER_WINCH_MOTOR_MASTER_VELOCITY_VOLTAGE_COMPENSATION_ENABLED, TuningConstants.CLIMBER_WINCH_MOTOR_MASTER_VELOCITY_VOLTAGE_COMPENSATION_MAXVOLTAGE);
+        this.winchMotor.setVoltageCompensation(TuningConstants.CLIMBER_WINCH_MOTOR_MASTER_POSITION_VOLTAGE_COMPENSATION_ENABLED, TuningConstants.CLIMBER_WINCH_MOTOR_MASTER_POSITION_VOLTAGE_COMPENSATION_MAXVOLTAGE);
 
-        passiveHookPiston = provider.getDoubleSolenoid(ElectronicsConstants.PCM_MODULE_A, PneumaticsModuleType.PneumaticsHub, ElectronicsConstants.CLIMBER_PASSIVE_HOOK_FORWARD, ElectronicsConstants.CLIMBER_PASSIVE_HOOK_REVERSE);
+        ITalonFX winchFollowerMotor = provider.getTalonFX(ElectronicsConstants.CLIMBER_WINCH_MOTOR_FOLLOWER_CAN_ID);
+        winchFollowerMotor.follow(this.winchMotor);
+        winchFollowerMotor.setNeutralMode(MotorNeutralMode.Brake);
+        winchFollowerMotor.setVoltageCompensation(TuningConstants.CLIMBER_WINCH_MOTOR_FOLLOWER_POSITION_VOLTAGE_COMPENSATION_ENABLED, TuningConstants.CLIMBER_WINCH_MOTOR_FOLLOWER_POSITION_VOLTAGE_COMPENSATION_MAXVOLTAGE);
+        //winchFollowerMotor.setInvertOutput(flip);
+
+        this.passiveHookPiston = provider.getDoubleSolenoid(ElectronicsConstants.PCM_MODULE_A, PneumaticsModuleType.PneumaticsHub, ElectronicsConstants.CLIMBER_PASSIVE_HOOK_FORWARD, ElectronicsConstants.CLIMBER_PASSIVE_HOOK_REVERSE);
         
-        activeHookPiston = provider.getDoubleSolenoid(ElectronicsConstants.PCM_MODULE_A, PneumaticsModuleType.PneumaticsHub, ElectronicsConstants.CLIMBER_ACTIVE_HOOK_FORWARD, ElectronicsConstants.CLIMBER_ACTIVE_HOOK_REVERSE);
+        this.activeHookPiston = provider.getDoubleSolenoid(ElectronicsConstants.PCM_MODULE_A, PneumaticsModuleType.PneumaticsHub, ElectronicsConstants.CLIMBER_ACTIVE_HOOK_FORWARD, ElectronicsConstants.CLIMBER_ACTIVE_HOOK_REVERSE);
     }
     
     @Override

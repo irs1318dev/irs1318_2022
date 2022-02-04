@@ -91,12 +91,13 @@ public class ElectronicsConstants
     public static final int CARGO_INTAKE_SENSOR = 1318;
     public static final int CARGO_FEEDER_SENSOR = 1318;
 
-    
+    public static final int CARGO_FEEDER_THROUGHBEAM_ANALOG_INPUT = 0;
+    public static final int CARGO_CONVEYOR_THROUGHBEAM_ANALOG_INPUT = 0;
 
     //================================================== Climber Mechanism ==============================================================
 
-    public static final int CLIMBER_WINCH_MOTOR_MASTER = 1318;
-    public static final int CLIMBER_WINCH_MOTOR_FOLLOWER = 1318;
+    public static final int CLIMBER_WINCH_MOTOR_MASTER_CAN_ID = 1318;
+    public static final int CLIMBER_WINCH_MOTOR_FOLLOWER_CAN_ID = 1318;
 
     public static final int CLIMBER_ACTIVE_HOOK_FORWARD = 1318;
     public static final int CLIMBER_ACTIVE_HOOK_REVERSE = 1318;

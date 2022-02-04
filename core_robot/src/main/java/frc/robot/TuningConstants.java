@@ -237,6 +237,11 @@ public class TuningConstants
     public static final double CARGO_INTAKE_OUTTAKE_POWER = 0.4;
     public static final double CARGO_FEEDER_POWER = 0.4;
 
+    public static final int CARGO_FLYWHEEL_VELOCITY_PERIOD = 0;
+    public static final int CARGO_FLYWHEEL_VELOCITY_WINDOWSIZE = 0;
+
+    public static final double POWERCELL_TROUGHBEAM_CUTOFF = 0.5;
+
     //================================================== Climber Mechanism ==============================================================
 
     public static final double CLIMBER_WINCH_MOTOR_PID_KP = 1.0;
@@ -244,6 +249,9 @@ public class TuningConstants
     public static final double CLIMBER_WINCH_MOTOR_PID_KD = 0.0;
     public static final double CLIMBER_WINCH_MOTOR_PID_KF = 0.0;
 
-    public static final boolean CLIMBER_WINCH_MOTOR_MASTER_VELOCITY_VOLTAGE_COMPENSATION_ENABLED = true;
-    public static final double CLIMBER_WINCH_MOTOR_MASTER_VELOCITY_VOLTAGE_COMPENSATION_MAXVOLTAGE = 0.0;
+    public static final boolean CLIMBER_WINCH_MOTOR_MASTER_POSITION_VOLTAGE_COMPENSATION_ENABLED = true;
+    public static final double CLIMBER_WINCH_MOTOR_MASTER_POSITION_VOLTAGE_COMPENSATION_MAXVOLTAGE = 0.0;
+
+    public static final boolean CLIMBER_WINCH_MOTOR_FOLLOWER_POSITION_VOLTAGE_COMPENSATION_ENABLED = true;
+    public static final double CLIMBER_WINCH_MOTOR_FOLLOWER_POSITION_VOLTAGE_COMPENSATION_MAXVOLTAGE = 0.0;
 }
