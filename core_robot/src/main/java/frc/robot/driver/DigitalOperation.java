@@ -21,4 +21,17 @@ public enum DigitalOperation implements IOperation
     DriveTrainDisableFieldOrientation,
     DriveTrainEnableMaintainDirectionMode,
     DriveTrainDisableMaintainDirectionMode,
+
+    // cargo operations
+    CargoIntakeExtend,
+    CargoIntakeRetract,
+    CargoIntakeIn,
+    CargoIntakeOut,
+    CargoFeed,
+    CargoHoodPointBlank,
+    CargoHoodShort,
+    CargoHoodMedium,
+    CargoHoodLong,
+    //CargoIntakeJUMP,
+    
 }

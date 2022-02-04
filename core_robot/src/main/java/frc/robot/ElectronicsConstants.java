@@ -71,4 +71,35 @@ public class ElectronicsConstants
     public static final int DRIVETRAIN_ABSOLUTE_ENCODER_2_ANALOG_INPUT = 1;
     public static final int DRIVETRAIN_ABSOLUTE_ENCODER_3_ANALOG_INPUT = 2;
     public static final int DRIVETRAIN_ABSOLUTE_ENCODER_4_ANALOG_INPUT = 3;
+
+    //================================================== Cargo Mechanism ==============================================================
+
+    public static final int CARGO_INTAKE_MOTOR_CAN_ID = 1318;
+    public static final int CARGO_FLYWHEEL_MOTOR_CAN_ID = 1318;
+    public static final int CARGO_CONVEYOR_MOTOR_CAN_ID = 1318;
+    public static final int CARGO_FEEDER_MOTOR_CAN_ID = 1318;
+
+    public static final int PCM_MODULE_A = 0;
+
+    public static final int CARGO_INNER_HOOD_FORWARD = 1318;
+    public static final int CARGO_INNER_HOOD_REVERSE = 1318;
+    public static final int CARGO_OUTER_HOOD_FORWARD = 1318;
+    public static final int CARGO_OUTER_HOOD_REVERSE = 1318;
+    public static final int CARGO_INTAKE_PISTON_FORWARD = 1318;
+    public static final int CARGO_INTAKE_PISTON_REVERSE = 1318;
+
+    public static final int CARGO_INTAKE_SENSOR = 1318;
+    public static final int CARGO_FEEDER_SENSOR = 1318;
+
+    
+
+    //================================================== Climber Mechanism ==============================================================
+
+    public static final int CLIMBER_WINCH_MOTOR_MASTER = 1318;
+    public static final int CLIMBER_WINCH_MOTOR_FOLLOWER = 1318;
+
+    public static final int CLIMBER_ACTIVE_HOOK_FORWARD = 1318;
+    public static final int CLIMBER_ACTIVE_HOOK_REVERSE = 1318;
+    public static final int CLIMBER_PASSIVE_HOOK_FORWARD = 1318;
+    public static final int CLIMBER_PASSIVE_HOOK_REVERSE = 1318;
 }

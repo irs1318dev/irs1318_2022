@@ -59,4 +59,11 @@ public class HardwareConstants
     public static final double DRIVETRAIN_VERTICAL_WHEEL_SEPERATION_DISTANCE = 25.5; // (in inches)
     public static final double DRIVETRAIN_HORIZONTAL_WHEEL_CENTER_DISTANCE = HardwareConstants.DRIVETRAIN_HORIZONTAL_WHEEL_SEPERATION_DISTANCE / 2.0; // (in inches)
     public static final double DRIVETRAIN_VERTICAL_WHEEL_CENTER_DISTANCE = HardwareConstants.DRIVETRAIN_VERTICAL_WHEEL_SEPERATION_DISTANCE / 2.0; // (in inches)
+
+    //================================================== DriveTrain ==============================================================
+
+    public static final boolean CARGO_INTAKE_MOTOR_INVERT_OUTPUT = false;
+    public static final boolean CARGO_FLYWHEEL_MOTOR_INVERT_OUTPUT = false;
+    public static final boolean CARGO_FEEDER_MOTOR_INVERT_OUTPUT = false;
+    public static final boolean CARGO_CONVEYOR_MOTOR_INVERT_OUTPUT = false;
 }
