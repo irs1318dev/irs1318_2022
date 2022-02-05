@@ -86,6 +86,16 @@ public class ButtonMap implements IButtonMap
             TuningConstants.DRIVETRAIN_DEAD_ZONE_TRIGGER_AB,
             TuningConstants.DRIVETRAIN_ROTATION_B_MULTIPLIER),
 */
+        //cargo mechanism
+        new AnalogOperationDescription(
+            AnalogOperation.CargoFlywheelVelocity,
+            UserInputDevice.Driver,
+            AnalogAxis.XBONE_RT,
+            Shift.DriverDebug,
+            Shift.None,
+            ElectronicsConstants.INVERT_XBONE_RIGHT_TRIGGER,
+            TuningConstants.FLYWHEEL_DEAD_ZONE_MIN,
+            TuningConstants.FLYWHEEL_DEAD_ZONE_MAX),
     };
 
     public static DigitalOperationDescription[] DigitalOperationSchema = new DigitalOperationDescription[]
@@ -140,6 +150,91 @@ public class ButtonMap implements IButtonMap
             Shift.None,
             Shift.None,
             ButtonType.Simple),
+            
+        //extend and retract
+        new DigitalOperationDescription(
+            DigitalOperation.CargoIntakeExtend,
+            UserInputDevice.Driver,
+            0,
+            Shift.DriverDebug,
+            Shift.None,
+            ButtonType.Click),
+            
+        new DigitalOperationDescription(
+            DigitalOperation.CargoIntakeRetract,
+            UserInputDevice.Driver,
+            180,
+            Shift.DriverDebug,
+            Shift.None,
+            ButtonType.Click),
+        //activate rollers
+        new DigitalOperationDescription(
+            DigitalOperation.CargoIntakeIn,
+            UserInputDevice.Driver,
+            UserInputDeviceButton.XBONE_A_BUTTON,
+            Shift.DriverDebug,
+            Shift.None,
+            ButtonType.Simple),
+        new DigitalOperationDescription(
+            DigitalOperation.CargoIntakeOut,
+            UserInputDevice.Driver,
+            UserInputDeviceButton.XBONE_Y_BUTTON,
+            Shift.DriverDebug,
+            Shift.None,
+            ButtonType.Simple),
+        new DigitalOperationDescription(
+            DigitalOperation.CargoEject,
+            UserInputDevice.Driver,
+            UserInputDeviceButton.XBONE_Y_BUTTON,
+            Shift.DriverDebug,
+            Shift.DriverDebug,
+            ButtonType.Simple),
+        
+        //flywheel digital
+        new DigitalOperationDescription(
+            DigitalOperation.CargoFlywheelSpinup,
+            UserInputDevice.Driver,
+            UserInputDeviceButton.XBONE_B_BUTTON,
+            Shift.DriverDebug,
+            Shift.None,
+            ButtonType.Simple),
+        //shoot cargo
+        new DigitalOperationDescription(
+            DigitalOperation.CargoFeed,
+            UserInputDevice.Driver,
+            UserInputDeviceButton.XBONE_RIGHT_BUTTON,
+            Shift.None,
+            Shift.None,
+            ButtonType.Simple),
+        //hood positions
+
+
+        // Climber Hook Positions
+        new DigitalOperationDescription(
+            DigitalOperation.ClimberHookDown,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.PS4_CIRCLE_BUTTON,
+            ButtonType.Click),
+        
+        new DigitalOperationDescription(
+            DigitalOperation.ClimberHookUp,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.PS4_TRIANGLE_BUTTON,
+            ButtonType.Click),
+        
+        // Climber Arm Positions
+        new DigitalOperationDescription(
+            DigitalOperation.ClimberArmDown,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.PS4_SQUARE_BUTTON,
+            ButtonType.Click),
+        
+        new DigitalOperationDescription(
+            DigitalOperation.ClimberArmUp,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.PS4_X_BUTTON,
+            ButtonType.Click),
+        
     };
 
     public static MacroOperationDescription[] MacroSchema = new MacroOperationDescription[]

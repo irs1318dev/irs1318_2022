@@ -14,6 +14,8 @@ public class ElectronicsConstants
     public static final boolean INVERT_XBONE_LEFT_X_AXIS = false;
     public static final boolean INVERT_XBONE_RIGHT_X_AXIS = false;
 
+    public static final boolean INVERT_XBONE_RIGHT_TRIGGER = false;
+
     // change INVERT_Y_AXIS to true if positive on the joystick isn't forward, and negative isn't backwards.
     public static final boolean INVERT_XBONE_LEFT_Y_AXIS = true;
     public static final boolean INVERT_XBONE_RIGHT_Y_AXIS = true;
@@ -99,8 +101,8 @@ public class ElectronicsConstants
     public static final int CLIMBER_WINCH_MOTOR_MASTER_CAN_ID = 1318;
     public static final int CLIMBER_WINCH_MOTOR_FOLLOWER_CAN_ID = 1318;
 
+    public static final int CLIMBER_ACTIVE_ARM_FORWARD = 1318;
+    public static final int CLIMBER_ACTIVE_ARM_REVERSE = 1318;
     public static final int CLIMBER_ACTIVE_HOOK_FORWARD = 1318;
     public static final int CLIMBER_ACTIVE_HOOK_REVERSE = 1318;
-    public static final int CLIMBER_PASSIVE_HOOK_FORWARD = 1318;
-    public static final int CLIMBER_PASSIVE_HOOK_REVERSE = 1318;
 }

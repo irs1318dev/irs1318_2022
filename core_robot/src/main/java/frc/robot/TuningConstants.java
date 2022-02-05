@@ -224,34 +224,50 @@ public class TuningConstants
     public static final double DRIVETRAIN_MAX_PATH_TURN_VELOCITY = 45.0; // in degrees per second
     public static final double DRIVETRAIN_MAX_PATH_TRANSLATIONAL_VELOCITY = 0.80 * TuningConstants.DRIVETRAIN_MAX_VELOCITY; // in inches per second
     public static final double DRIVETRAIN_MAX_PATH_TRANSLATIONAL_ACCELERATION = 0.75 * TuningConstants.DRIVETRAIN_MAX_VELOCITY; // in inches per second per second
-    
+
     //================================================== Cargo Mechanism ==============================================================
+
     public static final double CARGO_FLYWHEEL_MOTOR_PID_KP = 1.0;
     public static final double CARGO_FLYWHEEL_MOTOR_PID_KI = 0.0;
     public static final double CARGO_FLYWHEEL_MOTOR_PID_KD = 0.0;
     public static final double CARGO_FLYWHEEL_MOTOR_PID_KF = 0.0;
+    public static final double CARGO_FLYWHEEL_MOTOR_PID_KS = 0.0;
 
     public static final boolean CARGO_FLYWHEEL_MOTOR_MASTER_VELOCITY_VOLTAGE_COMPENSATION_ENABLED = true;
     public static final double CARGO_FLYWHEEL_MOTOR_MASTER_VELOCITY_VOLTAGE_COMPENSATION_MAXVOLTAGE = 0.0;
 
     public static final double CARGO_INTAKE_OUTTAKE_POWER = 0.4;
     public static final double CARGO_FEEDER_POWER = 0.4;
+    public static final double CARGO_CONVEYOR_POWER = 0.4;
 
     public static final int CARGO_FLYWHEEL_VELOCITY_PERIOD = 0;
     public static final int CARGO_FLYWHEEL_VELOCITY_WINDOWSIZE = 0;
 
-    public static final double POWERCELL_TROUGHBEAM_CUTOFF = 0.5;
+    public static final double CARGO_FLYWHEEL_SPINUP_SPEED = 0.5;
+
+    public static final double CARGO_THROUGHBEAM_CUTOFF = 2.7;
+
+    public static final double FLYWHEEL_DEAD_ZONE_MIN = -0.05;
+    public static final double FLYWHEEL_DEAD_ZONE_MAX = 0.05;
+    public static final double CARGO_FLYWHEEL_ALLOWABLE_ERROR_RANGE = 500;
 
     //================================================== Climber Mechanism ==============================================================
 
-    public static final double CLIMBER_WINCH_MOTOR_PID_KP = 1.0;
-    public static final double CLIMBER_WINCH_MOTOR_PID_KI = 0.0;
-    public static final double CLIMBER_WINCH_MOTOR_PID_KD = 0.0;
-    public static final double CLIMBER_WINCH_MOTOR_PID_KF = 0.0;
+    public static final double CLIMBER_WINCH_MOTOR_U_PID_KP = 1.0;
+    public static final double CLIMBER_WINCH_MOTOR_U_PID_KI = 0.0;
+    public static final double CLIMBER_WINCH_MOTOR_U_PID_KD = 0.0;
+    public static final double CLIMBER_WINCH_MOTOR_U_PID_KF = 0.0;
+    
+    public static final double CLIMBER_WINCH_MOTOR_W_PID_KP = 1.0;
+    public static final double CLIMBER_WINCH_MOTOR_W_PID_KI = 0.0;
+    public static final double CLIMBER_WINCH_MOTOR_W_PID_KD = 0.0;
+    public static final double CLIMBER_WINCH_MOTOR_W_PID_KF = 0.0;
 
-    public static final boolean CLIMBER_WINCH_MOTOR_MASTER_POSITION_VOLTAGE_COMPENSATION_ENABLED = true;
-    public static final double CLIMBER_WINCH_MOTOR_MASTER_POSITION_VOLTAGE_COMPENSATION_MAXVOLTAGE = 0.0;
+    public static final boolean CLIMBER_WINCH_MOTOR_MASTER_VOLTAGE_COMPENSATION_ENABLED = true;
+    public static final double CLIMBER_WINCH_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE = 0.0;
 
-    public static final boolean CLIMBER_WINCH_MOTOR_FOLLOWER_POSITION_VOLTAGE_COMPENSATION_ENABLED = true;
+    public static final boolean CLIMBER_WINCH_MOTOR_FOLLOWER_VOLTAGE_COMPENSATION_ENABLED = true;
     public static final double CLIMBER_WINCH_MOTOR_FOLLOWER_POSITION_VOLTAGE_COMPENSATION_MAXVOLTAGE = 0.0;
+
+    public static final double CONVEYOR_RUNTIME_AFTER_INTAKE = 3.0;
 }

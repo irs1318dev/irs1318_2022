@@ -88,9 +88,16 @@ public enum LoggingKey
     DriveTrainSteerError4("dt.steer_err4"),
     DriveTrainSteerPositionGoal4("dt.steer_goal4"),
 
+    ClimberWinchPosition("c.winch_pos"),
+    ClimberWinchError("c.winch_error"),
+    ClimberWinchDesiredPosition("c.des_Pos"),
+    ClimberHookOut("c.hook_out"),
+    ClimberArmOut("c.arm_out"),
+    ClimberWinchPower("c.winch_pow"),
+
     CargoFlywheelPosition("cg.flywheel_pos"),
     CargoFlywheelVelocity("cg.flywheel_vel"),
-    CargoFlywheelError("cg.flywheel_err");
+    CargoFlywheelError("cg.flywheel_err"); 
 
     public final String value;
     public final boolean shouldLog;

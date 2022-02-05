@@ -3,6 +3,9 @@ package frc.robot.driver;
 public enum AnalogOperation implements IOperation
 {
     PositionStartingAngle,
+    // Climber operations
+    winchMotorPosition,
+    winchMotorPower,
 
     // DriveTrain operations:
     DriveTrainMoveForward,
@@ -24,5 +27,8 @@ public enum AnalogOperation implements IOperation
     DriveTrainPositionDrive1,
     DriveTrainPositionDrive2,
     DriveTrainPositionDrive3,
-    DriveTrainPositionDrive4;
+    DriveTrainPositionDrive4,
+
+    // Cargo operations
+    CargoFlywheelVelocity,
 }

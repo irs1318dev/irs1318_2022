@@ -60,7 +60,12 @@ public class HardwareConstants
     public static final double DRIVETRAIN_HORIZONTAL_WHEEL_CENTER_DISTANCE = HardwareConstants.DRIVETRAIN_HORIZONTAL_WHEEL_SEPERATION_DISTANCE / 2.0; // (in inches)
     public static final double DRIVETRAIN_VERTICAL_WHEEL_CENTER_DISTANCE = HardwareConstants.DRIVETRAIN_VERTICAL_WHEEL_SEPERATION_DISTANCE / 2.0; // (in inches)
 
-    //================================================== DriveTrain ==============================================================
+    //================================================== Climber ==============================================================
+
+    public static final boolean CLIMBER_WINCH_MOTOR_MASTER_INVERT_OUTPUT = false;
+    public static final boolean CLIMBER_WINCH_MOTOR_FOLLOWER_INVERT_OUTPUT = false;
+
+    //================================================== Cargo ==============================================================
 
     public static final boolean CARGO_INTAKE_MOTOR_INVERT_OUTPUT = false;
     public static final boolean CARGO_FLYWHEEL_MOTOR_INVERT_OUTPUT = false;
