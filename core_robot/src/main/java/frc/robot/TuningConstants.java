@@ -231,8 +231,8 @@ public class TuningConstants
     public static final double CARGO_FLYWHEEL_MOTOR_PID_KF = 0.0;
     public static final double CARGO_FLYWHEEL_MOTOR_PID_KS = 0.0;
 
-    public static final boolean CARGO_FLYWHEEL_MOTOR_MASTER_VELOCITY_VOLTAGE_COMPENSATION_ENABLED = true;
-    public static final double CARGO_FLYWHEEL_MOTOR_MASTER_VELOCITY_VOLTAGE_COMPENSATION_MAXVOLTAGE = 0.0;
+    public static final boolean CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_ENABLED = true;
+    public static final double CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE = 0.0;
 
     public static final double CARGO_INTAKE_OUTTAKE_POWER = 0.4;
     public static final double CARGO_FEEDER_POWER = 0.4;
