@@ -12,7 +12,7 @@ import com.google.inject.Singleton;
 /**
  * Controlls climber and stuff
  * 
- * @author Will, kwen perper, FWJK,　ポッター・ハリ, harru poyter, 那噗难
+ * @author Will, kwen perper, FWJK,　harru poyter
  */
 @Singleton
 public class ClimberMechanism implements IMechanism 

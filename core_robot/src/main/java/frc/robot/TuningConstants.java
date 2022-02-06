@@ -1,7 +1,5 @@
 package frc.robot;
 
-import com.fasterxml.jackson.databind.node.BooleanNode;
-
 /**
  * All constants related to tuning the operation of the robot.
  * 
