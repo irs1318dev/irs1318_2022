@@ -97,7 +97,10 @@ public enum LoggingKey
 
     CargoFlywheelPosition("cg.flywheel_pos"),
     CargoFlywheelVelocity("cg.flywheel_vel"),
-    CargoFlywheelError("cg.flywheel_err"); 
+    CargoFlywheelError("cg.flywheel_err"),
+
+    CargoFeederSensor("cg.feeder_tb_voltage"),
+    CargoConveyerSensor("cg.conveyer_tb_voltage"); 
 
     public final String value;
     public final boolean shouldLog;
