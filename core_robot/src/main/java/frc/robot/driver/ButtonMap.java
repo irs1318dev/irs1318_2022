@@ -86,49 +86,59 @@ public class ButtonMap implements IButtonMap
             TuningConstants.DRIVETRAIN_DEAD_ZONE_TRIGGER_AB,
             TuningConstants.DRIVETRAIN_ROTATION_B_MULTIPLIER),
 */
+        //cargo mechanism
+        new AnalogOperationDescription(
+            AnalogOperation.CargoFlywheelVelocity,
+            UserInputDevice.Driver,
+            AnalogAxis.XBONE_RT,
+            Shift.DriverDebug,
+            Shift.None,
+            ElectronicsConstants.INVERT_XBONE_RIGHT_TRIGGER,
+            TuningConstants.FLYWHEEL_DEAD_ZONE_MIN,
+            TuningConstants.FLYWHEEL_DEAD_ZONE_MAX),
     };
 
     public static DigitalOperationDescription[] DigitalOperationSchema = new DigitalOperationDescription[]
     {
         new DigitalOperationDescription(
             DigitalOperation.DriveTrainReset,
-            UserInputDevice.Driver,
-            UserInputDeviceButton.XBONE_A_BUTTON,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.PS4_X_BUTTON,
             Shift.DriverDebug,
             Shift.DriverDebug,
             ButtonType.Click),
         new DigitalOperationDescription(
             DigitalOperation.DriveTrainEnableFieldOrientation,
-            UserInputDevice.Driver,
-            UserInputDeviceButton.XBONE_B_BUTTON,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.PS4_CIRCLE_BUTTON,
             Shift.DriverDebug,
             Shift.DriverDebug,
             ButtonType.Click),
         new DigitalOperationDescription(
             DigitalOperation.DriveTrainDisableFieldOrientation,
-            UserInputDevice.Driver,
-            UserInputDeviceButton.XBONE_X_BUTTON,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.PS4_SQUARE_BUTTON,
             Shift.DriverDebug,
             Shift.DriverDebug,
             ButtonType.Click),
         new DigitalOperationDescription(
             DigitalOperation.PositionResetFieldOrientation,
-            UserInputDevice.Driver,
-            UserInputDeviceButton.XBONE_Y_BUTTON,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.PS4_TRIANGLE_BUTTON,
             Shift.DriverDebug,
             Shift.DriverDebug,
             ButtonType.Click),
         new DigitalOperationDescription(
             DigitalOperation.DriveTrainEnableMaintainDirectionMode,
-            UserInputDevice.Driver,
-            UserInputDeviceButton.XBONE_RIGHT_STICK_BUTTON,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.PS4_RIGHT_STICK_BUTTON,
             Shift.DriverDebug,
             Shift.DriverDebug,
             ButtonType.Click),
         new DigitalOperationDescription(
             DigitalOperation.DriveTrainDisableMaintainDirectionMode,
-            UserInputDevice.Driver,
-            UserInputDeviceButton.XBONE_LEFT_STICK_BUTTON,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.PS4_LEFT_STICK_BUTTON,
             Shift.DriverDebug,
             Shift.DriverDebug,
             ButtonType.Click),
@@ -140,6 +150,97 @@ public class ButtonMap implements IButtonMap
             Shift.None,
             Shift.None,
             ButtonType.Simple),
+            
+        // intake extend and retract
+        new DigitalOperationDescription(
+            DigitalOperation.CargoIntakeExtend,
+            UserInputDevice.Driver,
+            0,
+            Shift.DriverDebug,
+            Shift.None,
+            ButtonType.Click),
+        new DigitalOperationDescription(
+            DigitalOperation.CargoIntakeRetract,
+            UserInputDevice.Driver,
+            180,
+            Shift.DriverDebug,
+            Shift.None,
+            ButtonType.Click),
+
+        // activate rollers
+        new DigitalOperationDescription(
+            DigitalOperation.CargoIntakeIn,
+            UserInputDevice.Driver,
+            UserInputDeviceButton.XBONE_A_BUTTON,
+            Shift.DriverDebug,
+            Shift.None,
+            ButtonType.Simple),
+        new DigitalOperationDescription(
+            DigitalOperation.CargoIntakeOut,
+            UserInputDevice.Driver,
+            UserInputDeviceButton.XBONE_Y_BUTTON,
+            Shift.DriverDebug,
+            Shift.None,
+            ButtonType.Simple),
+        new DigitalOperationDescription(
+            DigitalOperation.CargoEject,
+            UserInputDevice.Driver,
+            UserInputDeviceButton.XBONE_Y_BUTTON,
+            Shift.DriverDebug,
+            Shift.DriverDebug,
+            ButtonType.Simple),
+        
+        // flywheel digital
+        new DigitalOperationDescription(
+            DigitalOperation.CargoFlywheelSpinup,
+            UserInputDevice.Driver,
+            UserInputDeviceButton.XBONE_B_BUTTON,
+            Shift.DriverDebug,
+            Shift.None,
+            ButtonType.Simple),
+
+        // shoot cargo
+        new DigitalOperationDescription(
+            DigitalOperation.CargoFeed,
+            UserInputDevice.Driver,
+            UserInputDeviceButton.XBONE_RIGHT_BUTTON,
+            Shift.None,
+            Shift.None,
+            ButtonType.Simple),
+
+        // hood positions
+
+        // Climber Hook Positions
+        new DigitalOperationDescription(
+            DigitalOperation.ClimberHookDown,
+            UserInputDevice.Operator,
+            0, // DPAD-up
+            Shift.OperatorDebug,
+            Shift.None,
+            ButtonType.Click),
+        new DigitalOperationDescription(
+            DigitalOperation.ClimberHookUp,
+            UserInputDevice.Operator,
+            180, // DPAD-down
+            Shift.OperatorDebug,
+            Shift.None,
+            ButtonType.Click),
+
+        // Climber Arm Positions
+        new DigitalOperationDescription(
+            DigitalOperation.ClimberArmDown,
+            UserInputDevice.Operator,
+            90, // DPAD-right
+            Shift.OperatorDebug,
+            Shift.None,
+            ButtonType.Click),
+        new DigitalOperationDescription(
+            DigitalOperation.ClimberArmUp,
+            UserInputDevice.Operator,
+            270, // DPAD-left
+            Shift.OperatorDebug,
+            Shift.None,
+            ButtonType.Click),
     };
 
     public static MacroOperationDescription[] MacroSchema = new MacroOperationDescription[]
@@ -147,7 +248,9 @@ public class ButtonMap implements IButtonMap
         new MacroOperationDescription(
             MacroOperation.PIDBrake,
             UserInputDevice.Driver,
-            180, // DPad Down
+            180, // DPAD-down
+            Shift.DriverDebug,
+            Shift.DriverDebug,
             ButtonType.Simple,
             () -> new PIDBrakeTask(),
             new IOperation[]
@@ -180,9 +283,9 @@ public class ButtonMap implements IButtonMap
         new MacroOperationDescription(
             MacroOperation.VisionCenter,
             UserInputDevice.Driver,
-            0, // DPad Up
+            0, // DPAD-up
             Shift.DriverDebug,
-            Shift.None,
+            Shift.DriverDebug,
             ButtonType.Toggle,
             () -> SequentialTask.Sequence(
                 new VisionCenteringTask(),
