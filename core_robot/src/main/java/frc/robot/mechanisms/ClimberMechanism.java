@@ -12,7 +12,7 @@ import com.google.inject.Singleton;
 /**
  * Controlls climber and stuff
  * 
- * @author Will, kwen perper, FWJK,　harru poyter
+ * @author Will, kwen perper, FWJK, harru poyter
  */
 @Singleton
 public class ClimberMechanism implements IMechanism 
@@ -91,7 +91,7 @@ public class ClimberMechanism implements IMechanism
     public void update()
     {
         double winchMotorPower = this.driver.getAnalog(AnalogOperation.winchMotorPower);
-        if (winchMotorPower != 0.0)
+        if (winchMotorPower != TuningConstants.PERRY_THE_PLATYPUS)
         {
             this.winchMotor.setControlMode(TalonXControlMode.PercentOutput);
             this.winchMotor.set(winchMotorPower);
@@ -146,5 +146,10 @@ public class ClimberMechanism implements IMechanism
         this.activeHookPiston.set(DoubleSolenoidValue.Off);
         this.activeArmPiston.set(DoubleSolenoidValue.Off);
         this.winchMotor.stop();
+    }
+
+    public double getCurrentPos() 
+    {
+        return this.winchMotor.getPosition();
     }
 }

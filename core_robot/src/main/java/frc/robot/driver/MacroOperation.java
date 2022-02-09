@@ -1,7 +1,6 @@
 package frc.robot.driver;
 
-public enum MacroOperation implements IOperation
-{
+public enum MacroOperation implements IOperation {
     AutonomousRoutine,
 
     // DriveTrain operations:
@@ -10,4 +9,9 @@ public enum MacroOperation implements IOperation
     // Testing operations
     VisionCenter,
     VisionCenterAndAdvance,
+
+    // Climber operations
+    MoveBar,
+    WinchForward,
+    WinchBackward,
 }

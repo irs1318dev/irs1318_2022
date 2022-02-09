@@ -268,4 +268,9 @@ public class TuningConstants
     public static final double CLIMBER_WINCH_MOTOR_FOLLOWER_POSITION_VOLTAGE_COMPENSATION_MAXVOLTAGE = 0.0;
 
     public static final double CONVEYOR_RUNTIME_AFTER_INTAKE = 3.0;
+
+    public static final double CLIMBER_FULL_RETRACT_LENGTH = 0.0;
+    public static final double CLIMBER_SHORT_EXTEND_LENGTH = 0.2;
+    public static final double CLIMBER_FULL_EXTEND_LENGTH = 1.0;
+    public static final double CLIMBER_HALF_EXTEND_LENGTH = 0.8;
 }
