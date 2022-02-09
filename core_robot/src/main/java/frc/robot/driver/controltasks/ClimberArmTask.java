@@ -2,14 +2,19 @@ package frc.robot.driver.controltasks;
 
 import frc.robot.driver.DigitalOperation;
 
-public class ClimberArmTask extends CompositeOperationTask {
-    private static DigitalOperation[] armPositionOperations = {
-            DigitalOperation.ClimberArmUp,
-            DigitalOperation.ClimberArmDown
+public class ClimberArmTask extends CompositeOperationTask
+{
+    private static DigitalOperation[] armPositionOperations =
+    {
+        DigitalOperation.ClimberArmOut,
+        DigitalOperation.ClimberArmUp
     };
 
-    public ClimberArmTask(DigitalOperation toPerform) {
-        super(0.1, toPerform, armPositionOperations);
+    public ClimberArmTask(boolean armUp)
+    {
+        super(
+            0.1,
+            armUp ? DigitalOperation.ClimberArmOut : DigitalOperation.ClimberArmUp,
+            ClimberArmTask.armPositionOperations);
     }
-
 }

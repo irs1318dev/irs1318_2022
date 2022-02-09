@@ -234,16 +234,21 @@ public class TuningConstants
     public static final boolean CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_ENABLED = true;
     public static final double CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE = 0.0;
 
-    public static final double CARGO_INTAKE_OUTTAKE_POWER = 0.4;
+    public static final double CARGO_INTAKE_POWER = 0.4;
+    public static final double CARGO_INTAKE_OUT_POWER = -0.4;
+    public static final double CARGO_INTAKE_EJECT_POWER = -0.5;
+    public static final double CARGO_CONVEYOR_FORWARD_POWER = 0.4;
+    public static final double CARGO_CONVEYOR_ADVANCE_POWER = 0.4;
+    public static final double CARGO_CONVEYOR_REVERSE_POWER = 0.4;
     public static final double CARGO_FEEDER_POWER = 0.4;
-    public static final double CARGO_CONVEYOR_POWER = 0.4;
 
     public static final int CARGO_FLYWHEEL_VELOCITY_PERIOD = 0;
     public static final int CARGO_FLYWHEEL_VELOCITY_WINDOWSIZE = 0;
 
     public static final double CARGO_FLYWHEEL_SPINUP_SPEED = 0.5;
 
-    public static final double CARGO_THROUGHBEAM_CUTOFF = 2.7;
+    public static final double CARGO_CONVEYOR_THROUGHBEAM_CUTOFF = 2.7;
+    public static final double CARGO_FEEDER_THROUGHBEAM_CUTOFF = 2.7;
 
     public static final double FLYWHEEL_DEAD_ZONE_MIN = -0.05;
     public static final double FLYWHEEL_DEAD_ZONE_MAX = 0.05;
@@ -272,5 +277,7 @@ public class TuningConstants
     public static final double CLIMBER_FULL_RETRACT_LENGTH = 0.0;
     public static final double CLIMBER_SHORT_EXTEND_LENGTH = 0.2;
     public static final double CLIMBER_FULL_EXTEND_LENGTH = 1.0;
-    public static final double CLIMBER_HALF_EXTEND_LENGTH = 0.8;
+    public static final double CLIMBER_MOSTLY_EXTEND_LENGTH = 0.8;
+
+    public static final double CLIMBER_WINCH_POSITION_EXTEND_ACCEPTABLE_DELTA = 0.05;
 }

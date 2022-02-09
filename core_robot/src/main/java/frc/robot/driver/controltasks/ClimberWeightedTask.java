@@ -2,14 +2,20 @@ package frc.robot.driver.controltasks;
 
 import frc.robot.driver.DigitalOperation;
 
-public class ClimberWeightedTask extends CompositeOperationTask {
-    private static DigitalOperation[] weightOperations = {
-            DigitalOperation.ClimberEnableUnWeightedMode,
-            DigitalOperation.ClimberEnableWeightedMode,
+public class ClimberWeightedTask extends CompositeOperationTask
+{
+    private static DigitalOperation[] weightOperations =
+    {
+        DigitalOperation.ClimberEnableUnweightedMode,
+        DigitalOperation.ClimberEnableWeightedMode,
     };
 
-    public ClimberWeightedTask(DigitalOperation toPerform) {
-        super(0.1, toPerform, weightOperations);
+    public ClimberWeightedTask(boolean weighted)
+    {
+        super(
+            0.1,
+            weighted ? DigitalOperation.ClimberEnableWeightedMode : DigitalOperation.ClimberEnableUnweightedMode,
+            ClimberWeightedTask.weightOperations);
     }
 
 }

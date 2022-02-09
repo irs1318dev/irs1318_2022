@@ -1,51 +1,41 @@
 package frc.robot.driver.controltasks;
 
-import frc.robot.driver.common.IDriver;
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
-
-import frc.robot.ElectronicsConstants;
-import frc.robot.HardwareConstants;
 import frc.robot.TuningConstants;
-import frc.robot.driver.DigitalOperation;
 import frc.robot.driver.AnalogOperation;
-import frc.robot.common.IMechanism;
-import frc.robot.driver.common.Driver;
-import frc.robot.common.robotprovider.*;
 import frc.robot.mechanisms.ClimberMechanism;
 
-public class WinchPositionExtensionTask extends ControlTaskBase {
+public class WinchPositionExtensionTask extends ControlTaskBase
+{
+    private final double extendPercent;
+
     private ClimberMechanism climber;
 
-    protected double targetLength;
-    protected double convertedPosition;
-
-    public WinchPositionExtensionTask(double percentExtend) {
-        this.targetLength = percentExtend;
+    public WinchPositionExtensionTask(double extendPercent)
+    {
+        this.extendPercent = extendPercent;
     }
 
     @Override
-    public void begin() {
+    public void begin()
+    {
         this.climber = this.getInjector().getInstance(ClimberMechanism.class);
     }
 
     @Override
-    public void update() {
-        this.setAnalogOperationState(AnalogOperation.winchMotorPosition, this.targetLength);
+    public void update()
+    {
+        this.setAnalogOperationState(AnalogOperation.ClimberWinchDesiredPosition, this.extendPercent);
     }
 
     @Override
-    public boolean hasCompleted() {
-        double currentPos = this.targetLength - climber.getCurrentPos();
-        if ((Math.abs(currentPos) < 0.5)) {
-            return true;
-        } else {
-            return false;
-        }
+    public void end()
+    {
     }
 
     @Override
-    public void end() {
+    public boolean hasCompleted()
+    {
+        double currentPos = this.extendPercent - climber.getCurrentPos();
+        return Math.abs(currentPos) < TuningConstants.CLIMBER_WINCH_POSITION_EXTEND_ACCEPTABLE_DELTA;
     }
-
 }

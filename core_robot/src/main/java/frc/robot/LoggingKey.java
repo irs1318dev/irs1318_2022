@@ -90,17 +90,20 @@ public enum LoggingKey
 
     ClimberWinchPosition("c.winch_pos"),
     ClimberWinchError("c.winch_error"),
-    ClimberWinchDesiredPosition("c.des_Pos"),
-    ClimberHookOut("c.hook_out"),
-    ClimberArmOut("c.arm_out"),
+    ClimberWinchDesiredPosition("c.winch_goal"),
     ClimberWinchPower("c.winch_pow"),
+    ClimberHookGrasped("c.hook_grasp"),
+    ClimberArmOut("c.arm_out"),
 
     CargoFlywheelPosition("cg.flywheel_pos"),
     CargoFlywheelVelocity("cg.flywheel_vel"),
     CargoFlywheelError("cg.flywheel_err"),
+    CargoFlywheelDesiredVelocity("cg.flywheel_goal"),
 
     CargoFeederSensor("cg.feeder_tb_voltage"),
-    CargoConveyerSensor("cg.conveyer_tb_voltage"); 
+    CargoConveyerSensor("cg.conveyer_tb_voltage"),
+    CargoFeederBeamBroken("cg.feeder_tb_broken"),
+    CargoConveyerBeamBroken("cg.conveyer_tb_broken");
 
     public final String value;
     public final boolean shouldLog;

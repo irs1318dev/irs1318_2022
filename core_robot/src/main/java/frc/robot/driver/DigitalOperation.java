@@ -27,21 +27,18 @@ public enum DigitalOperation implements IOperation
     CargoIntakeRetract,
     CargoIntakeIn,
     CargoIntakeOut,
+    CargoEject,
     CargoFeed,
     CargoHoodPointBlank,
     CargoHoodShort,
     CargoHoodMedium,
     CargoHoodLong,
-    CargoEject,
-    CargoFlywheelSpinup,
-    //CargoIntakeJUMP,
 
     // Climber operations 
-    ClimberHookUp,
-    ClimberHookDown,
+    ClimberHookGrasp,
+    ClimberHookRelease,
+    ClimberArmOut,
     ClimberArmUp,
-    ClimberArmDown,
     ClimberEnableWeightedMode,
-    ClimberEnableUnWeightedMode,
-    
+    ClimberEnableUnweightedMode,
 }

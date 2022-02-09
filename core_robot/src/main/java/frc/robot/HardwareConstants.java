@@ -65,6 +65,8 @@ public class HardwareConstants
     public static final boolean CLIMBER_WINCH_MOTOR_MASTER_INVERT_OUTPUT = false;
     public static final boolean CLIMBER_WINCH_MOTOR_FOLLOWER_INVERT_OUTPUT = false;
 
+    public static final double CLIMBER_WINCH_MAX_POSITION = 100.0; // units for (typical) maximum extension of the winch
+
     //================================================== Cargo ==============================================================
 
     public static final boolean CARGO_INTAKE_MOTOR_INVERT_OUTPUT = false;
