@@ -120,6 +120,8 @@ public class CargoMechanism implements IMechanism
         this.conveyorMotor.setControlMode(TalonXControlMode.PercentOutput);
         this.conveyorMotor.setInvertOutput(HardwareConstants.CARGO_CONVEYOR_MOTOR_INVERT_OUTPUT);
         this.conveyorMotor.setNeutralMode(MotorNeutralMode.Brake);
+
+        this.currentConveyorState = ConveyorState.Off;
     }
 
     @Override
@@ -310,5 +312,15 @@ public class CargoMechanism implements IMechanism
     public boolean isFlywheelSpunUp()
     {
         return this.flywheelSetpoint > 0.0 && Math.abs(this.flywheelError) <= TuningConstants.CARGO_FLYWHEEL_ALLOWABLE_ERROR_RANGE;
+    }
+
+    public boolean isConveyorSensorBlocked()
+    {
+        return this.conveyorBeamBroken;
+    }
+
+    public boolean isFeederSensorBlocked()
+    {
+        return this.feederBeamBroken;
     }
 }

@@ -254,6 +254,9 @@ public class TuningConstants
     public static final double FLYWHEEL_DEAD_ZONE_MAX = 0.05;
     public static final double CARGO_FLYWHEEL_ALLOWABLE_ERROR_RANGE = 500;
 
+    public static final double CARGO_SHOOT_CHECKBALL_WAIT_TIME = 1.0;
+    public static final double CARGO_SHOOT_SPINUP_WAIT_TIME = 1.0;
+
     //================================================== Climber Mechanism ==============================================================
 
     public static final double CLIMBER_WINCH_MOTOR_U_PID_KP = 1.0;

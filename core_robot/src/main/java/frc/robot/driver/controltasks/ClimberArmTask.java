@@ -4,7 +4,7 @@ import frc.robot.driver.DigitalOperation;
 
 public class ClimberArmTask extends CompositeOperationTask
 {
-    private static DigitalOperation[] armPositionOperations =
+    static DigitalOperation[] armPositionOperations =
     {
         DigitalOperation.ClimberArmOut,
         DigitalOperation.ClimberArmUp
