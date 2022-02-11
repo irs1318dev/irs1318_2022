@@ -270,94 +270,94 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.DriveTrainEnableFieldOrientation,
                 DigitalOperation.DriveTrainDisableFieldOrientation,
             }),
-            new MacroOperationDescription(
-                MacroOperation.VisionCenter,
-                UserInputDevice.Driver,
-                0, // DPAD-up
-                Shift.DriverDebug,
-                Shift.DriverDebug,
-                ButtonType.Toggle,
-                () -> SequentialTask.Sequence(
-                        new VisionCenteringTask(),
-                        new DriveTrainFieldOrientationModeTask(true)),
-                new IOperation[]
-                {
-                    AnalogOperation.DriveTrainMoveForward,
-                    AnalogOperation.DriveTrainMoveRight,
-                    AnalogOperation.DriveTrainTurnAngleGoal,
-                    AnalogOperation.DriveTrainTurnSpeed,
-                    AnalogOperation.DriveTrainRotationA,
-                    AnalogOperation.DriveTrainRotationB,
-                    AnalogOperation.DriveTrainPathXGoal,
-                    AnalogOperation.DriveTrainPathYGoal,
-                    AnalogOperation.DriveTrainPathXVelocityGoal,
-                    AnalogOperation.DriveTrainPathYVelocityGoal,
-                    AnalogOperation.DriveTrainPathAngleVelocityGoal,
-                    AnalogOperation.DriveTrainPositionDrive1,
-                    AnalogOperation.DriveTrainPositionDrive2,
-                    AnalogOperation.DriveTrainPositionDrive3,
-                    AnalogOperation.DriveTrainPositionDrive4,
-                    AnalogOperation.DriveTrainPositionSteer1,
-                    AnalogOperation.DriveTrainPositionSteer2,
-                    AnalogOperation.DriveTrainPositionSteer3,
-                    AnalogOperation.DriveTrainPositionSteer4,
-                    DigitalOperation.DriveTrainPositionMode,
-                    DigitalOperation.DriveTrainPathMode,
-                    DigitalOperation.DriveTrainReset,
-                    DigitalOperation.DriveTrainEnableFieldOrientation,
-                    DigitalOperation.DriveTrainDisableFieldOrientation,
-                    DigitalOperation.VisionDisableStream,
-                    DigitalOperation.VisionEnableGamePieceProcessing,
-                    DigitalOperation.VisionEnableRetroreflectiveProcessing,
-                    DigitalOperation.VisionForceDisable,
-                }),
-                new MacroOperationDescription(
-                    MacroOperation.WinchForward,
-                    UserInputDevice.Operator,
-                    UserInputDeviceButton.BUTTON_PAD_BUTTON_13,
-                    Shift.None,
-                    Shift.None,
-                    ButtonType.Simple,
-                    () -> new WinchPowerTask(0.5),
-                    new IOperation[]
-                    {
-                        AnalogOperation.ClimberWinchMotorPower,
-                    }),
-                new MacroOperationDescription(
-                    MacroOperation.WinchBackward,
-                    UserInputDevice.Operator,
-                    UserInputDeviceButton.BUTTON_PAD_BUTTON_14,
-                    Shift.None,
-                    Shift.None,
-                    ButtonType.Simple,
-                    () -> new WinchPowerTask(-0.5),
-                    new IOperation[]
-                    {
-                        AnalogOperation.ClimberWinchMotorPower
-                    }),
+        new MacroOperationDescription(
+            MacroOperation.VisionCenter,
+            UserInputDevice.Driver,
+            0, // DPAD-up
+            Shift.DriverDebug,
+            Shift.DriverDebug,
+            ButtonType.Toggle,
+            () -> SequentialTask.Sequence(
+                    new VisionCenteringTask(),
+                    new DriveTrainFieldOrientationModeTask(true)),
+            new IOperation[]
+            {
+                AnalogOperation.DriveTrainMoveForward,
+                AnalogOperation.DriveTrainMoveRight,
+                AnalogOperation.DriveTrainTurnAngleGoal,
+                AnalogOperation.DriveTrainTurnSpeed,
+                AnalogOperation.DriveTrainRotationA,
+                AnalogOperation.DriveTrainRotationB,
+                AnalogOperation.DriveTrainPathXGoal,
+                AnalogOperation.DriveTrainPathYGoal,
+                AnalogOperation.DriveTrainPathXVelocityGoal,
+                AnalogOperation.DriveTrainPathYVelocityGoal,
+                AnalogOperation.DriveTrainPathAngleVelocityGoal,
+                AnalogOperation.DriveTrainPositionDrive1,
+                AnalogOperation.DriveTrainPositionDrive2,
+                AnalogOperation.DriveTrainPositionDrive3,
+                AnalogOperation.DriveTrainPositionDrive4,
+                AnalogOperation.DriveTrainPositionSteer1,
+                AnalogOperation.DriveTrainPositionSteer2,
+                AnalogOperation.DriveTrainPositionSteer3,
+                AnalogOperation.DriveTrainPositionSteer4,
+                DigitalOperation.DriveTrainPositionMode,
+                DigitalOperation.DriveTrainPathMode,
+                DigitalOperation.DriveTrainReset,
+                DigitalOperation.DriveTrainEnableFieldOrientation,
+                DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.VisionDisableStream,
+                DigitalOperation.VisionEnableGamePieceProcessing,
+                DigitalOperation.VisionEnableRetroreflectiveProcessing,
+                DigitalOperation.VisionForceDisable,
+            }),
+        new MacroOperationDescription(
+            MacroOperation.WinchForward,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_13,
+            Shift.None,
+            Shift.None,
+            ButtonType.Simple,
+            () -> new ClimberWinchPowerTask(0.5),
+            new IOperation[]
+            {
+                AnalogOperation.ClimberWinchMotorPower,
+            }),
+        new MacroOperationDescription(
+            MacroOperation.WinchBackward,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_14,
+            Shift.None,
+            Shift.None,
+            ButtonType.Simple,
+            () -> new ClimberWinchPowerTask(-0.5),
+            new IOperation[]
+            {
+                AnalogOperation.ClimberWinchMotorPower
+            }),
         };
 
-        @Override
-        public ShiftDescription[] getShiftSchema()
-        {
-                return ButtonMap.ShiftButtonSchema;
-        }
+    @Override
+    public ShiftDescription[] getShiftSchema()
+    {
+        return ButtonMap.ShiftButtonSchema;
+    }
 
-        @Override
-        public AnalogOperationDescription[] getAnalogOperationSchema()
-        {
-                return ButtonMap.AnalogOperationSchema;
-        }
+    @Override
+    public AnalogOperationDescription[] getAnalogOperationSchema()
+    {
+        return ButtonMap.AnalogOperationSchema;
+    }
 
-        @Override
-        public DigitalOperationDescription[] getDigitalOperationSchema()
-        {
-                return ButtonMap.DigitalOperationSchema;
-        }
+    @Override
+    public DigitalOperationDescription[] getDigitalOperationSchema()
+    {
+        return ButtonMap.DigitalOperationSchema;
+    }
 
-        @Override
-        public MacroOperationDescription[] getMacroOperationSchema()
-        {
-                return ButtonMap.MacroSchema;
-        }
+    @Override
+    public MacroOperationDescription[] getMacroOperationSchema()
+    {
+        return ButtonMap.MacroSchema;
+    }
 }

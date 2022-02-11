@@ -4,13 +4,13 @@ import frc.robot.TuningConstants;
 import frc.robot.driver.AnalogOperation;
 import frc.robot.mechanisms.ClimberMechanism;
 
-public class WinchPositionExtensionTask extends ControlTaskBase
+public class ClimberWinchPositionExtensionTask extends ControlTaskBase
 {
     private final double extendPercent;
 
     private ClimberMechanism climber;
 
-    public WinchPositionExtensionTask(double extendPercent)
+    public ClimberWinchPositionExtensionTask(double extendPercent)
     {
         this.extendPercent = extendPercent;
     }

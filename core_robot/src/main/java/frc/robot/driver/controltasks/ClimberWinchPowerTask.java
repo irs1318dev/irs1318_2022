@@ -3,11 +3,11 @@ package frc.robot.driver.controltasks;
 import frc.robot.TuningConstants;
 import frc.robot.driver.AnalogOperation;
 
-public class WinchPowerTask extends ControlTaskBase
+public class ClimberWinchPowerTask extends ControlTaskBase
 {
     private double targetPower;
 
-    public WinchPowerTask(double percentPower)
+    public ClimberWinchPowerTask(double percentPower)
     {
         this.targetPower = percentPower;
     }
