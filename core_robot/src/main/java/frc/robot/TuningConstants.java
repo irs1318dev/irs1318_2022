@@ -78,6 +78,50 @@ public class TuningConstants
 
     public static final double INDICATOR_LIGHT_VISION_ACCEPTABLE_ANGLE_RANGE = 3.0;
 
+    public static final int CANDLE_LED_COUNT = 8;
+    public static final int LED_STRIP_LED_COUNT = 60; // 60 LEDs per meter-long strip from CTRE
+    public static final int CANDLE_TOTAL_NUMBER_LEDS = TuningConstants.CANDLE_LED_COUNT + TuningConstants.LED_STRIP_LED_COUNT * 2;
+
+    public static final int TEAM_PURPLE_RED = 101;
+    public static final int TEAM_PURPLE_GREEN = 34;
+    public static final int TEAM_PURPLE_BLUE = 129;
+    public static final int TEAM_PURPLE_WHITE = 0;
+
+    public static final int INDICATOR_OFF_COLOR_RED = 0;
+    public static final int INDICATOR_OFF_COLOR_GREEN = 0;
+    public static final int INDICATOR_OFF_COLOR_BLUE = 0;
+    public static final int INDICATOR_OFF_COLOR_WHITE = 0;
+
+    // Has (at least) a single cargo light
+    public static final int INDICATOR_SECTION_FEEDER_CARGO_COLOR_RED = 255;
+    public static final int INDICATOR_SECTION_FEEDER_CARGO_COLOR_GREEN = 0;
+    public static final int INDICATOR_SECTION_FEEDER_CARGO_COLOR_BLUE = 0;
+    public static final int INDICATOR_SECTION_FEEDER_CARGO_COLOR_WHITE = 0;
+    public static final int INDICATOR_SECTION_FEEDER_CARGO1_START = 8;
+    public static final int INDICATOR_SECTION_FEEDER_CARGO1_COUNT = 20;
+    public static final int INDICATOR_SECTION_FEEDER_CARGO2_START = 68;
+    public static final int INDICATOR_SECTION_FEEDER_CARGO2_COUNT = 20;
+
+    // Has a second cargo light
+    public static final int INDICATOR_SECTION_CONVEYOR_CARGO_COLOR_RED = 255;
+    public static final int INDICATOR_SECTION_CONVEYOR_CARGO_COLOR_GREEN = 255;
+    public static final int INDICATOR_SECTION_CONVEYOR_CARGO_COLOR_BLUE = 0;
+    public static final int INDICATOR_SECTION_CONVEYOR_CARGO_COLOR_WHITE = 0;
+    public static final int INDICATOR_SECTION_CONVEYOR_CARGO1_START = 28;
+    public static final int INDICATOR_SECTION_CONVEYOR_CARGO1_COUNT = 20;
+    public static final int INDICATOR_SECTION_CONVEYOR_CARGO2_START = 88;
+    public static final int INDICATOR_SECTION_CONVEYOR_CARGO2_COUNT = 20;
+
+    // Shooter spin-up lights
+    public static final int INDICATOR_SECTION_SPIN_UP_COLOR_RED = 0;
+    public static final int INDICATOR_SECTION_SPIN_UP_COLOR_GREEN = 255;
+    public static final int INDICATOR_SECTION_SPIN_UP_COLOR_BLUE = 0;
+    public static final int INDICATOR_SECTION_SPIN_UP_COLOR_WHITE = 0;
+    public static final int INDICATOR_SECTION_SPIN_UP1_START = 48;
+    public static final int INDICATOR_SECTION_SPIN_UP1_COUNT = 20;
+    public static final int INDICATOR_SECTION_SPIN_UP2_START = 108;
+    public static final int INDICATOR_SECTION_SPIN_UP2_COUNT = 20;
+
     //================================================== DriveTrain ==============================================================
 
     public static final boolean DRIVETRAIN_USE_PID = true;
