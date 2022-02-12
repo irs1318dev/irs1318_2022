@@ -26,9 +26,9 @@ public class IndicatorLightManager implements IMechanism
         TurnOff;
     }
 
-    private boolean hasFeederCargoLit;
-    private boolean hasConveyorCargoLit;
-    private boolean shooterSpunUpLit;
+    private Boolean hasFeederCargoLit;
+    private Boolean hasConveyorCargoLit;
+    private Boolean shooterSpunUpLit;
 
     @Inject
     public IndicatorLightManager(
@@ -40,9 +40,9 @@ public class IndicatorLightManager implements IMechanism
         this.candle.configLEDType(CANdleLEDStripType.GRB);
         this.candle.configVBatOutput(CANdleVBatOutputMode.Off);
 
-        this.hasFeederCargoLit = false;
-        this.hasConveyorCargoLit = false;
-        this.shooterSpunUpLit = false;
+        this.hasFeederCargoLit = null;
+        this.hasConveyorCargoLit = null;
+        this.shooterSpunUpLit = null;
     }
 
     @Override
@@ -111,6 +111,10 @@ public class IndicatorLightManager implements IMechanism
     @Override
     public void stop()
     {
+        this.hasFeederCargoLit = null;
+        this.hasConveyorCargoLit = null;
+        this.shooterSpunUpLit = null;
+
         this.candle.startTwinkleAnimation(
             TuningConstants.TEAM_PURPLE_RED,
             TuningConstants.TEAM_PURPLE_GREEN,
@@ -127,9 +131,10 @@ public class IndicatorLightManager implements IMechanism
      * @param newState the new desired state of the lights (on or off)
      * @return NoChange if no state change is required, TurnOn if we need to turn the lights on, TurnOff if we need to turn the lights off
      */
-    private LightTransition checkTransitionRequired(boolean currentState, boolean newState)
+    private LightTransition checkTransitionRequired(Boolean currentState, boolean newState)
     {
-        if (currentState == newState)
+        if (currentState != null &&
+            currentState == newState)
         {
             return LightTransition.NoChange;
         }
