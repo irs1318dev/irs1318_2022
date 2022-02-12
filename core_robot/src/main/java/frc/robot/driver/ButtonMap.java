@@ -100,55 +100,55 @@ public class ButtonMap implements IButtonMap
 
     public static DigitalOperationDescription[] DigitalOperationSchema = new DigitalOperationDescription[]
     {
-        new DigitalOperationDescription(
-            DigitalOperation.DriveTrainReset,
-            UserInputDevice.Operator,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_2,
-            Shift.OperatorDebug,
-            Shift.OperatorDebug,
-            ButtonType.Click),
-        new DigitalOperationDescription(
-            DigitalOperation.DriveTrainEnableFieldOrientation,
-            UserInputDevice.Operator,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_3,
-            Shift.OperatorDebug,
-            Shift.OperatorDebug,
-            ButtonType.Click),
-        new DigitalOperationDescription(
-            DigitalOperation.DriveTrainDisableFieldOrientation,
-            UserInputDevice.Operator,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_4,
-            Shift.OperatorDebug,
-            Shift.OperatorDebug,
-            ButtonType.Click),
-        new DigitalOperationDescription(
-            DigitalOperation.PositionResetFieldOrientation,
-            UserInputDevice.Operator,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_5,
-            Shift.OperatorDebug,
-            Shift.OperatorDebug,
-            ButtonType.Click),
-        new DigitalOperationDescription(
-            DigitalOperation.DriveTrainEnableMaintainDirectionMode,
-            UserInputDevice.Operator,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_6,
-            Shift.OperatorDebug,
-            Shift.OperatorDebug,
-            ButtonType.Click),
-        new DigitalOperationDescription(
-            DigitalOperation.DriveTrainDisableMaintainDirectionMode,
-            UserInputDevice.Operator,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_7,
-            Shift.OperatorDebug,
-            Shift.OperatorDebug,
-            ButtonType.Click),
-        new DigitalOperationDescription(
-            DigitalOperation.VisionEnableRetroreflectiveProcessing,
-            UserInputDevice.Operator,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_8,
-            Shift.None,
-            Shift.None,
-            ButtonType.Simple),
+        // new DigitalOperationDescription(
+        //     DigitalOperation.DriveTrainReset,
+        //     UserInputDevice.Operator,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_2,
+        //     Shift.OperatorDebug,
+        //     Shift.OperatorDebug,
+        //     ButtonType.Click),
+        // new DigitalOperationDescription(
+        //     DigitalOperation.DriveTrainEnableFieldOrientation,
+        //     UserInputDevice.Operator,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_3,
+        //     Shift.OperatorDebug,
+        //     Shift.OperatorDebug,
+        //     ButtonType.Click),
+        // new DigitalOperationDescription(
+        //     DigitalOperation.DriveTrainDisableFieldOrientation,
+        //     UserInputDevice.Operator,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_4,
+        //     Shift.OperatorDebug,
+        //     Shift.OperatorDebug,
+        //     ButtonType.Click),
+        // new DigitalOperationDescription(
+        //     DigitalOperation.PositionResetFieldOrientation,
+        //     UserInputDevice.Operator,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_5,
+        //     Shift.OperatorDebug,
+        //     Shift.OperatorDebug,
+        //     ButtonType.Click),
+        // new DigitalOperationDescription(
+        //     DigitalOperation.DriveTrainEnableMaintainDirectionMode,
+        //     UserInputDevice.Operator,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_6,
+        //     Shift.OperatorDebug,
+        //     Shift.OperatorDebug,
+        //     ButtonType.Click),
+        // new DigitalOperationDescription(
+        //     DigitalOperation.DriveTrainDisableMaintainDirectionMode,
+        //     UserInputDevice.Operator,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_7,
+        //     Shift.OperatorDebug,
+        //     Shift.OperatorDebug,
+        //     ButtonType.Click),
+        // new DigitalOperationDescription(
+        //     DigitalOperation.VisionEnableRetroreflectiveProcessing,
+        //     UserInputDevice.Operator,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_8,
+        //     Shift.None,
+        //     Shift.None,
+        //     ButtonType.Simple),
 
         // intake extend and retract
         new DigitalOperationDescription(
@@ -201,36 +201,53 @@ public class ButtonMap implements IButtonMap
         // hood positions
 
         // Climber Hook Positions
-        new DigitalOperationDescription(
-            DigitalOperation.ClimberHookRelease,
-            UserInputDevice.Operator,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_9, // DPAD-up
-            Shift.OperatorDebug,
-            Shift.None,
-            ButtonType.Click),
-        new DigitalOperationDescription(
-            DigitalOperation.ClimberHookGrasp,
-            UserInputDevice.Operator,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_10, // DPAD-down
-            Shift.OperatorDebug,
-            Shift.None,
-            ButtonType.Click),
+        // new DigitalOperationDescription(
+        //     DigitalOperation.ClimberHookRelease,
+        //     UserInputDevice.Operator,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_9, // DPAD-up
+        //     Shift.OperatorDebug,
+        //     Shift.None,
+        //     ButtonType.Click),
+        // new DigitalOperationDescription(
+        //     DigitalOperation.ClimberHookGrasp,
+        //     UserInputDevice.Operator,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_10, // DPAD-down
+        //     Shift.OperatorDebug,
+        //     Shift.None,
+        //     ButtonType.Click),
 
-        // Climber Arm Positions
+        // // Climber Arm Positions
+        // new DigitalOperationDescription(
+        //     DigitalOperation.ClimberArmUp,
+        //     UserInputDevice.Operator,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_11, // DPAD-right
+        //     Shift.OperatorDebug,
+        //     Shift.None,
+        //     ButtonType.Click),
+        // new DigitalOperationDescription(
+        //     DigitalOperation.ClimberArmOut,
+        //     UserInputDevice.Operator,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_12, // DPAD-left
+        //     Shift.OperatorDebug,
+        //     Shift.None,
+        //     ButtonType.Click),
+
+            
         new DigitalOperationDescription(
-            DigitalOperation.ClimberArmUp,
+            DigitalOperation.IndicatorLightA,
             UserInputDevice.Operator,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_11, // DPAD-right
-            Shift.OperatorDebug,
-            Shift.None,
-            ButtonType.Click),
+            UserInputDeviceButton.XBONE_A_BUTTON,
+            ButtonType.Toggle),
         new DigitalOperationDescription(
-            DigitalOperation.ClimberArmOut,
+            DigitalOperation.IndicatorLightB,
             UserInputDevice.Operator,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_12, // DPAD-left
-            Shift.OperatorDebug,
-            Shift.None,
-            ButtonType.Click),
+            UserInputDeviceButton.XBONE_B_BUTTON,
+            ButtonType.Toggle),
+        new DigitalOperationDescription(
+            DigitalOperation.IndicatorLightC,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.XBONE_X_BUTTON,
+            ButtonType.Toggle),
     };
 
     public static MacroOperationDescription[] MacroSchema = new MacroOperationDescription[]
@@ -311,30 +328,30 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
                 DigitalOperation.VisionForceDisable,
             }),
-        new MacroOperationDescription(
-            MacroOperation.WinchForward,
-            UserInputDevice.Operator,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_13,
-            Shift.None,
-            Shift.None,
-            ButtonType.Simple,
-            () -> new ClimberWinchPowerTask(0.5),
-            new IOperation[]
-            {
-                AnalogOperation.ClimberWinchMotorPower,
-            }),
-        new MacroOperationDescription(
-            MacroOperation.WinchBackward,
-            UserInputDevice.Operator,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_14,
-            Shift.None,
-            Shift.None,
-            ButtonType.Simple,
-            () -> new ClimberWinchPowerTask(-0.5),
-            new IOperation[]
-            {
-                AnalogOperation.ClimberWinchMotorPower
-            }),
+        // new MacroOperationDescription(
+        //     MacroOperation.WinchForward,
+        //     UserInputDevice.Operator,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_13,
+        //     Shift.None,
+        //     Shift.None,
+        //     ButtonType.Simple,
+        //     () -> new ClimberWinchPowerTask(0.5),
+        //     new IOperation[]
+        //     {
+        //         AnalogOperation.ClimberWinchMotorPower,
+        //     }),
+        // new MacroOperationDescription(
+        //     MacroOperation.WinchBackward,
+        //     UserInputDevice.Operator,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_14,
+        //     Shift.None,
+        //     Shift.None,
+        //     ButtonType.Simple,
+        //     () -> new ClimberWinchPowerTask(-0.5),
+        //     new IOperation[]
+        //     {
+        //         AnalogOperation.ClimberWinchMotorPower
+        //     }),
         };
 
     @Override

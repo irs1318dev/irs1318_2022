@@ -41,4 +41,8 @@ public enum DigitalOperation implements IOperation
     ClimberArmUp,
     ClimberEnableWeightedMode,
     ClimberEnableUnweightedMode,
+
+    IndicatorLightA,
+    IndicatorLightB,
+    IndicatorLightC,
 }
