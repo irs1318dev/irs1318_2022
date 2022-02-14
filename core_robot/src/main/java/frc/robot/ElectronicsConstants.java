@@ -56,7 +56,7 @@ public class ElectronicsConstants
 
     //================================================== Indicator Lights ==============================================================
 
-    public static final int INDICATOR_LIGHT_CANDLE_CAN_ID = 1318;
+    public static final int INDICATOR_LIGHT_CANDLE_CAN_ID = 55;
 
     //================================================== DriveTrain ==============================================================
 
@@ -76,33 +76,30 @@ public class ElectronicsConstants
 
     //================================================== Cargo Mechanism ==============================================================
 
-    public static final int CARGO_INTAKE_MOTOR_CAN_ID = 1318;
-    public static final int CARGO_FLYWHEEL_MOTOR_CAN_ID = 1318;
-    public static final int CARGO_CONVEYOR_MOTOR_CAN_ID = 1318;
-    public static final int CARGO_FEEDER_MOTOR_CAN_ID = 1318;
+    public static final int CARGO_INTAKE_MOTOR_CAN_ID = 9;
+    public static final int CARGO_FLYWHEEL_MOTOR_CAN_ID = 10;
+    public static final int CARGO_CONVEYOR_MOTOR_CAN_ID = 11;
+    public static final int CARGO_FEEDER_MOTOR_CAN_ID = 12;
 
     public static final int PCM_MODULE_A = 0;
 
-    public static final int CARGO_INNER_HOOD_FORWARD = 1318;
-    public static final int CARGO_INNER_HOOD_REVERSE = 1318;
-    public static final int CARGO_OUTER_HOOD_FORWARD = 1318;
-    public static final int CARGO_OUTER_HOOD_REVERSE = 1318;
-    public static final int CARGO_INTAKE_PISTON_FORWARD = 1318;
-    public static final int CARGO_INTAKE_PISTON_REVERSE = 1318;
-
-    public static final int CARGO_INTAKE_SENSOR = 1318;
-    public static final int CARGO_FEEDER_SENSOR = 1318;
+    public static final int CARGO_INNER_HOOD_FORWARD = 0;
+    public static final int CARGO_INNER_HOOD_REVERSE = 1;
+    public static final int CARGO_OUTER_HOOD_FORWARD = 2;
+    public static final int CARGO_OUTER_HOOD_REVERSE = 3;
+    public static final int CARGO_INTAKE_PISTON_FORWARD = 4;
+    public static final int CARGO_INTAKE_PISTON_REVERSE = 5;
 
     public static final int CARGO_FEEDER_THROUGHBEAM_ANALOG_INPUT = 0;
-    public static final int CARGO_CONVEYOR_THROUGHBEAM_ANALOG_INPUT = 0;
+    public static final int CARGO_CONVEYOR_THROUGHBEAM_ANALOG_INPUT = 1;
 
     //================================================== Climber Mechanism ==============================================================
 
-    public static final int CLIMBER_WINCH_MOTOR_MASTER_CAN_ID = 1318;
-    public static final int CLIMBER_WINCH_MOTOR_FOLLOWER_CAN_ID = 1318;
+    public static final int CLIMBER_WINCH_MOTOR_MASTER_CAN_ID = 13;
+    public static final int CLIMBER_WINCH_MOTOR_FOLLOWER_CAN_ID = 14;
 
-    public static final int CLIMBER_ACTIVE_ARM_FORWARD = 1318;
-    public static final int CLIMBER_ACTIVE_ARM_REVERSE = 1318;
-    public static final int CLIMBER_ACTIVE_HOOK_FORWARD = 1318;
-    public static final int CLIMBER_ACTIVE_HOOK_REVERSE = 1318;
+    public static final int CLIMBER_ACTIVE_ARM_FORWARD = 6;
+    public static final int CLIMBER_ACTIVE_ARM_REVERSE = 7;
+    public static final int CLIMBER_ACTIVE_HOOK_FORWARD = 8;
+    public static final int CLIMBER_ACTIVE_HOOK_REVERSE = 9;
 }
