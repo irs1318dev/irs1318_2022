@@ -11,6 +11,26 @@ public class CANdleWrapper implements ICANdle
         this.wrappedObject = new CANdle(deviceNumber);
     }
 
+    public double getBusVoltage()
+    {
+        return this.wrappedObject.getBusVoltage();
+    }
+
+    public double get5VRailVoltage()
+    {
+        return this.wrappedObject.get5VRailVoltage();
+    }
+
+    public double getCurrent()
+    {
+        return this.wrappedObject.getCurrent();
+    }
+
+    public double getTemperature()
+    {
+        return this.wrappedObject.getTemperature();
+    }
+
     public void configBrightnessScalar(double brightness)
     {
         CTREErrorCodeHelper.printError(
