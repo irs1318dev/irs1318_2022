@@ -3,6 +3,7 @@ package frc.robot.driver;
 public enum AnalogOperation implements IOperation
 {
     PositionStartingAngle,
+
     // Climber operations
     ClimberWinchDesiredPosition,
     ClimberWinchMotorPower,

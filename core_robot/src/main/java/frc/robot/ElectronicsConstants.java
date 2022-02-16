@@ -102,4 +102,6 @@ public class ElectronicsConstants
     public static final int CLIMBER_ACTIVE_ARM_REVERSE = 7;
     public static final int CLIMBER_ACTIVE_HOOK_FORWARD = 8;
     public static final int CLIMBER_ACTIVE_HOOK_REVERSE = 9;
+    public static final int CLIMBER_WINCH_LOCK_FORWARD = 10;
+    public static final int CLIMBER_WINCH_LOCK_BACKWARD = 11;
 }

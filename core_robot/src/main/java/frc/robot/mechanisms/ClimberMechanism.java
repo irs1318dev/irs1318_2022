@@ -27,11 +27,13 @@ public class ClimberMechanism implements IMechanism
     private final ITalonFX winchMotor;
     private final IDoubleSolenoid activeHookPiston;
     private final IDoubleSolenoid activeArmPiston;
+    private final IDoubleSolenoid winchArmLock;
 
     private double winchMotorPosition;
     private double winchMotorError;
     private boolean activeHookGrasped;
     private boolean activeArmOut;
+    private boolean winchArmLocked;
 
     private double desiredWinchPosition;
     private int currentSlot;
@@ -76,6 +78,8 @@ public class ClimberMechanism implements IMechanism
 
         this.activeHookPiston = provider.getDoubleSolenoid(ElectronicsConstants.PCM_MODULE_A, PneumaticsModuleType.PneumaticsHub, ElectronicsConstants.CLIMBER_ACTIVE_HOOK_FORWARD, ElectronicsConstants.CLIMBER_ACTIVE_HOOK_REVERSE);
         this.activeArmPiston = provider.getDoubleSolenoid(ElectronicsConstants.PCM_MODULE_A, PneumaticsModuleType.PneumaticsHub, ElectronicsConstants.CLIMBER_ACTIVE_ARM_FORWARD, ElectronicsConstants.CLIMBER_ACTIVE_ARM_REVERSE);
+
+        this.winchArmLock = provider.getDoubleSolenoid(ElectronicsConstants.PCM_MODULE_A, PneumaticsModuleType.PneumaticsHub, ElectronicsConstants.CLIMBER_WINCH_LOCK_FORWARD, ElectronicsConstants.CLIMBER_WINCH_LOCK_BACKWARD);
 
         this.activeHookGrasped = false;
         this.activeArmOut = false;
@@ -146,10 +150,22 @@ public class ClimberMechanism implements IMechanism
         {
             this.activeArmOut = false;
         }
+        
+        // set position of lock solenoid
+        if (this.driver.getDigital(DigitalOperation.ClimberWinchLock))
+        {
+            this.winchArmLocked = false;
+        }
+        else if(this.driver.getDigital(DigitalOperation.ClimberWinchUnlock))
+        {
+            this.winchArmLocked = true;
+        }
 
         this.activeHookPiston.set(this.activeHookGrasped ? DoubleSolenoidValue.Reverse : DoubleSolenoidValue.Forward);
         this.activeArmPiston.set(this.activeArmOut ? DoubleSolenoidValue.Reverse : DoubleSolenoidValue.Forward);
+        this.winchArmLock.set(this.winchArmLocked ? DoubleSolenoidValue.Forward : DoubleSolenoidValue.Reverse);
 
+        this.logger.logBoolean(LoggingKey.ClimberWinchLockIn, this.winchArmLocked);
         this.logger.logBoolean(LoggingKey.ClimberArmOut, this.activeArmOut);
         this.logger.logBoolean(LoggingKey.ClimberHookGrasped, this.activeHookGrasped);
     }
@@ -159,6 +175,7 @@ public class ClimberMechanism implements IMechanism
     {
         // this.activeHookPiston.set(DoubleSolenoidValue.Off);
         this.activeArmPiston.set(DoubleSolenoidValue.Off);
+        this.winchArmLock.set(DoubleSolenoidValue.Off);
         this.winchMotor.stop();
     }
 

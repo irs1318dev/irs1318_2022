@@ -85,8 +85,9 @@ public class ButtonMap implements IButtonMap
          * TuningConstants.DRIVETRAIN_DEAD_ZONE_TRIGGER_AB,
          * TuningConstants.DRIVETRAIN_ROTATION_B_MULTIPLIER),
          */
-
+        
         // cargo mechanism
+        
         new AnalogOperationDescription(
             AnalogOperation.CargoFlywheelVelocityGoal,
             UserInputDevice.Driver,
@@ -100,55 +101,55 @@ public class ButtonMap implements IButtonMap
 
     public static DigitalOperationDescription[] DigitalOperationSchema = new DigitalOperationDescription[]
     {
-        // new DigitalOperationDescription(
-        //     DigitalOperation.DriveTrainReset,
-        //     UserInputDevice.Operator,
-        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_2,
-        //     Shift.OperatorDebug,
-        //     Shift.OperatorDebug,
-        //     ButtonType.Click),
-        // new DigitalOperationDescription(
-        //     DigitalOperation.DriveTrainEnableFieldOrientation,
-        //     UserInputDevice.Operator,
-        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_3,
-        //     Shift.OperatorDebug,
-        //     Shift.OperatorDebug,
-        //     ButtonType.Click),
-        // new DigitalOperationDescription(
-        //     DigitalOperation.DriveTrainDisableFieldOrientation,
-        //     UserInputDevice.Operator,
-        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_4,
-        //     Shift.OperatorDebug,
-        //     Shift.OperatorDebug,
-        //     ButtonType.Click),
-        // new DigitalOperationDescription(
-        //     DigitalOperation.PositionResetFieldOrientation,
-        //     UserInputDevice.Operator,
-        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_5,
-        //     Shift.OperatorDebug,
-        //     Shift.OperatorDebug,
-        //     ButtonType.Click),
-        // new DigitalOperationDescription(
-        //     DigitalOperation.DriveTrainEnableMaintainDirectionMode,
-        //     UserInputDevice.Operator,
-        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_6,
-        //     Shift.OperatorDebug,
-        //     Shift.OperatorDebug,
-        //     ButtonType.Click),
-        // new DigitalOperationDescription(
-        //     DigitalOperation.DriveTrainDisableMaintainDirectionMode,
-        //     UserInputDevice.Operator,
-        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_7,
-        //     Shift.OperatorDebug,
-        //     Shift.OperatorDebug,
-        //     ButtonType.Click),
-        // new DigitalOperationDescription(
-        //     DigitalOperation.VisionEnableRetroreflectiveProcessing,
-        //     UserInputDevice.Operator,
-        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_8,
-        //     Shift.None,
-        //     Shift.None,
-        //     ButtonType.Simple),
+        new DigitalOperationDescription(
+            DigitalOperation.DriveTrainReset,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_2,
+            Shift.OperatorDebug,
+            Shift.OperatorDebug,
+            ButtonType.Click),
+        new DigitalOperationDescription(
+            DigitalOperation.DriveTrainEnableFieldOrientation,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_3,
+            Shift.OperatorDebug,
+            Shift.OperatorDebug,
+            ButtonType.Click),
+        new DigitalOperationDescription(
+            DigitalOperation.DriveTrainDisableFieldOrientation,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_4,
+            Shift.OperatorDebug,
+            Shift.OperatorDebug,
+            ButtonType.Click),
+        new DigitalOperationDescription(
+            DigitalOperation.PositionResetFieldOrientation,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_5,
+            Shift.OperatorDebug,
+            Shift.OperatorDebug,
+            ButtonType.Click),
+        new DigitalOperationDescription(
+            DigitalOperation.DriveTrainEnableMaintainDirectionMode,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_6,
+            Shift.OperatorDebug,
+            Shift.OperatorDebug,
+            ButtonType.Click),
+        new DigitalOperationDescription(
+            DigitalOperation.DriveTrainDisableMaintainDirectionMode,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_7,
+            Shift.OperatorDebug,
+            Shift.OperatorDebug,
+            ButtonType.Click),
+        new DigitalOperationDescription(
+            DigitalOperation.VisionEnableRetroreflectiveProcessing,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_8,
+            Shift.None,
+            Shift.None,
+            ButtonType.Simple),
 
         // intake extend and retract
         new DigitalOperationDescription(
@@ -201,53 +202,36 @@ public class ButtonMap implements IButtonMap
         // hood positions
 
         // Climber Hook Positions
-        // new DigitalOperationDescription(
-        //     DigitalOperation.ClimberHookRelease,
-        //     UserInputDevice.Operator,
-        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_9, // DPAD-up
-        //     Shift.OperatorDebug,
-        //     Shift.None,
-        //     ButtonType.Click),
-        // new DigitalOperationDescription(
-        //     DigitalOperation.ClimberHookGrasp,
-        //     UserInputDevice.Operator,
-        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_10, // DPAD-down
-        //     Shift.OperatorDebug,
-        //     Shift.None,
-        //     ButtonType.Click),
+        new DigitalOperationDescription(
+            DigitalOperation.ClimberHookRelease,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_9, // DPAD-up
+            Shift.OperatorDebug,
+            Shift.None,
+            ButtonType.Click),
+        new DigitalOperationDescription(
+            DigitalOperation.ClimberHookGrasp,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_10, // DPAD-down
+            Shift.OperatorDebug,
+            Shift.None,
+            ButtonType.Click),
 
         // // Climber Arm Positions
-        // new DigitalOperationDescription(
-        //     DigitalOperation.ClimberArmUp,
-        //     UserInputDevice.Operator,
-        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_11, // DPAD-right
-        //     Shift.OperatorDebug,
-        //     Shift.None,
-        //     ButtonType.Click),
-        // new DigitalOperationDescription(
-        //     DigitalOperation.ClimberArmOut,
-        //     UserInputDevice.Operator,
-        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_12, // DPAD-left
-        //     Shift.OperatorDebug,
-        //     Shift.None,
-        //     ButtonType.Click),
-
-            
         new DigitalOperationDescription(
-            DigitalOperation.IndicatorLightA,
+            DigitalOperation.ClimberArmUp,
             UserInputDevice.Operator,
-            UserInputDeviceButton.XBONE_A_BUTTON,
-            ButtonType.Toggle),
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_11, // DPAD-right
+            Shift.OperatorDebug,
+            Shift.None,
+            ButtonType.Click),
         new DigitalOperationDescription(
-            DigitalOperation.IndicatorLightB,
+            DigitalOperation.ClimberArmOut,
             UserInputDevice.Operator,
-            UserInputDeviceButton.XBONE_B_BUTTON,
-            ButtonType.Toggle),
-        new DigitalOperationDescription(
-            DigitalOperation.IndicatorLightC,
-            UserInputDevice.Operator,
-            UserInputDeviceButton.XBONE_X_BUTTON,
-            ButtonType.Toggle),
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_12, // DPAD-left
+            Shift.OperatorDebug,
+            Shift.None,
+            ButtonType.Click),
     };
 
     public static MacroOperationDescription[] MacroSchema = new MacroOperationDescription[]
@@ -328,30 +312,135 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
                 DigitalOperation.VisionForceDisable,
             }),
-        // new MacroOperationDescription(
-        //     MacroOperation.WinchForward,
-        //     UserInputDevice.Operator,
-        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_13,
-        //     Shift.None,
-        //     Shift.None,
-        //     ButtonType.Simple,
-        //     () -> new ClimberWinchPowerTask(0.5),
-        //     new IOperation[]
-        //     {
-        //         AnalogOperation.ClimberWinchMotorPower,
-        //     }),
-        // new MacroOperationDescription(
-        //     MacroOperation.WinchBackward,
-        //     UserInputDevice.Operator,
-        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_14,
-        //     Shift.None,
-        //     Shift.None,
-        //     ButtonType.Simple,
-        //     () -> new ClimberWinchPowerTask(-0.5),
-        //     new IOperation[]
-        //     {
-        //         AnalogOperation.ClimberWinchMotorPower
-        //     }),
+        new MacroOperationDescription(
+            MacroOperation.WinchForward,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_13,
+            Shift.None,
+            Shift.None,
+            ButtonType.Simple,
+            () -> new ClimberWinchPowerTask(0.5),
+            new IOperation[]
+            {
+                AnalogOperation.ClimberWinchMotorPower,
+            }),
+        new MacroOperationDescription(
+            MacroOperation.WinchBackward,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_14,
+            Shift.None,
+            Shift.None,
+            ButtonType.Simple,
+            () -> new ClimberWinchPowerTask(-0.5),
+            new IOperation[]
+            {
+                AnalogOperation.ClimberWinchMotorPower
+            }),
+        new MacroOperationDescription(
+            MacroOperation.AutoDriveBackIntakeShoot,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_15,
+            Shift.None,
+            Shift.None,
+            ButtonType.Toggle,
+            () -> SequentialTask.Sequence(
+                ConcurrentTask.AllTasks(
+                    new FollowPathTask("goForward4ft"),
+                    new CargoExtendIntakeTask(true),
+                    new CargoIntakeTask(true)
+                ),
+                new FollowPathTask("goBack7ftRotate"),
+                // vision centering
+                ConcurrentTask.AllTasks(
+                    new CargoSpinupTask(3000.0),
+                    SequentialTask.Sequence(
+                        new WaitTask(1.0), // how long it take to spin
+                        new CargoShootTask(),
+                        new WaitTask(1.0),
+                        new CargoShootTask()
+                    )
+                )
+            ),
+            new IOperation[]
+            {
+                AnalogOperation.DriveTrainMoveForward,
+                AnalogOperation.DriveTrainMoveRight,
+                AnalogOperation.DriveTrainTurnAngleGoal,
+                AnalogOperation.DriveTrainTurnSpeed,
+                AnalogOperation.DriveTrainRotationA,
+                AnalogOperation.DriveTrainRotationB,
+                AnalogOperation.DriveTrainPathXGoal,
+                AnalogOperation.DriveTrainPathYGoal,
+                AnalogOperation.DriveTrainPathXVelocityGoal,
+                AnalogOperation.DriveTrainPathYVelocityGoal,
+                AnalogOperation.DriveTrainPathAngleVelocityGoal,
+                AnalogOperation.DriveTrainPositionDrive1,
+                AnalogOperation.DriveTrainPositionDrive2,
+                AnalogOperation.DriveTrainPositionDrive3,
+                AnalogOperation.DriveTrainPositionDrive4,
+                AnalogOperation.DriveTrainPositionSteer1,
+                AnalogOperation.DriveTrainPositionSteer2,
+                AnalogOperation.DriveTrainPositionSteer3,
+                AnalogOperation.DriveTrainPositionSteer4,
+                DigitalOperation.DriveTrainPositionMode,
+                DigitalOperation.DriveTrainPathMode,
+                DigitalOperation.DriveTrainReset,
+                DigitalOperation.DriveTrainEnableFieldOrientation,
+                DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.VisionDisableStream,
+                DigitalOperation.VisionEnableGamePieceProcessing,
+                DigitalOperation.VisionEnableRetroreflectiveProcessing,
+                DigitalOperation.VisionForceDisable,
+            }),
+            new MacroOperationDescription(
+            MacroOperation.AutoShootDriveBack,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_16,
+            Shift.None,
+            Shift.None,
+            ButtonType.Toggle,
+            () -> SequentialTask.Sequence(
+                // vision centering
+                ConcurrentTask.AllTasks(
+                    new CargoSpinupTask(3000.0),
+                    SequentialTask.Sequence(
+                        new WaitTask(1.0), // how long it take to spin
+                        new CargoShootTask()
+                    )
+                ),
+                new FollowPathTask("goBack4ft")
+            ),
+            new IOperation[]
+            {
+                AnalogOperation.DriveTrainMoveForward,
+                AnalogOperation.DriveTrainMoveRight,
+                AnalogOperation.DriveTrainTurnAngleGoal,
+                AnalogOperation.DriveTrainTurnSpeed,
+                AnalogOperation.DriveTrainRotationA,
+                AnalogOperation.DriveTrainRotationB,
+                AnalogOperation.DriveTrainPathXGoal,
+                AnalogOperation.DriveTrainPathYGoal,
+                AnalogOperation.DriveTrainPathXVelocityGoal,
+                AnalogOperation.DriveTrainPathYVelocityGoal,
+                AnalogOperation.DriveTrainPathAngleVelocityGoal,
+                AnalogOperation.DriveTrainPositionDrive1,
+                AnalogOperation.DriveTrainPositionDrive2,
+                AnalogOperation.DriveTrainPositionDrive3,
+                AnalogOperation.DriveTrainPositionDrive4,
+                AnalogOperation.DriveTrainPositionSteer1,
+                AnalogOperation.DriveTrainPositionSteer2,
+                AnalogOperation.DriveTrainPositionSteer3,
+                AnalogOperation.DriveTrainPositionSteer4,
+                DigitalOperation.DriveTrainPositionMode,
+                DigitalOperation.DriveTrainPathMode,
+                DigitalOperation.DriveTrainReset,
+                DigitalOperation.DriveTrainEnableFieldOrientation,
+                DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.VisionDisableStream,
+                DigitalOperation.VisionEnableGamePieceProcessing,
+                DigitalOperation.VisionEnableRetroreflectiveProcessing,
+                DigitalOperation.VisionForceDisable,
+            }),
         };
 
     @Override

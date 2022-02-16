@@ -1,6 +1,7 @@
 package frc.robot.driver;
 
-public enum MacroOperation implements IOperation {
+public enum MacroOperation implements IOperation
+{
     AutonomousRoutine,
 
     // DriveTrain operations:
@@ -14,4 +15,8 @@ public enum MacroOperation implements IOperation {
     MoveBar,
     WinchForward,
     WinchBackward,
+
+    // Auton *harru poyter says pog*
+    AutoDriveBackIntakeShoot,
+    AutoShootDriveBack,
 }

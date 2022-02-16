@@ -323,8 +323,8 @@ public class TuningConstants
 
     public static final double CLIMBER_FULL_RETRACT_LENGTH = 0.0;
     public static final double CLIMBER_SHORT_EXTEND_LENGTH = 0.2;
-    public static final double CLIMBER_FULL_EXTEND_LENGTH = 1.0;
     public static final double CLIMBER_MOSTLY_EXTEND_LENGTH = 0.8;
+    public static final double CLIMBER_FULL_EXTEND_LENGTH = 1.0;
 
     public static final double CLIMBER_WINCH_POSITION_EXTEND_ACCEPTABLE_DELTA = 0.05;
 }

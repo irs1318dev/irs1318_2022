@@ -3,8 +3,6 @@ package frc.robot.mechanisms;
 import frc.robot.*;
 import frc.robot.common.*;
 import frc.robot.common.robotprovider.*;
-import frc.robot.driver.DigitalOperation;
-import frc.robot.driver.common.IDriver;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -18,8 +16,7 @@ import com.google.inject.Singleton;
 @Singleton
 public class IndicatorLightManager implements IMechanism
 {
-    private final IDriver driver;
-    // private final CargoMechanism cargo;
+    private final CargoMechanism cargo;
     private final ICANdle candle;
 
     private enum LightTransition
@@ -36,12 +33,10 @@ public class IndicatorLightManager implements IMechanism
 
     @Inject
     public IndicatorLightManager(
-        IDriver driver,
-        IRobotProvider provider) //,
-        // CargoMechanism cargo)
+        IRobotProvider provider,
+        CargoMechanism cargo)
     {
-        this.driver = driver;
-        //this.cargo = cargo;
+        this.cargo = cargo;
         this.candle = provider.getCANdle(ElectronicsConstants.INDICATOR_LIGHT_CANDLE_CAN_ID);
         this.candle.configLEDType(CANdleLEDStripType.GRB);
         this.candle.configVBatOutput(CANdleVBatOutputMode.Off);
@@ -60,9 +55,9 @@ public class IndicatorLightManager implements IMechanism
     @Override
     public void update()
     {
-        boolean shouldFeederCargoLightBeOn = this.driver.getDigital(DigitalOperation.IndicatorLightA); // this.cargo.isFeederSensorBlocked();
-        boolean shouldConveyorCargoLightBeOn = this.driver.getDigital(DigitalOperation.IndicatorLightB); // this.cargo.isConveyorSensorBlocked();
-        boolean shouldSpinUpLightBeOn = this.driver.getDigital(DigitalOperation.IndicatorLightC); //this.cargo.isFlywheelSpunUp();
+        boolean shouldFeederCargoLightBeOn =  this.cargo.isFeederSensorBlocked();
+        boolean shouldConveyorCargoLightBeOn = this.cargo.isConveyorSensorBlocked();
+        boolean shouldSpinUpLightBeOn = this.cargo.isFlywheelSpunUp();
 
         // note: we only update the light strip sections when they should be changed (as opposed to every update loop)
         LightTransition updateFeederCargoLight = this.checkTransitionRequired(this.wasDisabled, this.hasFeederCargoLit, shouldFeederCargoLightBeOn);
