@@ -485,7 +485,7 @@ public class DriveTrainMechanism implements IMechanism
         }
 
         if (this.driver.getDigital(DigitalOperation.DriveTrainDisableFieldOrientation) ||
-            this.imuManager.getIsConnected())
+            !this.imuManager.getIsConnected())
         {
             this.fieldOriented = false;
         }
@@ -500,6 +500,9 @@ public class DriveTrainMechanism implements IMechanism
         {
             this.maintainOrientation = false;
         }
+
+        this.logger.logBoolean(LoggingKey.DriveTrainFieldOriented, this.fieldOriented);
+        this.logger.logBoolean(LoggingKey.DriveTrainMaintainOrientation, this.maintainOrientation);
 
         if (this.driver.getDigital(DigitalOperation.PositionResetFieldOrientation))
         {
