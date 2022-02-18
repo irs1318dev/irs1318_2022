@@ -1,13 +1,7 @@
 package frc.robot.driver.controltasks;
 
-import java.util.Map;
-
 import frc.robot.driver.*;
-import frc.robot.driver.common.*;
-import frc.robot.driver.common.states.*;
 import frc.robot.mechanisms.DriveTrainMechanism;
-
-import com.google.inject.Injector;
 
 public class PIDBrakeTask extends ControlTaskBase
 {
