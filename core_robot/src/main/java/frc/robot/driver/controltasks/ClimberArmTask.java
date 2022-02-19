@@ -14,7 +14,7 @@ public class ClimberArmTask extends CompositeOperationTask
     {
         super(
             0.1,
-            armUp ? DigitalOperation.ClimberArmOut : DigitalOperation.ClimberArmUp,
+            armUp ? DigitalOperation.ClimberArmUp : DigitalOperation.ClimberArmOut,
             ClimberArmTask.armPositionOperations);
     }
 }

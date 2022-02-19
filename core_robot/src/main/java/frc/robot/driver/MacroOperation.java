@@ -15,6 +15,9 @@ public enum MacroOperation implements IOperation
     MoveBar,
     WinchForward,
     WinchBackward,
+    SetUpClimb,
+    ClimbToMidRung,
+    ExtendToNextRung,
 
     // Auton *harru poyter says pog*
     AutoDriveBackIntakeShoot,

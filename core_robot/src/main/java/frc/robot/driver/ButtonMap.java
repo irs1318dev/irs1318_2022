@@ -392,7 +392,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
                 DigitalOperation.VisionForceDisable,
             }),
-            new MacroOperationDescription(
+        new MacroOperationDescription(
             MacroOperation.AutoShootDriveBack,
             UserInputDevice.Operator,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_16,
@@ -441,7 +441,166 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
                 DigitalOperation.VisionForceDisable,
             }),
-        };
+        new MacroOperationDescription(
+            MacroOperation.AutoShootDriveBack,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_16,
+            Shift.None,
+            Shift.None,
+            ButtonType.Toggle,
+            () -> SequentialTask.Sequence(
+                // vision centering
+                ConcurrentTask.AllTasks(
+                    new CargoSpinupTask(3000.0),
+                    SequentialTask.Sequence(
+                        new WaitTask(1.0), // how long it take to spin
+                        new CargoShootTask()
+                    )
+                ),
+                new FollowPathTask("goBack4ft")
+            ),
+            new IOperation[]
+            {
+                AnalogOperation.DriveTrainMoveForward,
+                AnalogOperation.DriveTrainMoveRight,
+                AnalogOperation.DriveTrainTurnAngleGoal,
+                AnalogOperation.DriveTrainTurnSpeed,
+                AnalogOperation.DriveTrainRotationA,
+                AnalogOperation.DriveTrainRotationB,
+                AnalogOperation.DriveTrainPathXGoal,
+                AnalogOperation.DriveTrainPathYGoal,
+                AnalogOperation.DriveTrainPathXVelocityGoal,
+                AnalogOperation.DriveTrainPathYVelocityGoal,
+                AnalogOperation.DriveTrainPathAngleVelocityGoal,
+                AnalogOperation.DriveTrainPositionDrive1,
+                AnalogOperation.DriveTrainPositionDrive2,
+                AnalogOperation.DriveTrainPositionDrive3,
+                AnalogOperation.DriveTrainPositionDrive4,
+                AnalogOperation.DriveTrainPositionSteer1,
+                AnalogOperation.DriveTrainPositionSteer2,
+                AnalogOperation.DriveTrainPositionSteer3,
+                AnalogOperation.DriveTrainPositionSteer4,
+                DigitalOperation.DriveTrainPositionMode,
+                DigitalOperation.DriveTrainPathMode,
+                DigitalOperation.DriveTrainReset,
+                DigitalOperation.DriveTrainEnableFieldOrientation,
+                DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.VisionDisableStream,
+                DigitalOperation.VisionEnableGamePieceProcessing,
+                DigitalOperation.VisionEnableRetroreflectiveProcessing,
+                DigitalOperation.VisionForceDisable,
+            }),
+        new MacroOperationDescription(
+            MacroOperation.SetUpClimb,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_17,
+            Shift.None,
+            Shift.None,
+            ButtonType.Toggle,
+            () -> SequentialTask.Sequence(
+                new FollowPathTask("linUpUnder1stClimberBar"),
+                new ClimberArmUnlockTask(true),
+                ConcurrentTask.AllTasks(
+                    new ClimberArmTask(true),
+                    new ClimberWeightedTask(false)
+                ),
+                new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_FULL_EXTEND_LENGTH),
+                new FollowPathTask("goForward5in")
+            ),
+            new IOperation[]
+            {
+                AnalogOperation.DriveTrainMoveForward,
+                AnalogOperation.DriveTrainMoveRight,
+                AnalogOperation.DriveTrainTurnAngleGoal,
+                AnalogOperation.DriveTrainTurnSpeed,
+                AnalogOperation.DriveTrainRotationA,
+                AnalogOperation.DriveTrainRotationB,
+                AnalogOperation.DriveTrainPathXGoal,
+                AnalogOperation.DriveTrainPathYGoal,
+                AnalogOperation.DriveTrainPathXVelocityGoal,
+                AnalogOperation.DriveTrainPathYVelocityGoal,
+                AnalogOperation.DriveTrainPathAngleVelocityGoal,
+                AnalogOperation.DriveTrainPositionDrive1,
+                AnalogOperation.DriveTrainPositionDrive2,
+                AnalogOperation.DriveTrainPositionDrive3,
+                AnalogOperation.DriveTrainPositionDrive4,
+                AnalogOperation.DriveTrainPositionSteer1,
+                AnalogOperation.DriveTrainPositionSteer2,
+                AnalogOperation.DriveTrainPositionSteer3,
+                AnalogOperation.DriveTrainPositionSteer4,
+                DigitalOperation.DriveTrainPositionMode,
+                DigitalOperation.DriveTrainPathMode,
+                DigitalOperation.DriveTrainReset,
+                DigitalOperation.DriveTrainEnableFieldOrientation,
+                DigitalOperation.DriveTrainDisableFieldOrientation
+            }
+        ),
+
+        new MacroOperationDescription(
+            MacroOperation.ClimbToMidRung,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_18,
+            Shift.None,
+            Shift.None,
+            ButtonType.Toggle,
+            () -> SequentialTask.Sequence(
+                ConcurrentTask.AllTasks(
+                    new ClimberHookTask(false),
+                    new ClimberWeightedTask(true)
+                ),
+                new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_FULL_RETRACT_LENGTH),
+                new ClimberHookTask(true)
+            ),
+            new IOperation[]
+            {
+                
+
+            }
+        ),
+
+        new MacroOperationDescription(
+            MacroOperation.ExtendToNextRung,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_19,
+            Shift.None,
+            Shift.None,
+            ButtonType.Toggle,
+            () -> SequentialTask.Sequence(
+                new ClimberWeightedTask(false),
+                new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_SHORT_EXTEND_LENGTH),
+                new ClimberArmTask(false),
+                new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_FULL_EXTEND_LENGTH),
+                new ClimberArmTask(true),
+                new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_MOSTLY_EXTEND_LENGTH)
+            ),
+            new IOperation[]
+            {
+                
+
+            }
+        ),
+
+        new MacroOperationDescription(
+            MacroOperation.SwitchToNextRung,
+            UserInputDevice.Operator,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_20,
+            Shift.None,
+            Shift.None,
+            ButtonType.Toggle,
+            () -> SequentialTask.Sequence(
+                new ClimberWeightedTask(true),
+                ConcurrentTask.AllTasks(
+                    new ClimberHookTask(false),
+                    new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_FULL_RETRACT_LENGTH)
+                ),
+                new ClimberHookTask(true)
+            ),
+            new IOperation[]
+            {
+                
+            }
+        ),
+    };
 
     @Override
     public ShiftDescription[] getShiftSchema()
