@@ -15,7 +15,7 @@ public class ClimberArmUnlockTask extends CompositeOperationTask
         super(
             0.1,
             unlock ? DigitalOperation.ClimberWinchUnlock : DigitalOperation.ClimberWinchLock,
-            ClimberWeightedTask.lockedOperations);
+            ClimberArmUnlockTask.lockedOperations);
     }
 
 }

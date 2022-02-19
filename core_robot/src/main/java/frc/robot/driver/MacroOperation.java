@@ -18,6 +18,7 @@ public enum MacroOperation implements IOperation
     SetUpClimb,
     ClimbToMidRung,
     ExtendToNextRung,
+    SwitchToNextRung,
 
     // Auton *harru poyter says pog*
     AutoDriveBackIntakeShoot,
