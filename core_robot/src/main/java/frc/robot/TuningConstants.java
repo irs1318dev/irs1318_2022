@@ -82,6 +82,9 @@ public class TuningConstants
     public static final int LED_STRIP_LED_COUNT = 60; // 60 LEDs per meter-long strip from CTRE
     public static final int CANDLE_TOTAL_NUMBER_LEDS = TuningConstants.CANDLE_LED_COUNT + TuningConstants.LED_STRIP_LED_COUNT * 2;
 
+    public static final int CANDLE_ANIMATION_SLOT_1 = 0;
+    public static final int CANDLE_ANIMATION_SLOT_2 = 1;
+
     public static final int TEAM_PURPLE_RED = 101;
     public static final int TEAM_PURPLE_GREEN = 34;
     public static final int TEAM_PURPLE_BLUE = 129;

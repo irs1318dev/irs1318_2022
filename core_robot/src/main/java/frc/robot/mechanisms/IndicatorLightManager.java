@@ -70,7 +70,12 @@ public class IndicatorLightManager implements IMechanism
         LightTransition updateConveyorCargoLight = this.checkTransitionRequired(this.wasDisabled, this.hasConveyorCargoLit, shouldConveyorCargoLightBeOn);
         LightTransition updateShooterSpunUpLight = this.checkTransitionRequired(this.wasDisabled, this.shooterSpunUpLit, shouldSpinUpLightBeOn);
 
-        this.wasDisabled = false;
+        if (this.wasDisabled)
+        {
+            this.candle.stopAnimation(TuningConstants.CANDLE_ANIMATION_SLOT_1);
+            this.candle.stopAnimation(TuningConstants.CANDLE_ANIMATION_SLOT_2);
+            this.wasDisabled = false;
+        }
 
         if (updateFeederCargoLight != LightTransition.NoChange)
         {
@@ -126,22 +131,18 @@ public class IndicatorLightManager implements IMechanism
         this.hasConveyorCargoLit = false;
         this.shooterSpunUpLit = false;
 
-        // this.candle.startStrobeAnimation(255, 0, 0, 0, 1.0, TuningConstants.CANDLE_TOTAL_NUMBER_LEDS);
-        this.candle.startRainbowAnimation(0.5, 0.5, TuningConstants.LED_STRIP_LED_COUNT, false, TuningConstants.CANDLE_LED_COUNT);
-        this.candle.startRainbowAnimation(1.0, 0.25, TuningConstants.LED_STRIP_LED_COUNT, false, TuningConstants.CANDLE_LED_COUNT + TuningConstants.LED_STRIP_LED_COUNT);
-        // this.candle.startLarsonAnimation(120, 30, 25, 0, 0.5, TuningConstants.CANDLE_TOTAL_NUMBER_LEDS, CANdleLarsonBounceMode.Center, 4);
-        // this.candle.startFireAnimation(0.5, 0.5, TuningConstants.CANDLE_TOTAL_NUMBER_LEDS, 0.5, 0.5);
-        // this.candle.startColorFlowAnimation(35, 75, 192, 0, 0.5, TuningConstants.CANDLE_TOTAL_NUMBER_LEDS, true);
-        // this.candle.startRgbFadeAnimation(1, 1, TuningConstants.CANDLE_TOTAL_NUMBER_LEDS);
-        // this.candle.startTwinkleAnimation(69, 255, 42, 0, 0.1, TuningConstants.CANDLE_TOTAL_NUMBER_LEDS, CANdleTwinklePercent.Percent30);
+        this.candle.startRainbowAnimation(TuningConstants.CANDLE_ANIMATION_SLOT_1, 0.5, 0.5, TuningConstants.LED_STRIP_LED_COUNT, false, TuningConstants.CANDLE_LED_COUNT);
+        this.candle.startRainbowAnimation(TuningConstants.CANDLE_ANIMATION_SLOT_2, 1.0, 0.25, TuningConstants.LED_STRIP_LED_COUNT, false, TuningConstants.CANDLE_LED_COUNT + TuningConstants.LED_STRIP_LED_COUNT);
         // this.candle.startTwinkleAnimation(
+        //     TuningConstants.CANDLE_ANIMATION_SLOT_2,
         //     TuningConstants.TEAM_PURPLE_RED,
         //     TuningConstants.TEAM_PURPLE_GREEN,
         //     TuningConstants.TEAM_PURPLE_BLUE,
         //     TuningConstants.TEAM_PURPLE_WHITE,
         //     0.25,
-        //     TuningConstants.CANDLE_TOTAL_NUMBER_LEDS,
-        //     CANdleTwinklePercent.Percent42);
+        //     TuningConstants.LED_STRIP_LED_COUNT,
+        //     CANdleTwinklePercent.Percent42,
+        //     TuningConstants.CANDLE_LED_COUNT + TuningConstants.LED_STRIP_LED_COUNT);
     }
 
     /**
