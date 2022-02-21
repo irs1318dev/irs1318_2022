@@ -131,7 +131,7 @@ public class CANdleWrapper implements ICANdle
             "CANdle.setLEDs");
     }
 
-    public void startTwinkleAnimation(int r, int g, int b, int w, double speed, int numLed, CANdleTwinklePercent divider)
+    public void startTwinkleAnimation(int r, int g, int b, int w, double speed, int numLed, CANdleTwinklePercent divider, int ledOffset)
     {
         TwinkleAnimation.TwinklePercent twinkleDivider = TwinkleAnimation.TwinklePercent.Percent100;
         switch (divider)
@@ -170,11 +170,11 @@ public class CANdleWrapper implements ICANdle
         }
 
         CTREErrorCodeHelper.printError(
-            this.wrappedObject.animate(new TwinkleAnimation(r, g, b, w, speed, numLed, twinkleDivider)),
+            this.wrappedObject.animate(new TwinkleAnimation(r, g, b, w, speed, numLed, twinkleDivider, ledOffset)),
             "CANdle.startTwinkleAnimation");
     }
 
-    public void startTwinkleOffAnimation(int r, int g, int b, int w, double speed, int numLed, CANdleTwinklePercent divider)
+    public void startTwinkleOffAnimation(int r, int g, int b, int w, double speed, int numLed, CANdleTwinklePercent divider, int ledOffset)
     {
         TwinkleOffAnimation.TwinkleOffPercent twinkleDivider = TwinkleOffAnimation.TwinkleOffPercent.Percent100;
         switch (divider)
@@ -213,39 +213,39 @@ public class CANdleWrapper implements ICANdle
         }
 
         CTREErrorCodeHelper.printError(
-            this.wrappedObject.animate(new TwinkleOffAnimation(r, g, b, w, speed, numLed, twinkleDivider)),
+            this.wrappedObject.animate(new TwinkleOffAnimation(r, g, b, w, speed, numLed, twinkleDivider, ledOffset)),
             "CANdle.startTwinkleOffAnimation");
     }
 
-    public void startStrobeAnimation(int r, int g, int b, int w, double speed, int numLed)
+    public void startStrobeAnimation(int r, int g, int b, int w, double speed, int numLed, int ledOffset)
     {
         CTREErrorCodeHelper.printError(
-            this.wrappedObject.animate(new StrobeAnimation(r, g, b, w, speed, numLed)),
+            this.wrappedObject.animate(new StrobeAnimation(r, g, b, w, speed, numLed, ledOffset)),
             "CANdle.startStrobeAnimation");
     }
 
-    public void startSingleFadeAnimation(int r, int g, int b, int w, double speed, int numLed)
+    public void startSingleFadeAnimation(int r, int g, int b, int w, double speed, int numLed, int ledOffset)
     {
         CTREErrorCodeHelper.printError(
-            this.wrappedObject.animate(new SingleFadeAnimation(r, g, b, w, speed, numLed)),
+            this.wrappedObject.animate(new SingleFadeAnimation(r, g, b, w, speed, numLed, ledOffset)),
             "CANdle.startSingleFadeAnimation");
     }
 
-    public void startRgbFadeAnimation(double brightness, double speed, int numLed)
+    public void startRgbFadeAnimation(double brightness, double speed, int numLed, int ledOffset)
     {
         CTREErrorCodeHelper.printError(
-            this.wrappedObject.animate(new RgbFadeAnimation(brightness, speed, numLed)),
+            this.wrappedObject.animate(new RgbFadeAnimation(brightness, speed, numLed, ledOffset)),
             "CANdle.startRgbFaseAnimation");
     }
 
-    public void startRainbowAnimation(double brightness, double speed, int numLed)
+    public void startRainbowAnimation(double brightness, double speed, int numLed, boolean reverseDirection, int ledOffset)
     {
         CTREErrorCodeHelper.printError(
-            this.wrappedObject.animate(new RainbowAnimation(brightness, speed, numLed)),
+            this.wrappedObject.animate(new RainbowAnimation(brightness, speed, numLed, reverseDirection, ledOffset)),
             "CANdle.startRainbowAnimation");
     }
 
-    public void startLarsonAnimation(int r, int g, int b, int w, double speed, int numLed, CANdleLarsonBounceMode mode, int size)
+    public void startLarsonAnimation(int r, int g, int b, int w, double speed, int numLed, CANdleLarsonBounceMode mode, int size, int ledOffset)
     {
         LarsonAnimation.BounceMode bounceMode = LarsonAnimation.BounceMode.Front;
         switch (mode)
@@ -264,21 +264,21 @@ public class CANdleWrapper implements ICANdle
         }
 
         CTREErrorCodeHelper.printError(
-            this.wrappedObject.animate(new LarsonAnimation(r, g, b, w, speed, numLed, bounceMode, size)),
+            this.wrappedObject.animate(new LarsonAnimation(r, g, b, w, speed, numLed, bounceMode, size, ledOffset)),
             "CANdle.startLarsonAnimation");
     }
 
-    public void startFireAnimation(double brightness, double speed, int numLed, double sparking, double cooling)
+    public void startFireAnimation(double brightness, double speed, int numLed, double sparking, double cooling, boolean reverseDirection, int ledOffset)
     {
         CTREErrorCodeHelper.printError(
-            this.wrappedObject.animate(new FireAnimation(brightness, speed, numLed, sparking, cooling)),
+            this.wrappedObject.animate(new FireAnimation(brightness, speed, numLed, sparking, cooling, reverseDirection, ledOffset)),
             "CANdle.startFireAnimation");
     }
 
-    public void startColorFlowAnimation(int r, int g, int b, int w, double speed, int numLed, boolean forward)
+    public void startColorFlowAnimation(int r, int g, int b, int w, double speed, int numLed, boolean forward, int ledOffset)
     {
         CTREErrorCodeHelper.printError(
-            this.wrappedObject.animate(new ColorFlowAnimation(r, g, b, w, speed, numLed, forward ? ColorFlowAnimation.Direction.Forward : ColorFlowAnimation.Direction.Backward)),
+            this.wrappedObject.animate(new ColorFlowAnimation(r, g, b, w, speed, numLed, forward ? ColorFlowAnimation.Direction.Forward : ColorFlowAnimation.Direction.Backward, ledOffset)),
             "CANdle.startColorFlowAnimation");
     }
 }

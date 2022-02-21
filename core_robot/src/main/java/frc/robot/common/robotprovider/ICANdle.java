@@ -103,8 +103,9 @@ public interface ICANdle
      * @param speed How fast should the color travel the strip [0, 1]
      * @param numLed How many LEDs the CANdle controls
      * @param divider What percentage of LEDs can be on at any point
+     * @param ledOffset Where to start the animation
      */
-    void startTwinkleAnimation(int r, int g, int b, int w, double speed, int numLed, CANdleTwinklePercent divider);
+    void startTwinkleAnimation(int r, int g, int b, int w, double speed, int numLed, CANdleTwinklePercent divider, int ledOffset);
 
     /**
      * start a TwinkleOffAnimation that randomly turns on LEDs, until it reaches the maximum count and turns them all off
@@ -115,8 +116,9 @@ public interface ICANdle
      * @param speed How fast should the color travel the strip [0, 1]
      * @param numLed How many LEDs the CANdle controls
      * @param divider What percentage of LEDs can be on at any point
+     * @param ledOffset Where to start the animation
      */
-    void startTwinkleOffAnimation(int r, int g, int b, int w, double speed, int numLed, CANdleTwinklePercent divider);
+    void startTwinkleOffAnimation(int r, int g, int b, int w, double speed, int numLed, CANdleTwinklePercent divider, int ledOffset);
 
     /**
      * start a StrobeAnimation that strobes the LEDs a specified color
@@ -126,8 +128,9 @@ public interface ICANdle
      * @param w How much white should the color have [0, 255]
      * @param speed How fast should the color travel the strip [0, 1]
      * @param numLed How many LEDs the CANdle controls
+     * @param ledOffset Where to start the animation
      */
-    void startStrobeAnimation(int r, int g, int b, int w, double speed, int numLed);
+    void startStrobeAnimation(int r, int g, int b, int w, double speed, int numLed, int ledOffset);
 
     /**
      * start a SingleFadeAnimation that fades into and out of a specified color
@@ -137,24 +140,28 @@ public interface ICANdle
      * @param w How much white should the color have [0, 255]
      * @param speed How fast should the color travel the strip [0, 1]
      * @param numLed How many LEDs the CANdle controls
+     * @param ledOffset Where to start the animation
      */
-    void startSingleFadeAnimation(int r, int g, int b, int w, double speed, int numLed);
+    void startSingleFadeAnimation(int r, int g, int b, int w, double speed, int numLed, int ledOffset);
 
     /**
      * start an RgbFadeAnimation that fades all the LEDs of a strip simultaneously between Red, Green, and Blue
      * @param brightness How bright the LEDs are [0, 1]
      * @param speed How fast the LEDs fade between Red, Green, and Blue [0, 1]
      * @param numLed How many LEDs are controlled by the CANdle
+     * @param ledOffset Where to start the animation
      */
-    void startRgbFadeAnimation(double brightness, double speed, int numLed);
+    void startRgbFadeAnimation(double brightness, double speed, int numLed, int ledOffset);
 
     /**
     * start a RainbowAnimation that creates a rainbow throughout all the LEDs
     * @param brightness The brightness of the LEDs [0, 1]
     * @param speed How fast the rainbow travels through the leds [0, 1]
     * @param numLed How many LEDs are controlled by the CANdle
+    * @param reverseDirection True to reverse the animation direction, so instead of going "toward" the CANdle, it will go "away" from the CANdle.
+    * @param ledOffset Where to start the animation
     */
-    void startRainbowAnimation(double brightness, double speed, int numLed);
+    void startRainbowAnimation(double brightness, double speed, int numLed, boolean reverseDirection, int ledOffset);
 
     /**
      * start a LarsonAnimation that sends a pocket of light across the LED strip.
@@ -166,8 +173,9 @@ public interface ICANdle
      * @param numLed The number of LEDs the CANdle will control
      * @param mode How the pocket of LEDs will behave once it reaches the end of the strip
      * @param size How large the pocket of LEDs are [0, 7]
+     * @param ledOffset Where to start the animation
      */
-    void startLarsonAnimation(int r, int g, int b, int w, double speed, int numLed, CANdleLarsonBounceMode mode, int size);
+    void startLarsonAnimation(int r, int g, int b, int w, double speed, int numLed, CANdleLarsonBounceMode mode, int size, int ledOffset);
 
     /**
      * starts a FireAnimation that looks similarly to a flame flickering
@@ -176,8 +184,10 @@ public interface ICANdle
      * @param numLed How many LEDs is the CANdle controlling
      * @param sparking The rate at which the Fire "Sparks" [0, 1]
      * @param cooling The rate at which the Fire "Cools" along the travel [0, 1]
+     * @param reverseDirection True to reverse the animation direction, so instead of fire going "away" from the CANdle, it will go "toward" the CANdle.
+     * @param ledOffset Where to start the animation
      */
-    void startFireAnimation(double brightness, double speed, int numLed, double sparking, double cooling);
+    void startFireAnimation(double brightness, double speed, int numLed, double sparking, double cooling, boolean reverseDirection, int ledOffset);
 
     /**
      * start a ColorFlowAnimation that gradually lights the entire LED strip one LED at a time.
@@ -188,6 +198,7 @@ public interface ICANdle
      * @param speed How fast should the color travel the strip [0, 1]
      * @param numLed How many LEDs is the CANdle controlling
      * @param forward whether to flow in the forward or backward direction
+     * @param ledOffset Where to start the animation
      */
-    void startColorFlowAnimation(int r, int g, int b, int w, double speed, int numLed, boolean forward);
+    void startColorFlowAnimation(int r, int g, int b, int w, double speed, int numLed, boolean forward, int ledOffset);
 }

@@ -232,6 +232,24 @@ public class ButtonMap implements IButtonMap
             Shift.CodriverDebug,
             Shift.CodriverDebug,
             ButtonType.Click),
+
+        new DigitalOperationDescription(
+            DigitalOperation.IndicatorLightA,
+            UserInputDevice.Test1,
+            UserInputDeviceButton.XBONE_X_BUTTON,
+            ButtonType.Toggle),
+
+        new DigitalOperationDescription(
+            DigitalOperation.IndicatorLightB,
+            UserInputDevice.Test1,
+            UserInputDeviceButton.XBONE_A_BUTTON,
+            ButtonType.Toggle),
+
+        new DigitalOperationDescription(
+            DigitalOperation.IndicatorLightC,
+            UserInputDevice.Test1,
+            UserInputDeviceButton.XBONE_B_BUTTON,
+            ButtonType.Toggle),
     };
 
     public static MacroOperationDescription[] MacroSchema = new MacroOperationDescription[]

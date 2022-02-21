@@ -3,6 +3,8 @@ package frc.robot.mechanisms;
 import frc.robot.*;
 import frc.robot.common.*;
 import frc.robot.common.robotprovider.*;
+import frc.robot.driver.DigitalOperation;
+import frc.robot.driver.common.IDriver;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -16,7 +18,8 @@ import com.google.inject.Singleton;
 @Singleton
 public class IndicatorLightManager implements IMechanism
 {
-    private final CargoMechanism cargo;
+    private final IDriver driver;
+    // private final CargoMechanism cargo;
     private final ICANdle candle;
 
     private enum LightTransition
@@ -34,9 +37,12 @@ public class IndicatorLightManager implements IMechanism
     @Inject
     public IndicatorLightManager(
         IRobotProvider provider,
-        CargoMechanism cargo)
+        IDriver driver)
+        // CargoMechanism cargo)
     {
-        this.cargo = cargo;
+        this.driver = driver;
+
+        // this.cargo = cargo;
         this.candle = provider.getCANdle(ElectronicsConstants.INDICATOR_LIGHT_CANDLE_CAN_ID);
         this.candle.configLEDType(CANdleLEDStripType.GRB);
         this.candle.configVBatOutput(CANdleVBatOutputMode.Off);
@@ -55,9 +61,9 @@ public class IndicatorLightManager implements IMechanism
     @Override
     public void update()
     {
-        boolean shouldFeederCargoLightBeOn =  this.cargo.isFeederSensorBlocked();
-        boolean shouldConveyorCargoLightBeOn = this.cargo.isConveyorSensorBlocked();
-        boolean shouldSpinUpLightBeOn = this.cargo.isFlywheelSpunUp();
+        boolean shouldFeederCargoLightBeOn = this.driver.getDigital(DigitalOperation.IndicatorLightA); //this.cargo.isFeederSensorBlocked();
+        boolean shouldConveyorCargoLightBeOn = this.driver.getDigital(DigitalOperation.IndicatorLightB); //this.cargo.isConveyorSensorBlocked();
+        boolean shouldSpinUpLightBeOn = this.driver.getDigital(DigitalOperation.IndicatorLightC); //this.cargo.isFlywheelSpunUp();
 
         // note: we only update the light strip sections when they should be changed (as opposed to every update loop)
         LightTransition updateFeederCargoLight = this.checkTransitionRequired(this.wasDisabled, this.hasFeederCargoLit, shouldFeederCargoLightBeOn);
@@ -121,7 +127,8 @@ public class IndicatorLightManager implements IMechanism
         this.shooterSpunUpLit = false;
 
         // this.candle.startStrobeAnimation(255, 0, 0, 0, 1.0, TuningConstants.CANDLE_TOTAL_NUMBER_LEDS);
-        this.candle.startRainbowAnimation(1.0, 0.5, TuningConstants.CANDLE_TOTAL_NUMBER_LEDS);
+        this.candle.startRainbowAnimation(0.5, 0.5, TuningConstants.LED_STRIP_LED_COUNT, false, TuningConstants.CANDLE_LED_COUNT);
+        this.candle.startRainbowAnimation(1.0, 0.25, TuningConstants.LED_STRIP_LED_COUNT, false, TuningConstants.CANDLE_LED_COUNT + TuningConstants.LED_STRIP_LED_COUNT);
         // this.candle.startLarsonAnimation(120, 30, 25, 0, 0.5, TuningConstants.CANDLE_TOTAL_NUMBER_LEDS, CANdleLarsonBounceMode.Center, 4);
         // this.candle.startFireAnimation(0.5, 0.5, TuningConstants.CANDLE_TOTAL_NUMBER_LEDS, 0.5, 0.5);
         // this.candle.startColorFlowAnimation(35, 75, 192, 0, 0.5, TuningConstants.CANDLE_TOTAL_NUMBER_LEDS, true);
