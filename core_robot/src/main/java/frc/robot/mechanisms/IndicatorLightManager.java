@@ -68,7 +68,6 @@ public class IndicatorLightManager implements IMechanism
 
         if (updateFeederCargoLight != LightTransition.NoChange)
         {
-            System.out.println("" + updateFeederCargoLight + " feeder cargo");
             this.hasFeederCargoLit =
                 this.updateLightRanges(
                     updateFeederCargoLight,
@@ -84,7 +83,6 @@ public class IndicatorLightManager implements IMechanism
 
         if (updateConveyorCargoLight != LightTransition.NoChange)
         {
-            System.out.println("" + updateConveyorCargoLight + " conveyor cargo");
             this.hasConveyorCargoLit =
                 this.updateLightRanges(
                     updateConveyorCargoLight,
@@ -100,7 +98,6 @@ public class IndicatorLightManager implements IMechanism
 
         if (updateShooterSpunUpLight != LightTransition.NoChange)
         {
-            System.out.println("" + updateShooterSpunUpLight + " spun up");
             this.shooterSpunUpLit =
                 this.updateLightRanges(
                     updateShooterSpunUpLight,

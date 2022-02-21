@@ -50,7 +50,6 @@ public class CargoMechanism implements IMechanism
 
     private enum ConveyorState
     {
-        On,
         Off,
         Reverse,
         Advance
@@ -189,7 +188,6 @@ public class CargoMechanism implements IMechanism
         if (this.driver.getDigital(DigitalOperation.CargoFeed))
         {
             this.feederMotor.set(TuningConstants.CARGO_FEEDER_POWER);
-            this.currentConveyorState = ConveyorState.On;
         }
         else
         {
@@ -230,7 +228,9 @@ public class CargoMechanism implements IMechanism
             }
         }
 
-        if (conveyorBeamBroken && feederBeamBroken && this.currentConveyorState == ConveyorState.Advance)
+        if (this.conveyorBeamBroken &&
+            this.feederBeamBroken &&
+            this.currentConveyorState == ConveyorState.Advance)
         {
             this.currentConveyorState = ConveyorState.Off;
         }
@@ -242,25 +242,16 @@ public class CargoMechanism implements IMechanism
             this.currentConveyorState = ConveyorState.Off;
         }
 
-        // stop reversing
-        if (!this.driver.getDigital(DigitalOperation.CargoEject) &&
-            this.currentConveyorState == ConveyorState.Reverse)
-        {
-            this.currentConveyorState = ConveyorState.Off;
-        }
-
         // send next ball forward if it needs to be
-        if (conveyorBeamBroken && !feederBeamBroken && this.currentConveyorState == ConveyorState.Off)
+        if (this.conveyorBeamBroken &&
+            !this.feederBeamBroken &&
+            this.currentConveyorState == ConveyorState.Off)
         {
             this.currentConveyorState = ConveyorState.Advance;
         }
 
         switch (this.currentConveyorState)
         {
-            case On:
-                this.conveyorMotor.set(TuningConstants.CARGO_CONVEYOR_FORWARD_POWER);
-                break;
-
             case Advance:
                 this.conveyorMotor.set(TuningConstants.CARGO_CONVEYOR_ADVANCE_POWER);
                 break;
@@ -275,21 +266,30 @@ public class CargoMechanism implements IMechanism
                 break;
         }
 
-        // flywheel logic
-        this.flywheelSetpoint = TuningConstants.PERRY_THE_PLATYPUS;
-        if (this.driver.getAnalog(AnalogOperation.CargoFlywheelVelocityGoal) != TuningConstants.MAGIC_NULL_VALUE)
-        {
-            this.flywheelSetpoint = Math.abs(this.driver.getAnalog(AnalogOperation.CargoFlywheelVelocityGoal) * TuningConstants.CARGO_FLYWHEEL_MOTOR_PID_KS);
-        }
+        this.logger.logString(LoggingKey.CargoConveyorState, this.currentConveyorState.toString());
 
-        if (this.flywheelSetpoint == TuningConstants.PERRY_THE_PLATYPUS)
+        // flywheel logic
+        double flywheelMotorPower = this.driver.getAnalog(AnalogOperation.CargoFlywheelMotorPower);
+        double flywheelVelocityGoal = this.driver.getAnalog(AnalogOperation.CargoFlywheelVelocityGoal);
+        if (flywheelMotorPower != TuningConstants.PERRY_THE_PLATYPUS)
         {
-            this.flywheelMotor.stop();
+            this.flywheelSetpoint = this.flywheelVelocity;
+            this.flywheelMotor.setControlMode(TalonXControlMode.PercentOutput);
+            this.flywheelMotor.set(flywheelMotorPower);
+        }
+        else if (flywheelVelocityGoal != TuningConstants.PERRY_THE_PLATYPUS)
+        {
+            this.flywheelSetpoint = flywheelVelocityGoal * TuningConstants.CARGO_FLYWHEEL_MOTOR_PID_KS;
+            this.flywheelMotor.setControlMode(TalonXControlMode.Velocity);
+            this.flywheelMotor.set(this.flywheelSetpoint);
         }
         else
         {
-            this.flywheelMotor.set(this.flywheelSetpoint);
+            this.flywheelSetpoint = TuningConstants.PERRY_THE_PLATYPUS;
+            this.flywheelMotor.stop();
         }
+
+        this.logger.logNumber(LoggingKey.CargoFlywheelDesiredVelocity, this.flywheelSetpoint);
     }
 
     @Override

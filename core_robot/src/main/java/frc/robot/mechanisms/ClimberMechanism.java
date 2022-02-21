@@ -93,6 +93,7 @@ public class ClimberMechanism implements IMechanism
     {
         this.winchMotorPosition = this.winchMotor.getPosition();
         this.winchMotorError = this.winchMotor.getError();
+
         this.logger.logNumber(LoggingKey.ClimberWinchPosition, this.winchMotorPosition);
         this.logger.logNumber(LoggingKey.ClimberWinchError, this.winchMotorError);
     }
@@ -107,8 +108,8 @@ public class ClimberMechanism implements IMechanism
             this.winchMotor.setControlMode(TalonXControlMode.PercentOutput);
             this.winchMotor.set(winchMotorPower);
             this.desiredWinchPosition = this.winchMotorPosition;
+
             this.logger.logNumber(LoggingKey.ClimberWinchDesiredPosition, this.desiredWinchPosition);
-            this.logger.logNumber(LoggingKey.ClimberWinchPower, winchMotorPower);
         }
         else
         {
@@ -117,8 +118,8 @@ public class ClimberMechanism implements IMechanism
             this.winchMotor.setControlMode(TalonXControlMode.Position);
             this.winchMotor.setSelectedSlot(this.currentSlot);
             this.winchMotor.set(this.desiredWinchPosition);
+
             this.logger.logNumber(LoggingKey.ClimberWinchDesiredPosition, this.desiredWinchPosition);
-            this.logger.logNumber(LoggingKey.ClimberWinchPower, -1318.0);
         }
 
         // set pid for when the climber is hanging
@@ -154,11 +155,11 @@ public class ClimberMechanism implements IMechanism
         // set position of lock solenoid
         if (this.driver.getDigital(DigitalOperation.ClimberWinchLock))
         {
-            this.winchArmLocked = false;
+            this.winchArmLocked = true;
         }
         else if(this.driver.getDigital(DigitalOperation.ClimberWinchUnlock))
         {
-            this.winchArmLocked = true;
+            this.winchArmLocked = false;
         }
 
         this.activeHookPiston.set(this.activeHookGrasped ? DoubleSolenoidValue.Reverse : DoubleSolenoidValue.Forward);

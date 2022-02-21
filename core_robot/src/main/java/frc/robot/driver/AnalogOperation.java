@@ -4,10 +4,6 @@ public enum AnalogOperation implements IOperation
 {
     PositionStartingAngle,
 
-    // Climber operations
-    ClimberWinchDesiredPosition,
-    ClimberWinchMotorPower,
-
     // DriveTrain operations:
     DriveTrainMoveForward,
     DriveTrainMoveRight,
@@ -32,4 +28,9 @@ public enum AnalogOperation implements IOperation
 
     // Cargo operations
     CargoFlywheelVelocityGoal,
+    CargoFlywheelMotorPower,
+
+    // Climber operations
+    ClimberWinchDesiredPosition,
+    ClimberWinchMotorPower,
 }
