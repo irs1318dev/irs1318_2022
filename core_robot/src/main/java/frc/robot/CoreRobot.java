@@ -16,7 +16,7 @@ import com.google.inject.Injector;
  * 
  * General design comments:
  * We have the following primary types of objects dealt with here:
- * - Driver - describes the driver/operator of the robot ("autonomous" or "user")
+ * - Driver - describes the driver/codriver of the robot ("autonomous" or "user")
  * - Mechanisms - define the logic that controls a mechanism given inputs/outputs.
  * - Logger - defines what should be logged and to where (dashboard, etc.).
  * 

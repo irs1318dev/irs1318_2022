@@ -19,8 +19,8 @@ public class ButtonMap implements IButtonMap
             UserInputDevice.Driver,
             UserInputDeviceButton.XBONE_LEFT_BUTTON),
         new ShiftDescription(
-            Shift.OperatorDebug,
-            UserInputDevice.Operator,
+            Shift.CodriverDebug,
+            UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_1),
     };
 
@@ -103,49 +103,49 @@ public class ButtonMap implements IButtonMap
     {
         new DigitalOperationDescription(
             DigitalOperation.DriveTrainReset,
-            UserInputDevice.Operator,
+            UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_2,
-            Shift.OperatorDebug,
-            Shift.OperatorDebug,
+            Shift.CodriverDebug,
+            Shift.CodriverDebug,
             ButtonType.Click),
         new DigitalOperationDescription(
             DigitalOperation.DriveTrainEnableFieldOrientation,
-            UserInputDevice.Operator,
+            UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_3,
-            Shift.OperatorDebug,
-            Shift.OperatorDebug,
+            Shift.CodriverDebug,
+            Shift.CodriverDebug,
             ButtonType.Click),
         new DigitalOperationDescription(
             DigitalOperation.DriveTrainDisableFieldOrientation,
-            UserInputDevice.Operator,
+            UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_4,
-            Shift.OperatorDebug,
-            Shift.OperatorDebug,
+            Shift.CodriverDebug,
+            Shift.CodriverDebug,
             ButtonType.Click),
         new DigitalOperationDescription(
             DigitalOperation.PositionResetFieldOrientation,
-            UserInputDevice.Operator,
+            UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_5,
-            Shift.OperatorDebug,
-            Shift.OperatorDebug,
+            Shift.CodriverDebug,
+            Shift.CodriverDebug,
             ButtonType.Click),
         new DigitalOperationDescription(
             DigitalOperation.DriveTrainEnableMaintainDirectionMode,
-            UserInputDevice.Operator,
+            UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_6,
-            Shift.OperatorDebug,
-            Shift.OperatorDebug,
+            Shift.CodriverDebug,
+            Shift.CodriverDebug,
             ButtonType.Click),
         new DigitalOperationDescription(
             DigitalOperation.DriveTrainDisableMaintainDirectionMode,
-            UserInputDevice.Operator,
+            UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_7,
-            Shift.OperatorDebug,
-            Shift.OperatorDebug,
+            Shift.CodriverDebug,
+            Shift.CodriverDebug,
             ButtonType.Click),
         new DigitalOperationDescription(
             DigitalOperation.VisionEnableRetroreflectiveProcessing,
-            UserInputDevice.Operator,
+            UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_8,
             Shift.None,
             Shift.None,
@@ -204,32 +204,32 @@ public class ButtonMap implements IButtonMap
         // Climber Hook Positions
         new DigitalOperationDescription(
             DigitalOperation.ClimberHookRelease,
-            UserInputDevice.Operator,
+            UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_9, // DPAD-up
-            Shift.OperatorDebug,
+            Shift.CodriverDebug,
             Shift.None,
             ButtonType.Click),
         new DigitalOperationDescription(
             DigitalOperation.ClimberHookGrasp,
-            UserInputDevice.Operator,
+            UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_10, // DPAD-down
-            Shift.OperatorDebug,
+            Shift.CodriverDebug,
             Shift.None,
             ButtonType.Click),
 
         // // Climber Arm Positions
         new DigitalOperationDescription(
             DigitalOperation.ClimberArmUp,
-            UserInputDevice.Operator,
+            UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_11, // DPAD-right
-            Shift.OperatorDebug,
+            Shift.CodriverDebug,
             Shift.None,
             ButtonType.Click),
         new DigitalOperationDescription(
             DigitalOperation.ClimberArmOut,
-            UserInputDevice.Operator,
+            UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_12, // DPAD-left
-            Shift.OperatorDebug,
+            Shift.CodriverDebug,
             Shift.None,
             ButtonType.Click),
     };
@@ -314,7 +314,7 @@ public class ButtonMap implements IButtonMap
             }),
         new MacroOperationDescription(
             MacroOperation.WinchForward,
-            UserInputDevice.Operator,
+            UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_13,
             Shift.None,
             Shift.None,
@@ -326,7 +326,7 @@ public class ButtonMap implements IButtonMap
             }),
         new MacroOperationDescription(
             MacroOperation.WinchBackward,
-            UserInputDevice.Operator,
+            UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_14,
             Shift.None,
             Shift.None,
@@ -338,7 +338,7 @@ public class ButtonMap implements IButtonMap
             }),
         new MacroOperationDescription(
             MacroOperation.AutoDriveBackIntakeShoot,
-            UserInputDevice.Operator,
+            UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_15,
             Shift.None,
             Shift.None,
@@ -405,7 +405,7 @@ public class ButtonMap implements IButtonMap
             }),
         new MacroOperationDescription(
             MacroOperation.AutoShootDriveBack,
-            UserInputDevice.Operator,
+            UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_16,
             Shift.None,
             Shift.None,
@@ -465,7 +465,7 @@ public class ButtonMap implements IButtonMap
             }),
         new MacroOperationDescription(
             MacroOperation.SetUpClimb,
-            UserInputDevice.Operator,
+            UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_18,
             Shift.None,
             Shift.None,
@@ -521,7 +521,7 @@ public class ButtonMap implements IButtonMap
 
         new MacroOperationDescription(
             MacroOperation.ClimbToMidRung,
-            UserInputDevice.Operator,
+            UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_19,
             Shift.None,
             Shift.None,
@@ -576,7 +576,7 @@ public class ButtonMap implements IButtonMap
 
         new MacroOperationDescription(
             MacroOperation.ExtendToNextRung,
-            UserInputDevice.Operator,
+            UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_19,
             Shift.None,
             Shift.None,
@@ -631,7 +631,7 @@ public class ButtonMap implements IButtonMap
 
         new MacroOperationDescription(
             MacroOperation.SwitchToNextRung,
-            UserInputDevice.Operator,
+            UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_20,
             Shift.None,
             Shift.None,

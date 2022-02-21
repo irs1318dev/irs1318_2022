@@ -43,9 +43,6 @@ public class ElectronicsConstants
     public static final double PNEUMATICS_MIN_PSI = 110.0;
     public static final double PNEUMATICS_MAX_PSI = 120.0;
 
-    public static final int JOYSTICK_DRIVER_PORT = 0;
-    public static final int JOYSTICK_CO_DRIVER_PORT = 1;
-
     //================================================== IMU ==============================================================
 
     public static final int PIGEON_IMU_CAN_ID = 42;
