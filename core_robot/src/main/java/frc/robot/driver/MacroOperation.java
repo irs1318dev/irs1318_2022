@@ -12,13 +12,13 @@ public enum MacroOperation implements IOperation
     VisionCenterAndAdvance,
 
     // Climber operations
-    MoveBar,
-    WinchForward,
-    WinchBackward,
-    SetUpClimb,
-    ClimbToMidRung,
-    ExtendToNextRung,
-    SwitchToNextRung,
+    ClimberWinchForward,
+    ClimberWinchBackward,
+
+    ClimbSetUp,
+    ClimberRiseToMidRung,
+    ClimberExtendToNextRung,
+    ClimberSwitchToNextRung,
 
     // Auton *harru poyter says pog*
     AutoDriveBackIntakeShoot,

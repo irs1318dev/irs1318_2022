@@ -111,13 +111,6 @@ public enum UserInputDeviceButton
     BUTTON_PAD_BUTTON_14(14),
     BUTTON_PAD_BUTTON_15(15),
     BUTTON_PAD_BUTTON_16(16),
-    //FAKE BUTTONS HARU POYETR POG
-    BUTTON_PAD_BUTTON_17(17),
-    BUTTON_PAD_BUTTON_18(18),
-    BUTTON_PAD_BUTTON_19(19),
-    BUTTON_PAD_BUTTON_20(20),
-    BUTTON_PAD_BUTTON_21(21),
-    BUTTON_PAD_BUTTON_22(22),
 
     // Other - Some specified analog axis within a certain range
     POV(24),
