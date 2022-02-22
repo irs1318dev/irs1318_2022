@@ -19,10 +19,12 @@ import com.google.inject.Singleton;
 public class OffboardVisionManager implements IMechanism
 {
     private final IDriver driver;
+    private final IDriverStation driverStation;
     private final INetworkTableProvider networkTable;
     private final ILogger logger;
 
-    private final IDigitalOutput ringLight;
+    private final IDigitalOutput reflectiveRingLight;
+    private final IDigitalOutput cargoRingLight;
 
     private double centerX;
     private double centerY;
@@ -47,9 +49,11 @@ public class OffboardVisionManager implements IMechanism
     {
         this.driver = driver;
         this.logger = logger;
+        this.driverStation = provider.getDriverStation();
 
         this.networkTable = provider.getNetworkTableProvider();
-        this.ringLight = provider.getDigitalOutput(ElectronicsConstants.VISION_RING_LIGHT_DIO);
+        this.reflectiveRingLight = provider.getDigitalOutput(ElectronicsConstants.VISION_RING_LIGHT_REFLECTIVE_DIO);
+        this.cargoRingLight = provider.getDigitalOutput(ElectronicsConstants.VISION_RING_LIGHT_GAMEPIECE_DIO);
 
         this.centerX = 0.0;
         this.centerY = 0.0;
@@ -130,7 +134,13 @@ public class OffboardVisionManager implements IMechanism
             }
             else if (enableGamePieceProcessing)
             {
-                visionProcessingMode = 2.0;
+                if (this.isRedTeam())
+                {
+                    visionProcessingMode = 2.0; // 2.0 means red team
+                }
+                else {
+                    visionProcessingMode = 3.0; // 3.0 means blue team
+                }
             }
         }
 
@@ -138,13 +148,15 @@ public class OffboardVisionManager implements IMechanism
         this.logger.logBoolean(LoggingKey.OffboardVisionEnableStream, enableVideoStream);
         this.logger.logNumber(LoggingKey.OffboardVisionEnableProcessing, visionProcessingMode);
 
-        this.ringLight.set(enableVision && enableRetroreflectiveProcessing);
+        this.reflectiveRingLight.set(enableVision && enableRetroreflectiveProcessing);
+        this.cargoRingLight.set(enableVision && enableGamePieceProcessing);
     }
 
     @Override
     public void stop()
     {
-        this.ringLight.set(false);
+        this.reflectiveRingLight.set(false);
+        this.cargoRingLight.set(false);
 
         this.logger.logBoolean(LoggingKey.OffboardVisionEnableVision, false);
         this.logger.logBoolean(LoggingKey.OffboardVisionEnableStream, false);
@@ -169,5 +181,25 @@ public class OffboardVisionManager implements IMechanism
     public double getPowercellY() 
     {
         return this.centerY;
+    }
+
+    private boolean isRedTeam()
+    {
+        Alliance currentAlliance = this.driverStation.getAlliance();
+        switch (currentAlliance)
+        {
+            case Red:
+                return true;
+
+            case Blue:
+                return false;
+
+            case Invalid:
+            default:
+                break;
+        }
+
+        // fallback: use the game-specific message.  if "red", use red, otherwise use blue
+        return this.driverStation.getGameSpecificMessage().equalsIgnoreCase("red");
     }
 }
