@@ -77,14 +77,13 @@ public class DigitalOperationState extends OperationState
     }
 
     /**
-     * Checks whether the operation state should change based on the driver and operator joysticks and component sensors. 
-     * @param driver joystick to update from
-     * @param operator joystick to update from
+     * Checks whether the operation state should change based on the joysticks and active stifts. 
+     * @param joysticks to update from
      * @param activeShifts to update from
      * @return true if there was any active user input that triggered a state change
      */
     @Override
-    public boolean checkInput(IJoystick driver, IJoystick operator, Shift activeShifts)
+    public boolean checkInput(IJoystick[] joysticks, Shift activeShifts)
     {
         DigitalOperationDescription description = (DigitalOperationDescription)this.getDescription();
 
@@ -106,28 +105,24 @@ public class DigitalOperationState extends OperationState
             }
         }
 
-        IJoystick relevantJoystick;
-        UserInputDeviceButton relevantButton;
-        switch (userInputDevice)
+        IJoystick relevantJoystick = null;
+        if (userInputDevice != UserInputDevice.None)
         {
-            case Driver:
-                relevantJoystick = driver;
-                break;
+            relevantJoystick = joysticks[userInputDevice.getId()];
+        }
 
-            case Operator:
-                relevantJoystick = operator;
-                break;
+        if (relevantJoystick == null)
+        {
+            if (TuningConstants.THROW_EXCEPTIONS)
+            {
+                throw new RuntimeException("Unexpected user input device " + userInputDevice.toString());
+            }
 
-            default:
-                if (TuningConstants.THROW_EXCEPTIONS)
-                {
-                    throw new RuntimeException("Unexpected user input device " + description.getUserInputDevice().toString());
-                }
-
-                return false;
+            return false;
         }
 
         boolean buttonPressed;
+        UserInputDeviceButton relevantButton;
         if (relevantJoystick != null)
         {
             // find the appropriate button and grab the value from the relevant joystick

@@ -93,7 +93,6 @@ public enum LoggingKey
     ClimberWinchPosition("c.winch_pos"),
     ClimberWinchError("c.winch_error"),
     ClimberWinchDesiredPosition("c.winch_goal"),
-    ClimberWinchPower("c.winch_pow"),
     ClimberHookGrasped("c.hook_grasp"),
     ClimberArmOut("c.arm_out"),
     ClimberWinchLockIn("c.lock_in"),
@@ -102,7 +101,7 @@ public enum LoggingKey
     CargoFlywheelVelocity("cg.flywheel_vel"),
     CargoFlywheelError("cg.flywheel_err"),
     CargoFlywheelDesiredVelocity("cg.flywheel_goal"),
-
+    CargoConveyorState("cg.conveyor"),
     CargoFeederSensor("cg.feeder_tb_voltage"),
     CargoConveyerSensor("cg.conveyer_tb_voltage"),
     CargoFeederBeamBroken("cg.feeder_tb_broken"),

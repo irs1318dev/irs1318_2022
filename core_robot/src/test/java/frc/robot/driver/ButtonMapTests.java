@@ -9,7 +9,6 @@ public class ButtonMapTests
     @Test
     public void verifyButtonMap()
     {
-        //MAKE TRUE LATE PLXZWSC
-        ButtonMapVerifier.Verify(new ButtonMap(), false);
+        ButtonMapVerifier.Verify(new ButtonMap(), true);
     }
 }

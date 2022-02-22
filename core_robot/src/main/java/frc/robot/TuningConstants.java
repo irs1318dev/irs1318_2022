@@ -281,7 +281,6 @@ public class TuningConstants
     public static final double CARGO_INTAKE_POWER = 0.4;
     public static final double CARGO_INTAKE_OUT_POWER = -0.4;
     public static final double CARGO_INTAKE_EJECT_POWER = -0.5;
-    public static final double CARGO_CONVEYOR_FORWARD_POWER = 0.4;
     public static final double CARGO_CONVEYOR_ADVANCE_POWER = 0.4;
     public static final double CARGO_CONVEYOR_REVERSE_POWER = 0.4;
     public static final double CARGO_FEEDER_POWER = 0.4;
