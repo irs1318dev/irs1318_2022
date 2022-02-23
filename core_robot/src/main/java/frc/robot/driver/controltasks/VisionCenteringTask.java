@@ -15,8 +15,9 @@ public class VisionCenteringTask extends ControlTaskBase
     private static final int NO_CENTER_THRESHOLD = 40;
 
     private final boolean useTime;
+    private final boolean gamePiece;
 
-    protected OffboardVisionManager visionManager;
+    private OffboardVisionManager visionManager;
     private ITimer timer;
     private PIDHandler turnPidHandler;
 
@@ -27,18 +28,20 @@ public class VisionCenteringTask extends ControlTaskBase
     /**
     * Initializes a new VisionCenteringTask
     */
-    public VisionCenteringTask()
+    public VisionCenteringTask(boolean gamePiece)
     {
-        this(true);
+        this(true, gamePiece);
     }
 
     /**
-    * Initializes a new VisionCenteringTask
-    * @param useTime whether to make sure we are centered for a second or not
-    */
-    public VisionCenteringTask(boolean useTime)
+     * Initializes a new VisionCenteringTask
+     * @param useTime whether to make sure we are centered for a second or not
+     * @param gamePiece whether to center on game piece or vision target
+     */
+    public VisionCenteringTask(boolean useTime, boolean gamePiece)
     {
         this.useTime = useTime;
+        this.gamePiece = gamePiece;
 
         this.turnPidHandler = null;
         this.centeredTime = null;
@@ -72,7 +75,7 @@ public class VisionCenteringTask extends ControlTaskBase
     @Override
     public void update()
     {
-        Double currentMeasuredAngle = this.visionManager.getHorizontalAngle();
+        Double currentMeasuredAngle = this.getHorizontalAngle();
         if (currentMeasuredAngle != null)
         {
             this.setAnalogOperationState(
@@ -102,7 +105,7 @@ public class VisionCenteringTask extends ControlTaskBase
     @Override
     public boolean hasCompleted()
     {
-        Double currentMeasuredAngle = this.visionManager.getHorizontalAngle();
+        Double currentMeasuredAngle = this.getHorizontalAngle();
         if (currentMeasuredAngle == null)
         {
             return false;
@@ -142,7 +145,7 @@ public class VisionCenteringTask extends ControlTaskBase
     @Override
     public boolean shouldCancel()
     {
-        if (this.visionManager.getDistance() == null)
+        if (this.getDistance() == null)
         {
             this.noCenterCount++;
         }
@@ -152,6 +155,30 @@ public class VisionCenteringTask extends ControlTaskBase
         }
 
         return this.noCenterCount >= VisionCenteringTask.NO_CENTER_THRESHOLD;
+    }
+
+    protected Double getDistance()
+    {
+        if (this.gamePiece)
+        {
+            return this.visionManager.getGamePieceDistance();
+        }
+        else
+        {
+            return this.visionManager.getVisionTargetDistance();
+        }
+    }
+
+    protected Double getHorizontalAngle()
+    {
+        if (this.gamePiece)
+        {
+            return this.visionManager.getGamePieceHorizontalAngle();
+        }
+        else
+        {
+            return this.visionManager.getVisionTargetHorizontalAngle();
+        }
     }
 
     protected PIDHandler createTurnHandler()
