@@ -90,6 +90,7 @@ public class CargoMechanism implements IMechanism
             ElectronicsConstants.CARGO_OUTER_HOOD_REVERSE);
 
         this.flywheelMotor = provider.getTalonFX(ElectronicsConstants.CARGO_FLYWHEEL_MOTOR_CAN_ID);
+        this.flywheelMotor.setSensorType(TalonXFeedbackDevice.IntegratedSensor);
         this.flywheelMotor.setControlMode(TalonXControlMode.Velocity);
         this.flywheelMotor.setInvertOutput(HardwareConstants.CARGO_FLYWHEEL_MOTOR_INVERT_OUTPUT);
         this.flywheelMotor.setNeutralMode(MotorNeutralMode.Coast);
