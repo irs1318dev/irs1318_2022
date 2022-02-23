@@ -59,7 +59,7 @@ public class DriveTrainMechanism implements IMechanism
 
     private final ITalonFX[] steerMotors;
     private final ITalonFX[] driveMotors;
-    private final IAnalogInput[] absoluteEncoders;
+    private final ICANCoder[] absoluteEncoders;
 
     private final PIDHandler omegaPID;
     private final boolean[] isDirectionSwapped;
@@ -74,7 +74,6 @@ public class DriveTrainMechanism implements IMechanism
     private final double[] steerPositions;
     private final double[] steerAngles;
     private final double[] steerErrors;
-    private final double[] encoderVoltages;
     private final double[] encoderAngles;
 
     private final Setpoint[] result;
@@ -110,7 +109,7 @@ public class DriveTrainMechanism implements IMechanism
 
         this.steerMotors = new ITalonFX[DriveTrainMechanism.NUM_MODULES];
         this.driveMotors = new ITalonFX[DriveTrainMechanism.NUM_MODULES];
-        this.absoluteEncoders = new IAnalogInput[DriveTrainMechanism.NUM_MODULES];
+        this.absoluteEncoders = new ICANCoder[DriveTrainMechanism.NUM_MODULES];
 
         this.moduleOffsetX =
             new double[]
@@ -157,13 +156,13 @@ public class DriveTrainMechanism implements IMechanism
                 ElectronicsConstants.DRIVETRAIN_STEER_MOTOR_4_CAN_ID
             };
 
-        int[] absoluteEncoderAnalogInputs =
+        int[] absoluteEncoderCanIds =
             new int[]
             {
-                ElectronicsConstants.DRIVETRAIN_ABSOLUTE_ENCODER_1_ANALOG_INPUT,
-                ElectronicsConstants.DRIVETRAIN_ABSOLUTE_ENCODER_2_ANALOG_INPUT,
-                ElectronicsConstants.DRIVETRAIN_ABSOLUTE_ENCODER_3_ANALOG_INPUT,
-                ElectronicsConstants.DRIVETRAIN_ABSOLUTE_ENCODER_4_ANALOG_INPUT
+                ElectronicsConstants.DRIVETRAIN_ABSOLUTE_ENCODER_1_CAN_ID,
+                ElectronicsConstants.DRIVETRAIN_ABSOLUTE_ENCODER_2_CAN_ID,
+                ElectronicsConstants.DRIVETRAIN_ABSOLUTE_ENCODER_3_CAN_ID,
+                ElectronicsConstants.DRIVETRAIN_ABSOLUTE_ENCODER_4_CAN_ID
             };
 
         boolean[] driveMotorInvertOutputs =
@@ -356,7 +355,7 @@ public class DriveTrainMechanism implements IMechanism
             this.steerMotors[i].setControlMode(TalonXControlMode.Position);
             this.steerMotors[i].setSelectedSlot(DriveTrainMechanism.defaultPidSlotId);
 
-            this.absoluteEncoders[i] = provider.getAnalogInput(absoluteEncoderAnalogInputs[i]);
+            this.absoluteEncoders[i] = provider.getCANCoder(absoluteEncoderCanIds[i]);
         }
 
         this.driveVelocities = new double[DriveTrainMechanism.NUM_MODULES];
@@ -366,7 +365,6 @@ public class DriveTrainMechanism implements IMechanism
         this.steerPositions = new double[DriveTrainMechanism.NUM_MODULES];
         this.steerAngles = new double[DriveTrainMechanism.NUM_MODULES];
         this.steerErrors = new double[DriveTrainMechanism.NUM_MODULES];
-        this.encoderVoltages = new double[DriveTrainMechanism.NUM_MODULES];
         this.encoderAngles = new double[DriveTrainMechanism.NUM_MODULES];
 
         this.isDirectionSwapped = new boolean[DriveTrainMechanism.NUM_MODULES];
@@ -440,8 +438,7 @@ public class DriveTrainMechanism implements IMechanism
             this.steerPositions[i] = this.steerMotors[i].getPosition();
             this.steerAngles[i] = Helpers.updateAngleRange(this.steerPositions[i] * HardwareConstants.DRIVETRAIN_STEER_PULSE_DISTANCE);
             this.steerErrors[i] = this.steerMotors[i].getError();
-            this.encoderVoltages[i] = this.absoluteEncoders[i].getVoltage();
-            this.encoderAngles[i] = Helpers.updateAngleRange(this.encoderVoltages[i] * HardwareConstants.DRIVETRAIN_ENCODER_DEGREES_PER_VOLT);
+            this.encoderAngles[i] = this.absoluteEncoders[i].getAbsolutePosition();
 
             this.logger.logNumber(DriveTrainMechanism.DRIVE_VELOCITY_LOGGING_KEYS[i], this.driveVelocities[i]);
             this.logger.logNumber(DriveTrainMechanism.DRIVE_POSITION_LOGGING_KEYS[i], this.drivePositions[i]);

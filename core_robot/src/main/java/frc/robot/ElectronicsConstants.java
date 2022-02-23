@@ -67,17 +67,18 @@ public class ElectronicsConstants
     public static final int DRIVETRAIN_STEER_MOTOR_4_CAN_ID = 7;
     public static final int DRIVETRAIN_DRIVE_MOTOR_4_CAN_ID = 8;
 
-    public static final int DRIVETRAIN_ABSOLUTE_ENCODER_1_ANALOG_INPUT = 0;
-    public static final int DRIVETRAIN_ABSOLUTE_ENCODER_2_ANALOG_INPUT = 1;
-    public static final int DRIVETRAIN_ABSOLUTE_ENCODER_3_ANALOG_INPUT = 2;
-    public static final int DRIVETRAIN_ABSOLUTE_ENCODER_4_ANALOG_INPUT = 3;
+    public static final int DRIVETRAIN_ABSOLUTE_ENCODER_1_CAN_ID = 0;
+    public static final int DRIVETRAIN_ABSOLUTE_ENCODER_2_CAN_ID = 1;
+    public static final int DRIVETRAIN_ABSOLUTE_ENCODER_3_CAN_ID = 2;
+    public static final int DRIVETRAIN_ABSOLUTE_ENCODER_4_CAN_ID = 3;
 
     //================================================== Cargo Mechanism ==============================================================
 
-    public static final int CARGO_INTAKE_MOTOR_CAN_ID = 9;
-    public static final int CARGO_FLYWHEEL_MOTOR_CAN_ID = 10;
-    public static final int CARGO_CONVEYOR_MOTOR_CAN_ID = 11;
-    public static final int CARGO_FEEDER_MOTOR_CAN_ID = 12;
+    public static final int CARGO_FLYWHEEL_MOTOR_CAN_ID = 9;
+    public static final int CARGO_FLYWHEEL_FOLLOWER_MOTOR_CAN_ID = 10;
+    public static final int CARGO_INTAKE_MOTOR_CAN_ID = 11;
+    public static final int CARGO_CONVEYOR_MOTOR_CAN_ID = 12;
+    public static final int CARGO_FEEDER_MOTOR_CAN_ID = 13;
 
     public static final int PCM_MODULE_A = 0;
 
@@ -93,8 +94,8 @@ public class ElectronicsConstants
 
     //================================================== Climber Mechanism ==============================================================
 
-    public static final int CLIMBER_WINCH_MOTOR_MASTER_CAN_ID = 13;
-    public static final int CLIMBER_WINCH_MOTOR_FOLLOWER_CAN_ID = 14;
+    public static final int CLIMBER_WINCH_MOTOR_MASTER_CAN_ID = 14;
+    public static final int CLIMBER_WINCH_MOTOR_FOLLOWER_CAN_ID = 15;
 
     public static final int CLIMBER_ACTIVE_ARM_FORWARD = 6;
     public static final int CLIMBER_ACTIVE_ARM_REVERSE = 7;

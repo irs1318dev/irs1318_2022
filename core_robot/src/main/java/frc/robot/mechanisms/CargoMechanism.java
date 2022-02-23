@@ -106,6 +106,11 @@ public class CargoMechanism implements IMechanism
             TuningConstants.CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_ENABLED,
             TuningConstants.CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE);
 
+        ITalonFX flywheelFollower = provider.getTalonFX(ElectronicsConstants.CARGO_FLYWHEEL_FOLLOWER_MOTOR_CAN_ID);
+        flywheelFollower.setInvertOutput(HardwareConstants.CARGO_FLYWHEEL_FOLLOWER_MOTOR_INVERT_OUTPUT);
+        flywheelFollower.setNeutralMode(MotorNeutralMode.Coast);
+        flywheelFollower.follow(this.flywheelMotor);
+
         // serializer
         this.feederThroughBeamSensor = provider.getAnalogInput(ElectronicsConstants.CARGO_FEEDER_THROUGHBEAM_ANALOG_INPUT);
         this.conveyorThroughBeamSensor = provider.getAnalogInput(ElectronicsConstants.CARGO_CONVEYOR_THROUGHBEAM_ANALOG_INPUT);
