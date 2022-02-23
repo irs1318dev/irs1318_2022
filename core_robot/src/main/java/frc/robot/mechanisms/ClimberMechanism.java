@@ -27,9 +27,12 @@ public class ClimberMechanism implements IMechanism
     private final IDoubleSolenoid activeHookPiston;
     private final IDoubleSolenoid activeArmPiston;
     private final IDoubleSolenoid winchArmLock;
+    private final IDigitalInput winchArmRetractedLimitSwitch;
 
     private double winchMotorPosition;
     private double winchMotorError;
+    private boolean winchRetracted;
+
     private boolean activeHookGrasped;
     private boolean activeArmOut;
     private boolean winchArmLocked;
@@ -80,6 +83,8 @@ public class ClimberMechanism implements IMechanism
 
         this.winchArmLock = provider.getDoubleSolenoid(ElectronicsConstants.PCM_MODULE_A, PneumaticsModuleType.PneumaticsHub, ElectronicsConstants.CLIMBER_WINCH_LOCK_FORWARD, ElectronicsConstants.CLIMBER_WINCH_LOCK_BACKWARD);
 
+        this.winchArmRetractedLimitSwitch = provider.getDigitalInput(ElectronicsConstants.CLIMBER_WINCH_ARM_RETRACTED_LIMIT_SWITCH_DIGITAL_INPUT);
+
         this.activeHookGrasped = false;
         this.activeArmOut = false;
 
@@ -90,6 +95,14 @@ public class ClimberMechanism implements IMechanism
     @Override
     public void readSensors()
     {
+        this.winchRetracted = this.winchArmRetractedLimitSwitch.get();
+        if (this.winchRetracted)
+        {
+            this.winchMotor.reset();
+        }
+
+        this.logger.logBoolean(LoggingKey.ClimberWinchRetracted, this.winchRetracted);
+
         this.winchMotorPosition = this.winchMotor.getPosition();
         this.winchMotorError = this.winchMotor.getError();
 
@@ -101,6 +114,7 @@ public class ClimberMechanism implements IMechanism
     public void update()
     {
         // set pid for when the climber is hanging
+        int prevSlot = this.currentSlot;
         if (this.driver.getDigital(DigitalOperation.ClimberEnableWeightedMode))
         {
             this.currentSlot = ClimberMechanism.WeightedSlotId;
@@ -154,8 +168,12 @@ public class ClimberMechanism implements IMechanism
         {
             // otherwise, set winch position to desired position
             this.desiredWinchPosition = this.driver.getAnalog(AnalogOperation.ClimberWinchDesiredPosition);
+            if (prevSlot != this.currentSlot)
+            {
+                this.winchMotor.setSelectedSlot(this.currentSlot);
+            }
+
             this.winchMotor.setControlMode(TalonXControlMode.Position);
-            this.winchMotor.setSelectedSlot(this.currentSlot);
             this.winchMotor.set(this.desiredWinchPosition * HardwareConstants.CLIMBER_WINCH_MAX_POSITION);
 
             this.logger.logNumber(LoggingKey.ClimberWinchDesiredPosition, this.desiredWinchPosition);

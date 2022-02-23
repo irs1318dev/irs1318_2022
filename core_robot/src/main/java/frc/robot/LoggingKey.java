@@ -89,6 +89,7 @@ public enum LoggingKey
 
     ClimberWinchPosition("c.winch_pos"),
     ClimberWinchError("c.winch_error"),
+    ClimberWinchRetracted("c.winch_retracted"),
     ClimberWinchDesiredPosition("c.winch_goal"),
     ClimberHookGrasped("c.hook_grasp"),
     ClimberArmOut("c.arm_out"),
