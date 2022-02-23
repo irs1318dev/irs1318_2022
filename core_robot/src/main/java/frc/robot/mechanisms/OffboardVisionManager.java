@@ -82,15 +82,17 @@ public class OffboardVisionManager implements IMechanism
 
         this.logger.logNumber(LoggingKey.OffboardVisionMissedHeartbeats, this.missedHeartbeats);
 
+        boolean missedHeartbeatExceedsThreshold = this.missedHeartbeats > TuningConstants.VISION_MISSED_HEARTBEAT_THRESHOLD;
+
         // reset if we couldn't find the vision target
-        if (this.vDistance < 0.0 || this.vAngle < 0.0 || this.missedHeartbeats > TuningConstants.VISION_MISSED_HEARTBEAT_THRESHOLD)
+        if (missedHeartbeatExceedsThreshold || this.vDistance < 0.0 || this.vAngle < 0.0)
         {
             this.vDistance = null;
             this.vAngle = null;
         }
 
         // reset if we couldn't find the game piece
-        if (this.gDistance < 0.0 || this.gAngle < 0.0 || this.missedHeartbeats > TuningConstants.VISION_MISSED_HEARTBEAT_THRESHOLD)
+        if (missedHeartbeatExceedsThreshold || this.gDistance < 0.0 || this.gAngle < 0.0)
         {
             this.gDistance = null;
             this.gAngle = null;

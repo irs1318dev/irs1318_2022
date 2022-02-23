@@ -72,7 +72,7 @@ public class TuningConstants
     public static final double VISION_FAST_ADVANCING_PID_MIN = -0.45;
     public static final double VISION_FAST_ADVANCING_PID_MAX = 0.45;
 
-    public static final int VISION_MISSED_HEARTBEAT_THRESHOLD = 10000;
+    public static final int VISION_MISSED_HEARTBEAT_THRESHOLD = 500;
 
     //================================================== Indicator Lights ========================================================
 
