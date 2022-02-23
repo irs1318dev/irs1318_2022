@@ -725,7 +725,7 @@ public class ButtonMap implements IButtonMap
             UserInputDevice.Test1,
             UserInputDeviceButton.XBONE_A_BUTTON,
             Shift.Test1Debug,
-            Shift.None,
+            Shift.Test1Debug,
             ButtonType.Toggle,
             () -> SequentialTask.Sequence(
                 // vision centering
