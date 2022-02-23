@@ -57,8 +57,11 @@ public class CompressorMechanism implements IMechanism
     {
         if (this.driver.getDigital(DigitalOperation.CompressorForceDisable))
         {
-            this.compressor.disable();
-            this.isStarted = false;
+            if (this.isStarted)
+            {
+                this.compressor.disable();
+                this.isStarted = false;
+            }
         }
         else if (!this.isStarted)
         {
