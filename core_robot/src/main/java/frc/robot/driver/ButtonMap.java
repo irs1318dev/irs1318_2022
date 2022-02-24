@@ -294,7 +294,7 @@ public class ButtonMap implements IButtonMap
         new DigitalOperationDescription(
             DigitalOperation.IndicatorLightB,
             UserInputDevice.Test1,
-            UserInputDeviceButton.XBONE_A_BUTTON,
+            UserInputDeviceButton.XBONE_Y_BUTTON,
             ButtonType.Toggle),
         new DigitalOperationDescription(
             DigitalOperation.IndicatorLightC,
