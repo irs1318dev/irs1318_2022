@@ -78,10 +78,24 @@ public class ClimberMechanism implements IMechanism
         winchFollowerMotor.setInvertOutput(HardwareConstants.CLIMBER_WINCH_MOTOR_FOLLOWER_INVERT_OUTPUT);
         winchFollowerMotor.follow(this.winchMotor);
 
-        this.activeHookPiston = provider.getDoubleSolenoid(ElectronicsConstants.PCM_MODULE_A, PneumaticsModuleType.PneumaticsHub, ElectronicsConstants.CLIMBER_ACTIVE_HOOK_FORWARD, ElectronicsConstants.CLIMBER_ACTIVE_HOOK_REVERSE);
-        this.activeArmPiston = provider.getDoubleSolenoid(ElectronicsConstants.PCM_MODULE_A, PneumaticsModuleType.PneumaticsHub, ElectronicsConstants.CLIMBER_ACTIVE_ARM_FORWARD, ElectronicsConstants.CLIMBER_ACTIVE_ARM_REVERSE);
-
-        this.winchArmLock = provider.getDoubleSolenoid(ElectronicsConstants.PCM_MODULE_A, PneumaticsModuleType.PneumaticsHub, ElectronicsConstants.CLIMBER_WINCH_LOCK_FORWARD, ElectronicsConstants.CLIMBER_WINCH_LOCK_BACKWARD);
+        this.activeHookPiston =
+            provider.getDoubleSolenoid(
+                ElectronicsConstants.PNEUMATICS_MODULE_A,
+                ElectronicsConstants.PNEUMATICS_MODULE_TYPE_A,
+                ElectronicsConstants.CLIMBER_ACTIVE_HOOK_FORWARD,
+                ElectronicsConstants.CLIMBER_ACTIVE_HOOK_REVERSE);
+        this.activeArmPiston =
+            provider.getDoubleSolenoid(
+                ElectronicsConstants.PNEUMATICS_MODULE_A,
+                ElectronicsConstants.PNEUMATICS_MODULE_TYPE_A,
+                ElectronicsConstants.CLIMBER_ACTIVE_ARM_FORWARD,
+                ElectronicsConstants.CLIMBER_ACTIVE_ARM_REVERSE);
+        this.winchArmLock =
+            provider.getDoubleSolenoid(
+                ElectronicsConstants.PNEUMATICS_MODULE_A,
+                ElectronicsConstants.PNEUMATICS_MODULE_TYPE_A,
+                ElectronicsConstants.CLIMBER_WINCH_LOCK_FORWARD,
+                ElectronicsConstants.CLIMBER_WINCH_LOCK_BACKWARD);
 
         this.winchArmRetractedLimitSwitch = provider.getDigitalInput(ElectronicsConstants.CLIMBER_WINCH_ARM_RETRACTED_LIMIT_SWITCH_DIGITAL_INPUT);
 

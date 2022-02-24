@@ -46,8 +46,8 @@ public class ElectronicsConstants
 
     //================================================== Vision ==============================================================
 
-    public static final int VISION_RING_LIGHT_REFLECTIVE_DIO = -1;
-    public static final int VISION_RING_LIGHT_GAMEPIECE_DIO = -1;
+    public static final int VISION_RING_LIGHT_REFLECTIVE_DIO = 0;
+    public static final int VISION_RING_LIGHT_GAMEPIECE_DIO = 1;
 
     //================================================== Indicator Lights ==============================================================
 
@@ -64,10 +64,10 @@ public class ElectronicsConstants
     public static final int DRIVETRAIN_STEER_MOTOR_4_CAN_ID = 7;
     public static final int DRIVETRAIN_DRIVE_MOTOR_4_CAN_ID = 8;
 
-    public static final int DRIVETRAIN_ABSOLUTE_ENCODER_1_CAN_ID = 0;
-    public static final int DRIVETRAIN_ABSOLUTE_ENCODER_2_CAN_ID = 1;
-    public static final int DRIVETRAIN_ABSOLUTE_ENCODER_3_CAN_ID = 2;
-    public static final int DRIVETRAIN_ABSOLUTE_ENCODER_4_CAN_ID = 3;
+    public static final int DRIVETRAIN_ABSOLUTE_ENCODER_1_CAN_ID = 1;
+    public static final int DRIVETRAIN_ABSOLUTE_ENCODER_2_CAN_ID = 2;
+    public static final int DRIVETRAIN_ABSOLUTE_ENCODER_3_CAN_ID = 3;
+    public static final int DRIVETRAIN_ABSOLUTE_ENCODER_4_CAN_ID = 4;
 
     //================================================== Cargo Mechanism ==============================================================
 
@@ -76,8 +76,6 @@ public class ElectronicsConstants
     public static final int CARGO_INTAKE_MOTOR_CAN_ID = 11;
     public static final int CARGO_CONVEYOR_MOTOR_CAN_ID = 12;
     public static final int CARGO_FEEDER_MOTOR_CAN_ID = 13;
-
-    public static final int PCM_MODULE_A = 0;
 
     public static final int CARGO_INNER_HOOD_FORWARD = 0;
     public static final int CARGO_INNER_HOOD_REVERSE = 1;

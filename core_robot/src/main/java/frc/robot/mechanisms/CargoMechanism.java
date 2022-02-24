@@ -71,23 +71,26 @@ public class CargoMechanism implements IMechanism
         this.intakeMotor.setInvertOutput(HardwareConstants.CARGO_INTAKE_MOTOR_INVERT_OUTPUT);
         this.intakeMotor.setNeutralMode(MotorNeutralMode.Brake);
 
-        this.intakeExtender = provider.getDoubleSolenoid(
-            ElectronicsConstants.PCM_MODULE_A,
-            PneumaticsModuleType.PneumaticsHub,
-            ElectronicsConstants.CARGO_INTAKE_PISTON_FORWARD,
-            ElectronicsConstants.CARGO_INTAKE_PISTON_REVERSE);
+        this.intakeExtender =
+            provider.getDoubleSolenoid(
+                ElectronicsConstants.PNEUMATICS_MODULE_A,
+                ElectronicsConstants.PNEUMATICS_MODULE_TYPE_A,
+                ElectronicsConstants.CARGO_INTAKE_PISTON_FORWARD,
+                ElectronicsConstants.CARGO_INTAKE_PISTON_REVERSE);
 
         // shooter
-        this.innerHoodExtender = provider.getDoubleSolenoid(
-            ElectronicsConstants.PCM_MODULE_A,
-            PneumaticsModuleType.PneumaticsHub,
-            ElectronicsConstants.CARGO_INNER_HOOD_FORWARD,
-            ElectronicsConstants.CARGO_INNER_HOOD_REVERSE);
-        this.outerHoodExtender = provider.getDoubleSolenoid(
-            ElectronicsConstants.PCM_MODULE_A,
-            PneumaticsModuleType.PneumaticsHub,
-            ElectronicsConstants.CARGO_OUTER_HOOD_FORWARD,
-            ElectronicsConstants.CARGO_OUTER_HOOD_REVERSE);
+        this.innerHoodExtender =
+            provider.getDoubleSolenoid(
+                ElectronicsConstants.PNEUMATICS_MODULE_A,
+                ElectronicsConstants.PNEUMATICS_MODULE_TYPE_A,
+                ElectronicsConstants.CARGO_INNER_HOOD_FORWARD,
+                ElectronicsConstants.CARGO_INNER_HOOD_REVERSE);
+        this.outerHoodExtender =
+            provider.getDoubleSolenoid(
+                ElectronicsConstants.PNEUMATICS_MODULE_A,
+                ElectronicsConstants.PNEUMATICS_MODULE_TYPE_A,
+                ElectronicsConstants.CARGO_OUTER_HOOD_FORWARD,
+                ElectronicsConstants.CARGO_OUTER_HOOD_REVERSE);
 
         this.flywheelMotor = provider.getTalonFX(ElectronicsConstants.CARGO_FLYWHEEL_MOTOR_CAN_ID);
         this.flywheelMotor.setSensorType(TalonXFeedbackDevice.IntegratedSensor);
