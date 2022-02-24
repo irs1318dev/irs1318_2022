@@ -69,8 +69,9 @@ public class HardwareConstants
 
     //================================================== Cargo ==============================================================
 
-    public static final boolean CARGO_INTAKE_MOTOR_INVERT_OUTPUT = false;
     public static final boolean CARGO_FLYWHEEL_MOTOR_INVERT_OUTPUT = false;
+    public static final boolean CARGO_FLYWHEEL_FOLLOWER_MOTOR_INVERT_OUTPUT = true;
+    public static final boolean CARGO_INTAKE_MOTOR_INVERT_OUTPUT = false;
     public static final boolean CARGO_FEEDER_MOTOR_INVERT_OUTPUT = false;
     public static final boolean CARGO_CONVEYOR_MOTOR_INVERT_OUTPUT = false;
 }

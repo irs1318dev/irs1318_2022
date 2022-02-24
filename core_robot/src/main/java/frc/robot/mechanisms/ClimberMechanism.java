@@ -22,15 +22,17 @@ public class ClimberMechanism implements IMechanism
 
     private final IDriver driver;
     private final ILogger logger;
-    private final ITimer timer;
 
     private final ITalonFX winchMotor;
     private final IDoubleSolenoid activeHookPiston;
     private final IDoubleSolenoid activeArmPiston;
     private final IDoubleSolenoid winchArmLock;
+    private final IDigitalInput winchArmRetractedLimitSwitch;
 
     private double winchMotorPosition;
     private double winchMotorError;
+    private boolean winchRetracted;
+
     private boolean activeHookGrasped;
     private boolean activeArmOut;
     private boolean winchArmLocked;
@@ -39,16 +41,16 @@ public class ClimberMechanism implements IMechanism
     private int currentSlot;
 
     @Inject
-    public ClimberMechanism(IDriver driver, LoggingManager logger, ITimer timer, IRobotProvider provider)
+    public ClimberMechanism(IDriver driver, LoggingManager logger, IRobotProvider provider)
     {
         // housekeeping
         this.driver = driver;
         this.logger = logger;
-        this.timer = timer;
 
         // winch
         this.winchMotor = provider.getTalonFX(ElectronicsConstants.CLIMBER_WINCH_MOTOR_MASTER_CAN_ID);
         this.winchMotor.setControlMode(TalonXControlMode.Position);
+        this.winchMotor.setSensorType(TalonXFeedbackDevice.IntegratedSensor);
         this.winchMotor.setInvertOutput(HardwareConstants.CLIMBER_WINCH_MOTOR_MASTER_INVERT_OUTPUT);
         this.winchMotor.setNeutralMode(MotorNeutralMode.Brake);
         this.winchMotor.setPIDF(
@@ -69,17 +71,33 @@ public class ClimberMechanism implements IMechanism
         this.winchMotor.setSelectedSlot(ClimberMechanism.UnweightedSlotId);
 
         ITalonFX winchFollowerMotor = provider.getTalonFX(ElectronicsConstants.CLIMBER_WINCH_MOTOR_FOLLOWER_CAN_ID);
-        winchFollowerMotor.follow(this.winchMotor);
         winchFollowerMotor.setNeutralMode(MotorNeutralMode.Brake);
         winchFollowerMotor.setVoltageCompensation(
             TuningConstants.CLIMBER_WINCH_MOTOR_FOLLOWER_VOLTAGE_COMPENSATION_ENABLED,
             TuningConstants.CLIMBER_WINCH_MOTOR_FOLLOWER_POSITION_VOLTAGE_COMPENSATION_MAXVOLTAGE);
         winchFollowerMotor.setInvertOutput(HardwareConstants.CLIMBER_WINCH_MOTOR_FOLLOWER_INVERT_OUTPUT);
+        winchFollowerMotor.follow(this.winchMotor);
 
-        this.activeHookPiston = provider.getDoubleSolenoid(ElectronicsConstants.PCM_MODULE_A, PneumaticsModuleType.PneumaticsHub, ElectronicsConstants.CLIMBER_ACTIVE_HOOK_FORWARD, ElectronicsConstants.CLIMBER_ACTIVE_HOOK_REVERSE);
-        this.activeArmPiston = provider.getDoubleSolenoid(ElectronicsConstants.PCM_MODULE_A, PneumaticsModuleType.PneumaticsHub, ElectronicsConstants.CLIMBER_ACTIVE_ARM_FORWARD, ElectronicsConstants.CLIMBER_ACTIVE_ARM_REVERSE);
+        this.activeHookPiston =
+            provider.getDoubleSolenoid(
+                ElectronicsConstants.PNEUMATICS_MODULE_A,
+                ElectronicsConstants.PNEUMATICS_MODULE_TYPE_A,
+                ElectronicsConstants.CLIMBER_ACTIVE_HOOK_FORWARD,
+                ElectronicsConstants.CLIMBER_ACTIVE_HOOK_REVERSE);
+        this.activeArmPiston =
+            provider.getDoubleSolenoid(
+                ElectronicsConstants.PNEUMATICS_MODULE_A,
+                ElectronicsConstants.PNEUMATICS_MODULE_TYPE_A,
+                ElectronicsConstants.CLIMBER_ACTIVE_ARM_FORWARD,
+                ElectronicsConstants.CLIMBER_ACTIVE_ARM_REVERSE);
+        this.winchArmLock =
+            provider.getDoubleSolenoid(
+                ElectronicsConstants.PNEUMATICS_MODULE_A,
+                ElectronicsConstants.PNEUMATICS_MODULE_TYPE_A,
+                ElectronicsConstants.CLIMBER_WINCH_LOCK_FORWARD,
+                ElectronicsConstants.CLIMBER_WINCH_LOCK_BACKWARD);
 
-        this.winchArmLock = provider.getDoubleSolenoid(ElectronicsConstants.PCM_MODULE_A, PneumaticsModuleType.PneumaticsHub, ElectronicsConstants.CLIMBER_WINCH_LOCK_FORWARD, ElectronicsConstants.CLIMBER_WINCH_LOCK_BACKWARD);
+        this.winchArmRetractedLimitSwitch = provider.getDigitalInput(ElectronicsConstants.CLIMBER_WINCH_ARM_RETRACTED_LIMIT_SWITCH_DIGITAL_INPUT);
 
         this.activeHookGrasped = false;
         this.activeArmOut = false;
@@ -91,6 +109,14 @@ public class ClimberMechanism implements IMechanism
     @Override
     public void readSensors()
     {
+        this.winchRetracted = this.winchArmRetractedLimitSwitch.get();
+        if (this.winchRetracted)
+        {
+            this.winchMotor.reset();
+        }
+
+        this.logger.logBoolean(LoggingKey.ClimberWinchRetracted, this.winchRetracted);
+
         this.winchMotorPosition = this.winchMotor.getPosition();
         this.winchMotorError = this.winchMotor.getError();
 
@@ -101,28 +127,8 @@ public class ClimberMechanism implements IMechanism
     @Override
     public void update()
     {
-        // manually set winch power for debug mode
-        double winchMotorPower = this.driver.getAnalog(AnalogOperation.ClimberWinchMotorPower);
-        if (winchMotorPower != TuningConstants.PERRY_THE_PLATYPUS)
-        {
-            this.winchMotor.setControlMode(TalonXControlMode.PercentOutput);
-            this.winchMotor.set(winchMotorPower);
-            this.desiredWinchPosition = this.winchMotorPosition;
-
-            this.logger.logNumber(LoggingKey.ClimberWinchDesiredPosition, this.desiredWinchPosition);
-        }
-        else
-        {
-            // otherwise, set winch position to desired position
-            this.desiredWinchPosition = this.driver.getAnalog(AnalogOperation.ClimberWinchDesiredPosition);
-            this.winchMotor.setControlMode(TalonXControlMode.Position);
-            this.winchMotor.setSelectedSlot(this.currentSlot);
-            this.winchMotor.set(this.desiredWinchPosition);
-
-            this.logger.logNumber(LoggingKey.ClimberWinchDesiredPosition, this.desiredWinchPosition);
-        }
-
         // set pid for when the climber is hanging
+        int prevSlot = this.currentSlot;
         if (this.driver.getDigital(DigitalOperation.ClimberEnableWeightedMode))
         {
             this.currentSlot = ClimberMechanism.WeightedSlotId;
@@ -162,6 +168,38 @@ public class ClimberMechanism implements IMechanism
             this.winchArmLocked = false;
         }
 
+        // manually set winch power for debug mode
+        double winchMotorPower = this.driver.getAnalog(AnalogOperation.ClimberWinchMotorPower);
+        if (winchMotorPower != TuningConstants.PERRY_THE_PLATYPUS)
+        {
+            this.winchMotor.setControlMode(TalonXControlMode.PercentOutput);
+            this.winchMotor.set(winchMotorPower);
+            this.desiredWinchPosition = this.winchMotorPosition / HardwareConstants.CLIMBER_WINCH_MAX_POSITION;
+
+            this.logger.logNumber(LoggingKey.ClimberWinchDesiredPosition, this.desiredWinchPosition);
+        }
+        else if (!this.winchArmLocked)
+        {
+            // otherwise, set winch position to desired position
+            this.desiredWinchPosition = this.driver.getAnalog(AnalogOperation.ClimberWinchDesiredPosition);
+            if (prevSlot != this.currentSlot)
+            {
+                this.winchMotor.setSelectedSlot(this.currentSlot);
+            }
+
+            this.winchMotor.setControlMode(TalonXControlMode.Position);
+            this.winchMotor.set(this.desiredWinchPosition * HardwareConstants.CLIMBER_WINCH_MAX_POSITION);
+
+            this.logger.logNumber(LoggingKey.ClimberWinchDesiredPosition, this.desiredWinchPosition);
+        }
+        else
+        {
+            // if the winch arm is locked, don't attempt to control the winch
+            this.winchMotor.stop();
+
+            this.logger.logNumber(LoggingKey.ClimberWinchDesiredPosition, TuningConstants.MAGIC_NULL_VALUE);
+        }
+
         this.activeHookPiston.set(this.activeHookGrasped ? DoubleSolenoidValue.Reverse : DoubleSolenoidValue.Forward);
         this.activeArmPiston.set(this.activeArmOut ? DoubleSolenoidValue.Reverse : DoubleSolenoidValue.Forward);
         this.winchArmLock.set(this.winchArmLocked ? DoubleSolenoidValue.Forward : DoubleSolenoidValue.Reverse);
@@ -180,9 +218,9 @@ public class ClimberMechanism implements IMechanism
         this.winchMotor.stop();
     }
 
-    // accessor method for winch motor position
+    // accessor method for winch position
     public double getCurrentPos()
     {
-        return this.winchMotorPosition;
+        return this.winchMotorPosition / HardwareConstants.CLIMBER_WINCH_MAX_POSITION;
     }
 }

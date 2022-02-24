@@ -14,9 +14,9 @@ public class VisionAdvanceAndCenterTask extends VisionCenteringTask
     /**
     * Initializes a new VisionForwardAndCenterTask
     */
-    public VisionAdvanceAndCenterTask(boolean useFastMode)
+    public VisionAdvanceAndCenterTask(boolean useFastMode, boolean gamePiece)
     {
-        super(false);
+        super(false, gamePiece);
 
         this.useFastMode = useFastMode;
         this.forwardPIDHandler = null;
@@ -59,7 +59,7 @@ public class VisionAdvanceAndCenterTask extends VisionCenteringTask
     public void update()
     {
         super.update();
-        Double currentDistance = this.visionManager.getDistance();
+        Double currentDistance = this.getDistance();
         if (currentDistance != null)
         {
             this.setAnalogOperationState(AnalogOperation.DriveTrainMoveForward, this.forwardPIDHandler.calculatePosition(0.0, -currentDistance));
@@ -76,7 +76,7 @@ public class VisionAdvanceAndCenterTask extends VisionCenteringTask
     @Override
     public boolean hasCompleted()
     {
-        Double currentDistance = this.visionManager.getDistance();
+        Double currentDistance = this.getDistance();
         if (currentDistance == null)
         {
             return false;

@@ -72,7 +72,7 @@ public class TuningConstants
     public static final double VISION_FAST_ADVANCING_PID_MIN = -0.45;
     public static final double VISION_FAST_ADVANCING_PID_MAX = 0.45;
 
-    public static final int VISION_MISSED_HEARTBEAT_THRESHOLD = 10000;
+    public static final int VISION_MISSED_HEARTBEAT_THRESHOLD = 500;
 
     //================================================== Indicator Lights ========================================================
 
@@ -129,9 +129,8 @@ public class TuningConstants
 
     public static final boolean DRIVETRAIN_USE_PID = true;
     public static final boolean DRIVETRAIN_USE_ODOMETRY = true;
-    public static final boolean DRIVETRAIN_RESET_ON_ROBOT_START = false;
+    public static final boolean DRIVETRAIN_RESET_ON_ROBOT_START = true;
 
-    //public static final double[] DRIVETRAIN_STEER_MOTOR_ABSOLUTE_OFFSET = new double[] { -135.0, 65.0, -96.0, -14.0 };
     public static final double DRIVETRAIN_STEER_MOTOR1_ABSOLUTE_OFFSET = -134.1;
     public static final double DRIVETRAIN_STEER_MOTOR2_ABSOLUTE_OFFSET = 64.3;
     public static final double DRIVETRAIN_STEER_MOTOR3_ABSOLUTE_OFFSET = -93.1;
@@ -253,7 +252,7 @@ public class TuningConstants
     public static final double DRIVETRAIN_SKIP_ANGLE_ON_ZERO_DELTA = 0.001;
     public static final double DRIVETRAIN_SKIP_OMEGA_ON_ZERO_DELTA = 0.25;
 
-    public static final double DRIVETRAIN_DEAD_ZONE_TURN = 0.20;
+    public static final double DRIVETRAIN_DEAD_ZONE_TURN = 0.1;
     public static final double DRIVETRAIN_DEAD_ZONE_VELOCITY = 0.15;
     public static final double DRIVETRAIN_DEAD_ZONE_TRIGGER_AB = 0.15;
 
@@ -296,8 +295,6 @@ public class TuningConstants
     public static final double CARGO_CONVEYOR_THROUGHBEAM_CUTOFF = 2.7;
     public static final double CARGO_FEEDER_THROUGHBEAM_CUTOFF = 2.7;
 
-    public static final double FLYWHEEL_DEAD_ZONE_MIN = -0.05;
-    public static final double FLYWHEEL_DEAD_ZONE_MAX = 0.05;
     public static final double CARGO_FLYWHEEL_ALLOWABLE_ERROR_RANGE = 500;
 
     public static final double CARGO_SHOOT_CHECKBALL_WAIT_TIME = 1.0;

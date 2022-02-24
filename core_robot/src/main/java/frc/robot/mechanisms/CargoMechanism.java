@@ -71,25 +71,29 @@ public class CargoMechanism implements IMechanism
         this.intakeMotor.setInvertOutput(HardwareConstants.CARGO_INTAKE_MOTOR_INVERT_OUTPUT);
         this.intakeMotor.setNeutralMode(MotorNeutralMode.Brake);
 
-        this.intakeExtender = provider.getDoubleSolenoid(
-            ElectronicsConstants.PCM_MODULE_A,
-            PneumaticsModuleType.PneumaticsHub,
-            ElectronicsConstants.CARGO_INTAKE_PISTON_FORWARD,
-            ElectronicsConstants.CARGO_INTAKE_PISTON_REVERSE);
+        this.intakeExtender =
+            provider.getDoubleSolenoid(
+                ElectronicsConstants.PNEUMATICS_MODULE_A,
+                ElectronicsConstants.PNEUMATICS_MODULE_TYPE_A,
+                ElectronicsConstants.CARGO_INTAKE_PISTON_FORWARD,
+                ElectronicsConstants.CARGO_INTAKE_PISTON_REVERSE);
 
         // shooter
-        this.innerHoodExtender = provider.getDoubleSolenoid(
-            ElectronicsConstants.PCM_MODULE_A,
-            PneumaticsModuleType.PneumaticsHub,
-            ElectronicsConstants.CARGO_INNER_HOOD_FORWARD,
-            ElectronicsConstants.CARGO_INNER_HOOD_REVERSE);
-        this.outerHoodExtender = provider.getDoubleSolenoid(
-            ElectronicsConstants.PCM_MODULE_A,
-            PneumaticsModuleType.PneumaticsHub,
-            ElectronicsConstants.CARGO_OUTER_HOOD_FORWARD,
-            ElectronicsConstants.CARGO_OUTER_HOOD_REVERSE);
+        this.innerHoodExtender =
+            provider.getDoubleSolenoid(
+                ElectronicsConstants.PNEUMATICS_MODULE_A,
+                ElectronicsConstants.PNEUMATICS_MODULE_TYPE_A,
+                ElectronicsConstants.CARGO_INNER_HOOD_FORWARD,
+                ElectronicsConstants.CARGO_INNER_HOOD_REVERSE);
+        this.outerHoodExtender =
+            provider.getDoubleSolenoid(
+                ElectronicsConstants.PNEUMATICS_MODULE_A,
+                ElectronicsConstants.PNEUMATICS_MODULE_TYPE_A,
+                ElectronicsConstants.CARGO_OUTER_HOOD_FORWARD,
+                ElectronicsConstants.CARGO_OUTER_HOOD_REVERSE);
 
         this.flywheelMotor = provider.getTalonFX(ElectronicsConstants.CARGO_FLYWHEEL_MOTOR_CAN_ID);
+        this.flywheelMotor.setSensorType(TalonXFeedbackDevice.IntegratedSensor);
         this.flywheelMotor.setControlMode(TalonXControlMode.Velocity);
         this.flywheelMotor.setInvertOutput(HardwareConstants.CARGO_FLYWHEEL_MOTOR_INVERT_OUTPUT);
         this.flywheelMotor.setNeutralMode(MotorNeutralMode.Coast);
@@ -105,6 +109,11 @@ public class CargoMechanism implements IMechanism
         this.flywheelMotor.setVoltageCompensation(
             TuningConstants.CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_ENABLED,
             TuningConstants.CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE);
+
+        ITalonFX flywheelFollower = provider.getTalonFX(ElectronicsConstants.CARGO_FLYWHEEL_FOLLOWER_MOTOR_CAN_ID);
+        flywheelFollower.setInvertOutput(HardwareConstants.CARGO_FLYWHEEL_FOLLOWER_MOTOR_INVERT_OUTPUT);
+        flywheelFollower.setNeutralMode(MotorNeutralMode.Coast);
+        flywheelFollower.follow(this.flywheelMotor);
 
         // serializer
         this.feederThroughBeamSensor = provider.getAnalogInput(ElectronicsConstants.CARGO_FEEDER_THROUGHBEAM_ANALOG_INPUT);
