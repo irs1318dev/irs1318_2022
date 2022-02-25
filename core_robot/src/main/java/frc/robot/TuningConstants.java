@@ -127,14 +127,16 @@ public class TuningConstants
 
     //================================================== DriveTrain ==============================================================
 
-    public static final boolean DRIVETRAIN_USE_PID = true;
+    public static final boolean DRIVETRAIN_USE_PID = false;
     public static final boolean DRIVETRAIN_USE_ODOMETRY = true;
-    public static final boolean DRIVETRAIN_RESET_ON_ROBOT_START = true;
+    public static final boolean DRIVETRAIN_RESET_ON_ROBOT_START = false;
+    public static final boolean DRIVETRAIN_FIELD_ORIENTED_ON_ROBOT_START = false;
+    public static final boolean DRIVETRAIN_MAINTAIN_ORIENTATION_ON_ROBOT_START = false;
 
-    public static final double DRIVETRAIN_STEER_MOTOR1_ABSOLUTE_OFFSET = -134.1;
-    public static final double DRIVETRAIN_STEER_MOTOR2_ABSOLUTE_OFFSET = 64.3;
-    public static final double DRIVETRAIN_STEER_MOTOR3_ABSOLUTE_OFFSET = -93.1;
-    public static final double DRIVETRAIN_STEER_MOTOR4_ABSOLUTE_OFFSET = 31.9;
+    public static final double DRIVETRAIN_STEER_MOTOR1_ABSOLUTE_OFFSET = -124.365;
+    public static final double DRIVETRAIN_STEER_MOTOR2_ABSOLUTE_OFFSET = 51.943;
+    public static final double DRIVETRAIN_STEER_MOTOR3_ABSOLUTE_OFFSET = -128.848;
+    public static final double DRIVETRAIN_STEER_MOTOR4_ABSOLUTE_OFFSET = -128.672;
 
     // Position PID (angle) per-module
     public static final double DRIVETRAIN_STEER_MOTOR_POSITION_PID_KS = HardwareConstants.DRIVETRAIN_STEER_TICKS_PER_DEGREE;
@@ -300,8 +302,6 @@ public class TuningConstants
 
     public static final double CARGO_SHOOT_CHECKBALL_WAIT_TIME = 1.0;
     public static final double CARGO_SHOOT_SPINUP_WAIT_TIME = 1.0;
-
-
 
     public static final double SHOOTER_HEIGHT = 1.0;
     public static final double GOAL_HEIGHT = 8.5; // feet

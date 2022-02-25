@@ -356,6 +356,7 @@ public class DriveTrainMechanism implements IMechanism
             this.steerMotors[i].setSelectedSlot(DriveTrainMechanism.defaultPidSlotId);
 
             this.absoluteEncoders[i] = provider.getCANCoder(absoluteEncoderCanIds[i]);
+            this.absoluteEncoders[i].configAbsoluteRange(false);
         }
 
         this.driveVelocities = new double[DriveTrainMechanism.NUM_MODULES];
@@ -421,8 +422,8 @@ public class DriveTrainMechanism implements IMechanism
         this.yPosition = 0.0;
 
         this.firstRun = TuningConstants.DRIVETRAIN_RESET_ON_ROBOT_START;
-        this.fieldOriented = true;
-        this.maintainOrientation = true;
+        this.fieldOriented = TuningConstants.DRIVETRAIN_FIELD_ORIENTED_ON_ROBOT_START;
+        this.maintainOrientation = TuningConstants.DRIVETRAIN_MAINTAIN_ORIENTATION_ON_ROBOT_START;
         this.updatedOrientation = false;
     }
 

@@ -4,6 +4,7 @@ import frc.robot.common.ComplementaryFilter;
 import frc.robot.common.IMechanism;
 import frc.robot.common.robotprovider.IPowerDistribution;
 import frc.robot.common.robotprovider.IRobotProvider;
+import frc.robot.common.robotprovider.PowerDistributionModuleType;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -28,7 +29,7 @@ public class PowerManager implements IMechanism
     @Inject
     public PowerManager(IRobotProvider provider)
     {
-        this.powerDistribution = provider.getPowerDistribution();
+        this.powerDistribution = provider.getPowerDistribution(1, PowerDistributionModuleType.PowerDistributionHub);
         this.batteryVoltageFilter = new ComplementaryFilter(0.4, 0.6, this.powerDistribution.getBatteryVoltage());
     }
 

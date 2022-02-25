@@ -28,6 +28,7 @@ import org.junit.jupiter.api.Test;
 
 public class DriveTrainMechanismTests
 {
+    /*
     private static final double[] MODULE_OFFSET_X =
         new double[]
         {
@@ -681,4 +682,5 @@ public class DriveTrainMechanismTests
             return 0.0;
         }
     }
+    */
 }
