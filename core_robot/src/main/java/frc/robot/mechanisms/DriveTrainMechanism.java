@@ -165,40 +165,22 @@ public class DriveTrainMechanism implements IMechanism
                 ElectronicsConstants.DRIVETRAIN_ABSOLUTE_ENCODER_4_CAN_ID
             };
 
-        boolean[] driveMotorInvertOutputs =
-            new boolean[]
+        TalonFXInvertType[] driveMotorInvert =
+            new TalonFXInvertType[]
             {
-                HardwareConstants.DRIVETRAIN_DRIVE_MOTOR1_INVERT_OUTPUT,
-                HardwareConstants.DRIVETRAIN_DRIVE_MOTOR2_INVERT_OUTPUT,
-                HardwareConstants.DRIVETRAIN_DRIVE_MOTOR3_INVERT_OUTPUT,
-                HardwareConstants.DRIVETRAIN_DRIVE_MOTOR4_INVERT_OUTPUT
+                HardwareConstants.DRIVETRAIN_DRIVE_MOTOR1_INVERT,
+                HardwareConstants.DRIVETRAIN_DRIVE_MOTOR2_INVERT,
+                HardwareConstants.DRIVETRAIN_DRIVE_MOTOR3_INVERT,
+                HardwareConstants.DRIVETRAIN_DRIVE_MOTOR4_INVERT
             };
 
-        boolean[] driveMotorInvertSensors =
-            new boolean[]
+        TalonFXInvertType[] steerMotorInvert =
+            new TalonFXInvertType[]
             {
-                HardwareConstants.DRIVETRAIN_DRIVE_MOTOR1_INVERT_SENSOR,
-                HardwareConstants.DRIVETRAIN_DRIVE_MOTOR2_INVERT_SENSOR,
-                HardwareConstants.DRIVETRAIN_DRIVE_MOTOR3_INVERT_SENSOR,
-                HardwareConstants.DRIVETRAIN_DRIVE_MOTOR4_INVERT_SENSOR
-            };
-
-        boolean[] steerMotorInvertOutputs =
-            new boolean[]
-            {
-                HardwareConstants.DRIVETRAIN_STEER_MOTOR1_INVERT_OUTPUT,
-                HardwareConstants.DRIVETRAIN_STEER_MOTOR2_INVERT_OUTPUT,
-                HardwareConstants.DRIVETRAIN_STEER_MOTOR3_INVERT_OUTPUT,
-                HardwareConstants.DRIVETRAIN_STEER_MOTOR4_INVERT_OUTPUT
-            };
-
-        boolean[] steerMotorInvertSensors =
-            new boolean[]
-            {
-                HardwareConstants.DRIVETRAIN_STEER_MOTOR1_INVERT_SENSOR,
-                HardwareConstants.DRIVETRAIN_STEER_MOTOR2_INVERT_SENSOR,
-                HardwareConstants.DRIVETRAIN_STEER_MOTOR3_INVERT_SENSOR,
-                HardwareConstants.DRIVETRAIN_STEER_MOTOR4_INVERT_SENSOR
+                HardwareConstants.DRIVETRAIN_STEER_MOTOR1_INVERT,
+                HardwareConstants.DRIVETRAIN_STEER_MOTOR2_INVERT,
+                HardwareConstants.DRIVETRAIN_STEER_MOTOR3_INVERT,
+                HardwareConstants.DRIVETRAIN_STEER_MOTOR4_INVERT
             };
 
         double[][] driveMotorVelocityKPIDFs =
@@ -307,8 +289,7 @@ public class DriveTrainMechanism implements IMechanism
             this.driveMotors[i].setSensorType(TalonXFeedbackDevice.IntegratedSensor);
             this.driveMotors[i].setFeedbackFramePeriod(DriveTrainMechanism.FRAME_PERIOD_MS);
             this.driveMotors[i].setPIDFFramePeriod(DriveTrainMechanism.FRAME_PERIOD_MS);
-            this.driveMotors[i].setInvertOutput(driveMotorInvertOutputs[i]);
-            this.driveMotors[i].setInvertSensor(driveMotorInvertSensors[i]);
+            this.driveMotors[i].setInvert(driveMotorInvert[i]);
             this.driveMotors[i].configureVelocityMeasurements(10, 32);
             this.driveMotors[i].setPIDF(
                 driveMotorVelocityKPIDFs[i][0],
@@ -334,8 +315,7 @@ public class DriveTrainMechanism implements IMechanism
             this.driveMotors[i].setSelectedSlot(DriveTrainMechanism.defaultPidSlotId);
 
             this.steerMotors[i] = provider.getTalonFX(steerMotorCanIds[i]);
-            this.steerMotors[i].setInvertOutput(steerMotorInvertOutputs[i]);
-            this.steerMotors[i].setInvertSensor(steerMotorInvertSensors[i]);
+            this.steerMotors[i].setInvert(steerMotorInvert[i]);
             this.steerMotors[i].setNeutralMode(MotorNeutralMode.Brake);
             this.steerMotors[i].setSensorType(TalonXFeedbackDevice.IntegratedSensor);
             this.steerMotors[i].setPIDF(

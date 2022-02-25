@@ -95,7 +95,7 @@ public class CargoMechanism implements IMechanism
         this.flywheelMotor = provider.getTalonFX(ElectronicsConstants.CARGO_FLYWHEEL_MOTOR_CAN_ID);
         this.flywheelMotor.setSensorType(TalonXFeedbackDevice.IntegratedSensor);
         this.flywheelMotor.setControlMode(TalonXControlMode.Velocity);
-        this.flywheelMotor.setInvertOutput(HardwareConstants.CARGO_FLYWHEEL_MOTOR_INVERT_OUTPUT);
+        this.flywheelMotor.setInvert(HardwareConstants.CARGO_FLYWHEEL_MOTOR_INVERT);
         this.flywheelMotor.setNeutralMode(MotorNeutralMode.Coast);
         this.flywheelMotor.setPIDF(
             TuningConstants.CARGO_FLYWHEEL_MOTOR_PID_KP,
@@ -111,7 +111,7 @@ public class CargoMechanism implements IMechanism
             TuningConstants.CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE);
 
         ITalonFX flywheelFollower = provider.getTalonFX(ElectronicsConstants.CARGO_FLYWHEEL_FOLLOWER_MOTOR_CAN_ID);
-        flywheelFollower.setInvertOutput(HardwareConstants.CARGO_FLYWHEEL_FOLLOWER_MOTOR_INVERT_OUTPUT);
+        flywheelFollower.setInvert(HardwareConstants.CARGO_FLYWHEEL_FOLLOWER_MOTOR_INVERT);
         flywheelFollower.setNeutralMode(MotorNeutralMode.Coast);
         flywheelFollower.follow(this.flywheelMotor);
 

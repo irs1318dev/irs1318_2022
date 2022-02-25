@@ -249,6 +249,31 @@ public class TalonFXWrapper implements ITalonFX
         this.wrappedObject.setSensorPhase(invert);
     }
 
+    public void setInvert(TalonFXInvertType invertType)
+    {
+        com.ctre.phoenix.motorcontrol.TalonFXInvertType ctreInvertType = com.ctre.phoenix.motorcontrol.TalonFXInvertType.Clockwise;
+        switch (invertType)
+        {
+            case Clockwise:
+                ctreInvertType = com.ctre.phoenix.motorcontrol.TalonFXInvertType.Clockwise;
+                break;
+
+            case CounterClockwise:
+                ctreInvertType = com.ctre.phoenix.motorcontrol.TalonFXInvertType.CounterClockwise;
+                break;
+
+            case FollowMaster:
+                ctreInvertType = com.ctre.phoenix.motorcontrol.TalonFXInvertType.FollowMaster;
+                break;
+
+            case OpposeMaster:
+                ctreInvertType = com.ctre.phoenix.motorcontrol.TalonFXInvertType.OpposeMaster;
+                break;
+        }
+
+        this.wrappedObject.setInverted(ctreInvertType);
+    }
+
     public void setNeutralMode(MotorNeutralMode neutralMode)
     {
         NeutralMode mode;

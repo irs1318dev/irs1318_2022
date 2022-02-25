@@ -51,7 +51,7 @@ public class ClimberMechanism implements IMechanism
         this.winchMotor = provider.getTalonFX(ElectronicsConstants.CLIMBER_WINCH_MOTOR_MASTER_CAN_ID);
         this.winchMotor.setControlMode(TalonXControlMode.Position);
         this.winchMotor.setSensorType(TalonXFeedbackDevice.IntegratedSensor);
-        this.winchMotor.setInvertOutput(HardwareConstants.CLIMBER_WINCH_MOTOR_MASTER_INVERT_OUTPUT);
+        this.winchMotor.setInvert(HardwareConstants.CLIMBER_WINCH_MOTOR_MASTER_INVERT);
         this.winchMotor.setNeutralMode(MotorNeutralMode.Brake);
         this.winchMotor.setPIDF(
             TuningConstants.CLIMBER_WINCH_MOTOR_U_PID_KP,
@@ -75,7 +75,7 @@ public class ClimberMechanism implements IMechanism
         winchFollowerMotor.setVoltageCompensation(
             TuningConstants.CLIMBER_WINCH_MOTOR_FOLLOWER_VOLTAGE_COMPENSATION_ENABLED,
             TuningConstants.CLIMBER_WINCH_MOTOR_FOLLOWER_POSITION_VOLTAGE_COMPENSATION_MAXVOLTAGE);
-        winchFollowerMotor.setInvertOutput(HardwareConstants.CLIMBER_WINCH_MOTOR_FOLLOWER_INVERT_OUTPUT);
+        winchFollowerMotor.setInvert(HardwareConstants.CLIMBER_WINCH_MOTOR_FOLLOWER_INVERT);
         winchFollowerMotor.follow(this.winchMotor);
 
         this.activeHookPiston =
