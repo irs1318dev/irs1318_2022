@@ -43,8 +43,4 @@ public enum DigitalOperation implements IOperation
     ClimberEnableUnweightedMode,
     ClimberWinchLock,
     ClimberWinchUnlock,
-
-    IndicatorLightA,
-    IndicatorLightB,
-    IndicatorLightC,
 }

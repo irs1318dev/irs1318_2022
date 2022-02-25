@@ -284,23 +284,6 @@ public class ButtonMap implements IButtonMap
             Shift.None,
             Shift.None,
             ButtonType.Simple),
-
-        // indicator light testing operations
-        new DigitalOperationDescription(
-            DigitalOperation.IndicatorLightA,
-            UserInputDevice.Test1,
-            UserInputDeviceButton.XBONE_X_BUTTON,
-            ButtonType.Toggle),
-        new DigitalOperationDescription(
-            DigitalOperation.IndicatorLightB,
-            UserInputDevice.Test1,
-            UserInputDeviceButton.XBONE_Y_BUTTON,
-            ButtonType.Toggle),
-        new DigitalOperationDescription(
-            DigitalOperation.IndicatorLightC,
-            UserInputDevice.Test1,
-            UserInputDeviceButton.XBONE_B_BUTTON,
-            ButtonType.Toggle),    
     };
 
     public static MacroOperationDescription[] MacroSchema = new MacroOperationDescription[]
