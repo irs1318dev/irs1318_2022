@@ -4,6 +4,10 @@ public enum MacroOperation implements IOperation
 {
     AutonomousRoutine,
 
+    // Auton testing *harru poyter says pog*
+    AutoDriveBackIntakeShoot,
+    AutoShootDriveBack,
+
     // DriveTrain operations:
     PIDBrake,
 
@@ -15,12 +19,14 @@ public enum MacroOperation implements IOperation
     ClimberWinchForward,
     ClimberWinchBackward,
 
-    ClimbSetUp,
+    ClimbSetUpWall,
+    ClimbSetUpNotWall,
+    ClimbSetUpManual,
     ClimberRiseToMidRung,
     ClimberExtendToNextRung,
     ClimberSwitchToNextRung,
 
-    // Auton *harru poyter says pog*
-    AutoDriveBackIntakeShoot,
-    AutoShootDriveBack,
+    // shooting macros
+    ShootPointBlank,
+    ShootTarmac,
 }

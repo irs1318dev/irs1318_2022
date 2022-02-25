@@ -105,13 +105,21 @@ public class RoadRunnerTrajectoryGenerator
             "goBack4ft", 
             new TrajectoryWrapper(TrajectoryGenerator.INSTANCE.generateTrajectory(goBack4ft, RoadRunnerTrajectoryGenerator.velocityConstraint, RoadRunnerTrajectoryGenerator.accelerationConstraint)));
         
-        Path lineUpUnder1stClimberBar = new PathBuilder(new Pose2d(0, 0, 0))
+        Path lineUpUnder1stClimberBarWall = new PathBuilder(new Pose2d(0, 0, 0))
             .splineTo(new Vector2d(-10,15), 0)
             .build();
-            pathManager.addPath(
-                "lineUpUnder1stClimberBar", 
-                new TrajectoryWrapper(TrajectoryGenerator.INSTANCE.generateTrajectory(lineUpUnder1stClimberBar, RoadRunnerTrajectoryGenerator.velocityConstraint, RoadRunnerTrajectoryGenerator.accelerationConstraint)));
+        pathManager.addPath(
+            "lineUpUnder1stClimberBarWall", 
+            new TrajectoryWrapper(TrajectoryGenerator.INSTANCE.generateTrajectory(lineUpUnder1stClimberBarWall, RoadRunnerTrajectoryGenerator.velocityConstraint, RoadRunnerTrajectoryGenerator.accelerationConstraint)));
         
+        Path lineUpUnder1stClimberBarNotWall = new PathBuilder(new Pose2d(0, 0, 0))
+            .splineTo(new Vector2d(-10,-15), 0)
+            .build();
+        pathManager.addPath(
+            "lineUpUnder1stClimberBarNotWall", 
+            new TrajectoryWrapper(TrajectoryGenerator.INSTANCE.generateTrajectory(lineUpUnder1stClimberBarNotWall, RoadRunnerTrajectoryGenerator.velocityConstraint, RoadRunnerTrajectoryGenerator.accelerationConstraint)));
+        
+
         Path goForward5in = new PathBuilder(new Pose2d(0, 0, 0))
             .splineTo(new Vector2d(5, 0), 0)
             .build();

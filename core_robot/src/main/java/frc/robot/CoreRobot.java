@@ -11,7 +11,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 /**
- * Main class for the FRC ? [competition name] Competition
+ * Main class for the FRC 2022 Rapid React Competition
  * Robot for IRS1318 - [robot name]
  * 
  * General design comments:
