@@ -442,7 +442,7 @@ public class ButtonMap implements IButtonMap
             Shift.None,
             ButtonType.Toggle,
             () -> SequentialTask.Sequence(
-                new FollowPathTask("lineUpUnder1stClimberBar"),
+                new FollowPathTask("lineUpUnder1stClimberBarWall"),
                 new ClimberArmUnlockTask(true),
                 ConcurrentTask.AllTasks(
                     new ClimberArmTask(true),
@@ -493,12 +493,12 @@ public class ButtonMap implements IButtonMap
         new MacroOperationDescription(
             MacroOperation.ClimbSetUpNotWall,
             UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_11, // TODO change
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_11,
             Shift.CodriverDebug,
-            Shift.None,
+            Shift.CodriverDebug,
             ButtonType.Toggle,
             () -> SequentialTask.Sequence(
-                new FollowPathTask("lineUpUnder1stClimberBarWall"),
+                new FollowPathTask("lineUpUnder1stClimberBarNotWall"),
                 new ClimberArmUnlockTask(true),
                 ConcurrentTask.AllTasks(
                     new ClimberArmTask(true),
@@ -550,7 +550,7 @@ public class ButtonMap implements IButtonMap
         new MacroOperationDescription(
             MacroOperation.ClimbSetUpManual,
             UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_11, // TODO change
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_15,
             Shift.CodriverDebug,
             Shift.None,
             ButtonType.Toggle,
@@ -743,8 +743,8 @@ public class ButtonMap implements IButtonMap
         new MacroOperationDescription(
             MacroOperation.ShootPointBlank,
             UserInputDevice.Driver,
-            UserInputDeviceButton.XBONE_A_BUTTON, //TODO
-            Shift.Test1Debug,
+            UserInputDeviceButton.XBONE_X_BUTTON,
+            Shift.DriverDebug,
             Shift.None,
             ButtonType.Toggle,
             () -> ConcurrentTask.AllTasks(
@@ -772,9 +772,9 @@ public class ButtonMap implements IButtonMap
         new MacroOperationDescription(
             MacroOperation.ShootTarmac,
             UserInputDevice.Driver,
-            UserInputDeviceButton.XBONE_A_BUTTON, //TODO
-            Shift.Test1Debug,
-            Shift.None,
+            UserInputDeviceButton.XBONE_X_BUTTON,
+            Shift.DriverDebug,
+            Shift.DriverDebug,
             ButtonType.Toggle,
             () -> ConcurrentTask.AllTasks(
                     // TODO cargo hood task??? do we have one??
