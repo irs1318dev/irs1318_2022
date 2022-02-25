@@ -435,14 +435,14 @@ public class ButtonMap implements IButtonMap
 
         // Climbing macros:
         new MacroOperationDescription(
-            MacroOperation.ClimbSetUp,
+            MacroOperation.ClimbSetUpWall,
             UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_11,
             Shift.CodriverDebug,
             Shift.None,
             ButtonType.Toggle,
             () -> SequentialTask.Sequence(
-                new FollowPathTask("linUpUnder1stClimberBar"),
+                new FollowPathTask("lineUpUnder1stClimberBar"),
                 new ClimberArmUnlockTask(true),
                 ConcurrentTask.AllTasks(
                     new ClimberArmTask(true),
@@ -479,6 +479,93 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.DriveTrainReset,
                 DigitalOperation.DriveTrainEnableFieldOrientation,
                 DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.ClimberHookGrasp,
+                DigitalOperation.ClimberHookRelease,
+                DigitalOperation.ClimberArmOut,
+                DigitalOperation.ClimberArmUp,
+                DigitalOperation.ClimberEnableWeightedMode,
+                DigitalOperation.ClimberEnableUnweightedMode,
+                DigitalOperation.ClimberWinchLock,
+                DigitalOperation.ClimberWinchUnlock
+            }
+        ),
+
+        new MacroOperationDescription(
+            MacroOperation.ClimbSetUpNotWall,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_11, // TODO change
+            Shift.CodriverDebug,
+            Shift.None,
+            ButtonType.Toggle,
+            () -> SequentialTask.Sequence(
+                new FollowPathTask("lineUpUnder1stClimberBarWall"),
+                new ClimberArmUnlockTask(true),
+                ConcurrentTask.AllTasks(
+                    new ClimberArmTask(true),
+                    new ClimberWeightedTask(false)
+                ),
+                new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_FULL_EXTEND_LENGTH),
+                new FollowPathTask("goForward5in")
+            ),
+            new IOperation[]
+            {
+                AnalogOperation.DriveTrainMoveForward,
+                AnalogOperation.DriveTrainMoveRight,
+                AnalogOperation.DriveTrainTurnAngleGoal,
+                AnalogOperation.DriveTrainTurnSpeed,
+                AnalogOperation.DriveTrainRotationA,
+                AnalogOperation.DriveTrainRotationB,
+                AnalogOperation.DriveTrainPathXGoal,
+                AnalogOperation.DriveTrainPathYGoal,
+                AnalogOperation.DriveTrainPathXVelocityGoal,
+                AnalogOperation.DriveTrainPathYVelocityGoal,
+                AnalogOperation.DriveTrainPathAngleVelocityGoal,
+                AnalogOperation.DriveTrainPositionDrive1,
+                AnalogOperation.DriveTrainPositionDrive2,
+                AnalogOperation.DriveTrainPositionDrive3,
+                AnalogOperation.DriveTrainPositionDrive4,
+                AnalogOperation.DriveTrainPositionSteer1,
+                AnalogOperation.DriveTrainPositionSteer2,
+                AnalogOperation.DriveTrainPositionSteer3,
+                AnalogOperation.DriveTrainPositionSteer4,
+                AnalogOperation.ClimberWinchDesiredPosition,
+                AnalogOperation.ClimberWinchMotorPower,
+                DigitalOperation.DriveTrainPositionMode,
+                DigitalOperation.DriveTrainPathMode,
+                DigitalOperation.DriveTrainReset,
+                DigitalOperation.DriveTrainEnableFieldOrientation,
+                DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.ClimberHookGrasp,
+                DigitalOperation.ClimberHookRelease,
+                DigitalOperation.ClimberArmOut,
+                DigitalOperation.ClimberArmUp,
+                DigitalOperation.ClimberEnableWeightedMode,
+                DigitalOperation.ClimberEnableUnweightedMode,
+                DigitalOperation.ClimberWinchLock,
+                DigitalOperation.ClimberWinchUnlock
+            }
+        ),
+
+        // extends arm and stuff, driver has to activate this then drive towards the bar and hook it on
+        new MacroOperationDescription(
+            MacroOperation.ClimbSetUpManual,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_11, // TODO change
+            Shift.CodriverDebug,
+            Shift.None,
+            ButtonType.Toggle,
+            () -> SequentialTask.Sequence(
+                new ClimberArmUnlockTask(true),
+                ConcurrentTask.AllTasks(
+                    new ClimberArmTask(true),
+                    new ClimberWeightedTask(false)
+                ),
+                new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_FULL_EXTEND_LENGTH)
+            ),
+            new IOperation[]
+            {
+                AnalogOperation.ClimberWinchDesiredPosition,
+                AnalogOperation.ClimberWinchMotorPower,
                 DigitalOperation.ClimberHookGrasp,
                 DigitalOperation.ClimberHookRelease,
                 DigitalOperation.ClimberArmOut,
@@ -652,6 +739,67 @@ public class ButtonMap implements IButtonMap
             }
         ),
 
+        // shooting macros
+        new MacroOperationDescription(
+            MacroOperation.ShootPointBlank,
+            UserInputDevice.Driver,
+            UserInputDeviceButton.XBONE_A_BUTTON, //TODO
+            Shift.Test1Debug,
+            Shift.None,
+            ButtonType.Toggle,
+            () -> ConcurrentTask.AllTasks(
+                    // TODO cargo hood task??? do we have one??
+                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_SPINUP_SPEED),
+                    SequentialTask.Sequence(
+                        new CargoShootTask(),
+                        new CargoShootTask()
+                    )
+                ),
+            new IOperation[]
+            {
+                DigitalOperation.CargoIntakeExtend,
+                DigitalOperation.CargoIntakeRetract,
+                DigitalOperation.CargoIntakeIn,
+                DigitalOperation.CargoIntakeOut,
+                DigitalOperation.CargoEject,
+                DigitalOperation.CargoFeed,
+                DigitalOperation.CargoHoodPointBlank,
+                DigitalOperation.CargoHoodShort,
+                DigitalOperation.CargoHoodMedium,
+                DigitalOperation.CargoHoodLong,
+            }),
+
+        new MacroOperationDescription(
+            MacroOperation.ShootTarmac,
+            UserInputDevice.Driver,
+            UserInputDeviceButton.XBONE_A_BUTTON, //TODO
+            Shift.Test1Debug,
+            Shift.None,
+            ButtonType.Toggle,
+            () -> ConcurrentTask.AllTasks(
+                    // TODO cargo hood task??? do we have one??
+                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_SPINUP_SPEED),
+                    SequentialTask.Sequence(
+                        new CargoShootTask(),
+                        new CargoShootTask()
+                    )
+                ),
+            new IOperation[]
+            {
+                DigitalOperation.CargoIntakeExtend,
+                DigitalOperation.CargoIntakeRetract,
+                DigitalOperation.CargoIntakeIn,
+                DigitalOperation.CargoIntakeOut,
+                DigitalOperation.CargoEject,
+                DigitalOperation.CargoFeed,
+                DigitalOperation.CargoHoodPointBlank,
+                DigitalOperation.CargoHoodShort,
+                DigitalOperation.CargoHoodMedium,
+                DigitalOperation.CargoHoodLong,
+            }),
+        
+
+
         // autonomous testing operations
         new MacroOperationDescription(
             MacroOperation.AutoDriveBackIntakeShoot,
@@ -667,13 +815,13 @@ public class ButtonMap implements IButtonMap
                     new CargoIntakeTask(true)
                 ),
                 new FollowPathTask("goBack7ftRotate"),
-                // vision centering
+                new VisionCenteringTask(false),
                 ConcurrentTask.AllTasks(
-                    new CargoSpinupTask(3000.0),
+                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_SPINUP_SPEED),
                     SequentialTask.Sequence(
-                        new WaitTask(1.0), // how long it take to spin
+                        new WaitTask(TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME), // how long it take to spin
                         new CargoShootTask(),
-                        new WaitTask(1.0),
+                        new WaitTask(TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME), // TODO maybe change
                         new CargoShootTask()
                     )
                 )
@@ -728,11 +876,11 @@ public class ButtonMap implements IButtonMap
             Shift.Test1Debug,
             ButtonType.Toggle,
             () -> SequentialTask.Sequence(
-                // vision centering
+                new VisionCenteringTask(false),
                 ConcurrentTask.AllTasks(
-                    new CargoSpinupTask(3000.0),
+                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_SPINUP_SPEED),
                     SequentialTask.Sequence(
-                        new WaitTask(1.0), // how long it take to spin
+                        new WaitTask(TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME), // how long it take to spin
                         new CargoShootTask()
                     )
                 ),

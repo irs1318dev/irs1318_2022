@@ -287,7 +287,8 @@ public class TuningConstants
     public static final int CARGO_FLYWHEEL_VELOCITY_PERIOD = 0;
     public static final int CARGO_FLYWHEEL_VELOCITY_WINDOWSIZE = 0;
 
-    public static final double CARGO_FLYWHEEL_SPINUP_SPEED = 0.5;
+    public static final double CARGO_FLYWHEEL_POINT_BLANK_SPINUP_SPEED = 0.5;
+    public static final double CARGO_FLYWHEEL_TARMAC_SPINUP_SPEED = 0.5;
 
     public static final double CARGO_CONVEYOR_THROUGHBEAM_CUTOFF = 2.7;
     public static final double CARGO_FEEDER_THROUGHBEAM_CUTOFF = 2.7;
@@ -296,6 +297,11 @@ public class TuningConstants
 
     public static final double CARGO_SHOOT_CHECKBALL_WAIT_TIME = 1.0;
     public static final double CARGO_SHOOT_SPINUP_WAIT_TIME = 1.0;
+
+
+
+    public static final double SHOOTER_HEIGHT = 1.0;
+    public static final double GOAL_HEIGHT = 8.5; // feet
 
     //================================================== Climber Mechanism ==============================================================
 

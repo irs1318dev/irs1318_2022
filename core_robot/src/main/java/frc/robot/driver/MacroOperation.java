@@ -15,7 +15,9 @@ public enum MacroOperation implements IOperation
     ClimberWinchForward,
     ClimberWinchBackward,
 
-    ClimbSetUp,
+    ClimbSetUpWall,
+    ClimbSetUpNotWall,
+    ClimbSetUpManual,
     ClimberRiseToMidRung,
     ClimberExtendToNextRung,
     ClimberSwitchToNextRung,
@@ -23,4 +25,8 @@ public enum MacroOperation implements IOperation
     // Auton *harru poyter says pog*
     AutoDriveBackIntakeShoot,
     AutoShootDriveBack,
+
+    // shooting macros
+    ShootPointBlank,
+    ShootTarmac,
 }
