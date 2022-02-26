@@ -28,9 +28,9 @@ public class CargoMechanism implements IMechanism
     private final ITalonSRX feederMotor;
     private final ITalonFX flywheelMotor;
 
-    private final IDoubleSolenoid innerHoodExtender;
-    private final IDoubleSolenoid outerHoodExtender;
     private final IDoubleSolenoid intakeExtender;
+    private final IDoubleSolenoid hoodExtender;
+    // private final IDoubleSolenoid outerHoodExtender;
 
     private final IAnalogInput feederThroughBeamSensor;
     private final IAnalogInput conveyorThroughBeamSensor;
@@ -79,18 +79,18 @@ public class CargoMechanism implements IMechanism
                 ElectronicsConstants.CARGO_INTAKE_PISTON_REVERSE);
 
         // shooter
-        this.innerHoodExtender =
+        this.hoodExtender =
             provider.getDoubleSolenoid(
                 ElectronicsConstants.PNEUMATICS_MODULE_A,
                 ElectronicsConstants.PNEUMATICS_MODULE_TYPE_A,
                 ElectronicsConstants.CARGO_INNER_HOOD_FORWARD,
                 ElectronicsConstants.CARGO_INNER_HOOD_REVERSE);
-        this.outerHoodExtender =
-            provider.getDoubleSolenoid(
-                ElectronicsConstants.PNEUMATICS_MODULE_A,
-                ElectronicsConstants.PNEUMATICS_MODULE_TYPE_A,
-                ElectronicsConstants.CARGO_OUTER_HOOD_FORWARD,
-                ElectronicsConstants.CARGO_OUTER_HOOD_REVERSE);
+        // this.outerHoodExtender =
+        //     provider.getDoubleSolenoid(
+        //         ElectronicsConstants.PNEUMATICS_MODULE_A,
+        //         ElectronicsConstants.PNEUMATICS_MODULE_TYPE_A,
+        //         ElectronicsConstants.CARGO_OUTER_HOOD_FORWARD,
+        //         ElectronicsConstants.CARGO_OUTER_HOOD_REVERSE);
 
         this.flywheelMotor = provider.getTalonFX(ElectronicsConstants.CARGO_FLYWHEEL_MOTOR_CAN_ID);
         this.flywheelMotor.setSensorType(TalonXFeedbackDevice.IntegratedSensor);
@@ -174,23 +174,23 @@ public class CargoMechanism implements IMechanism
         // hood positions
         if (this.driver.getDigital(DigitalOperation.CargoHoodPointBlank))
         {
-            this.innerHoodExtender.set(DoubleSolenoidValue.Reverse);
-            this.outerHoodExtender.set(DoubleSolenoidValue.Reverse);
+            this.hoodExtender.set(DoubleSolenoidValue.Reverse);
+            // this.outerHoodExtender.set(DoubleSolenoidValue.Reverse);
         }
-        else if (this.driver.getDigital(DigitalOperation.CargoHoodShort))
-        {
-            this.innerHoodExtender.set(DoubleSolenoidValue.Forward);
-            this.outerHoodExtender.set(DoubleSolenoidValue.Reverse);
-        }
-        else if (this.driver.getDigital(DigitalOperation.CargoHoodMedium))
-        {
-            this.innerHoodExtender.set(DoubleSolenoidValue.Reverse);
-            this.outerHoodExtender.set(DoubleSolenoidValue.Forward);
-        }
+        // else if (this.driver.getDigital(DigitalOperation.CargoHoodShort))
+        // {
+        //     this.hoodExtender.set(DoubleSolenoidValue.Forward);
+        //     this.outerHoodExtender.set(DoubleSolenoidValue.Reverse);
+        // }
+        // else if (this.driver.getDigital(DigitalOperation.CargoHoodMedium))
+        // {
+        //     this.hoodExtender.set(DoubleSolenoidValue.Reverse);
+        //     this.outerHoodExtender.set(DoubleSolenoidValue.Forward);
+        // }
         else if (this.driver.getDigital(DigitalOperation.CargoHoodLong))
         {
-            this.innerHoodExtender.set(DoubleSolenoidValue.Forward);
-            this.outerHoodExtender.set(DoubleSolenoidValue.Forward);
+            this.hoodExtender.set(DoubleSolenoidValue.Forward);
+            // this.outerHoodExtender.set(DoubleSolenoidValue.Forward);
         }
 
         // feeder power
@@ -309,8 +309,8 @@ public class CargoMechanism implements IMechanism
         this.feederMotor.stop();
         this.intakeMotor.stop();
         this.intakeExtender.set(DoubleSolenoidValue.Off);
-        this.innerHoodExtender.set(DoubleSolenoidValue.Off);
-        this.outerHoodExtender.set(DoubleSolenoidValue.Off);
+        this.hoodExtender.set(DoubleSolenoidValue.Off);
+        // this.outerHoodExtender.set(DoubleSolenoidValue.Off);
     }
 
     public double getFlywheelSetpoint()

@@ -30,8 +30,8 @@ public enum DigitalOperation implements IOperation
     CargoEject,
     CargoFeed,
     CargoHoodPointBlank,
-    CargoHoodShort,
-    CargoHoodMedium,
+    // CargoHoodShort,
+    // CargoHoodMedium,
     CargoHoodLong,
 
     // Climber operations 
