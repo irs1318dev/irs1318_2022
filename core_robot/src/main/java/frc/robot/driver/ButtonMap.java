@@ -26,10 +26,10 @@ public class ButtonMap implements IButtonMap
             Shift.Test1Debug,
             UserInputDevice.Test1,
             UserInputDeviceButton.XBONE_LEFT_BUTTON),
-        new ShiftDescription(
-            Shift.Test2Debug,
-            UserInputDevice.Test2,
-            UserInputDeviceButton.XBONE_LEFT_BUTTON),
+        // new ShiftDescription(
+        //     Shift.Test2Debug,
+        //     UserInputDevice.Test2,
+        //     UserInputDeviceButton.XBONE_LEFT_BUTTON),
     };
 
     public static AnalogOperationDescription[] AnalogOperationSchema = new AnalogOperationDescription[]
