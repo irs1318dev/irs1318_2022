@@ -763,7 +763,8 @@ public class ButtonMap implements IButtonMap
             Shift.DriverDebug,
             ButtonType.Toggle,
             () -> ConcurrentTask.AllTasks(
-                    // TODO: control spin speed and hood based on vision target distance...
+                    new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
+                    new VisionSpinUpTask(),
                     SequentialTask.Sequence(
                         new WaitTask(0.25),
                         new CargoShootTask()
