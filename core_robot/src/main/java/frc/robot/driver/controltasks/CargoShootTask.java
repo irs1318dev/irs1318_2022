@@ -7,6 +7,7 @@ import frc.robot.mechanisms.CargoMechanism;
 
 public class CargoShootTask extends ControlTaskBase
 {
+    private final boolean shootAll;
     private CargoMechanism cargo;
 
     private enum ShootingState
@@ -24,7 +25,13 @@ public class CargoShootTask extends ControlTaskBase
 
     public CargoShootTask()
     {
+        this(true);
+    }
+
+    public CargoShootTask(boolean shootAll)
+    {
         this.currentState = ShootingState.CheckBall;
+        this.shootAll = true;
     }
 
     @Override
@@ -66,7 +73,7 @@ public class CargoShootTask extends ControlTaskBase
         // TODO: if throughbeam is unblocked before connecting with flywheel, change this
         if (this.currentState == ShootingState.Shooting && !this.cargo.isFeederSensorBlocked()) 
         {
-            if (this.cargo.isConveyorSensorBlocked()) 
+            if (this.shootAll && this.cargo.isConveyorSensorBlocked()) 
             {
                 this.currentState = ShootingState.CheckBall;
             }

@@ -8,7 +8,7 @@ package frc.robot;
  */
 public class TuningConstants
 {
-    public static final boolean COMPETITION_ROBOT = true;
+    public static final boolean COMPETITION_ROBOT = false;
     public static boolean THROW_EXCEPTIONS = !TuningConstants.COMPETITION_ROBOT;
 
     //================================================== Magic Values ==============================================================
@@ -292,8 +292,9 @@ public class TuningConstants
     public static final int CARGO_FLYWHEEL_VELOCITY_PERIOD = 0;
     public static final int CARGO_FLYWHEEL_VELOCITY_WINDOWSIZE = 0;
 
-    public static final double CARGO_FLYWHEEL_POINT_BLANK_SPINUP_SPEED = 0.5;
-    public static final double CARGO_FLYWHEEL_TARMAC_SPINUP_SPEED = 0.5;
+    public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.5;
+    public static final double CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED = 0.25;
+    public static final double CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED = 0.5;
 
     public static final double CARGO_CONVEYOR_THROUGHBEAM_CUTOFF = 2.7;
     public static final double CARGO_FEEDER_THROUGHBEAM_CUTOFF = 2.7;

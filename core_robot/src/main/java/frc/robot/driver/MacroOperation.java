@@ -27,6 +27,8 @@ public enum MacroOperation implements IOperation
     ClimberSwitchToNextRung,
 
     // shooting macros
-    ShootPointBlank,
-    ShootTarmac,
+    ShootPointBlankHigh,
+    ShootPointBlankLow,
+    ShootTarmacHigh,
+    AutoShootHigh,
 }

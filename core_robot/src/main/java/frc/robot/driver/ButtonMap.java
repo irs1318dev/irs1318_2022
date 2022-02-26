@@ -594,32 +594,8 @@ public class ButtonMap implements IButtonMap
             ),
             new IOperation[]
             {
-                AnalogOperation.DriveTrainMoveForward,
-                AnalogOperation.DriveTrainMoveRight,
-                AnalogOperation.DriveTrainTurnAngleGoal,
-                AnalogOperation.DriveTrainTurnSpeed,
-                AnalogOperation.DriveTrainRotationA,
-                AnalogOperation.DriveTrainRotationB,
-                AnalogOperation.DriveTrainPathXGoal,
-                AnalogOperation.DriveTrainPathYGoal,
-                AnalogOperation.DriveTrainPathXVelocityGoal,
-                AnalogOperation.DriveTrainPathYVelocityGoal,
-                AnalogOperation.DriveTrainPathAngleVelocityGoal,
-                AnalogOperation.DriveTrainPositionDrive1,
-                AnalogOperation.DriveTrainPositionDrive2,
-                AnalogOperation.DriveTrainPositionDrive3,
-                AnalogOperation.DriveTrainPositionDrive4,
-                AnalogOperation.DriveTrainPositionSteer1,
-                AnalogOperation.DriveTrainPositionSteer2,
-                AnalogOperation.DriveTrainPositionSteer3,
-                AnalogOperation.DriveTrainPositionSteer4,
                 AnalogOperation.ClimberWinchDesiredPosition,
                 AnalogOperation.ClimberWinchMotorPower,
-                DigitalOperation.DriveTrainPositionMode,
-                DigitalOperation.DriveTrainPathMode,
-                DigitalOperation.DriveTrainReset,
-                DigitalOperation.DriveTrainEnableFieldOrientation,
-                DigitalOperation.DriveTrainDisableFieldOrientation,
                 DigitalOperation.ClimberHookGrasp,
                 DigitalOperation.ClimberHookRelease,
                 DigitalOperation.ClimberArmOut,
@@ -648,32 +624,8 @@ public class ButtonMap implements IButtonMap
             ),
             new IOperation[]
             {
-                AnalogOperation.DriveTrainMoveForward,
-                AnalogOperation.DriveTrainMoveRight,
-                AnalogOperation.DriveTrainTurnAngleGoal,
-                AnalogOperation.DriveTrainTurnSpeed,
-                AnalogOperation.DriveTrainRotationA,
-                AnalogOperation.DriveTrainRotationB,
-                AnalogOperation.DriveTrainPathXGoal,
-                AnalogOperation.DriveTrainPathYGoal,
-                AnalogOperation.DriveTrainPathXVelocityGoal,
-                AnalogOperation.DriveTrainPathYVelocityGoal,
-                AnalogOperation.DriveTrainPathAngleVelocityGoal,
-                AnalogOperation.DriveTrainPositionDrive1,
-                AnalogOperation.DriveTrainPositionDrive2,
-                AnalogOperation.DriveTrainPositionDrive3,
-                AnalogOperation.DriveTrainPositionDrive4,
-                AnalogOperation.DriveTrainPositionSteer1,
-                AnalogOperation.DriveTrainPositionSteer2,
-                AnalogOperation.DriveTrainPositionSteer3,
-                AnalogOperation.DriveTrainPositionSteer4,
                 AnalogOperation.ClimberWinchDesiredPosition,
                 AnalogOperation.ClimberWinchMotorPower,
-                DigitalOperation.DriveTrainPositionMode,
-                DigitalOperation.DriveTrainPathMode,
-                DigitalOperation.DriveTrainReset,
-                DigitalOperation.DriveTrainEnableFieldOrientation,
-                DigitalOperation.DriveTrainDisableFieldOrientation,
                 DigitalOperation.ClimberHookGrasp,
                 DigitalOperation.ClimberHookRelease,
                 DigitalOperation.ClimberArmOut,
@@ -702,32 +654,8 @@ public class ButtonMap implements IButtonMap
             ),
             new IOperation[]
             {
-                AnalogOperation.DriveTrainMoveForward,
-                AnalogOperation.DriveTrainMoveRight,
-                AnalogOperation.DriveTrainTurnAngleGoal,
-                AnalogOperation.DriveTrainTurnSpeed,
-                AnalogOperation.DriveTrainRotationA,
-                AnalogOperation.DriveTrainRotationB,
-                AnalogOperation.DriveTrainPathXGoal,
-                AnalogOperation.DriveTrainPathYGoal,
-                AnalogOperation.DriveTrainPathXVelocityGoal,
-                AnalogOperation.DriveTrainPathYVelocityGoal,
-                AnalogOperation.DriveTrainPathAngleVelocityGoal,
-                AnalogOperation.DriveTrainPositionDrive1,
-                AnalogOperation.DriveTrainPositionDrive2,
-                AnalogOperation.DriveTrainPositionDrive3,
-                AnalogOperation.DriveTrainPositionDrive4,
-                AnalogOperation.DriveTrainPositionSteer1,
-                AnalogOperation.DriveTrainPositionSteer2,
-                AnalogOperation.DriveTrainPositionSteer3,
-                AnalogOperation.DriveTrainPositionSteer4,
                 AnalogOperation.ClimberWinchDesiredPosition,
                 AnalogOperation.ClimberWinchMotorPower,
-                DigitalOperation.DriveTrainPositionMode,
-                DigitalOperation.DriveTrainPathMode,
-                DigitalOperation.DriveTrainReset,
-                DigitalOperation.DriveTrainEnableFieldOrientation,
-                DigitalOperation.DriveTrainDisableFieldOrientation,
                 DigitalOperation.ClimberHookGrasp,
                 DigitalOperation.ClimberHookRelease,
                 DigitalOperation.ClimberArmOut,
@@ -741,17 +669,17 @@ public class ButtonMap implements IButtonMap
 
         // shooting macros
         new MacroOperationDescription(
-            MacroOperation.ShootPointBlank,
+            MacroOperation.ShootPointBlankHigh,
             UserInputDevice.Driver,
             UserInputDeviceButton.XBONE_X_BUTTON,
             Shift.DriverDebug,
             Shift.None,
             ButtonType.Toggle,
             () -> ConcurrentTask.AllTasks(
-                    // TODO cargo hood task??? do we have one??
-                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_SPINUP_SPEED),
+                    new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
+                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
                     SequentialTask.Sequence(
-                        new CargoShootTask(),
+                        new WaitTask(0.25),
                         new CargoShootTask()
                     )
                 ),
@@ -770,17 +698,17 @@ public class ButtonMap implements IButtonMap
             }),
 
         new MacroOperationDescription(
-            MacroOperation.ShootTarmac,
+            MacroOperation.ShootPointBlankLow,
             UserInputDevice.Driver,
             UserInputDeviceButton.XBONE_X_BUTTON,
             Shift.DriverDebug,
             Shift.DriverDebug,
             ButtonType.Toggle,
             () -> ConcurrentTask.AllTasks(
-                    // TODO cargo hood task??? do we have one??
-                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_SPINUP_SPEED),
+                    new CargoHoodTask(DigitalOperation.CargoHoodLong),
+                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED),
                     SequentialTask.Sequence(
-                        new CargoShootTask(),
+                        new WaitTask(0.25),
                         new CargoShootTask()
                     )
                 ),
@@ -797,7 +725,63 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.CargoHoodMedium,
                 DigitalOperation.CargoHoodLong,
             }),
-        
+
+        new MacroOperationDescription(
+            MacroOperation.ShootTarmacHigh,
+            UserInputDevice.Driver,
+            UserInputDeviceButton.XBONE_B_BUTTON,
+            Shift.DriverDebug,
+            Shift.None,
+            ButtonType.Toggle,
+            () -> ConcurrentTask.AllTasks(
+                    new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
+                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
+                    SequentialTask.Sequence(
+                        new WaitTask(0.25),
+                        new CargoShootTask()
+                    )
+                ),
+            new IOperation[]
+            {
+                DigitalOperation.CargoIntakeExtend,
+                DigitalOperation.CargoIntakeRetract,
+                DigitalOperation.CargoIntakeIn,
+                DigitalOperation.CargoIntakeOut,
+                DigitalOperation.CargoEject,
+                DigitalOperation.CargoFeed,
+                DigitalOperation.CargoHoodPointBlank,
+                DigitalOperation.CargoHoodShort,
+                DigitalOperation.CargoHoodMedium,
+                DigitalOperation.CargoHoodLong,
+            }),
+
+        new MacroOperationDescription(
+            MacroOperation.AutoShootHigh,
+            UserInputDevice.Driver,
+            UserInputDeviceButton.XBONE_B_BUTTON,
+            Shift.DriverDebug,
+            Shift.DriverDebug,
+            ButtonType.Toggle,
+            () -> ConcurrentTask.AllTasks(
+                    // TODO: control spin speed and hood based on vision target distance...
+                    SequentialTask.Sequence(
+                        new WaitTask(0.25),
+                        new CargoShootTask()
+                    )
+                ),
+            new IOperation[]
+            {
+                DigitalOperation.CargoIntakeExtend,
+                DigitalOperation.CargoIntakeRetract,
+                DigitalOperation.CargoIntakeIn,
+                DigitalOperation.CargoIntakeOut,
+                DigitalOperation.CargoEject,
+                DigitalOperation.CargoFeed,
+                DigitalOperation.CargoHoodPointBlank,
+                DigitalOperation.CargoHoodShort,
+                DigitalOperation.CargoHoodMedium,
+                DigitalOperation.CargoHoodLong,
+            }),
 
 
         // autonomous testing operations
@@ -817,7 +801,7 @@ public class ButtonMap implements IButtonMap
                 new FollowPathTask("goBack7ftRotate"),
                 new VisionCenteringTask(false),
                 ConcurrentTask.AllTasks(
-                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_SPINUP_SPEED),
+                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
                     SequentialTask.Sequence(
                         new WaitTask(TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME), // how long it take to spin
                         new CargoShootTask(),
@@ -878,7 +862,7 @@ public class ButtonMap implements IButtonMap
             () -> SequentialTask.Sequence(
                 new VisionCenteringTask(false),
                 ConcurrentTask.AllTasks(
-                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_SPINUP_SPEED),
+                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
                     SequentialTask.Sequence(
                         new WaitTask(TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME), // how long it take to spin
                         new CargoShootTask()
