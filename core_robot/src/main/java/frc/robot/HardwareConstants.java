@@ -22,8 +22,6 @@ public class HardwareConstants
 
     //================================================== DriveTrain ==============================================================
 
-    public static final double DRIVETRAIN_ENCODER_DEGREES_PER_VOLT = -72.0;
-
     public static final TalonFXInvertType DRIVETRAIN_STEER_MOTOR1_INVERT = TalonFXInvertType.Clockwise;
     public static final TalonFXInvertType DRIVETRAIN_STEER_MOTOR2_INVERT = TalonFXInvertType.Clockwise;
     public static final TalonFXInvertType DRIVETRAIN_STEER_MOTOR3_INVERT = TalonFXInvertType.Clockwise;
