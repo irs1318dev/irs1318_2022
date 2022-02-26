@@ -3,6 +3,9 @@ package frc.robot.driver.common;
 /**
  * All constants that describe how the name of each button on the joystick maps to its button number.
  * 
+ * Note: as of 2022 (at least), only 16 buttons are supported by WPILIB/DriverStation because it sends button presses
+ * over the network using a short bit-map (16-bit number with 1s when pressed, 0s when not pressed).
+ * 
  * Button guide:
  * -----------------------
  * Logitech Xtreme 3D Pro:
@@ -19,6 +22,25 @@ package frc.robot.driver.common;
  * 11 - base bottom left
  * 12 - base bottom right
  * POV - hat (-1 when not pressed, 0-360.  0 is forward/up, 90 is right, 180 is back/down, 270 is left)
+ * -----------------------
+ * Razer Tartarus button pad
+ * 1 - Button 01
+ * 2 - Button 02
+ * 3 - Button 03
+ * 4 - Button 04
+ * 5 - Button 05
+ * 6 - Button 06
+ * 7 - Button 07
+ * 8 - Button 08
+ * 9 - Button 09
+ * 10 - Button 10
+ * 11 - Button 11
+ * 12 - Button 12
+ * 13 - Button 13
+ * 14 - Button 14
+ * 15 - Button 15
+ * 16 - Button 16
+ * POV - Not supported... DPAD on the Tartarus is used for X/Y axes (up/right positive y/x, respectively).
  * -----------------------
  * XBox One Controller:
  * 1 - A
