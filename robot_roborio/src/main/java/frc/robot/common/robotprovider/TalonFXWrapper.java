@@ -251,13 +251,9 @@ public class TalonFXWrapper implements ITalonFX
 
     public void setInvert(TalonFXInvertType invertType)
     {
-        com.ctre.phoenix.motorcontrol.TalonFXInvertType ctreInvertType = com.ctre.phoenix.motorcontrol.TalonFXInvertType.Clockwise;
+        com.ctre.phoenix.motorcontrol.TalonFXInvertType ctreInvertType;
         switch (invertType)
         {
-            case Clockwise:
-                ctreInvertType = com.ctre.phoenix.motorcontrol.TalonFXInvertType.Clockwise;
-                break;
-
             case CounterClockwise:
                 ctreInvertType = com.ctre.phoenix.motorcontrol.TalonFXInvertType.CounterClockwise;
                 break;
@@ -268,6 +264,11 @@ public class TalonFXWrapper implements ITalonFX
 
             case OpposeMaster:
                 ctreInvertType = com.ctre.phoenix.motorcontrol.TalonFXInvertType.OpposeMaster;
+                break;
+
+            default:
+            case Clockwise:
+                ctreInvertType = com.ctre.phoenix.motorcontrol.TalonFXInvertType.Clockwise;
                 break;
         }
 

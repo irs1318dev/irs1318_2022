@@ -61,7 +61,7 @@ public class HardwareConstants
 
     //================================================== Cargo ==============================================================
 
-    public static final TalonFXInvertType CARGO_FLYWHEEL_MOTOR_INVERT = TalonFXInvertType.CounterClockwise;
+    public static final TalonFXInvertType CARGO_FLYWHEEL_MOTOR_INVERT = TalonFXInvertType.Clockwise;
     public static final TalonFXInvertType CARGO_FLYWHEEL_FOLLOWER_MOTOR_INVERT = TalonFXInvertType.OpposeMaster;
     public static final boolean CARGO_INTAKE_MOTOR_INVERT_OUTPUT = false;
     public static final boolean CARGO_FEEDER_MOTOR_INVERT_OUTPUT = false;

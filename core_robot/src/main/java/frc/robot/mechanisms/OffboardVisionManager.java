@@ -21,9 +21,6 @@ public class OffboardVisionManager implements IMechanism
     private final IDriverStation driverStation;
     private final INetworkTableProvider networkTable;
 
-    private final IDigitalOutput reflectiveRingLight;
-    private final IDigitalOutput cargoRingLight;
-
     private Double vDistance;
     private Double vAngle;
     private Double gDistance;
@@ -46,9 +43,6 @@ public class OffboardVisionManager implements IMechanism
 
         this.driverStation = provider.getDriverStation();
         this.networkTable = provider.getNetworkTableProvider();
-
-        this.reflectiveRingLight = provider.getDigitalOutput(ElectronicsConstants.VISION_RING_LIGHT_REFLECTIVE_DIO);
-        this.cargoRingLight = provider.getDigitalOutput(ElectronicsConstants.VISION_RING_LIGHT_GAMEPIECE_DIO);
 
         this.vDistance = null;
         this.vAngle = null;
@@ -135,17 +129,11 @@ public class OffboardVisionManager implements IMechanism
         this.logger.logBoolean(LoggingKey.OffboardVisionEnableVision, enableVision);
         this.logger.logBoolean(LoggingKey.OffboardVisionEnableStream, enableVideoStream);
         this.logger.logNumber(LoggingKey.OffboardVisionEnableProcessing, visionProcessingMode);
-
-        this.reflectiveRingLight.set(enableVision && enableRetroreflectiveProcessing);
-        this.cargoRingLight.set(enableVision && enableGamePieceProcessing);
     }
 
     @Override
     public void stop()
     {
-        this.reflectiveRingLight.set(false);
-        this.cargoRingLight.set(false);
-
         this.logger.logBoolean(LoggingKey.OffboardVisionEnableVision, false);
         this.logger.logBoolean(LoggingKey.OffboardVisionEnableStream, false);
         this.logger.logNumber(LoggingKey.OffboardVisionEnableProcessing, 0.0);

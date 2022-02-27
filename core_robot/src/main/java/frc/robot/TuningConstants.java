@@ -272,14 +272,14 @@ public class TuningConstants
 
     //================================================== Cargo Mechanism ==============================================================
 
-    public static final double CARGO_FLYWHEEL_MOTOR_PID_KP = 1.0;
+    public static final double CARGO_FLYWHEEL_MOTOR_PID_KP = 0.055;
     public static final double CARGO_FLYWHEEL_MOTOR_PID_KI = 0.0;
-    public static final double CARGO_FLYWHEEL_MOTOR_PID_KD = 0.0;
-    public static final double CARGO_FLYWHEEL_MOTOR_PID_KF = 0.0;
-    public static final double CARGO_FLYWHEEL_MOTOR_PID_KS = 0.0;
+    public static final double CARGO_FLYWHEEL_MOTOR_PID_KD = 0.01;
+    public static final double CARGO_FLYWHEEL_MOTOR_PID_KF = 0.0487143; // 1023 / 21000 
+    public static final double CARGO_FLYWHEEL_MOTOR_PID_KS = 21000.0;
 
     public static final boolean CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_ENABLED = true;
-    public static final double CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE = 0.0;
+    public static final double CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE = 12.0;
 
     public static final double CARGO_INTAKE_POWER = 0.4;
     public static final double CARGO_INTAKE_OUT_POWER = -0.4;
