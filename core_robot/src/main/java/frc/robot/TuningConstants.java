@@ -127,11 +127,10 @@ public class TuningConstants
 
     //================================================== DriveTrain ==============================================================
 
-    public static final boolean DRIVETRAIN_USE_PID = false;
     public static final boolean DRIVETRAIN_USE_ODOMETRY = true;
-    public static final boolean DRIVETRAIN_RESET_ON_ROBOT_START = false;
-    public static final boolean DRIVETRAIN_FIELD_ORIENTED_ON_ROBOT_START = false;
-    public static final boolean DRIVETRAIN_MAINTAIN_ORIENTATION_ON_ROBOT_START = false;
+    public static final boolean DRIVETRAIN_RESET_ON_ROBOT_START = true;
+    public static final boolean DRIVETRAIN_FIELD_ORIENTED_ON_ROBOT_START = true;
+    public static final boolean DRIVETRAIN_MAINTAIN_ORIENTATION_ON_ROBOT_START = true;
 
     public static final double DRIVETRAIN_STEER_MOTOR1_ABSOLUTE_OFFSET = -124.365;
     public static final double DRIVETRAIN_STEER_MOTOR2_ABSOLUTE_OFFSET = 51.943;
