@@ -53,7 +53,7 @@ public class VisionSpinUpTask extends TimedTask
         {
             // trajectory equations: https://www.desmos.com/calculator/kuuwtrpau7 
             // ft/s CHANGE
-            this.quikmafs = Math.sqrt((Math.pow(d, 2) * Helpers.GRAVITY)/(d * Math.sin(2 * this.shootAngle) - 2 * this.relativeGoalHeight * Math.pow(Math.cos(this.shootAngle), 2)));
+            this.quikmafs = Math.sqrt((Math.pow(d, 2) * Helpers.GRAVITY_FEET_PER_SQ_SECOND)/(d * Math.sin(2 * this.shootAngle) - 2 * this.relativeGoalHeight * Math.pow(Math.cos(this.shootAngle), 2)));
             this.setAnalogOperationState(AnalogOperation.CargoFlywheelVelocityGoal, this.quikmafs);
         }
     }

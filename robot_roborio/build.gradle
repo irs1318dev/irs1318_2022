@@ -53,6 +53,9 @@ repositories
     mavenCentral()
     mavenLocal()
     gradlePluginPortal()
+    maven {
+        url "https://maven.brott.dev/"
+    }
 }
 
 // Defining my dependencies. In this case, WPILib (+ friends), and vendor libraries.
