@@ -131,6 +131,9 @@ public class RoadRunnerTrajectoryGenerator
             "goBack5ftTurn180GoBack2ft",
             new TrajectoryWrapper(goBack5ftTurn180GoBack2ft));
         
+
+        // 5 BALL AUTON PATHS
+
         Trajectory goForward5ft = buildTrajectory()
             .splineTo(new Vector2d(60, 0), 0)
             .build();
@@ -148,7 +151,35 @@ public class RoadRunnerTrajectoryGenerator
             new TrajectoryWrapper(goBack5ftLeft3ftTurn180GoBack3ft));
         
         
+        Trajectory goBack8ftRight5ftTurn122 = buildTrajectory(-90 * Helpers.DEGREES_TO_RADIANS)
+            .splineToSplineHeading(new Pose2d(-62, -40, -122.25 * Helpers.DEGREES_TO_RADIANS), -122.25 * Helpers.DEGREES_TO_RADIANS)
+            .splineToConstantHeading(new Vector2d(-96, -60), -122.25 * Helpers.DEGREES_TO_RADIANS)
+            .build();
+        pathManager.addPath(
+            "goBack8ftRight5ftTurn122",
+            new TrajectoryWrapper(goBack8ftRight5ftTurn122));
         
+        Trajectory goBack6ftRight5ftTurn80 = buildTrajectory(-60 * Helpers.DEGREES_TO_RADIANS)
+            .splineToSplineHeading(new Pose2d(-74,-63, -79.2 * Helpers.DEGREES_TO_RADIANS), -139.3 * Helpers.DEGREES_TO_RADIANS)
+            .build();
+        pathManager.addPath(
+            "goBack6ftRight5ftTurn122",
+            new TrajectoryWrapper(goBack6ftRight5ftTurn80));
+        
+        Trajectory goBack6ftLeft16ftTurn154GoBack3ftLeft1ft = buildTrajectory(110 * Helpers.DEGREES_TO_RADIANS)
+            .splineToSplineHeading(new Pose2d(-76,193, 154.7 * Helpers.DEGREES_TO_RADIANS), 154.7 * Helpers.DEGREES_TO_RADIANS)
+            .splineToConstantHeading(new Vector2d(-110, 209), 154.7 * Helpers.DEGREES_TO_RADIANS)
+            .build();
+        pathManager.addPath(
+            "goBack6ftLeft16ftTurn154GoBack3ftLeft1ft",
+            new TrajectoryWrapper(goBack6ftLeft16ftTurn154GoBack3ftLeft1ft));
+        
+        Trajectory goBack18ftLeft12ftTurn154 = buildTrajectory(-90 * Helpers.DEGREES_TO_RADIANS)
+            .splineToSplineHeading(new Pose2d(-215,142, -154.7 * Helpers.DEGREES_TO_RADIANS), -154.7 * Helpers.DEGREES_TO_RADIANS)
+            .build();
+        pathManager.addPath(
+            "goBack18ftLeft12ftTurn154", 
+            new TrajectoryWrapper(goBack18ftLeft12ftTurn154));       
             
     }
 
