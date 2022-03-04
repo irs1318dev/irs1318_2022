@@ -305,7 +305,7 @@ public class TuningConstants
 
     public static final double UPPER_HUB_HEIGHT = 104; // inches
     public static final double LOWER_HUB_HEIGHT = 41; // inches
-    public static final double SHOOTER_HEIGHT = 30; // inches
+    public static final double SHOOTER_HEIGHT = 19.81; // inches
     public static final double RELATIVE_UPPER_HUB_HEIGHT = TuningConstants.UPPER_HUB_HEIGHT - TuningConstants.SHOOTER_HEIGHT; // inches
     public static final double RELATIVE_LOWER_HUB_HEIGHT = TuningConstants.LOWER_HUB_HEIGHT - TuningConstants.SHOOTER_HEIGHT; // inches
 
