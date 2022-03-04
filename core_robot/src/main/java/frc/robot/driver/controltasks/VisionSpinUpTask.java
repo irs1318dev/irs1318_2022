@@ -1,5 +1,6 @@
 package frc.robot.driver.controltasks;
 
+import frc.robot.HardwareConstants;
 import frc.robot.TuningConstants;
 import frc.robot.common.Helpers;
 import frc.robot.driver.AnalogOperation;
@@ -18,19 +19,22 @@ public class VisionSpinUpTask extends TimedTask
 
     private int noCenterCount;
 
-    private double relativeGoalHeight = TuningConstants.GOAL_HEIGHT - TuningConstants.SHOOTER_HEIGHT;
     private double shootAngle = 80 * Helpers.DEGREES_TO_RADIANS; // TODO hard coded value
     private double quikmafs;
+
+    private boolean upperHub;
 
 
     /**
      * Initializes a new VisionSpinUpTask
+     * @param upperHub whether or not we're aiming for the upper hub
      */
-    public VisionSpinUpTask()
+    public VisionSpinUpTask(boolean upperHub)
     {
         super(10);
 
         this.noCenterCount = 0;
+        this.upperHub = upperHub;
     }
 
     /**
@@ -52,8 +56,9 @@ public class VisionSpinUpTask extends TimedTask
         if (d != null)
         {
             // trajectory equations: https://www.desmos.com/calculator/kuuwtrpau7 
-            // ft/s CHANGE
-            this.quikmafs = Math.sqrt((Math.pow(d, 2) * Helpers.GRAVITY_FEET_PER_SQ_SECOND)/(d * Math.sin(2 * this.shootAngle) - 2 * this.relativeGoalHeight * Math.pow(Math.cos(this.shootAngle), 2)));
+            double relativeGoalHeight = this.upperHub ? TuningConstants.RELATIVE_UPPER_HUB_HEIGHT : TuningConstants.RELATIVE_LOWER_HUB_HEIGHT;
+            this.quikmafs = Math.sqrt((Math.pow(d, 2) * Helpers.GRAVITY_INCH_PER_SQ_SECOND)/(d * Math.sin(2 * this.shootAngle) - 2 * relativeGoalHeight * Math.pow(Math.cos(this.shootAngle), 2)));
+            this.quikmafs *= HardwareConstants.IN_PER_S_TO_TICKS_PER_100MS;
             this.setAnalogOperationState(AnalogOperation.CargoFlywheelVelocityGoal, this.quikmafs);
         }
     }

@@ -66,4 +66,10 @@ public class HardwareConstants
     public static final boolean CARGO_INTAKE_MOTOR_INVERT_OUTPUT = false;
     public static final boolean CARGO_FEEDER_MOTOR_INVERT_OUTPUT = false;
     public static final boolean CARGO_CONVEYOR_MOTOR_INVERT_OUTPUT = false;
+
+    public static final double SHOOTER_FLYWHEEL_RADIUS = 2; // inches
+    public static final double SHOOTER_TICKS_PER_REVOLUTION = 2048.0;
+    public static final double TICKS_PER_100MS_TO_IN_PER_S = 1/HardwareConstants.IN_PER_S_TO_TICKS_PER_100MS;
+    public static final double IN_PER_S_TO_TICKS_PER_100MS = HardwareConstants.SHOOTER_TICKS_PER_REVOLUTION / (Math.PI * 2 * HardwareConstants.SHOOTER_FLYWHEEL_RADIUS * 1000);
+
 }

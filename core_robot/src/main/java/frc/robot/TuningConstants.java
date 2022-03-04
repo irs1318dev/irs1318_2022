@@ -303,8 +303,11 @@ public class TuningConstants
     public static final double CARGO_SHOOT_CHECKBALL_WAIT_TIME = 1.0;
     public static final double CARGO_SHOOT_SPINUP_WAIT_TIME = 1.0;
 
-    public static final double SHOOTER_HEIGHT = 1.0;
-    public static final double GOAL_HEIGHT = 8.5; // feet
+    public static final double UPPER_HUB_HEIGHT = 104; // inches
+    public static final double LOWER_HUB_HEIGHT = 41; // inches
+    public static final double SHOOTER_HEIGHT = 30; // inches
+    public static final double RELATIVE_UPPER_HUB_HEIGHT = TuningConstants.UPPER_HUB_HEIGHT - TuningConstants.SHOOTER_HEIGHT; // inches
+    public static final double RELATIVE_LOWER_HUB_HEIGHT = TuningConstants.LOWER_HUB_HEIGHT - TuningConstants.SHOOTER_HEIGHT; // inches
 
     //================================================== Climber Mechanism ==============================================================
 

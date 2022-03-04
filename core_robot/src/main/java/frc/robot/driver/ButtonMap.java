@@ -764,7 +764,7 @@ public class ButtonMap implements IButtonMap
             ButtonType.Toggle,
             () -> ConcurrentTask.AllTasks(
                     new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
-                    new VisionSpinUpTask(),
+                    new VisionSpinUpTask(true),
                     SequentialTask.Sequence(
                         new WaitTask(0.25),
                         new CargoShootTask()
