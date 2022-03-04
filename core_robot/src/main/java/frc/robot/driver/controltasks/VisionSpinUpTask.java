@@ -13,8 +13,9 @@ import frc.robot.mechanisms.OffboardVisionManager;
 public class VisionSpinUpTask extends TimedTask
 {
     private static final int NO_CENTER_THRESHOLD = 40;
+    private static final double SHOOTER_FLYWHEEL_INCHES_PER_SECOND_TO_PERCENTAGE = HardwareConstants.CARGO_FLYWHEEL_INCHES_PER_SECOND_TO_MOTOR_VELOCITY / TuningConstants.CARGO_FLYWHEEL_MOTOR_PID_KS;
 
-    private final double shootAngle = 80 * Helpers.DEGREES_TO_RADIANS; // TODO hard coded value
+    private final double shootAngleRadians = HardwareConstants.CARGO_SHOOTER_HIGH_ANGLE * Helpers.DEGREES_TO_RADIANS; // TODO hard coded value
     private final double relativeGoalHeight;
 
     private OffboardVisionManager visionManager;
@@ -55,8 +56,8 @@ public class VisionSpinUpTask extends TimedTask
             double quikmafs = 
                 Math.sqrt(
                     (Math.pow(d, 2.0) * Helpers.GRAVITY_INCH_PER_SQ_SECOND) /
-                        (d * Math.sin(2.0 * this.shootAngle) - 2.0 * this.relativeGoalHeight * Math.pow(Math.cos(this.shootAngle), 2.0)));
-            quikmafs *= HardwareConstants.IN_PER_S_TO_TICKS_PER_100MS;
+                        (d * Math.sin(2.0 * this.shootAngleRadians) - 2.0 * this.relativeGoalHeight * Math.pow(Math.cos(this.shootAngleRadians), 2.0)));
+            quikmafs *= VisionSpinUpTask.SHOOTER_FLYWHEEL_INCHES_PER_SECOND_TO_PERCENTAGE;
             this.setAnalogOperationState(AnalogOperation.CargoFlywheelVelocityGoal, quikmafs);
         }
     }

@@ -32,19 +32,19 @@ public class HardwareConstants
     public static final TalonFXInvertType DRIVETRAIN_DRIVE_MOTOR3_INVERT = TalonFXInvertType.CounterClockwise;
     public static final TalonFXInvertType DRIVETRAIN_DRIVE_MOTOR4_INVERT = TalonFXInvertType.CounterClockwise;
 
-    public static final double DRIVETRAIN_STEER_ENCODER_PULSES_PER_REVOLUTION = 2048.0;
+    public static final double DRIVETRAIN_STEER_TICKS_PER_REVOLUTION = 2048.0;
     public static final double DRIVETRAIN_STEER_GEAR_RATIO = 150.0 / 7.0; // According to SDS Mk4i code: (50.0 / 14.0) * (60.0 / 10.0) == ~21.43 : 1
     public static final double DRIVETRAIN_STEER_DEGREES = 360.0;
-    public static final double DRIVETRAIN_STEER_PULSE_DISTANCE = HardwareConstants.DRIVETRAIN_STEER_DEGREES / (HardwareConstants.DRIVETRAIN_STEER_GEAR_RATIO * HardwareConstants.DRIVETRAIN_STEER_ENCODER_PULSES_PER_REVOLUTION);
-    public static final double DRIVETRAIN_STEER_TICKS_PER_DEGREE = (HardwareConstants.DRIVETRAIN_STEER_GEAR_RATIO * HardwareConstants.DRIVETRAIN_STEER_ENCODER_PULSES_PER_REVOLUTION) / HardwareConstants.DRIVETRAIN_STEER_DEGREES;
+    public static final double DRIVETRAIN_STEER_TICK_DISTANCE = HardwareConstants.DRIVETRAIN_STEER_DEGREES / (HardwareConstants.DRIVETRAIN_STEER_GEAR_RATIO * HardwareConstants.DRIVETRAIN_STEER_TICKS_PER_REVOLUTION); // in degrees
+    public static final double DRIVETRAIN_STEER_TICKS_PER_DEGREE = (HardwareConstants.DRIVETRAIN_STEER_GEAR_RATIO * HardwareConstants.DRIVETRAIN_STEER_TICKS_PER_REVOLUTION) / HardwareConstants.DRIVETRAIN_STEER_DEGREES; // in ticks
 
-    public static final double DRIVETRAIN_DRIVE_ENCODER_PULSES_PER_REVOLUTION = 2048.0;
+    public static final double DRIVETRAIN_DRIVE_TICKS_PER_REVOLUTION = 2048.0;
     public static final double DRIVETRAIN_DRIVE_GEAR_RATIO = 1275.0 / 189.0; // According to SDS Mk4i fast code: (50.0 / 14.0) * (17.0 / 27.0) * (45.0 / 15.0) == ~6.75 : 1
     public static final double DRIVETRAIN_DRIVE_WHEEL_DIAMETER = 3.95; // SDS Mk4i code claims their 4-inch wheels are actually 3.95 inches now (in inches)
     public static final double DRIVETRAIN_DRIVE_WHEEL_CIRCUMFERENCE = Math.PI * HardwareConstants.DRIVETRAIN_DRIVE_WHEEL_DIAMETER;
-    public static final double DRIVETRAIN_DRIVE_PULSE_DISTANCE = HardwareConstants.DRIVETRAIN_DRIVE_WHEEL_CIRCUMFERENCE / (HardwareConstants.DRIVETRAIN_DRIVE_GEAR_RATIO * HardwareConstants.DRIVETRAIN_DRIVE_ENCODER_PULSES_PER_REVOLUTION);
-    public static final double DRIVETRAIN_DRIVE_TICKS_PER_INCH = (HardwareConstants.DRIVETRAIN_DRIVE_GEAR_RATIO * HardwareConstants.DRIVETRAIN_DRIVE_ENCODER_PULSES_PER_REVOLUTION) / HardwareConstants.DRIVETRAIN_DRIVE_WHEEL_CIRCUMFERENCE;
-    public static final double DRIVETRAIN_DRIVE_MOTOR_VELOCITY_TO_INCHES_PER_SECOND = 10.0 * HardwareConstants.DRIVETRAIN_DRIVE_PULSE_DISTANCE; // converts #ticks per 100ms into inches per second.
+    public static final double DRIVETRAIN_DRIVE_TICK_DISTANCE = HardwareConstants.DRIVETRAIN_DRIVE_WHEEL_CIRCUMFERENCE / (HardwareConstants.DRIVETRAIN_DRIVE_GEAR_RATIO * HardwareConstants.DRIVETRAIN_DRIVE_TICKS_PER_REVOLUTION);
+    public static final double DRIVETRAIN_DRIVE_TICKS_PER_INCH = (HardwareConstants.DRIVETRAIN_DRIVE_GEAR_RATIO * HardwareConstants.DRIVETRAIN_DRIVE_TICKS_PER_REVOLUTION) / HardwareConstants.DRIVETRAIN_DRIVE_WHEEL_CIRCUMFERENCE;
+    public static final double DRIVETRAIN_DRIVE_MOTOR_VELOCITY_TO_INCHES_PER_SECOND = 10.0 * HardwareConstants.DRIVETRAIN_DRIVE_TICK_DISTANCE; // converts #ticks per 100ms into inches per second.
     public static final double DRIVETRAIN_DRIVE_INCHES_PER_SECOND_TO_MOTOR_VELOCITY = 0.1 * HardwareConstants.DRIVETRAIN_DRIVE_TICKS_PER_INCH; // converts inches per second into #ticks per 100ms.
 
     public static final double DRIVETRAIN_HORIZONTAL_WHEEL_SEPERATION_DISTANCE = 22.75; // (in inches)
@@ -67,9 +67,15 @@ public class HardwareConstants
     public static final boolean CARGO_FEEDER_MOTOR_INVERT_OUTPUT = false;
     public static final boolean CARGO_CONVEYOR_MOTOR_INVERT_OUTPUT = false;
 
-    public static final double SHOOTER_FLYWHEEL_RADIUS = 2; // inches
-    public static final double SHOOTER_TICKS_PER_REVOLUTION = 2048.0;
-    public static final double TICKS_PER_100MS_TO_IN_PER_S = 1/HardwareConstants.IN_PER_S_TO_TICKS_PER_100MS;
-    public static final double IN_PER_S_TO_TICKS_PER_100MS = HardwareConstants.SHOOTER_TICKS_PER_REVOLUTION / (Math.PI * 2 * HardwareConstants.SHOOTER_FLYWHEEL_RADIUS * 1000);
-
+    public static final double CARGO_SHOOTER_HIGH_ANGLE = 80.0; // degrees
+    public static final double CARGO_SHOOTER_SHALLOW_ANGLE = 70.0; // degrees
+    public static final double CARGO_SHOOTER_HEIGHT = 19.81; // inches
+    public static final double CARGO_FLYWHEEL_DIAMETER = 4.0; // inches
+    public static final double CARGO_FLYWHEEL_TICKS_PER_REVOLUTION = 2048.0;
+    public static final double CARGO_FLYWHEEL_GEAR_RATIO = 1.0; // right now, shooter is 1:1
+    public static final double CARGO_FLYWHEEL_CIRCUMFERENCE = Math.PI * HardwareConstants.CARGO_FLYWHEEL_DIAMETER;
+    public static final double CARGO_FLYWHEEL_TICK_DISTANCE = HardwareConstants.CARGO_FLYWHEEL_CIRCUMFERENCE / (HardwareConstants.CARGO_FLYWHEEL_GEAR_RATIO * HardwareConstants.CARGO_FLYWHEEL_TICKS_PER_REVOLUTION);
+    public static final double CARGO_FLYWHEEL_TICKS_PER_INCH = (HardwareConstants.CARGO_FLYWHEEL_GEAR_RATIO * HardwareConstants.CARGO_FLYWHEEL_TICKS_PER_REVOLUTION) / HardwareConstants.CARGO_FLYWHEEL_CIRCUMFERENCE;
+    public static final double CARGO_FLYWHEEL_MOTOR_VELOCITY_TO_INCHES_PER_SECOND = 10.0 * HardwareConstants.CARGO_FLYWHEEL_TICK_DISTANCE; // multiplying by this value converts #ticks per 100ms into inches per second.
+    public static final double CARGO_FLYWHEEL_INCHES_PER_SECOND_TO_MOTOR_VELOCITY = 0.1 * HardwareConstants.CARGO_FLYWHEEL_TICKS_PER_INCH; // multiplying by this value converts inches per second into #ticks per 100ms.
 }

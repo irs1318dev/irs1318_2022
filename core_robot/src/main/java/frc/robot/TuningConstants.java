@@ -276,7 +276,7 @@ public class TuningConstants
     public static final double CARGO_FLYWHEEL_MOTOR_PID_KI = 0.0;
     public static final double CARGO_FLYWHEEL_MOTOR_PID_KD = 0.01;
     public static final double CARGO_FLYWHEEL_MOTOR_PID_KF = 0.0487143; // 1023 / 21000 
-    public static final double CARGO_FLYWHEEL_MOTOR_PID_KS = 21000.0;
+    public static final double CARGO_FLYWHEEL_MOTOR_PID_KS = 21000.0; // max speed we will use, in ticks per 100ms
 
     public static final boolean CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_ENABLED = true;
     public static final double CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE = 12.0;
@@ -305,9 +305,8 @@ public class TuningConstants
 
     public static final double UPPER_HUB_HEIGHT = 104; // inches
     public static final double LOWER_HUB_HEIGHT = 41; // inches
-    public static final double SHOOTER_HEIGHT = 19.81; // inches
-    public static final double RELATIVE_UPPER_HUB_HEIGHT = TuningConstants.UPPER_HUB_HEIGHT - TuningConstants.SHOOTER_HEIGHT; // inches
-    public static final double RELATIVE_LOWER_HUB_HEIGHT = TuningConstants.LOWER_HUB_HEIGHT - TuningConstants.SHOOTER_HEIGHT; // inches
+    public static final double RELATIVE_UPPER_HUB_HEIGHT = TuningConstants.UPPER_HUB_HEIGHT - HardwareConstants.CARGO_SHOOTER_HEIGHT; // inches
+    public static final double RELATIVE_LOWER_HUB_HEIGHT = TuningConstants.LOWER_HUB_HEIGHT - HardwareConstants.CARGO_SHOOTER_HEIGHT; // inches
 
     //================================================== Climber Mechanism ==============================================================
 
