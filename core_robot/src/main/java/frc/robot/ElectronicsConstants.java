@@ -44,11 +44,6 @@ public class ElectronicsConstants
 
     public static final int PIGEON_IMU_CAN_ID = 42;
 
-    //================================================== Vision ==============================================================
-
-    public static final int VISION_RING_LIGHT_REFLECTIVE_DIO = 0;
-    public static final int VISION_RING_LIGHT_GAMEPIECE_DIO = 1;
-
     //================================================== Indicator Lights ==============================================================
 
     public static final int INDICATOR_LIGHT_CANDLE_CAN_ID = 55;
