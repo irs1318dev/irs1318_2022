@@ -3,7 +3,7 @@ package frc.robot.common.robotprovider;
 import frc.robot.IRealWorldSimulator;
 import frc.robot.common.PIDHandler;
 
-public abstract class FauxbotTalonXBase extends FauxbotAdvancedMotorBase implements ITalonSRX
+public abstract class FauxbotTalonXBase extends FauxbotAdvancedMotorBase
 {
     private final IRealWorldSimulator simulator;
 

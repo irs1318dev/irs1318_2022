@@ -24,10 +24,6 @@ public class TuningConstants
     public static final long LOG_FILE_REQUIRED_FREE_SPACE = 50 * 1024 * 1024; // require at least 50 MB of space
     public static final int LOG_FLUSH_THRESHOLD = 25;
 
-    //================================================== Autonomous ==============================================================
-
-    public static final boolean CANCEL_AUTONOMOUS_ROUTINE_ON_DISABLE = true;
-
     //================================================= Vision ======================================================
 
     // Acceptable vision centering range values in degrees

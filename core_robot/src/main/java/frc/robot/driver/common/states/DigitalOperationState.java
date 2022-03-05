@@ -105,12 +105,7 @@ public class DigitalOperationState extends OperationState
             }
         }
 
-        IJoystick relevantJoystick = null;
-        if (userInputDevice != UserInputDevice.None)
-        {
-            relevantJoystick = joysticks[userInputDevice.getId()];
-        }
-
+        IJoystick relevantJoystick = joysticks[userInputDevice.getId()];
         if (relevantJoystick == null)
         {
             if (TuningConstants.THROW_EXCEPTIONS)
@@ -121,32 +116,23 @@ public class DigitalOperationState extends OperationState
             return false;
         }
 
+        // find the appropriate button and grab the value from the relevant joystick
         boolean buttonPressed;
-        UserInputDeviceButton relevantButton;
-        if (relevantJoystick != null)
+        UserInputDeviceButton relevantButton = description.getUserInputDeviceButton();
+        if (relevantButton == UserInputDeviceButton.POV)
         {
-            // find the appropriate button and grab the value from the relevant joystick
-            relevantButton = description.getUserInputDeviceButton();
-
-            if (relevantButton == UserInputDeviceButton.POV)
-            {
-                buttonPressed = relevantJoystick.getPOV() == description.getUserInputDevicePovValue();
-            }
-            else if (relevantButton == UserInputDeviceButton.ANALOG_AXIS_RANGE)
-            {
-                double value = relevantJoystick.getAxis(description.getUserInputDeviceAxis().Value);
-                buttonPressed =
-                    value >= description.getUserInputDeviceRangeMin() &&
-                    value <= description.getUserInputDeviceRangeMax();
-            }
-            else if (relevantButton != UserInputDeviceButton.NONE)
-            {
-                buttonPressed = relevantJoystick.getRawButton(relevantButton.Value);
-            }
-            else
-            {
-                buttonPressed = false;
-            }
+            buttonPressed = relevantJoystick.getPOV() == description.getUserInputDevicePovValue();
+        }
+        else if (relevantButton == UserInputDeviceButton.ANALOG_AXIS_RANGE)
+        {
+            double value = relevantJoystick.getAxis(description.getUserInputDeviceAxis().Value);
+            buttonPressed =
+                value >= description.getUserInputDeviceRangeMin() &&
+                value <= description.getUserInputDeviceRangeMax();
+        }
+        else if (relevantButton != UserInputDeviceButton.NONE)
+        {
+            buttonPressed = relevantJoystick.getRawButton(relevantButton.Value);
         }
         else
         {

@@ -791,8 +791,7 @@ public class DriveTrainMechanism implements IMechanism
 
     private void calculateOdometry(double deltaImuYaw)
     {
-        double imuOmega = deltaImuYaw / this.deltaT; // in degrees
-
+        // double imuOmega = deltaImuYaw / this.deltaT; // in degrees
         double rightRobotVelocity;
         double forwardRobotVelocity;
 

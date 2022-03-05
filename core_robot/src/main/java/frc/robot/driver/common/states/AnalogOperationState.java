@@ -81,12 +81,7 @@ public class AnalogOperationState extends OperationState
             }
         }
 
-        IJoystick relevantJoystick = null;
-        if (userInputDevice != UserInputDevice.None)
-        {
-            relevantJoystick = joysticks[userInputDevice.getId()];
-        }
-
+        IJoystick relevantJoystick = joysticks[userInputDevice.getId()];
         if (relevantJoystick == null)
         {
             if (TuningConstants.THROW_EXCEPTIONS)
@@ -98,61 +93,52 @@ public class AnalogOperationState extends OperationState
             return false;
         }
 
-        double newValue;
-        double oldValue = this.currentValue;
-        AnalogAxis relevantAxis;
-        if (relevantJoystick != null)
+        AnalogAxis relevantAxis = description.getUserInputDeviceAxis();
+        if (relevantAxis == null || relevantAxis == AnalogAxis.NONE)
         {
-            relevantAxis = description.getUserInputDeviceAxis();
-            if (relevantAxis == null || relevantAxis == AnalogAxis.NONE)
+            return false;
+        }
+
+        double oldValue = this.currentValue;
+        double newValue = relevantJoystick.getAxis(relevantAxis.Value);
+        if (description.getShouldInvert())
+        {
+            newValue *= -1.0;
+        }
+
+        AnalogAxis secondaryAxis = description.getUserInputDeviceSecondaryAxis();
+        if (secondaryAxis != null && secondaryAxis != AnalogAxis.NONE)
+        {
+            double secondaryValue = relevantJoystick.getAxis(secondaryAxis.Value);
+            if (description.getShouldInvertSecondary())
             {
+                secondaryValue *= -1.0;
+            }
+
+            // don't adjust for dead zone, simply check for having both within dead zone
+            if (this.withinDeadZone(newValue, secondaryValue, description.getDeadZoneMin(), description.getDeadZoneMax(), description.getUseSquaredMagnitudeForDeadZone()))
+            {
+                this.currentValue = description.getDefaultValue();
                 return false;
             }
 
-            newValue = relevantJoystick.getAxis(relevantAxis.Value);
-            if (description.getShouldInvert())
+            AnalogOperationDescription.ResultCalculator calculator = description.getResultCalculator();
+            if (calculator == null)
             {
-                newValue *= -1.0;
-            }
-
-            AnalogAxis secondaryAxis = description.getUserInputDeviceSecondaryAxis();
-            if (secondaryAxis != null && secondaryAxis != AnalogAxis.NONE)
-            {
-                double secondaryValue = relevantJoystick.getAxis(secondaryAxis.Value);
-                if (description.getShouldInvertSecondary())
+                if (TuningConstants.THROW_EXCEPTIONS)
                 {
-                    secondaryValue *= -1.0;
+                    throw new RuntimeException("No result calculator provided!");
                 }
 
-                // don't adjust for dead zone, simply check for having both within dead zone
-                if (this.withinDeadZone(newValue, secondaryValue, description.getDeadZoneMin(), description.getDeadZoneMax(), description.getUseSquaredMagnitudeForDeadZone()))
-                {
-                    this.currentValue = description.getDefaultValue();
-                    return false;
-                }
-
-                AnalogOperationDescription.ResultCalculator calculator = description.getResultCalculator();
-                if (calculator == null)
-                {
-                    if (TuningConstants.THROW_EXCEPTIONS)
-                    {
-                        throw new RuntimeException("No result calculator provided!");
-                    }
-
-                    this.currentValue = description.getDefaultValue();
-                    return false;
-                }
-
-                newValue = calculator.calculate(newValue, secondaryValue);
+                this.currentValue = description.getDefaultValue();
+                return false;
             }
-            else
-            {
-                newValue = this.adjustForDeadZone(newValue, description.getDeadZoneMin(), description.getDeadZoneMax(), description.getDefaultValue(), description.getMultiplier());
-            }
+
+            newValue = calculator.calculate(newValue, secondaryValue);
         }
         else
         {
-            newValue = description.getDefaultValue();
+            newValue = this.adjustForDeadZone(newValue, description.getDeadZoneMin(), description.getDeadZoneMax(), description.getDefaultValue(), description.getMultiplier());
         }
 
         this.currentValue = newValue;

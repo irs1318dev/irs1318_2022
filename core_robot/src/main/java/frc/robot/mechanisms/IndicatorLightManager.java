@@ -3,7 +3,6 @@ package frc.robot.mechanisms;
 import frc.robot.*;
 import frc.robot.common.*;
 import frc.robot.common.robotprovider.*;
-import frc.robot.driver.DigitalOperation;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;

@@ -7,7 +7,6 @@ import java.util.Set;
 
 import javax.inject.Singleton;
 
-import frc.robot.ElectronicsConstants;
 import frc.robot.LoggingKey;
 import frc.robot.TuningConstants;
 import frc.robot.common.LoggingManager;
@@ -298,8 +297,7 @@ public class Driver implements IDriver
     {
         this.currentMode = RobotMode.Disabled;
 
-        if (TuningConstants.CANCEL_AUTONOMOUS_ROUTINE_ON_DISABLE &&
-            this.macroStateMap.containsKey(MacroOperation.AutonomousRoutine))
+        if (this.macroStateMap.containsKey(MacroOperation.AutonomousRoutine))
         {
             this.macroStateMap.remove(MacroOperation.AutonomousRoutine);
         }
@@ -329,12 +327,6 @@ public class Driver implements IDriver
         if (this.autonomousTask != null)
         {
             this.autonomousTask.initialize(this.operationStateMap, injector);
-            if (!TuningConstants.CANCEL_AUTONOMOUS_ROUTINE_ON_DISABLE &&
-                this.macroStateMap.containsKey(MacroOperation.AutonomousRoutine))
-            {
-                this.macroStateMap.remove(MacroOperation.AutonomousRoutine);
-            }
-
             this.macroStateMap.put(
                 MacroOperation.AutonomousRoutine,
                 new AutonomousOperationState(this.autonomousTask, this.operationStateMap));

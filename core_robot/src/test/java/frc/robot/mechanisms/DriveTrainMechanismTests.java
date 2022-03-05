@@ -5,7 +5,6 @@ import frc.robot.TestProvider;
 import frc.robot.TuningConstants;
 import frc.robot.common.Helpers;
 import frc.robot.common.LoggingManager;
-import frc.robot.common.robotprovider.INavx;
 import frc.robot.common.robotprovider.IPigeon2;
 import frc.robot.common.robotprovider.ITalonFX;
 import frc.robot.common.robotprovider.ITalonSRX;
@@ -15,6 +14,7 @@ import frc.robot.common.robotprovider.MotorNeutralMode;
 import frc.robot.common.robotprovider.NullLogger;
 import frc.robot.common.robotprovider.Pose2d;
 import frc.robot.common.robotprovider.RobotMode;
+import frc.robot.common.robotprovider.TalonFXInvertType;
 import frc.robot.common.robotprovider.TalonXControlMode;
 import frc.robot.common.robotprovider.TalonXFeedbackDevice;
 import frc.robot.common.robotprovider.TalonXLimitSwitchStatus;
@@ -28,7 +28,6 @@ import org.junit.jupiter.api.Test;
 
 public class DriveTrainMechanismTests
 {
-    /*
     private static final double[] MODULE_OFFSET_X =
         new double[]
         {
@@ -60,11 +59,11 @@ public class DriveTrainMechanismTests
         MockTalonFX[] drive = new MockTalonFX[4];
         for (int i = 0; i < 4; i++)
         {
-            steer[i] = new MockTalonFX(2 * i + 1);
-            drive[i] = new MockTalonFX(2 * i + 2);
+            drive[i] = new MockTalonFX(2 * i + 1);
+            steer[i] = new MockTalonFX(2 * i + 2);
 
-            provider.setTalonFX(2 * i + 1, steer[i]);
-            provider.setTalonFX(2 * i + 2, drive[i]);
+            provider.setTalonFX(2 * i + 1, drive[i]);
+            provider.setTalonFX(2 * i + 2, steer[i]);
         }
 
         LoggingManager logger = new LoggingManager(new NullLogger());
@@ -102,11 +101,11 @@ public class DriveTrainMechanismTests
         MockTalonFX[] drive = new MockTalonFX[4];
         for (int i = 0; i < 4; i++)
         {
-            steer[i] = new MockTalonFX(2 * i + 1);
-            drive[i] = new MockTalonFX(2 * i + 2);
+            drive[i] = new MockTalonFX(2 * i + 1);
+            steer[i] = new MockTalonFX(2 * i + 2);
 
-            provider.setTalonFX(2 * i + 1, steer[i]);
-            provider.setTalonFX(2 * i + 2, drive[i]);
+            provider.setTalonFX(2 * i + 1, drive[i]);
+            provider.setTalonFX(2 * i + 2, steer[i]);
         }
 
         LoggingManager logger = new LoggingManager(new NullLogger());
@@ -150,11 +149,11 @@ public class DriveTrainMechanismTests
         MockTalonFX[] drive = new MockTalonFX[4];
         for (int i = 0; i < 4; i++)
         {
-            steer[i] = new MockTalonFX(2 * i + 1);
-            drive[i] = new MockTalonFX(2 * i + 2);
+            drive[i] = new MockTalonFX(2 * i + 1);
+            steer[i] = new MockTalonFX(2 * i + 2);
 
-            provider.setTalonFX(2 * i + 1, steer[i]);
-            provider.setTalonFX(2 * i + 2, drive[i]);
+            provider.setTalonFX(2 * i + 1, drive[i]);
+            provider.setTalonFX(2 * i + 2, steer[i]);
         }
 
         LoggingManager logger = new LoggingManager(new NullLogger());
@@ -199,11 +198,11 @@ public class DriveTrainMechanismTests
         MockTalonFX[] drive = new MockTalonFX[4];
         for (int i = 0; i < 4; i++)
         {
-            steer[i] = new MockTalonFX(2 * i + 1);
-            drive[i] = new MockTalonFX(2 * i + 2);
+            drive[i] = new MockTalonFX(2 * i + 1);
+            steer[i] = new MockTalonFX(2 * i + 2);
 
-            provider.setTalonFX(2 * i + 1, steer[i]);
-            provider.setTalonFX(2 * i + 2, drive[i]);
+            provider.setTalonFX(2 * i + 1, drive[i]);
+            provider.setTalonFX(2 * i + 2, steer[i]);
         }
 
         LoggingManager logger = new LoggingManager(new NullLogger());
@@ -249,11 +248,11 @@ public class DriveTrainMechanismTests
         MockTalonFX[] drive = new MockTalonFX[4];
         for (int i = 0; i < 4; i++)
         {
-            steer[i] = new MockTalonFX(2 * i + 1);
-            drive[i] = new MockTalonFX(2 * i + 2);
+            drive[i] = new MockTalonFX(2 * i + 1);
+            steer[i] = new MockTalonFX(2 * i + 2);
 
-            provider.setTalonFX(2 * i + 1, steer[i]);
-            provider.setTalonFX(2 * i + 2, drive[i]);
+            provider.setTalonFX(2 * i + 1, drive[i]);
+            provider.setTalonFX(2 * i + 2, steer[i]);
         }
 
         LoggingManager logger = new LoggingManager(new NullLogger());
@@ -377,90 +376,16 @@ public class DriveTrainMechanismTests
             this.currentTime = 0.0;
         }
 
-        public void set(double value)
-        {
-            this.currentTime = value;
-        }
+        // public void set(double value)
+        // {
+        //     this.currentTime = value;
+        // }
 
         public void increment(double value)
         {
             this.currentTime += value;
         }
     }
-
-    private class MockNavx implements INavx
-    {
-        private double currentAngle;
-
-        MockNavx()
-        {
-        }
-
-        @Override
-        public boolean isConnected()
-        {
-            return true;
-        }
-
-        @Override
-        public double getAngle()
-        {
-            return this.currentAngle;
-        }
-
-        @Override
-        public double getPitch()
-        {
-            return this.currentAngle;
-        }
-
-        @Override
-        public double getRoll()
-        {
-            return this.currentAngle;
-        }
-
-        @Override
-        public double getYaw()
-        {
-            return this.currentAngle;
-        }
-
-        @Override
-        public double getDisplacementX()
-        {
-            return 0;
-        }
-
-        @Override
-        public double getDisplacementY()
-        {
-            return 0;
-        }
-
-        @Override
-        public double getDisplacementZ()
-        {
-            return 0;
-        }
-
-        @Override
-        public void reset()
-        {
-            this.currentAngle = 0.0;
-        }
-
-        @Override
-        public void resetDisplacement()
-        {
-        }
-
-        public void set(double angle)
-        {
-            this.currentAngle = angle;
-        }
-    }
-
 
     private class MockPigeon2 implements IPigeon2
     {
@@ -479,7 +404,7 @@ public class DriveTrainMechanismTests
 
         public void setYaw(double angleDeg)
         {
-            this.currentAngle = currentAngle;
+            this.currentAngle = angleDeg;
         }
 
         public void set(double angle)
@@ -490,12 +415,12 @@ public class DriveTrainMechanismTests
 
     private class MockTalonFX implements ITalonFX
     {
-        private final int deviceId;
+        // private final int deviceId;
         private double currentValue;
 
         MockTalonFX(int deviceId)
         {
-            this.deviceId = deviceId;
+            // this.deviceId = deviceId;
         }
 
         @Override
@@ -580,6 +505,11 @@ public class DriveTrainMechanismTests
 
         @Override
         public void setInvertSensor(boolean flip)
+        {
+        }
+
+        @Override
+        public void setInvert(TalonFXInvertType invertType)
         {
         }
 
@@ -682,5 +612,4 @@ public class DriveTrainMechanismTests
             return 0.0;
         }
     }
-    */
 }

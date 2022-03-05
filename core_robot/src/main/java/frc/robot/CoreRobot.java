@@ -55,7 +55,8 @@ public class CoreRobot<T extends AbstractModule>
         Injector injector = this.getInjector();
 
         IRobotProvider robotProvider = injector.getInstance(IRobotProvider.class);
-        IPreferences preferences = robotProvider.getPreferences();
+        // IPreferences preferences = 
+        robotProvider.getPreferences();
 
         //SettingsManager.initAndUpdatePreferences(preferences, TuningConstants.class);
         //SettingsManager.initAndUpdatePreferences(preferences, HardwareConstants.class);
