@@ -151,7 +151,7 @@ public class TalonFXWrapper implements ITalonFX
             "TalonFX.setPIDF_kF");
     }
 
-    public void setMotionMagicPIDF(double p, double i, double d, double f, int velocity, int acceleration, int slotId)
+    public void setMotionMagicPIDF(double p, double i, double d, double f, double velocity, double acceleration, int slotId)
     {
         CTREErrorCodeHelper.printError(
             this.wrappedObject.config_kP(slotId, p, TalonFXWrapper.timeoutMS),

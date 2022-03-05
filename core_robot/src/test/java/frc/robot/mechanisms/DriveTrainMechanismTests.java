@@ -479,7 +479,7 @@ public class DriveTrainMechanismTests
         }
 
         @Override
-        public void setMotionMagicPIDF(double p, double i, double d, double f, int velocity, int acceleration, int slotId)
+        public void setMotionMagicPIDF(double p, double i, double d, double f, double velocity, double acceleration, int slotId)
         {
         }
 

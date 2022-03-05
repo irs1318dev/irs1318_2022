@@ -80,7 +80,7 @@ public abstract class FauxbotTalonXBase extends FauxbotAdvancedMotorBase
         this.resetPID();
     }
 
-    public void setMotionMagicPIDF(double p, double i, double d, double f, int velocity, int acceleration, int slotId)
+    public void setMotionMagicPIDF(double p, double i, double d, double f, double velocity, double acceleration, int slotId)
     {
     }
 
