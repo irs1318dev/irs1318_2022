@@ -151,13 +151,13 @@ public class RoadRunnerTrajectoryGenerator
             new TrajectoryWrapper(goBack5ftLeft3ftTurn180GoBack3ft));
         
         
-        Trajectory goBack5ftRight8ftTurn122 = buildTrajectory(-90 * Helpers.DEGREES_TO_RADIANS)
+        Trajectory goBack3ftRight5ftTurn122GoBack2ftRight3ft = buildTrajectory(-90 * Helpers.DEGREES_TO_RADIANS)
             .splineToSplineHeading(new Pose2d(-40, -62, -122.25 * Helpers.DEGREES_TO_RADIANS), -122.25 * Helpers.DEGREES_TO_RADIANS)
             .splineToConstantHeading(new Vector2d(-60, -96), -122.25 * Helpers.DEGREES_TO_RADIANS)
             .build();
         pathManager.addPath(
-            "goBack5ftRight8ftTurn122",
-            new TrajectoryWrapper(goBack5ftRight8ftTurn122));
+            "goBack3ftRight5ftTurn122GoBack2ftRight3ft",
+            new TrajectoryWrapper(goBack3ftRight5ftTurn122GoBack2ftRight3ft));
         
         Trajectory goBack6ftRight5ftTurn80 = buildTrajectory(-60 * Helpers.DEGREES_TO_RADIANS)
             .splineToSplineHeading(new Pose2d(-74,-63, -79.2 * Helpers.DEGREES_TO_RADIANS), -139.3 * Helpers.DEGREES_TO_RADIANS)

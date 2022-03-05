@@ -10,10 +10,10 @@ public class CargoIntakeTask extends CompositeOperationTask
         DigitalOperation.CargoIntakeOut
     };
 
-    public CargoIntakeTask(boolean inDirection)
+    public CargoIntakeTask(double time, boolean inDirection)
     {
         super(
-            0.1,
+            time,
             inDirection ? DigitalOperation.CargoIntakeIn : DigitalOperation.CargoIntakeOut,
             intakeDirectionOperations);
     }

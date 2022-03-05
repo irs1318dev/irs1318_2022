@@ -797,7 +797,7 @@ public class ButtonMap implements IButtonMap
                 ConcurrentTask.AllTasks(
                     new FollowPathTask("goForward4ft"),
                     new CargoExtendIntakeTask(true),
-                    new CargoIntakeTask(true)
+                    new CargoIntakeTask(1, true)
                 ),
                 new FollowPathTask("goBack7ftRotate"),
                 new VisionCenteringTask(false),
