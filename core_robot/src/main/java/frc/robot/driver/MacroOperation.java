@@ -7,6 +7,8 @@ public enum MacroOperation implements IOperation
     // Auton testing *harru poyter says pog*
     AutoDriveBackIntakeShoot,
     AutoShootDriveBack,
+    ThreeBallAuto,
+    FiveBallAuto,
 
     // DriveTrain operations:
     PIDBrake,

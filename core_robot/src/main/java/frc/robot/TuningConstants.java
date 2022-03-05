@@ -306,21 +306,40 @@ public class TuningConstants
 
     //================================================== Climber Mechanism ==============================================================
 
-    public static final double CLIMBER_WINCH_MOTOR_U_PID_KP = 1.0;
+    public static final boolean CLIMBER_USE_PID = false;
+    public static final boolean CLIMBER_USE_MOTION_MAGIC = false;
+
+    // climber normal Positional PID settings:
+    public static final double CLIMBER_WINCH_MOTOR_U_PID_KP = 0.0;
     public static final double CLIMBER_WINCH_MOTOR_U_PID_KI = 0.0;
     public static final double CLIMBER_WINCH_MOTOR_U_PID_KD = 0.0;
     public static final double CLIMBER_WINCH_MOTOR_U_PID_KF = 0.0;
     
-    public static final double CLIMBER_WINCH_MOTOR_W_PID_KP = 1.0;
+    public static final double CLIMBER_WINCH_MOTOR_W_PID_KP = 0.0;
     public static final double CLIMBER_WINCH_MOTOR_W_PID_KI = 0.0;
     public static final double CLIMBER_WINCH_MOTOR_W_PID_KD = 0.0;
     public static final double CLIMBER_WINCH_MOTOR_W_PID_KF = 0.0;
 
+    // climber MotionMagic Positional PID settings:
+    public static final double CLIMBER_WINCH_MOTOR_U_PIDVA_KP = 0.0;
+    public static final double CLIMBER_WINCH_MOTOR_U_PIDVA_KI = 0.0;
+    public static final double CLIMBER_WINCH_MOTOR_U_PIDVA_KD = 0.0;
+    public static final double CLIMBER_WINCH_MOTOR_U_PIDVA_KF = 0.0;
+    public static final double CLIMBER_WINCH_MOTOR_U_PIDVA_KV = 0.0; // in ticks / 100ms
+    public static final double CLIMBER_WINCH_MOTOR_U_PIDVA_KA = 0.0; // in (ticks / 100ms) / s
+
+    public static final double CLIMBER_WINCH_MOTOR_W_PIDVA_KP = 0.0;
+    public static final double CLIMBER_WINCH_MOTOR_W_PIDVA_KI = 0.0;
+    public static final double CLIMBER_WINCH_MOTOR_W_PIDVA_KD = 0.0;
+    public static final double CLIMBER_WINCH_MOTOR_W_PIDVA_KF = 0.0;
+    public static final double CLIMBER_WINCH_MOTOR_W_PIDVA_KV = 0.0; // in ticks / 100ms
+    public static final double CLIMBER_WINCH_MOTOR_W_PIDVA_KA = 0.0; // in (ticks / 100ms) / s
+
     public static final boolean CLIMBER_WINCH_MOTOR_MASTER_VOLTAGE_COMPENSATION_ENABLED = true;
-    public static final double CLIMBER_WINCH_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE = 0.0;
+    public static final double CLIMBER_WINCH_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE = 12.0;
 
     public static final boolean CLIMBER_WINCH_MOTOR_FOLLOWER_VOLTAGE_COMPENSATION_ENABLED = true;
-    public static final double CLIMBER_WINCH_MOTOR_FOLLOWER_POSITION_VOLTAGE_COMPENSATION_MAXVOLTAGE = 0.0;
+    public static final double CLIMBER_WINCH_MOTOR_FOLLOWER_POSITION_VOLTAGE_COMPENSATION_MAXVOLTAGE = 12.0;
 
     public static final double CONVEYOR_RUNTIME_AFTER_INTAKE = 3.0;
 

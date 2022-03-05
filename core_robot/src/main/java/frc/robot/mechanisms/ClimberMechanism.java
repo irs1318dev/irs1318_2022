@@ -49,26 +49,54 @@ public class ClimberMechanism implements IMechanism
 
         // winch
         this.winchMotor = provider.getTalonFX(ElectronicsConstants.CLIMBER_WINCH_MOTOR_MASTER_CAN_ID);
-        this.winchMotor.setControlMode(TalonXControlMode.Position);
         this.winchMotor.setSensorType(TalonXFeedbackDevice.IntegratedSensor);
         this.winchMotor.setInvert(HardwareConstants.CLIMBER_WINCH_MOTOR_MASTER_INVERT);
         this.winchMotor.setNeutralMode(MotorNeutralMode.Brake);
-        this.winchMotor.setPIDF(
-            TuningConstants.CLIMBER_WINCH_MOTOR_U_PID_KP,
-            TuningConstants.CLIMBER_WINCH_MOTOR_U_PID_KI,
-            TuningConstants.CLIMBER_WINCH_MOTOR_U_PID_KD,
-            TuningConstants.CLIMBER_WINCH_MOTOR_U_PID_KF,
-            ClimberMechanism.UnweightedSlotId);
-        this.winchMotor.setPIDF(
-            TuningConstants.CLIMBER_WINCH_MOTOR_W_PID_KP,
-            TuningConstants.CLIMBER_WINCH_MOTOR_W_PID_KI,
-            TuningConstants.CLIMBER_WINCH_MOTOR_W_PID_KD,
-            TuningConstants.CLIMBER_WINCH_MOTOR_W_PID_KF,
-            ClimberMechanism.WeightedSlotId);
         this.winchMotor.setVoltageCompensation(
             TuningConstants.CLIMBER_WINCH_MOTOR_MASTER_VOLTAGE_COMPENSATION_ENABLED,
             TuningConstants.CLIMBER_WINCH_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE);
-        this.winchMotor.setSelectedSlot(ClimberMechanism.UnweightedSlotId);
+        if (TuningConstants.CLIMBER_USE_MOTION_MAGIC)
+        {
+            this.winchMotor.setControlMode(TalonXControlMode.MotionMagicPosition);
+            this.winchMotor.setMotionMagicPIDF(
+                TuningConstants.CLIMBER_WINCH_MOTOR_U_PIDVA_KP,
+                TuningConstants.CLIMBER_WINCH_MOTOR_U_PIDVA_KI,
+                TuningConstants.CLIMBER_WINCH_MOTOR_U_PIDVA_KD,
+                TuningConstants.CLIMBER_WINCH_MOTOR_U_PIDVA_KF,
+                TuningConstants.CLIMBER_WINCH_MOTOR_U_PIDVA_KV,
+                TuningConstants.CLIMBER_WINCH_MOTOR_U_PIDVA_KA,
+                ClimberMechanism.UnweightedSlotId);
+            this.winchMotor.setMotionMagicPIDF(
+                TuningConstants.CLIMBER_WINCH_MOTOR_W_PIDVA_KP,
+                TuningConstants.CLIMBER_WINCH_MOTOR_W_PIDVA_KI,
+                TuningConstants.CLIMBER_WINCH_MOTOR_W_PIDVA_KD,
+                TuningConstants.CLIMBER_WINCH_MOTOR_W_PIDVA_KF,
+                TuningConstants.CLIMBER_WINCH_MOTOR_W_PIDVA_KV,
+                TuningConstants.CLIMBER_WINCH_MOTOR_W_PIDVA_KA,
+                ClimberMechanism.WeightedSlotId);
+            this.winchMotor.setSelectedSlot(ClimberMechanism.UnweightedSlotId);
+        }
+        else if (TuningConstants.CLIMBER_USE_PID)
+        {
+            this.winchMotor.setControlMode(TalonXControlMode.Position);
+            this.winchMotor.setPIDF(
+                TuningConstants.CLIMBER_WINCH_MOTOR_U_PID_KP,
+                TuningConstants.CLIMBER_WINCH_MOTOR_U_PID_KI,
+                TuningConstants.CLIMBER_WINCH_MOTOR_U_PID_KD,
+                TuningConstants.CLIMBER_WINCH_MOTOR_U_PID_KF,
+                ClimberMechanism.UnweightedSlotId);
+            this.winchMotor.setPIDF(
+                TuningConstants.CLIMBER_WINCH_MOTOR_W_PID_KP,
+                TuningConstants.CLIMBER_WINCH_MOTOR_W_PID_KI,
+                TuningConstants.CLIMBER_WINCH_MOTOR_W_PID_KD,
+                TuningConstants.CLIMBER_WINCH_MOTOR_W_PID_KF,
+                ClimberMechanism.WeightedSlotId);
+            this.winchMotor.setSelectedSlot(ClimberMechanism.UnweightedSlotId);
+        }
+        else
+        {
+            this.winchMotor.setControlMode(TalonXControlMode.PercentOutput);
+        }
 
         ITalonFX winchFollowerMotor = provider.getTalonFX(ElectronicsConstants.CLIMBER_WINCH_MOTOR_FOLLOWER_CAN_ID);
         winchFollowerMotor.setNeutralMode(MotorNeutralMode.Brake);
@@ -174,7 +202,7 @@ public class ClimberMechanism implements IMechanism
         {
             this.winchMotor.setControlMode(TalonXControlMode.PercentOutput);
             this.winchMotor.set(winchMotorPower);
-            this.desiredWinchPosition = this.winchMotorPosition / HardwareConstants.CLIMBER_WINCH_MAX_POSITION;
+            this.desiredWinchPosition = this.winchMotorPosition;
 
             this.logger.logNumber(LoggingKey.ClimberWinchDesiredPosition, this.desiredWinchPosition);
         }
@@ -182,13 +210,14 @@ public class ClimberMechanism implements IMechanism
         {
             // otherwise, set winch position to desired position
             this.desiredWinchPosition = this.driver.getAnalog(AnalogOperation.ClimberWinchDesiredPosition);
+            this.desiredWinchPosition *= HardwareConstants.CLIMBER_WINCH_MAX_POSITION;
             if (prevSlot != this.currentSlot)
             {
                 this.winchMotor.setSelectedSlot(this.currentSlot);
             }
 
             this.winchMotor.setControlMode(TalonXControlMode.Position);
-            this.winchMotor.set(this.desiredWinchPosition * HardwareConstants.CLIMBER_WINCH_MAX_POSITION);
+            this.winchMotor.set(this.desiredWinchPosition);
 
             this.logger.logNumber(LoggingKey.ClimberWinchDesiredPosition, this.desiredWinchPosition);
         }

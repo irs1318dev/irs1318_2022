@@ -913,6 +913,206 @@ public class ButtonMap implements IButtonMap
                 // DigitalOperation.CargoHoodMedium,
                 DigitalOperation.CargoHoodLong,
             }),
+            
+            //5 ball auto
+        new MacroOperationDescription(
+            MacroOperation.FiveBallAuto,
+            UserInputDevice.Test1,
+            UserInputDeviceButton.XBONE_A_BUTTON,
+            Shift.Test1Debug,
+            Shift.Test1Debug,
+            ButtonType.Toggle,
+            () -> SequentialTask.Sequence(
+                //1 move to shooting position
+                ConcurrentTask.AllTasks(
+                    new FollowPathTask("goForward5Feet"),
+                    new CargoExtendIntakeTask(true)
+                ),
+                //2 center with goal
+                new VisionCenteringTask(false),
+                //3 shoot pre-loaded ball
+                ConcurrentTask.AllTasks(
+                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
+                    SequentialTask.Sequence(
+                        new WaitTask(TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME), // how long it take to spin
+                        new CargoShootTask(false)
+                    )
+                ),
+                //4 get first ball
+                ConcurrentTask.AllTasks(
+                    new CargoIntakeTask(10.0, true),
+                    new FollowPathTask("goBack5ftLeft3ftTurn180GoBack3ft")
+                ),
+                //5 get second ball
+                ConcurrentTask.AllTasks(
+                    new CargoIntakeTask(10.0, true),
+                    new FollowPathTask("goBack3ftRight5ftTurn122GoBack2ftRight3ft")
+                ),
+                //6 shoot the 2 balls
+                new FollowPathTask("goBack6ftRight5ftTurn122"),
+                ConcurrentTask.AllTasks(
+                    new VisionCenteringTask(false),
+                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
+                    SequentialTask.Sequence(
+                        new WaitTask(TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME),
+                        new CargoShootTask()
+                    )
+                ),
+                //7 move to terminal and start intake
+                ConcurrentTask.AllTasks(
+                    new FollowPathTask("goBack6ftLeft16ftTurn154GoBack3ftLeft1ft"), //split into 2 tasks
+                    new CargoIntakeTask(10.0, true),
+                    SequentialTask.Sequence(
+                        new WaitTask(2.0),
+                        new VisionCenteringTask(true),
+                        new WaitTask(1.0),
+                        new VisionCenteringTask(true)
+                    )   
+                ),
+                //8 move to shoot those balls but not during the month of november
+                new FollowPathTask("goBack18ftLeft12ftTurn154"),
+                new VisionCenteringTask(false),
+                ConcurrentTask.AllTasks(
+                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
+                    SequentialTask.Sequence(
+                        new WaitTask(TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME),
+                        new CargoShootTask()
+                    )
+                )
+            ),
+            new IOperation[]
+            {
+                AnalogOperation.DriveTrainMoveForward,
+                AnalogOperation.DriveTrainMoveRight,
+                AnalogOperation.DriveTrainTurnAngleGoal,
+                AnalogOperation.DriveTrainTurnSpeed,
+                AnalogOperation.DriveTrainRotationA,
+                AnalogOperation.DriveTrainRotationB,
+                AnalogOperation.DriveTrainPathXGoal,
+                AnalogOperation.DriveTrainPathYGoal,
+                AnalogOperation.DriveTrainPathXVelocityGoal,
+                AnalogOperation.DriveTrainPathYVelocityGoal,
+                AnalogOperation.DriveTrainPathAngleVelocityGoal,
+                AnalogOperation.DriveTrainPositionDrive1,
+                AnalogOperation.DriveTrainPositionDrive2,
+                AnalogOperation.DriveTrainPositionDrive3,
+                AnalogOperation.DriveTrainPositionDrive4,
+                AnalogOperation.DriveTrainPositionSteer1,
+                AnalogOperation.DriveTrainPositionSteer2,
+                AnalogOperation.DriveTrainPositionSteer3,
+                AnalogOperation.DriveTrainPositionSteer4,
+                AnalogOperation.CargoFlywheelVelocityGoal,
+                DigitalOperation.DriveTrainPositionMode,
+                DigitalOperation.DriveTrainPathMode,
+                DigitalOperation.DriveTrainReset,
+                DigitalOperation.DriveTrainEnableFieldOrientation,
+                DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.VisionDisableStream,
+                DigitalOperation.VisionEnableGamePieceProcessing,
+                DigitalOperation.VisionEnableRetroreflectiveProcessing,
+                DigitalOperation.VisionForceDisable,
+                DigitalOperation.CargoIntakeExtend,
+                DigitalOperation.CargoIntakeRetract,
+                DigitalOperation.CargoIntakeIn,
+                DigitalOperation.CargoIntakeOut,
+                DigitalOperation.CargoEject,
+                DigitalOperation.CargoFeed,
+                DigitalOperation.CargoHoodPointBlank,
+                // DigitalOperation.CargoHoodShort,
+                // DigitalOperation.CargoHoodMedium,
+                DigitalOperation.CargoHoodLong,
+            }
+        ),
+
+        new MacroOperationDescription(
+            MacroOperation.ThreeBallAuto,
+            UserInputDevice.Test1,
+            UserInputDeviceButton.XBONE_B_BUTTON,
+            Shift.Test1Debug,
+            Shift.Test1Debug,
+            ButtonType.Toggle,
+            () -> SequentialTask.Sequence(
+                //1 move to shooting position
+                ConcurrentTask.AllTasks(
+                    new FollowPathTask("goForward5Feet"),
+                    new CargoExtendIntakeTask(true)
+                ),
+                //2 center with goal
+                new VisionCenteringTask(false),
+                //3 shoot pre-loaded ball
+                ConcurrentTask.AllTasks(
+                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
+                    SequentialTask.Sequence(
+                        new WaitTask(TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME), // how long it take to spin
+                        new CargoShootTask(false)
+                    )
+                ),
+                //4 get first ball
+                ConcurrentTask.AllTasks(
+                    new CargoIntakeTask(10.0, true),
+                    new FollowPathTask("goBack5ftLeft3ftTurn180GoBack3ft")
+                ),
+                //5 get second ball
+                ConcurrentTask.AllTasks(
+                    new CargoIntakeTask(10.0, true),
+                    new FollowPathTask("goBack3ftRight5ftTurn122GoBack2ftRight3ft")
+                ),
+                //6 shoot the 2 balls
+                new FollowPathTask("goBack6ftRight5ftTurn122"),
+                ConcurrentTask.AllTasks(
+                    new VisionCenteringTask(false),
+                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
+                    SequentialTask.Sequence(
+                        new WaitTask(TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME),
+                        new CargoShootTask()
+                    )
+                )                
+            ),
+            new IOperation[]
+            {
+                AnalogOperation.DriveTrainMoveForward,
+                AnalogOperation.DriveTrainMoveRight,
+                AnalogOperation.DriveTrainTurnAngleGoal,
+                AnalogOperation.DriveTrainTurnSpeed,
+                AnalogOperation.DriveTrainRotationA,
+                AnalogOperation.DriveTrainRotationB,
+                AnalogOperation.DriveTrainPathXGoal,
+                AnalogOperation.DriveTrainPathYGoal,
+                AnalogOperation.DriveTrainPathXVelocityGoal,
+                AnalogOperation.DriveTrainPathYVelocityGoal,
+                AnalogOperation.DriveTrainPathAngleVelocityGoal,
+                AnalogOperation.DriveTrainPositionDrive1,
+                AnalogOperation.DriveTrainPositionDrive2,
+                AnalogOperation.DriveTrainPositionDrive3,
+                AnalogOperation.DriveTrainPositionDrive4,
+                AnalogOperation.DriveTrainPositionSteer1,
+                AnalogOperation.DriveTrainPositionSteer2,
+                AnalogOperation.DriveTrainPositionSteer3,
+                AnalogOperation.DriveTrainPositionSteer4,
+                AnalogOperation.CargoFlywheelVelocityGoal,
+                DigitalOperation.DriveTrainPositionMode,
+                DigitalOperation.DriveTrainPathMode,
+                DigitalOperation.DriveTrainReset,
+                DigitalOperation.DriveTrainEnableFieldOrientation,
+                DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.VisionDisableStream,
+                DigitalOperation.VisionEnableGamePieceProcessing,
+                DigitalOperation.VisionEnableRetroreflectiveProcessing,
+                DigitalOperation.VisionForceDisable,
+                DigitalOperation.CargoIntakeExtend,
+                DigitalOperation.CargoIntakeRetract,
+                DigitalOperation.CargoIntakeIn,
+                DigitalOperation.CargoIntakeOut,
+                DigitalOperation.CargoEject,
+                DigitalOperation.CargoFeed,
+                DigitalOperation.CargoHoodPointBlank,
+                // DigitalOperation.CargoHoodShort,
+                // DigitalOperation.CargoHoodMedium,
+                DigitalOperation.CargoHoodLong,
+            }
+        ),
+            
+            
     };
 
     @Override
