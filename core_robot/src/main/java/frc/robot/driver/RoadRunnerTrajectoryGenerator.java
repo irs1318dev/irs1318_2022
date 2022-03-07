@@ -34,7 +34,7 @@ public class RoadRunnerTrajectoryGenerator
 
     public static void main(String[] args)
     {
-        Trajectory turnArcLeft = buildTrajectory()
+        Trajectory turnArcLeft = startTrajectory()
             .splineToSplineHeading(new Pose2d(72.0, 40.0, 90.0 * Helpers.DEGREES_TO_RADIANS), 90.0 * Helpers.DEGREES_TO_RADIANS)
             .splineToSplineHeading(new Pose2d(100.0, 90.0, 0.0 * Helpers.DEGREES_TO_RADIANS), 0.0 * Helpers.DEGREES_TO_RADIANS)
             .build();
@@ -66,130 +66,127 @@ public class RoadRunnerTrajectoryGenerator
 
     public static void generateTrajectories(PathManager pathManager)
     {
-        // ----------------------------------------- 2022 auto paths ----------------------------------------- //
-        Trajectory goForward4ft = buildTrajectory()
-            .splineTo(new Vector2d(48, 0), 0)
-            .build();
-        pathManager.addPath(
-            "goForward4ft",
-            new TrajectoryWrapper(goForward4ft));
+        // ----------------------------------------- 2022 paths ----------------------------------------- //
+        addPath(
+            pathManager,
+            startTrajectory()
+                .splineTo(new Vector2d(48, 0), 0),
+            "goForward4ft");
 
-        Trajectory goForward7ft = buildTrajectory()
-            .splineTo(new Vector2d(84, 0), 0)
-            .build();
-        pathManager.addPath(
-            "goForward7ft",
-            new TrajectoryWrapper(goForward7ft));
+        addPath(
+            pathManager,
+            startTrajectory()
+                .splineTo(new Vector2d(84, 0), 0),
+            "goForward7ft");
 
-        Trajectory turn180Trajectory = buildTrajectory()
-            .splineToSplineHeading(new Pose2d(-1, 0, 180.0 * Helpers.DEGREES_TO_RADIANS), 180 * Helpers.DEGREES_TO_RADIANS)
-            .build();
-        pathManager.addPath(
-            "turn180Path",
-            new TrajectoryWrapper(turn180Trajectory));
-        
-        Trajectory goBack7ftRotate = buildTrajectory()   
-            .splineToSplineHeading(new Pose2d(-84, 0, 180.0 * Helpers.DEGREES_TO_RADIANS), 180 * Helpers.DEGREES_TO_RADIANS)
-            .build();
-        pathManager.addPath(
-            "goBack7ftRotate",
-            new TrajectoryWrapper(goBack7ftRotate));
+        addPath(
+            pathManager,
+            startTrajectory()
+                .splineToSplineHeading(new Pose2d(-1, 0, 180.0 * Helpers.DEGREES_TO_RADIANS), 180 * Helpers.DEGREES_TO_RADIANS),
+            "turn180Path");
 
-        Trajectory goBack4ft = buildTrajectory()
-            .splineTo(new Vector2d(-48, 0), 0)
-            .build();
-        pathManager.addPath(
-            "goBack4ft", 
-            new TrajectoryWrapper(goBack4ft));
+        addPath(
+            pathManager,
+            startTrajectory()
+                .splineToSplineHeading(new Pose2d(-84, 0, 180.0 * Helpers.DEGREES_TO_RADIANS), 180 * Helpers.DEGREES_TO_RADIANS),
+            "goBack7ftRotate");
 
-        Trajectory lineUpUnder1stClimberBarWall = buildTrajectory(180.0 * Helpers.DEGREES_TO_RADIANS)
-            .splineTo(new Vector2d(-10,15), 0)
-            .build();
-        pathManager.addPath(
-            "lineUpUnder1stClimberBarWall", 
-            new TrajectoryWrapper(lineUpUnder1stClimberBarWall));
+        addPath(
+            pathManager,
+            startTrajectory()
+                .splineTo(new Vector2d(-48, 0), 0),
+            "goBack4ft");
 
-        Trajectory lineUpUnder1stClimberBarNotWall = buildTrajectory(180.0 * Helpers.DEGREES_TO_RADIANS)
-            .splineTo(new Vector2d(-10,-15), 0)
-            .build();
-        pathManager.addPath(
-            "lineUpUnder1stClimberBarNotWall", 
-            new TrajectoryWrapper(lineUpUnder1stClimberBarNotWall));
+        addPath(
+            pathManager,
+            startTrajectory(180.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineTo(new Vector2d(-10,15), 0),
+            "lineUpUnder1stClimberBarWall");
 
-        Trajectory goForward5in = buildTrajectory()
-            .splineTo(new Vector2d(5, 0), 0)
-            .build();
-        pathManager.addPath(
-            "goForward5in",
-            new TrajectoryWrapper(goForward5in));
+        addPath(
+            pathManager,
+            startTrajectory(180.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineTo(new Vector2d(-10,-15), 0),
+            "lineUpUnder1stClimberBarNotWall");
 
-        Trajectory goBack5ftTurn180GoBack2ft = buildTrajectory(180.0 * Helpers.DEGREES_TO_RADIANS)
-            .splineToSplineHeading(new Pose2d(-60, 0, 180.0 * Helpers.DEGREES_TO_RADIANS), 180 * Helpers.DEGREES_TO_RADIANS)
-            .splineToConstantHeading(new Vector2d(-84, 0), 180 * Helpers.DEGREES_TO_RADIANS)
-            .build();
-        pathManager.addPath(
-            "goBack5ftTurn180GoBack2ft",
-            new TrajectoryWrapper(goBack5ftTurn180GoBack2ft));
-        
+        addPath(
+            pathManager,
+            startTrajectory()
+                .splineTo(new Vector2d(5, 0), 0),
+            "goForward5in");
 
-        // 5 BALL AUTON PATHS
+        addPath(
+            pathManager,
+            startTrajectory(180.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-60, 0, 180.0 * Helpers.DEGREES_TO_RADIANS), 180 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(-84, 0), 180 * Helpers.DEGREES_TO_RADIANS),
+            "goBack5ftTurn180GoBack2ft");
 
-        Trajectory goForward5ft = buildTrajectory()
-            .splineTo(new Vector2d(60, 0), 0)
-            .build();
-        pathManager.addPath(
-            "goForward5ft", 
-            new TrajectoryWrapper(goForward5ft));
+        // 5-BALL AUTO PATHS
+
+        addPath(
+            pathManager,
+            startTrajectory()
+                .splineTo(new Vector2d(60, 0), 0),
+            "goForward5ft");
+
+        addPath(
+            pathManager,
+            startTrajectory(135.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-60, 54.82, 180.0 * Helpers.DEGREES_TO_RADIANS), 180 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(-100.4, 54.82), 180 * Helpers.DEGREES_TO_RADIANS),
+            "goBack5ftLeft3ftTurn180GoBack3ft");
+
+        addPath(
+            pathManager,
+            startTrajectory(-90 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-40, -62, -122.25 * Helpers.DEGREES_TO_RADIANS), -122.25 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(-60, -96), -122.25 * Helpers.DEGREES_TO_RADIANS),
+            "goBack3ftRight5ftTurn122GoBack2ftRight3ft");
         
-        
-        Trajectory goBack5ftLeft3ftTurn180GoBack3ft = buildTrajectory(135.0 * Helpers.DEGREES_TO_RADIANS)
-            .splineToSplineHeading(new Pose2d(-60, 54.82, 180.0 * Helpers.DEGREES_TO_RADIANS), 180 * Helpers.DEGREES_TO_RADIANS)
-            .splineToConstantHeading(new Vector2d(-100.4, 54.82), 180 * Helpers.DEGREES_TO_RADIANS)
-            .build();
-        pathManager.addPath(
-            "goBack5ftLeft3ftTurn180GoBack3ft",
-            new TrajectoryWrapper(goBack5ftLeft3ftTurn180GoBack3ft));
-        
-        
-        Trajectory goBack3ftRight5ftTurn122GoBack2ftRight3ft = buildTrajectory(-90 * Helpers.DEGREES_TO_RADIANS)
-            .splineToSplineHeading(new Pose2d(-40, -62, -122.25 * Helpers.DEGREES_TO_RADIANS), -122.25 * Helpers.DEGREES_TO_RADIANS)
-            .splineToConstantHeading(new Vector2d(-60, -96), -122.25 * Helpers.DEGREES_TO_RADIANS)
-            .build();
-        pathManager.addPath(
-            "goBack3ftRight5ftTurn122GoBack2ftRight3ft",
-            new TrajectoryWrapper(goBack3ftRight5ftTurn122GoBack2ftRight3ft));
-        
-        Trajectory goBack6ftRight5ftTurn80 = buildTrajectory(-60 * Helpers.DEGREES_TO_RADIANS)
-            .splineToSplineHeading(new Pose2d(-74,-63, -79.2 * Helpers.DEGREES_TO_RADIANS), -139.3 * Helpers.DEGREES_TO_RADIANS)
-            .build();
-        pathManager.addPath(
-            "goBack6ftRight5ftTurn122",
-            new TrajectoryWrapper(goBack6ftRight5ftTurn80));
-        
-        Trajectory goBack6ftLeft16ftTurn154GoBack3ftLeft1ft = buildTrajectory(110 * Helpers.DEGREES_TO_RADIANS)
-            .splineToSplineHeading(new Pose2d(-76,193, 154.7 * Helpers.DEGREES_TO_RADIANS), 154.7 * Helpers.DEGREES_TO_RADIANS)
-            .splineToConstantHeading(new Vector2d(-110, 209), 154.7 * Helpers.DEGREES_TO_RADIANS)
-            .build();
-        pathManager.addPath(
-            "goBack6ftLeft16ftTurn154GoBack3ftLeft1ft",
-            new TrajectoryWrapper(goBack6ftLeft16ftTurn154GoBack3ftLeft1ft));
-        
-        Trajectory goBack18ftLeft12ftTurn154 = buildTrajectory(90 * Helpers.DEGREES_TO_RADIANS)
-            .splineToSplineHeading(new Pose2d(-215,142, -154.7 * Helpers.DEGREES_TO_RADIANS), -154.7 * Helpers.DEGREES_TO_RADIANS)
-            .build();
-        pathManager.addPath(
-            "goBack18ftLeft12ftTurn154", 
-            new TrajectoryWrapper(goBack18ftLeft12ftTurn154));       
-            
+        addPath(
+            pathManager,
+            startTrajectory(-60 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-74,-63, -79.2 * Helpers.DEGREES_TO_RADIANS), -139.3 * Helpers.DEGREES_TO_RADIANS),
+            "goBack6ftRight5ftTurn122");
+
+        addPath(
+            pathManager,
+            startTrajectory(110 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-76,193, 154.7 * Helpers.DEGREES_TO_RADIANS), 154.7 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(-110, 209), 154.7 * Helpers.DEGREES_TO_RADIANS),
+            "goBack6ftLeft16ftTurn154GoBack3ftLeft1ft");
+
+        addPath(
+            pathManager,
+            startTrajectory(90 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-215,142, -154.7 * Helpers.DEGREES_TO_RADIANS), -154.7 * Helpers.DEGREES_TO_RADIANS),
+            "goBack18ftLeft12ftTurn154");
     }
 
-    private static TrajectoryBuilder buildTrajectory()
+    private static TrajectoryBuilder startTrajectory()
     {
-        return buildTrajectory(0.0);
+        return startTrajectory(0.0);
     }
 
-    private static TrajectoryBuilder buildTrajectory(double startTangent)
+    private static TrajectoryBuilder startTrajectory(double startTangent)
     {
         return new TrajectoryBuilder(new Pose2d(0, 0, 0), RoadRunnerTrajectoryGenerator.velocityConstraint, RoadRunnerTrajectoryGenerator.accelerationConstraint);
+    }
+
+    private static void addPath(PathManager pathManager, TrajectoryBuilder trajectoryBuilder, String name)
+    {
+        try
+        {
+            pathManager.addPath(name, new TrajectoryWrapper(trajectoryBuilder.build()));
+        }
+        catch (Exception ex)
+        {
+            System.err.println("Encountered exception generating path " + name + ": " + ex.toString());
+            if (TuningConstants.THROW_EXCEPTIONS)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -913,14 +913,14 @@ public class ButtonMap implements IButtonMap
                 // DigitalOperation.CargoHoodMedium,
                 DigitalOperation.CargoHoodLong,
             }),
-            
-            //5 ball auto
+
+        // 5-ball auto
         new MacroOperationDescription(
             MacroOperation.FiveBallAuto,
             UserInputDevice.Test1,
-            UserInputDeviceButton.XBONE_A_BUTTON,
+            UserInputDeviceButton.XBONE_B_BUTTON,
             Shift.Test1Debug,
-            Shift.Test1Debug,
+            Shift.None,
             ButtonType.Toggle,
             () -> SequentialTask.Sequence(
                 //1 move to shooting position
@@ -1066,7 +1066,7 @@ public class ButtonMap implements IButtonMap
                         new WaitTask(TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME),
                         new CargoShootTask()
                     )
-                )                
+                )
             ),
             new IOperation[]
             {
@@ -1111,8 +1111,6 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.CargoHoodLong,
             }
         ),
-            
-            
     };
 
     @Override

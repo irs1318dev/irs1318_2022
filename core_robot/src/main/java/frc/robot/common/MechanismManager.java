@@ -24,7 +24,7 @@ public class MechanismManager implements IMechanism
             }
             catch (Exception ex)
             {
-                System.out.println("Encountered exception: " + ex.toString());
+                System.err.println("Encountered exception: " + ex.toString());
                 if (TuningConstants.THROW_EXCEPTIONS)
                 {
                     throw ex;
@@ -44,7 +44,7 @@ public class MechanismManager implements IMechanism
             }
             catch (Exception ex)
             {
-                System.out.println("Encountered exception: " + ex.toString());
+                System.err.println("Encountered exception: " + ex.toString());
                 if (TuningConstants.THROW_EXCEPTIONS)
                 {
                     throw ex;
@@ -64,7 +64,7 @@ public class MechanismManager implements IMechanism
             }
             catch (Exception ex)
             {
-                System.out.println("Encountered exception: " + ex.toString());
+                System.err.println("Encountered exception: " + ex.toString());
                 if (TuningConstants.THROW_EXCEPTIONS)
                 {
                     throw ex;
