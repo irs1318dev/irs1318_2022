@@ -74,10 +74,8 @@ public class ElectronicsConstants
 
     public static final int CARGO_INTAKE_PISTON_FORWARD = 6;
     public static final int CARGO_INTAKE_PISTON_REVERSE = 7;
-    public static final int CARGO_INNER_HOOD_FORWARD = 8;
-    public static final int CARGO_INNER_HOOD_REVERSE = 9;
-    // public static final int CARGO_OUTER_HOOD_FORWARD = 10;
-    // public static final int CARGO_OUTER_HOOD_REVERSE = 11;
+    public static final int CARGO_HOOD_FORWARD = 8;
+    public static final int CARGO_HOOD_REVERSE = 9;
 
     public static final int CARGO_FEEDER_THROUGHBEAM_ANALOG_INPUT = 0;
     public static final int CARGO_CONVEYOR_THROUGHBEAM_ANALOG_INPUT = 1;

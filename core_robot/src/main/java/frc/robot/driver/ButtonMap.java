@@ -692,8 +692,6 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.CargoEject,
                 DigitalOperation.CargoFeed,
                 DigitalOperation.CargoHoodPointBlank,
-                // DigitalOperation.CargoHoodShort,
-                // DigitalOperation.CargoHoodMedium,
                 DigitalOperation.CargoHoodLong,
             }),
 
@@ -721,8 +719,6 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.CargoEject,
                 DigitalOperation.CargoFeed,
                 DigitalOperation.CargoHoodPointBlank,
-                // DigitalOperation.CargoHoodShort,
-                // DigitalOperation.CargoHoodMedium,
                 DigitalOperation.CargoHoodLong,
             }),
 
@@ -750,8 +746,6 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.CargoEject,
                 DigitalOperation.CargoFeed,
                 DigitalOperation.CargoHoodPointBlank,
-                // DigitalOperation.CargoHoodShort,
-                // DigitalOperation.CargoHoodMedium,
                 DigitalOperation.CargoHoodLong,
             }),
 
@@ -779,8 +773,6 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.CargoEject,
                 DigitalOperation.CargoFeed,
                 DigitalOperation.CargoHoodPointBlank,
-                // DigitalOperation.CargoHoodShort,
-                // DigitalOperation.CargoHoodMedium,
                 DigitalOperation.CargoHoodLong,
             }),
 
@@ -849,8 +841,6 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.CargoEject,
                 DigitalOperation.CargoFeed,
                 DigitalOperation.CargoHoodPointBlank,
-                // DigitalOperation.CargoHoodShort,
-                // DigitalOperation.CargoHoodMedium,
                 DigitalOperation.CargoHoodLong,
             }),
         new MacroOperationDescription(
@@ -909,8 +899,6 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.CargoEject,
                 DigitalOperation.CargoFeed,
                 DigitalOperation.CargoHoodPointBlank,
-                // DigitalOperation.CargoHoodShort,
-                // DigitalOperation.CargoHoodMedium,
                 DigitalOperation.CargoHoodLong,
             }),
 
@@ -1018,8 +1006,6 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.CargoEject,
                 DigitalOperation.CargoFeed,
                 DigitalOperation.CargoHoodPointBlank,
-                // DigitalOperation.CargoHoodShort,
-                // DigitalOperation.CargoHoodMedium,
                 DigitalOperation.CargoHoodLong,
             }
         ),
@@ -1106,8 +1092,6 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.CargoEject,
                 DigitalOperation.CargoFeed,
                 DigitalOperation.CargoHoodPointBlank,
-                // DigitalOperation.CargoHoodShort,
-                // DigitalOperation.CargoHoodMedium,
                 DigitalOperation.CargoHoodLong,
             }
         ),
