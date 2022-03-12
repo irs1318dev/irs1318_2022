@@ -275,6 +275,13 @@ public class ButtonMap implements IButtonMap
             Shift.CodriverDebug,
             Shift.CodriverDebug,
             ButtonType.Click),
+        new DigitalOperationDescription(
+            DigitalOperation.ClimberWinchRetractedOverride,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_9,
+            Shift.CodriverDebug,
+            Shift.None,
+            ButtonType.Click),
 
         // cargo testing operations
         new DigitalOperationDescription(

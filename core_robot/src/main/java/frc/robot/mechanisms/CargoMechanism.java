@@ -142,8 +142,8 @@ public class CargoMechanism implements IMechanism
         this.logger.logNumber(LoggingKey.CargoFeederSensor, this.feederSensorValue);
         this.logger.logNumber(LoggingKey.CargoConveyerSensor, this.conveyorSensorValue);
 
-        this.feederBeamBroken = this.feederSensorValue < TuningConstants.CARGO_FEEDER_THROUGHBEAM_CUTOFF;
-        this.conveyorBeamBroken = this.conveyorSensorValue < TuningConstants.CARGO_CONVEYOR_THROUGHBEAM_CUTOFF;
+        this.feederBeamBroken = false; // this.feederSensorValue < TuningConstants.CARGO_FEEDER_THROUGHBEAM_CUTOFF;
+        this.conveyorBeamBroken = false; // this.conveyorSensorValue < TuningConstants.CARGO_CONVEYOR_THROUGHBEAM_CUTOFF;
 
         this.logger.logBoolean(LoggingKey.CargoFeederBeamBroken, this.feederBeamBroken);
         this.logger.logBoolean(LoggingKey.CargoConveyerBeamBroken, this.conveyorBeamBroken);

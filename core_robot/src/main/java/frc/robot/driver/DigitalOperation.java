@@ -41,4 +41,5 @@ public enum DigitalOperation implements IOperation
     ClimberEnableUnweightedMode,
     ClimberWinchLock,
     ClimberWinchUnlock,
+    ClimberWinchRetractedOverride,
 }
