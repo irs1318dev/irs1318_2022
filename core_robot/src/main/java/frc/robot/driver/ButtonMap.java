@@ -151,14 +151,14 @@ public class ButtonMap implements IButtonMap
     {
         // driving operations
         new DigitalOperationDescription(
-            DigitalOperation.DriveTrainReset,
+            DigitalOperation.PositionResetFieldOrientation,
             UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_1,
             Shift.CodriverDebug,
             Shift.None,
             ButtonType.Click),
         new DigitalOperationDescription(
-            DigitalOperation.PositionResetFieldOrientation,
+            DigitalOperation.DriveTrainReset,
             UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_1,
             Shift.CodriverDebug,
