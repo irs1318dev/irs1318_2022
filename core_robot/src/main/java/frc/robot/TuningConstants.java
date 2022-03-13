@@ -277,11 +277,11 @@ public class TuningConstants
     public static final boolean CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_ENABLED = true;
     public static final double CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE = 12.0;
 
-    public static final double CARGO_INTAKE_POWER = 0.4;
-    public static final double CARGO_INTAKE_OUT_POWER = -0.4;
-    public static final double CARGO_INTAKE_EJECT_POWER = -0.5;
+    public static final double CARGO_INTAKE_POWER = 0.6;
+    public static final double CARGO_INTAKE_OUT_POWER = -0.6;
+    public static final double CARGO_INTAKE_EJECT_POWER = -0.8;
     public static final double CARGO_CONVEYOR_ADVANCE_POWER = 0.4;
-    public static final double CARGO_CONVEYOR_REVERSE_POWER = 0.4;
+    public static final double CARGO_CONVEYOR_REVERSE_POWER = -0.4;
     public static final double CARGO_FEEDER_POWER = 0.4;
 
     public static final int CARGO_FLYWHEEL_VELOCITY_PERIOD = 0;
