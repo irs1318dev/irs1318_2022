@@ -95,6 +95,8 @@ public enum LoggingKey
     ClimberArmOut("c.arm_out"),
     ClimberWinchLockIn("c.lock_in"),
 
+    CargoIntakePower("cg.intake_pow"),
+    CargoFlywheelPower("cg.flywheel_pow"),
     CargoFlywheelPosition("cg.flywheel_pos"),
     CargoFlywheelVelocity("cg.flywheel_vel"),
     CargoFlywheelError("cg.flywheel_err"),

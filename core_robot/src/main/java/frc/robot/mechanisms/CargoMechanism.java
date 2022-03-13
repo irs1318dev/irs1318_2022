@@ -185,9 +185,10 @@ public class CargoMechanism implements IMechanism
         }
 
         // control intake rollers
+        double intakePower = TuningConstants.PERRY_THE_PLATYPUS;
         if (this.driver.getDigital(DigitalOperation.CargoEject))
         {
-            this.intakeMotor.set(TuningConstants.CARGO_INTAKE_EJECT_POWER);
+            intakePower = TuningConstants.CARGO_INTAKE_EJECT_POWER;
             if (this.currentConveyorState == ConveyorState.Off || this.currentConveyorState == ConveyorState.Advance)
             {
                 // if eject pushed then reverse conveyor
@@ -204,19 +205,22 @@ public class CargoMechanism implements IMechanism
 
             if (this.driver.getDigital(DigitalOperation.CargoIntakeIn))
             {
-                this.intakeMotor.set(TuningConstants.CARGO_INTAKE_POWER);
+                intakePower = TuningConstants.CARGO_INTAKE_POWER;
                 this.lastIntakeTimeout = currTime + TuningConstants.CONVEYOR_RUNTIME_AFTER_INTAKE;
                 this.currentConveyorState = ConveyorState.Advance;
             }
             else if (this.driver.getDigital(DigitalOperation.CargoIntakeOut))
             {
-                this.intakeMotor.set(TuningConstants.CARGO_INTAKE_OUT_POWER);
+                intakePower = TuningConstants.CARGO_INTAKE_OUT_POWER;
             }
             else
             {
-                this.intakeMotor.set(TuningConstants.PERRY_THE_PLATYPUS);
+                intakePower = TuningConstants.PERRY_THE_PLATYPUS;
             }
         }
+
+        this.intakeMotor.set(intakePower);
+        this.logger.logNumber(LoggingKey.CargoIntakePower, intakePower);
 
         if (this.conveyorBeamBroken &&
             this.feederBeamBroken &&
@@ -266,17 +270,20 @@ public class CargoMechanism implements IMechanism
             this.flywheelSetpoint = this.flywheelVelocity;
             this.flywheelMotor.setControlMode(TalonXControlMode.PercentOutput);
             this.flywheelMotor.set(flywheelMotorPower);
+            this.logger.logNumber(LoggingKey.CargoFlywheelPower, flywheelMotorPower);
         }
         else if (flywheelVelocityGoal != TuningConstants.PERRY_THE_PLATYPUS)
         {
             this.flywheelSetpoint = flywheelVelocityGoal * TuningConstants.CARGO_FLYWHEEL_MOTOR_PID_KS;
             this.flywheelMotor.setControlMode(TalonXControlMode.Velocity);
             this.flywheelMotor.set(this.flywheelSetpoint);
+            this.logger.logNumber(LoggingKey.CargoFlywheelPower, -1318.0);
         }
         else
         {
             this.flywheelSetpoint = TuningConstants.PERRY_THE_PLATYPUS;
             this.flywheelMotor.stop();
+            this.logger.logNumber(LoggingKey.CargoFlywheelPower, TuningConstants.PERRY_THE_PLATYPUS);
         }
 
         this.logger.logNumber(LoggingKey.CargoFlywheelDesiredVelocity, this.flywheelSetpoint);
