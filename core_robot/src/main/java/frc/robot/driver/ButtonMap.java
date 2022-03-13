@@ -196,15 +196,15 @@ public class ButtonMap implements IButtonMap
         // vision operations
         new DigitalOperationDescription(
             DigitalOperation.VisionEnableRetroreflectiveProcessing,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_4,
+            UserInputDevice.Test1,
+            UserInputDeviceButton.XBONE_X_BUTTON,
             Shift.None,
             Shift.None,
             ButtonType.Simple),
         new DigitalOperationDescription(
             DigitalOperation.VisionEnableGamePieceProcessing,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_5,
+            UserInputDevice.Test1,
+            UserInputDeviceButton.XBONE_Y_BUTTON,
             Shift.None,
             Shift.None,
             ButtonType.Simple),
@@ -276,7 +276,7 @@ public class ButtonMap implements IButtonMap
             Shift.CodriverDebug,
             ButtonType.Click),
         new DigitalOperationDescription(
-            DigitalOperation.ClimberWinchRetractedOverride,
+            DigitalOperation.ClimberResetWinchPosition,
             UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_9,
             Shift.CodriverDebug,
@@ -581,6 +581,40 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.ClimberEnableUnweightedMode,
                 DigitalOperation.ClimberWinchLock,
                 DigitalOperation.ClimberWinchUnlock
+            }
+        ),
+        
+        new MacroOperationDescription(
+            MacroOperation.CargoIntakeExtendMacro,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_10,
+            Shift.CodriverDebug,
+            Shift.None,
+            ButtonType.Toggle,
+            () -> SequentialTask.Sequence(
+                new CargoExtendIntakeTask(true)
+            ),
+            new IOperation[]
+            {
+                DigitalOperation.CargoIntakeExtend,
+                DigitalOperation.CargoIntakeRetract
+            }
+        ),
+        
+        new MacroOperationDescription(
+            MacroOperation.CargoIntakeRetractMacro,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_10,
+            Shift.CodriverDebug,
+            Shift.CodriverDebug,
+            ButtonType.Toggle,
+            () -> SequentialTask.Sequence(
+                new CargoExtendIntakeTask(false)
+            ),
+            new IOperation[]
+            {
+                DigitalOperation.CargoIntakeExtend,
+                DigitalOperation.CargoIntakeRetract
             }
         ),
 

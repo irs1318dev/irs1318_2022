@@ -197,7 +197,7 @@ public class ClimberMechanism implements IMechanism
             this.winchArmLocked = false;
         }
 
-        if (this.driver.getDigital(DigitalOperation.ClimberWinchRetractedOverride))
+        if (this.driver.getDigital(DigitalOperation.ClimberResetWinchPosition))
         {
             this.winchMotor.reset();
         }

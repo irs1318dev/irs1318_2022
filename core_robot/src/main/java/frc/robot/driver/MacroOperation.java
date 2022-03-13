@@ -33,4 +33,8 @@ public enum MacroOperation implements IOperation
     ShootPointBlankLow,
     ShootTarmacHigh,
     AutoShootHigh,
+
+    //Cargo macros
+    CargoIntakeExtendMacro,
+    CargoIntakeRetractMacro,
 }
