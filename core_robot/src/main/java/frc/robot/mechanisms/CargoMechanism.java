@@ -28,8 +28,8 @@ public class CargoMechanism implements IMechanism
     private final ITalonSRX feederMotor;
     private final ITalonFX flywheelMotor;
 
-    // private final IDoubleSolenoid intakeExtender;
-    // private final IDoubleSolenoid hoodExtender;
+    private final IDoubleSolenoid intakeExtender;
+    private final IDoubleSolenoid hoodExtender;
 
     private final IAnalogInput feederThroughBeamSensor;
     private final IAnalogInput conveyorThroughBeamSensor;
@@ -70,20 +70,20 @@ public class CargoMechanism implements IMechanism
         this.intakeMotor.setInvertOutput(HardwareConstants.CARGO_INTAKE_MOTOR_INVERT_OUTPUT);
         this.intakeMotor.setNeutralMode(MotorNeutralMode.Brake);
 
-        // this.intakeExtender =
-        //     provider.getDoubleSolenoid(
-        //         ElectronicsConstants.PNEUMATICS_MODULE_A,
-        //         ElectronicsConstants.PNEUMATICS_MODULE_TYPE_A,
-        //         ElectronicsConstants.CARGO_INTAKE_PISTON_FORWARD,
-        //         ElectronicsConstants.CARGO_INTAKE_PISTON_REVERSE);
+        this.intakeExtender =
+            provider.getDoubleSolenoid(
+                ElectronicsConstants.PNEUMATICS_MODULE_A,
+                ElectronicsConstants.PNEUMATICS_MODULE_TYPE_A,
+                ElectronicsConstants.CARGO_INTAKE_PISTON_FORWARD,
+                ElectronicsConstants.CARGO_INTAKE_PISTON_REVERSE);
 
-        // // shooter
-        // this.hoodExtender =
-        //     provider.getDoubleSolenoid(
-        //         ElectronicsConstants.PNEUMATICS_MODULE_A,
-        //         ElectronicsConstants.PNEUMATICS_MODULE_TYPE_A,
-        //         ElectronicsConstants.CARGO_HOOD_FORWARD,
-        //         ElectronicsConstants.CARGO_HOOD_REVERSE);
+        // shooter
+        this.hoodExtender =
+            provider.getDoubleSolenoid(
+                ElectronicsConstants.PNEUMATICS_MODULE_A,
+                ElectronicsConstants.PNEUMATICS_MODULE_TYPE_A,
+                ElectronicsConstants.CARGO_HOOD_FORWARD,
+                ElectronicsConstants.CARGO_HOOD_REVERSE);
 
         this.flywheelMotor = provider.getTalonFX(ElectronicsConstants.CARGO_FLYWHEEL_MOTOR_CAN_ID);
         this.flywheelMotor.setSensorType(TalonXFeedbackDevice.IntegratedSensor);
@@ -102,11 +102,13 @@ public class CargoMechanism implements IMechanism
         this.flywheelMotor.setVoltageCompensation(
             TuningConstants.CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_ENABLED,
             TuningConstants.CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE);
+        this.flywheelMotor.setFeedbackFramePeriod(TuningConstants.CARGO_FLYWHEEL_SENSOR_FRAME_PERIOD_MS);
 
         ITalonFX flywheelFollower = provider.getTalonFX(ElectronicsConstants.CARGO_FLYWHEEL_FOLLOWER_MOTOR_CAN_ID);
         flywheelFollower.setInvert(HardwareConstants.CARGO_FLYWHEEL_FOLLOWER_MOTOR_INVERT);
         flywheelFollower.setNeutralMode(MotorNeutralMode.Coast);
         flywheelFollower.follow(this.flywheelMotor);
+        flywheelFollower.setFeedbackFramePeriod(TuningConstants.CARGO_FLYWHEEL_SENSOR_FRAME_PERIOD_MS);
 
         // serializer
         this.feederThroughBeamSensor = provider.getAnalogInput(ElectronicsConstants.CARGO_FEEDER_THROUGHBEAM_ANALOG_INPUT);
@@ -142,7 +144,7 @@ public class CargoMechanism implements IMechanism
         this.logger.logNumber(LoggingKey.CargoFeederSensor, this.feederSensorValue);
         this.logger.logNumber(LoggingKey.CargoConveyerSensor, this.conveyorSensorValue);
 
-        this.feederBeamBroken = false; // this.feederSensorValue < TuningConstants.CARGO_FEEDER_THROUGHBEAM_CUTOFF;
+        this.feederBeamBroken = this.feederSensorValue < TuningConstants.CARGO_FEEDER_THROUGHBEAM_CUTOFF;
         this.conveyorBeamBroken = this.conveyorSensorValue < TuningConstants.CARGO_CONVEYOR_THROUGHBEAM_CUTOFF;
 
         this.logger.logBoolean(LoggingKey.CargoFeederBeamBroken, this.feederBeamBroken);
@@ -154,25 +156,25 @@ public class CargoMechanism implements IMechanism
     {
         double currTime = this.timer.get();
 
-        // // extend and retract intake
-        // if (this.driver.getDigital(DigitalOperation.CargoIntakeExtend))
-        // {
-        //     this.intakeExtender.set(DoubleSolenoidValue.Forward);
-        // }
-        // else if (this.driver.getDigital(DigitalOperation.CargoIntakeRetract))
-        // {
-        //     this.intakeExtender.set(DoubleSolenoidValue.Reverse);
-        // }
+        // extend and retract intake
+        if (this.driver.getDigital(DigitalOperation.CargoIntakeExtend))
+        {
+            this.intakeExtender.set(DoubleSolenoidValue.Forward);
+        }
+        else if (this.driver.getDigital(DigitalOperation.CargoIntakeRetract))
+        {
+            this.intakeExtender.set(DoubleSolenoidValue.Reverse);
+        }
 
-        // // hood positions
-        // if (this.driver.getDigital(DigitalOperation.CargoHoodPointBlank))
-        // {
-        //     this.hoodExtender.set(DoubleSolenoidValue.Reverse);
-        // }
-        // else if (this.driver.getDigital(DigitalOperation.CargoHoodLong))
-        // {
-        //     this.hoodExtender.set(DoubleSolenoidValue.Forward);
-        // }
+        // hood positions
+        if (this.driver.getDigital(DigitalOperation.CargoHoodPointBlank))
+        {
+            this.hoodExtender.set(DoubleSolenoidValue.Reverse);
+        }
+        else if (this.driver.getDigital(DigitalOperation.CargoHoodLong))
+        {
+            this.hoodExtender.set(DoubleSolenoidValue.Forward);
+        }
 
         // feeder power
         if (this.driver.getDigital(DigitalOperation.CargoFeed))
@@ -296,8 +298,8 @@ public class CargoMechanism implements IMechanism
         this.flywheelMotor.stop();
         this.feederMotor.stop();
         this.intakeMotor.stop();
-        // this.intakeExtender.set(DoubleSolenoidValue.Off);
-        // this.hoodExtender.set(DoubleSolenoidValue.Off);
+        this.intakeExtender.set(DoubleSolenoidValue.Off);
+        this.hoodExtender.set(DoubleSolenoidValue.Off);
     }
 
     public double getFlywheelSetpoint()

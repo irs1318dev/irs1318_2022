@@ -291,6 +291,21 @@ public class ButtonMap implements IButtonMap
             Shift.None,
             Shift.None,
             ButtonType.Simple),
+
+        new DigitalOperationDescription(
+            DigitalOperation.CargoHoodPointBlank,
+            UserInputDevice.Test1,
+            0,
+            Shift.None,
+            Shift.None,
+            ButtonType.Click),
+        new DigitalOperationDescription(
+            DigitalOperation.CargoHoodLong,
+            UserInputDevice.Test1,
+            180,
+            Shift.None,
+            Shift.None,
+            ButtonType.Click),
     };
 
     public static MacroOperationDescription[] MacroSchema = new MacroOperationDescription[]
@@ -736,6 +751,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.CargoFeed,
                 DigitalOperation.CargoHoodPointBlank,
                 DigitalOperation.CargoHoodLong,
+                AnalogOperation.CargoFlywheelVelocityGoal,
             }),
 
         new MacroOperationDescription(
@@ -763,6 +779,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.CargoFeed,
                 DigitalOperation.CargoHoodPointBlank,
                 DigitalOperation.CargoHoodLong,
+                AnalogOperation.CargoFlywheelVelocityGoal,
             }),
 
         new MacroOperationDescription(
@@ -790,6 +807,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.CargoFeed,
                 DigitalOperation.CargoHoodPointBlank,
                 DigitalOperation.CargoHoodLong,
+                AnalogOperation.CargoFlywheelVelocityGoal,
             }),
 
         new MacroOperationDescription(
@@ -817,6 +835,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.CargoFeed,
                 DigitalOperation.CargoHoodPointBlank,
                 DigitalOperation.CargoHoodLong,
+                AnalogOperation.CargoFlywheelVelocityGoal,
             }),
 
 

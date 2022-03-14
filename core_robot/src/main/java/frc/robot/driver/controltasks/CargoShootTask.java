@@ -31,7 +31,7 @@ public class CargoShootTask extends ControlTaskBase
     public CargoShootTask(boolean shootAll)
     {
         this.currentState = ShootingState.CheckBall;
-        this.shootAll = true;
+        this.shootAll = shootAll;
     }
 
     @Override
@@ -70,7 +70,6 @@ public class CargoShootTask extends ControlTaskBase
             }
         }
 
-        // TODO: if throughbeam is unblocked before connecting with flywheel, change this
         if (this.currentState == ShootingState.Shooting && !this.cargo.isFeederSensorBlocked()) 
         {
             if (this.shootAll && this.cargo.isConveyorSensorBlocked()) 

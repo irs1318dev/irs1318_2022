@@ -31,12 +31,13 @@ public class ElectronicsConstants
     public static final boolean INVERT_THROTTLE_AXIS = true;
     public static final boolean INVERT_TRIGGER_AXIS = false;
 
-    public static final int PNEUMATICS_MODULE_A = 0; // Module A
+    public static final int PNEUMATICS_MODULE_A = 1; // Module A
     public static final PneumaticsModuleType PNEUMATICS_MODULE_TYPE_A = PneumaticsModuleType.PneumaticsHub; // Module A
-    public static final int PNEUMATICS_MODULE_B = 1; // Module B
+    public static final int PNEUMATICS_MODULE_B = 2; // Module B
     public static final PneumaticsModuleType PNEUMATICS_MODULE_TYPE_B = PneumaticsModuleType.PneumaticsHub; // Module B
 
-    public static final boolean PNEUMATICS_USE_ANALOG = true;
+    public static final boolean PNEUMATICS_USE_HYBRID = false;
+    public static final boolean PNEUMATICS_USE_ANALOG = false;
     public static final double PNEUMATICS_MIN_PSI = 110.0;
     public static final double PNEUMATICS_MAX_PSI = 120.0;
 
@@ -72,10 +73,10 @@ public class ElectronicsConstants
     public static final int CARGO_CONVEYOR_MOTOR_CAN_ID = 12;
     public static final int CARGO_FEEDER_MOTOR_CAN_ID = 13;
 
-    public static final int CARGO_INTAKE_PISTON_FORWARD = 6;
-    public static final int CARGO_INTAKE_PISTON_REVERSE = 7;
-    public static final int CARGO_HOOD_FORWARD = 8;
-    public static final int CARGO_HOOD_REVERSE = 9;
+    public static final int CARGO_INTAKE_PISTON_FORWARD = 0;
+    public static final int CARGO_INTAKE_PISTON_REVERSE = 1;
+    public static final int CARGO_HOOD_FORWARD = 2;
+    public static final int CARGO_HOOD_REVERSE = 3;
 
     public static final int CARGO_FEEDER_THROUGHBEAM_ANALOG_INPUT = 0;
     public static final int CARGO_CONVEYOR_THROUGHBEAM_ANALOG_INPUT = 1;
@@ -85,12 +86,12 @@ public class ElectronicsConstants
     public static final int CLIMBER_WINCH_MOTOR_MASTER_CAN_ID = 14;
     public static final int CLIMBER_WINCH_MOTOR_FOLLOWER_CAN_ID = 15;
 
-    public static final int CLIMBER_WINCH_LOCK_FORWARD = 0;
-    public static final int CLIMBER_WINCH_LOCK_BACKWARD = 1;
-    public static final int CLIMBER_ACTIVE_HOOK_FORWARD = 2;
-    public static final int CLIMBER_ACTIVE_HOOK_REVERSE = 3;
-    public static final int CLIMBER_ACTIVE_ARM_FORWARD = 4;
-    public static final int CLIMBER_ACTIVE_ARM_REVERSE = 5;
+    public static final int CLIMBER_WINCH_LOCK_FORWARD = 4;
+    public static final int CLIMBER_WINCH_LOCK_BACKWARD = 5;
+    public static final int CLIMBER_ACTIVE_HOOK_FORWARD = 6;
+    public static final int CLIMBER_ACTIVE_HOOK_REVERSE = 7;
+    public static final int CLIMBER_ACTIVE_ARM_FORWARD = 8;
+    public static final int CLIMBER_ACTIVE_ARM_REVERSE = 9;
 
     public static final int CLIMBER_WINCH_ARM_RETRACTED_LIMIT_SWITCH_DIGITAL_INPUT = 2;
 }

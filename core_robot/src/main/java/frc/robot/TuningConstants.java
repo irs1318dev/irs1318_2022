@@ -245,6 +245,9 @@ public class TuningConstants
     public static final double DRIVETRAIN_STEER_SUPPLY_TRIGGER_CURRENT = 40.0;
     public static final double DRIVETRAIN_STEER_SUPPLY_TRIGGER_DURATION = 100.0;
 
+    public static final int DRIVETRAIN_SENSOR_FRAME_PERIOD_MS = 10;
+    public static final int DRIVETRAIN_PID_FRAME_PERIOD_MS = 100;
+
     public static final boolean DRIVETRAIN_SKIP_ANGLE_ON_ZERO_VELOCITY = true;
     public static final double DRIVETRAIN_SKIP_ANGLE_ON_ZERO_DELTA = 0.001;
     public static final double DRIVETRAIN_SKIP_OMEGA_ON_ZERO_DELTA = 0.25;
@@ -276,6 +279,7 @@ public class TuningConstants
 
     public static final boolean CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_ENABLED = true;
     public static final double CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE = 12.0;
+    public static final int CARGO_FLYWHEEL_SENSOR_FRAME_PERIOD_MS = 40;
 
     public static final double CARGO_INTAKE_POWER = 0.6;
     public static final double CARGO_INTAKE_OUT_POWER = -0.6;
@@ -337,9 +341,7 @@ public class TuningConstants
 
     public static final boolean CLIMBER_WINCH_MOTOR_MASTER_VOLTAGE_COMPENSATION_ENABLED = true;
     public static final double CLIMBER_WINCH_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE = 12.0;
-
-    public static final boolean CLIMBER_WINCH_MOTOR_FOLLOWER_VOLTAGE_COMPENSATION_ENABLED = true;
-    public static final double CLIMBER_WINCH_MOTOR_FOLLOWER_POSITION_VOLTAGE_COMPENSATION_MAXVOLTAGE = 12.0;
+    public static final int CLIMBER_WINCH_SENSOR_FRAME_PERIOD_MS = 50;
 
     public static final double CONVEYOR_RUNTIME_AFTER_INTAKE = 3.0;
 
