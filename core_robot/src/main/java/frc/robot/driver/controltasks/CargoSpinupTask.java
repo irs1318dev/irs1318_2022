@@ -5,7 +5,7 @@ import frc.robot.driver.AnalogOperation;
 public class CargoSpinupTask extends TimedTask
 {
     private double desiredSpinSpeed;
-
+    
     public CargoSpinupTask(double desiredSpinSpeed)
     {
         super(10.0);
