@@ -43,7 +43,8 @@ public class CargoMechanism implements IMechanism
     private boolean feederBeamBroken;
     private boolean conveyorBeamBroken;
 
-    private double lastIntakeTimeout;
+    private double intakeTimeout;
+    private double advanceTimeout;
 
     private double flywheelSetpoint;
 
@@ -51,6 +52,7 @@ public class CargoMechanism implements IMechanism
     {
         Off,
         Reverse,
+        Intake,
         Advance
     };
 
@@ -208,8 +210,8 @@ public class CargoMechanism implements IMechanism
             if (this.driver.getDigital(DigitalOperation.CargoIntakeIn))
             {
                 intakePower = TuningConstants.CARGO_INTAKE_POWER;
-                this.lastIntakeTimeout = currTime + TuningConstants.CONVEYOR_RUNTIME_AFTER_INTAKE;
-                this.currentConveyorState = ConveyorState.Advance;
+                this.intakeTimeout = currTime + TuningConstants.CONVEYOR_RUNTIME_AFTER_INTAKE;
+                this.currentConveyorState = ConveyorState.Intake;
             }
             else if (this.driver.getDigital(DigitalOperation.CargoIntakeOut))
             {
@@ -224,16 +226,24 @@ public class CargoMechanism implements IMechanism
         this.intakeMotor.set(intakePower);
         this.logger.logNumber(LoggingKey.CargoIntakePower, intakePower);
 
+        // stop when both throughbeams broken
         if (this.conveyorBeamBroken &&
             this.feederBeamBroken &&
-            this.currentConveyorState == ConveyorState.Advance)
+            (this.currentConveyorState == ConveyorState.Intake || this.currentConveyorState == ConveyorState.Advance))
         {
             this.currentConveyorState = ConveyorState.Off;
         }
 
-        // after intake time
+        // after intake timeout
+        if (this.currentConveyorState == ConveyorState.Intake &&
+            currTime > this.intakeTimeout)
+        {
+            this.currentConveyorState = ConveyorState.Off;
+        }
+
+        // after advance timeout
         if (this.currentConveyorState == ConveyorState.Advance &&
-            currTime > this.lastIntakeTimeout)
+            currTime > this.advanceTimeout)
         {
             this.currentConveyorState = ConveyorState.Off;
         }
@@ -244,12 +254,17 @@ public class CargoMechanism implements IMechanism
             this.currentConveyorState == ConveyorState.Off)
         {
             this.currentConveyorState = ConveyorState.Advance;
+            this.advanceTimeout = currTime + TuningConstants.CONVEYOR_RUNTIME_FOR_ADVANCE;
         }
 
         switch (this.currentConveyorState)
         {
             case Advance:
                 this.conveyorMotor.set(TuningConstants.CARGO_CONVEYOR_ADVANCE_POWER);
+                break;
+
+            case Intake:
+                this.conveyorMotor.set(TuningConstants.CARGO_CONVEYOR_INTAKE_POWER);
                 break;
 
             case Reverse:
