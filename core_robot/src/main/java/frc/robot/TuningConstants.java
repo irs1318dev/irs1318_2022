@@ -10,6 +10,7 @@ public class TuningConstants
 {
     public static final boolean COMPETITION_ROBOT = false;
     public static boolean THROW_EXCEPTIONS = !TuningConstants.COMPETITION_ROBOT;
+    public static boolean LOG_EXCEPTIONS = TuningConstants.THROW_EXCEPTIONS;
 
     //================================================== Magic Values ==============================================================
 
