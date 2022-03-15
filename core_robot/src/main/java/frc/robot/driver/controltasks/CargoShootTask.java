@@ -41,7 +41,7 @@ public class CargoShootTask extends ControlTaskBase
         this.timer = this.getInjector().getInstance(ITimer.class);
         this.endTime = this.timer.get() + TuningConstants.CARGO_SHOOT_CHECKBALL_WAIT_TIME;
 
-        this.currentState = ShootingState.CheckBall;        
+        this.currentState = ShootingState.CheckBall;
         this.shotCount = 0;
     }
 
@@ -80,6 +80,7 @@ public class CargoShootTask extends ControlTaskBase
             if (this.shootAll && this.cargo.isConveyorSensorBlocked() && this.shotCount < 2) 
             {
                 this.currentState = ShootingState.CheckBall;
+                this.endTime = this.timer.get() + TuningConstants.CARGO_SHOOT_CHECKBALL_WAIT_TIME;
             }
             else 
             {

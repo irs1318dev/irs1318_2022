@@ -777,11 +777,10 @@ public class ButtonMap implements IButtonMap
             Shift.DriverDebug,
             Shift.None,
             ButtonType.Toggle,
-            () -> ConcurrentTask.AllTasks(
+            () -> SequentialTask.Sequence(
                     new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
-                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
-                    SequentialTask.Sequence(
-                        new WaitTask(0.25),
+                    ConcurrentTask.AnyTasks(
+                        new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
                         new CargoShootTask()
                     )
                 ),
@@ -805,11 +804,10 @@ public class ButtonMap implements IButtonMap
             Shift.DriverDebug,
             Shift.None,
             ButtonType.Toggle,
-            () -> ConcurrentTask.AllTasks(
+            () -> SequentialTask.Sequence(
                     new CargoHoodTask(DigitalOperation.CargoHoodLong),
-                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED),
-                    SequentialTask.Sequence(
-                        new WaitTask(0.25),
+                    ConcurrentTask.AnyTasks(
+                        new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED),
                         new CargoShootTask()
                     )
                 ),
@@ -833,11 +831,10 @@ public class ButtonMap implements IButtonMap
             Shift.DriverDebug,
             Shift.None,
             ButtonType.Toggle,
-            () -> ConcurrentTask.AllTasks(
+            () -> SequentialTask.Sequence(
                     new CargoHoodTask(DigitalOperation.CargoHoodLong),
-                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
-                    SequentialTask.Sequence(
-                        new WaitTask(0.25),
+                    ConcurrentTask.AnyTasks(
+                        new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
                         new CargoShootTask()
                     )
                 ),
@@ -861,11 +858,10 @@ public class ButtonMap implements IButtonMap
             Shift.DriverDebug,
             Shift.None,
             ButtonType.Toggle,
-            () -> ConcurrentTask.AllTasks(
+            () -> SequentialTask.Sequence(
                     new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
-                    new VisionSpinUpTask(true),
-                    SequentialTask.Sequence(
-                        new WaitTask(0.25),
+                    ConcurrentTask.AnyTasks(
+                        new VisionSpinUpTask(true),
                         new CargoShootTask()
                     )
                 ),
@@ -882,7 +878,6 @@ public class ButtonMap implements IButtonMap
                 AnalogOperation.CargoFlywheelVelocityGoal,
             }),
 
-
         // autonomous testing operations
         new MacroOperationDescription(
             MacroOperation.AutoDriveBackIntakeShoot,
@@ -895,18 +890,13 @@ public class ButtonMap implements IButtonMap
                 ConcurrentTask.AllTasks(
                     new FollowPathTask("goForward4ft"),
                     new CargoExtendIntakeTask(true),
-                    new CargoIntakeTask(1, true)
+                    new CargoIntakeTask(1.0, true)
                 ),
                 new FollowPathTask("goBack7ftRotate"),
                 new VisionCenteringTask(false),
-                ConcurrentTask.AllTasks(
+                ConcurrentTask.AnyTasks(
                     new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
-                    SequentialTask.Sequence(
-                        new WaitTask(TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME), // how long it take to spin
-                        new CargoShootTask(),
-                        new WaitTask(TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME), // TODO maybe change
-                        new CargoShootTask()
-                    )
+                    new CargoShootTask()
                 )
             ),
             new IOperation[]
@@ -958,13 +948,11 @@ public class ButtonMap implements IButtonMap
             Shift.Test1Debug,
             ButtonType.Toggle,
             () -> SequentialTask.Sequence(
+                new CargoHoodTask(DigitalOperation.CargoHoodLong),
                 new VisionCenteringTask(false),
                 ConcurrentTask.AllTasks(
                     new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
-                    SequentialTask.Sequence(
-                        new WaitTask(TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME), // how long it take to spin
-                        new CargoShootTask()
-                    )
+                    new CargoShootTask()
                 ),
                 new FollowPathTask("goBack4ft")
             ),
@@ -1019,6 +1007,8 @@ public class ButtonMap implements IButtonMap
             Shift.None,
             ButtonType.Toggle,
             () -> SequentialTask.Sequence(
+                //0 set hood to long
+                new CargoHoodTask(DigitalOperation.CargoHoodLong),
                 //1 move to shooting position
                 ConcurrentTask.AllTasks(
                     new FollowPathTask("goForward5Feet"),
@@ -1029,10 +1019,7 @@ public class ButtonMap implements IButtonMap
                 //3 shoot pre-loaded ball
                 ConcurrentTask.AllTasks(
                     new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
-                    SequentialTask.Sequence(
-                        new WaitTask(TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME), // how long it take to spin
-                        new CargoShootTask(false)
-                    )
+                    new CargoShootTask(false)
                 ),
                 //4 get first ball
                 ConcurrentTask.AllTasks(
@@ -1046,13 +1033,11 @@ public class ButtonMap implements IButtonMap
                 ),
                 //6 shoot the 2 balls
                 new FollowPathTask("goBack6ftRight5ftTurn122"),
+                new VisionCenteringTask(false),
                 ConcurrentTask.AllTasks(
                     new VisionCenteringTask(false),
                     new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
-                    SequentialTask.Sequence(
-                        new WaitTask(TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME),
-                        new CargoShootTask()
-                    )
+                    new CargoShootTask()
                 ),
                 //7 move to terminal and start intake
                 ConcurrentTask.AllTasks(
@@ -1063,17 +1048,14 @@ public class ButtonMap implements IButtonMap
                         new VisionCenteringTask(true),
                         new WaitTask(1.0),
                         new VisionCenteringTask(true)
-                    )   
+                    )
                 ),
                 //8 move to shoot those balls but not during the month of november
                 new FollowPathTask("goBack18ftLeft12ftTurn154"),
                 new VisionCenteringTask(false),
                 ConcurrentTask.AllTasks(
                     new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
-                    SequentialTask.Sequence(
-                        new WaitTask(TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME),
-                        new CargoShootTask()
-                    )
+                    new CargoShootTask()
                 )
             ),
             new IOperation[]
@@ -1137,10 +1119,7 @@ public class ButtonMap implements IButtonMap
                 //3 shoot pre-loaded ball
                 ConcurrentTask.AllTasks(
                     new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
-                    SequentialTask.Sequence(
-                        new WaitTask(TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME), // how long it take to spin
-                        new CargoShootTask(false)
-                    )
+                    new CargoShootTask(false)
                 ),
                 //4 get first ball
                 ConcurrentTask.AllTasks(
@@ -1157,10 +1136,7 @@ public class ButtonMap implements IButtonMap
                 ConcurrentTask.AllTasks(
                     new VisionCenteringTask(false),
                     new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
-                    SequentialTask.Sequence(
-                        new WaitTask(TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME),
-                        new CargoShootTask()
-                    )
+                    new CargoShootTask()
                 )
             ),
             new IOperation[]
