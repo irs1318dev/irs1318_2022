@@ -14,8 +14,9 @@ public enum MacroOperation implements IOperation
     PIDBrake,
 
     // Testing operations
-    VisionCenter,
-    VisionCenterAndAdvance,
+    VisionCenterHub,
+    VisionCenterAndAdvanceHub,
+    VisionCenterAndAdvanceCargo,
 
     // Climber operations
     ClimberWinchForward,

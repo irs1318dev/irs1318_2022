@@ -215,14 +215,14 @@ public class ButtonMap implements IButtonMap
             UserInputDevice.Driver,
             0,
             Shift.DriverDebug,
-            Shift.None,
+            Shift.DriverDebug,
             ButtonType.Click),
         new DigitalOperationDescription(
             DigitalOperation.CargoIntakeForceRetract,
             UserInputDevice.Driver,
             180,
             Shift.DriverDebug,
-            Shift.None,
+            Shift.DriverDebug,
             ButtonType.Click),
         new DigitalOperationDescription(
             DigitalOperation.CargoIntakeIn,
@@ -316,7 +316,7 @@ public class ButtonMap implements IButtonMap
             UserInputDevice.Driver,
             180, // DPAD-down
             Shift.DriverDebug,
-            Shift.DriverDebug,
+            Shift.None,
             ButtonType.Simple,
             () -> new PIDBrakeTask(),
             new IOperation[]
@@ -347,11 +347,11 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.DriveTrainDisableFieldOrientation,
             }),
         new MacroOperationDescription(
-            MacroOperation.VisionCenter,
+            MacroOperation.VisionCenterHub,
             UserInputDevice.Driver,
             0, // DPAD-up
             Shift.DriverDebug,
-            Shift.DriverDebug,
+            Shift.None,
             ButtonType.Toggle,
             () -> SequentialTask.Sequence(
                     new VisionCenteringTask(false),
@@ -388,14 +388,55 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.VisionForceDisable,
             }),
         new MacroOperationDescription(
-            MacroOperation.VisionCenterAndAdvance,
+            MacroOperation.VisionCenterAndAdvanceCargo,
             UserInputDevice.Driver,
             90, // DPAD-right
             Shift.DriverDebug,
-            Shift.DriverDebug,
+            Shift.None,
             ButtonType.Toggle,
             () -> SequentialTask.Sequence(
                     new VisionAdvanceAndCenterTask(false, true),
+                    new DriveTrainFieldOrientationModeTask(true)),
+            new IOperation[]
+            {
+                AnalogOperation.DriveTrainMoveForward,
+                AnalogOperation.DriveTrainMoveRight,
+                AnalogOperation.DriveTrainTurnAngleGoal,
+                AnalogOperation.DriveTrainTurnSpeed,
+                AnalogOperation.DriveTrainRotationA,
+                AnalogOperation.DriveTrainRotationB,
+                AnalogOperation.DriveTrainPathXGoal,
+                AnalogOperation.DriveTrainPathYGoal,
+                AnalogOperation.DriveTrainPathXVelocityGoal,
+                AnalogOperation.DriveTrainPathYVelocityGoal,
+                AnalogOperation.DriveTrainPathAngleVelocityGoal,
+                AnalogOperation.DriveTrainPositionDrive1,
+                AnalogOperation.DriveTrainPositionDrive2,
+                AnalogOperation.DriveTrainPositionDrive3,
+                AnalogOperation.DriveTrainPositionDrive4,
+                AnalogOperation.DriveTrainPositionSteer1,
+                AnalogOperation.DriveTrainPositionSteer2,
+                AnalogOperation.DriveTrainPositionSteer3,
+                AnalogOperation.DriveTrainPositionSteer4,
+                DigitalOperation.DriveTrainPositionMode,
+                DigitalOperation.DriveTrainPathMode,
+                DigitalOperation.DriveTrainReset,
+                DigitalOperation.DriveTrainEnableFieldOrientation,
+                DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.VisionDisableStream,
+                DigitalOperation.VisionEnableGamePieceProcessing,
+                DigitalOperation.VisionEnableRetroreflectiveProcessing,
+                DigitalOperation.VisionForceDisable,
+            }),
+        new MacroOperationDescription(
+            MacroOperation.VisionCenterAndAdvanceHub,
+            UserInputDevice.Driver,
+            270, // DPAD-left
+            Shift.DriverDebug,
+            Shift.None,
+            ButtonType.Toggle,
+            () -> SequentialTask.Sequence(
+                    new VisionAdvanceAndCenterTask(false, false),
                     new DriveTrainFieldOrientationModeTask(true)),
             new IOperation[]
             {
@@ -608,9 +649,7 @@ public class ButtonMap implements IButtonMap
             Shift.CodriverDebug,
             Shift.None,
             ButtonType.Simple,
-            () -> SequentialTask.Sequence(
-                new CargoExtendIntakeTask(true)
-            ),
+            () -> new CargoExtendIntakeTask(true),
             new IOperation[]
             {
                 DigitalOperation.CargoIntakeForceExtend,
@@ -625,9 +664,7 @@ public class ButtonMap implements IButtonMap
             Shift.CodriverDebug,
             Shift.CodriverDebug,
             ButtonType.Simple,
-            () -> SequentialTask.Sequence(
-                new CargoExtendIntakeTask(false)
-            ),
+            () -> new CargoExtendIntakeTask(false),
             new IOperation[]
             {
                 DigitalOperation.CargoIntakeForceExtend,
@@ -729,7 +766,7 @@ public class ButtonMap implements IButtonMap
         new MacroOperationDescription(
             MacroOperation.ShootPointBlankHigh,
             UserInputDevice.Driver,
-            UserInputDeviceButton.XBONE_X_BUTTON,
+            UserInputDeviceButton.XBONE_B_BUTTON,
             Shift.DriverDebug,
             Shift.None,
             ButtonType.Toggle,
@@ -757,9 +794,9 @@ public class ButtonMap implements IButtonMap
         new MacroOperationDescription(
             MacroOperation.ShootPointBlankLow,
             UserInputDevice.Driver,
-            UserInputDeviceButton.XBONE_X_BUTTON,
+            UserInputDeviceButton.XBONE_A_BUTTON,
             Shift.DriverDebug,
-            Shift.DriverDebug,
+            Shift.None,
             ButtonType.Toggle,
             () -> ConcurrentTask.AllTasks(
                     new CargoHoodTask(DigitalOperation.CargoHoodLong),
@@ -785,7 +822,7 @@ public class ButtonMap implements IButtonMap
         new MacroOperationDescription(
             MacroOperation.ShootTarmacHigh,
             UserInputDevice.Driver,
-            UserInputDeviceButton.XBONE_B_BUTTON,
+            UserInputDeviceButton.XBONE_X_BUTTON,
             Shift.DriverDebug,
             Shift.None,
             ButtonType.Toggle,
@@ -813,9 +850,9 @@ public class ButtonMap implements IButtonMap
         new MacroOperationDescription(
             MacroOperation.AutoShootHigh,
             UserInputDevice.Driver,
-            UserInputDeviceButton.XBONE_B_BUTTON,
+            UserInputDeviceButton.XBONE_Y_BUTTON,
             Shift.DriverDebug,
-            Shift.DriverDebug,
+            Shift.None,
             ButtonType.Toggle,
             () -> ConcurrentTask.AllTasks(
                     new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
