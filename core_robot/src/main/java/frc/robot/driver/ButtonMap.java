@@ -602,12 +602,12 @@ public class ButtonMap implements IButtonMap
         ),
         
         new MacroOperationDescription(
-            MacroOperation.CargoIntakeExtendMacro,
+            MacroOperation.CargoIntakeForceExtendMacro,
             UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_10,
             Shift.CodriverDebug,
             Shift.None,
-            ButtonType.Toggle,
+            ButtonType.Simple,
             () -> SequentialTask.Sequence(
                 new CargoExtendIntakeTask(true)
             ),
@@ -619,12 +619,12 @@ public class ButtonMap implements IButtonMap
         ),
         
         new MacroOperationDescription(
-            MacroOperation.CargoIntakeRetractMacro,
+            MacroOperation.CargoIntakeForceRetractMacro,
             UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_10,
             Shift.CodriverDebug,
             Shift.CodriverDebug,
-            ButtonType.Toggle,
+            ButtonType.Simple,
             () -> SequentialTask.Sequence(
                 new CargoExtendIntakeTask(false)
             ),
