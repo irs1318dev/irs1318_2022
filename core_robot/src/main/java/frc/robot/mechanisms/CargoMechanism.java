@@ -43,9 +43,6 @@ public class CargoMechanism implements IMechanism
     private boolean feederBeamBroken;
     private boolean conveyorBeamBroken;
 
-    private double intakeTimeout;
-    private double advanceTimeout;
-
     private double flywheelSetpoint;
 
     private enum ConveyorState
@@ -56,7 +53,18 @@ public class CargoMechanism implements IMechanism
         Advance
     };
 
+    private enum IntakeState
+    {
+        Retracted,
+        Extended
+    };
+
     private ConveyorState currentConveyorState;
+    private double conveyorIntakeTimeout;
+    private double conveyorAdvanceTimeout;
+
+    private IntakeState currentIntakeState;
+    private double intakeExtensionTimeout;
 
     @Inject
     public CargoMechanism(IDriver driver, LoggingManager logger, ITimer timer, IRobotProvider provider)
@@ -98,9 +106,9 @@ public class CargoMechanism implements IMechanism
             TuningConstants.CARGO_FLYWHEEL_MOTOR_PID_KD,
             TuningConstants.CARGO_FLYWHEEL_MOTOR_PID_KF,
             CargoMechanism.DefaultSlotId);
-        this.flywheelMotor.configureVelocityMeasurements(
-            TuningConstants.CARGO_FLYWHEEL_VELOCITY_PERIOD,
-            TuningConstants.CARGO_FLYWHEEL_VELOCITY_WINDOWSIZE);
+        // this.flywheelMotor.configureVelocityMeasurements(
+        //     TuningConstants.CARGO_FLYWHEEL_VELOCITY_PERIOD,
+        //     TuningConstants.CARGO_FLYWHEEL_VELOCITY_WINDOWSIZE);
         this.flywheelMotor.setVoltageCompensation(
             TuningConstants.CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_ENABLED,
             TuningConstants.CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE);
@@ -127,6 +135,11 @@ public class CargoMechanism implements IMechanism
         this.conveyorMotor.setNeutralMode(MotorNeutralMode.Brake);
 
         this.currentConveyorState = ConveyorState.Off;
+        this.conveyorIntakeTimeout = 0.0;
+        this.conveyorAdvanceTimeout = 0.0;
+
+        this.currentIntakeState = IntakeState.Retracted;
+        this.intakeExtensionTimeout = 0.0;
     }
 
     @Override
@@ -157,16 +170,6 @@ public class CargoMechanism implements IMechanism
     public void update()
     {
         double currTime = this.timer.get();
-
-        // extend and retract intake
-        if (this.driver.getDigital(DigitalOperation.CargoIntakeExtend))
-        {
-            this.intakeExtender.set(DoubleSolenoidValue.Forward);
-        }
-        else if (this.driver.getDigital(DigitalOperation.CargoIntakeRetract))
-        {
-            this.intakeExtender.set(DoubleSolenoidValue.Reverse);
-        }
 
         // hood positions
         if (this.driver.getDigital(DigitalOperation.CargoHoodPointBlank))
@@ -210,7 +213,7 @@ public class CargoMechanism implements IMechanism
             if (this.driver.getDigital(DigitalOperation.CargoIntakeIn))
             {
                 intakePower = TuningConstants.CARGO_INTAKE_POWER;
-                this.intakeTimeout = currTime + TuningConstants.CONVEYOR_RUNTIME_AFTER_INTAKE;
+                this.conveyorIntakeTimeout = currTime + TuningConstants.CARGO_CONVEYOR_RUNTIME_AFTER_INTAKE;
                 this.currentConveyorState = ConveyorState.Intake;
             }
             else if (this.driver.getDigital(DigitalOperation.CargoIntakeOut))
@@ -226,6 +229,38 @@ public class CargoMechanism implements IMechanism
         this.intakeMotor.set(intakePower);
         this.logger.logNumber(LoggingKey.CargoIntakePower, intakePower);
 
+        // intake state transitions
+        if (this.driver.getDigital(DigitalOperation.CargoIntakeForceExtend))
+        {
+            this.currentIntakeState = IntakeState.Extended;
+        }
+        else if (this.driver.getDigital(DigitalOperation.CargoIntakeForceRetract))
+        {
+            this.currentIntakeState = IntakeState.Retracted;
+        }
+        else if (intakePower != TuningConstants.PERRY_THE_PLATYPUS)
+        {
+            this.currentIntakeState = IntakeState.Extended;
+            this.intakeExtensionTimeout = currTime + TuningConstants.CARGO_INTAKE_EXTENSION_TIMEOUT;
+        }
+        else if (this.currentIntakeState == IntakeState.Extended &&
+            this.intakeExtensionTimeout > currTime)
+        {
+            this.currentIntakeState = IntakeState.Retracted;
+        }
+
+        switch (this.currentIntakeState)
+        {
+            case Extended:
+                this.intakeExtender.set(DoubleSolenoidValue.Forward);
+                break;
+
+            default:
+            case Retracted:
+                this.intakeExtender.set(DoubleSolenoidValue.Reverse);
+                break;
+        }
+
         // stop when both throughbeams broken
         if (this.conveyorBeamBroken &&
             this.feederBeamBroken &&
@@ -236,14 +271,14 @@ public class CargoMechanism implements IMechanism
 
         // after intake timeout
         if (this.currentConveyorState == ConveyorState.Intake &&
-            currTime > this.intakeTimeout)
+            currTime > this.conveyorIntakeTimeout)
         {
             this.currentConveyorState = ConveyorState.Off;
         }
 
         // after advance timeout
         if (this.currentConveyorState == ConveyorState.Advance &&
-            currTime > this.advanceTimeout)
+            currTime > this.conveyorAdvanceTimeout)
         {
             this.currentConveyorState = ConveyorState.Off;
         }
@@ -254,7 +289,7 @@ public class CargoMechanism implements IMechanism
             this.currentConveyorState == ConveyorState.Off)
         {
             this.currentConveyorState = ConveyorState.Advance;
-            this.advanceTimeout = currTime + TuningConstants.CONVEYOR_RUNTIME_FOR_ADVANCE;
+            this.conveyorAdvanceTimeout = currTime + TuningConstants.CARGO_CONVEYOR_RUNTIME_FOR_ADVANCE;
         }
 
         switch (this.currentConveyorState)

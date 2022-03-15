@@ -211,14 +211,14 @@ public class ButtonMap implements IButtonMap
 
         // cargo opertaions:
         new DigitalOperationDescription(
-            DigitalOperation.CargoIntakeExtend,
+            DigitalOperation.CargoIntakeForceExtend,
             UserInputDevice.Driver,
             0,
             Shift.DriverDebug,
             Shift.None,
             ButtonType.Click),
         new DigitalOperationDescription(
-            DigitalOperation.CargoIntakeRetract,
+            DigitalOperation.CargoIntakeForceRetract,
             UserInputDevice.Driver,
             180,
             Shift.DriverDebug,
@@ -227,23 +227,23 @@ public class ButtonMap implements IButtonMap
         new DigitalOperationDescription(
             DigitalOperation.CargoIntakeIn,
             UserInputDevice.Driver,
-            UserInputDeviceButton.XBONE_A_BUTTON,
+            UserInputDeviceButton.XBONE_RIGHT_BUTTON,
             Shift.DriverDebug,
             Shift.None,
             ButtonType.Simple),
         new DigitalOperationDescription(
             DigitalOperation.CargoIntakeOut,
             UserInputDevice.Driver,
-            UserInputDeviceButton.XBONE_Y_BUTTON,
+            UserInputDeviceButton.XBONE_RIGHT_BUTTON,
             Shift.DriverDebug,
-            Shift.None,
+            Shift.DriverDebug,
             ButtonType.Simple),
         new DigitalOperationDescription(
             DigitalOperation.CargoEject,
             UserInputDevice.Driver,
-            UserInputDeviceButton.XBONE_Y_BUTTON,
-            Shift.DriverDebug,
-            Shift.DriverDebug,
+            UserInputDeviceButton.XBONE_START_BUTTON,
+            Shift.None,
+            Shift.None,
             ButtonType.Simple),
 
         // climber operations
@@ -613,8 +613,8 @@ public class ButtonMap implements IButtonMap
             ),
             new IOperation[]
             {
-                DigitalOperation.CargoIntakeExtend,
-                DigitalOperation.CargoIntakeRetract
+                DigitalOperation.CargoIntakeForceExtend,
+                DigitalOperation.CargoIntakeForceRetract
             }
         ),
         
@@ -630,8 +630,8 @@ public class ButtonMap implements IButtonMap
             ),
             new IOperation[]
             {
-                DigitalOperation.CargoIntakeExtend,
-                DigitalOperation.CargoIntakeRetract
+                DigitalOperation.CargoIntakeForceExtend,
+                DigitalOperation.CargoIntakeForceRetract
             }
         ),
 
@@ -743,8 +743,8 @@ public class ButtonMap implements IButtonMap
                 ),
             new IOperation[]
             {
-                DigitalOperation.CargoIntakeExtend,
-                DigitalOperation.CargoIntakeRetract,
+                DigitalOperation.CargoIntakeForceExtend,
+                DigitalOperation.CargoIntakeForceRetract,
                 DigitalOperation.CargoIntakeIn,
                 DigitalOperation.CargoIntakeOut,
                 DigitalOperation.CargoEject,
@@ -771,8 +771,8 @@ public class ButtonMap implements IButtonMap
                 ),
             new IOperation[]
             {
-                DigitalOperation.CargoIntakeExtend,
-                DigitalOperation.CargoIntakeRetract,
+                DigitalOperation.CargoIntakeForceExtend,
+                DigitalOperation.CargoIntakeForceRetract,
                 DigitalOperation.CargoIntakeIn,
                 DigitalOperation.CargoIntakeOut,
                 DigitalOperation.CargoEject,
@@ -799,8 +799,8 @@ public class ButtonMap implements IButtonMap
                 ),
             new IOperation[]
             {
-                DigitalOperation.CargoIntakeExtend,
-                DigitalOperation.CargoIntakeRetract,
+                DigitalOperation.CargoIntakeForceExtend,
+                DigitalOperation.CargoIntakeForceRetract,
                 DigitalOperation.CargoIntakeIn,
                 DigitalOperation.CargoIntakeOut,
                 DigitalOperation.CargoEject,
@@ -827,8 +827,8 @@ public class ButtonMap implements IButtonMap
                 ),
             new IOperation[]
             {
-                DigitalOperation.CargoIntakeExtend,
-                DigitalOperation.CargoIntakeRetract,
+                DigitalOperation.CargoIntakeForceExtend,
+                DigitalOperation.CargoIntakeForceRetract,
                 DigitalOperation.CargoIntakeIn,
                 DigitalOperation.CargoIntakeOut,
                 DigitalOperation.CargoEject,
@@ -897,8 +897,8 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.VisionEnableGamePieceProcessing,
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
                 DigitalOperation.VisionForceDisable,
-                DigitalOperation.CargoIntakeExtend,
-                DigitalOperation.CargoIntakeRetract,
+                DigitalOperation.CargoIntakeForceExtend,
+                DigitalOperation.CargoIntakeForceRetract,
                 DigitalOperation.CargoIntakeIn,
                 DigitalOperation.CargoIntakeOut,
                 DigitalOperation.CargoEject,
@@ -956,8 +956,8 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.VisionEnableGamePieceProcessing,
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
                 DigitalOperation.VisionForceDisable,
-                DigitalOperation.CargoIntakeExtend,
-                DigitalOperation.CargoIntakeRetract,
+                DigitalOperation.CargoIntakeForceExtend,
+                DigitalOperation.CargoIntakeForceRetract,
                 DigitalOperation.CargoIntakeIn,
                 DigitalOperation.CargoIntakeOut,
                 DigitalOperation.CargoEject,
@@ -1064,8 +1064,8 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.VisionEnableGamePieceProcessing,
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
                 DigitalOperation.VisionForceDisable,
-                DigitalOperation.CargoIntakeExtend,
-                DigitalOperation.CargoIntakeRetract,
+                DigitalOperation.CargoIntakeForceExtend,
+                DigitalOperation.CargoIntakeForceRetract,
                 DigitalOperation.CargoIntakeIn,
                 DigitalOperation.CargoIntakeOut,
                 DigitalOperation.CargoEject,
@@ -1151,8 +1151,8 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.VisionEnableGamePieceProcessing,
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
                 DigitalOperation.VisionForceDisable,
-                DigitalOperation.CargoIntakeExtend,
-                DigitalOperation.CargoIntakeRetract,
+                DigitalOperation.CargoIntakeForceExtend,
+                DigitalOperation.CargoIntakeForceRetract,
                 DigitalOperation.CargoIntakeIn,
                 DigitalOperation.CargoIntakeOut,
                 DigitalOperation.CargoEject,

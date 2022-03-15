@@ -23,8 +23,8 @@ public enum DigitalOperation implements IOperation
     DriveTrainDisableMaintainDirectionMode,
 
     // cargo operations
-    CargoIntakeExtend,
-    CargoIntakeRetract,
+    CargoIntakeForceExtend,
+    CargoIntakeForceRetract,
     CargoIntakeIn,
     CargoIntakeOut,
     CargoEject,

@@ -289,8 +289,12 @@ public class TuningConstants
     public static final double CARGO_CONVEYOR_REVERSE_POWER = -0.4;
     public static final double CARGO_FEEDER_POWER = 0.4;
 
-    public static final int CARGO_FLYWHEEL_VELOCITY_PERIOD = 0;
-    public static final int CARGO_FLYWHEEL_VELOCITY_WINDOWSIZE = 0;
+    public static final double CARGO_CONVEYOR_RUNTIME_AFTER_INTAKE = 3.0;
+    public static final double CARGO_CONVEYOR_RUNTIME_FOR_ADVANCE = 0.5;
+    public static final double CARGO_INTAKE_EXTENSION_TIMEOUT = 1.0;
+
+    public static final int CARGO_FLYWHEEL_VELOCITY_PERIOD = 0; // TODO!
+    public static final int CARGO_FLYWHEEL_VELOCITY_WINDOWSIZE = 0; // TODO!
 
     public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.5;
     public static final double CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED = 0.25;
@@ -343,9 +347,6 @@ public class TuningConstants
     public static final boolean CLIMBER_WINCH_MOTOR_MASTER_VOLTAGE_COMPENSATION_ENABLED = true;
     public static final double CLIMBER_WINCH_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE = 12.0;
     public static final int CLIMBER_WINCH_SENSOR_FRAME_PERIOD_MS = 50;
-
-    public static final double CONVEYOR_RUNTIME_AFTER_INTAKE = 3.0;
-    public static final double CONVEYOR_RUNTIME_FOR_ADVANCE = 0.5;
 
     public static final double CLIMBER_FULL_RETRACT_LENGTH = 0.0;
     public static final double CLIMBER_SHORT_EXTEND_LENGTH = 0.2;
