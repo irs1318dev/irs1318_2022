@@ -290,20 +290,20 @@ public class TuningConstants
     public static final double CARGO_FEEDER_POWER = 0.4;
 
     public static final double CARGO_CONVEYOR_RUNTIME_AFTER_INTAKE = 3.0;
-    public static final double CARGO_CONVEYOR_RUNTIME_FOR_ADVANCE = 0.5;
+    public static final double CARGO_CONVEYOR_RUNTIME_FOR_ADVANCE = 1.5;
     public static final double CARGO_INTAKE_EXTENSION_TIMEOUT = 1.0;
 
     public static final int CARGO_FLYWHEEL_VELOCITY_PERIOD = 0; // TODO!
     public static final int CARGO_FLYWHEEL_VELOCITY_WINDOWSIZE = 0; // TODO!
 
-    public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.5;
+    public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.55;
     public static final double CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED = 0.25;
-    public static final double CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED = 0.5;
+    public static final double CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED = 0.65;
 
     public static final double CARGO_CONVEYOR_THROUGHBEAM_CUTOFF = 2.7;
     public static final double CARGO_FEEDER_THROUGHBEAM_CUTOFF = 2.7;
 
-    public static final double CARGO_FLYWHEEL_ALLOWABLE_ERROR_RANGE = 500;
+    public static final double CARGO_FLYWHEEL_ALLOWABLE_ERROR_RANGE = 250;
 
     public static final double CARGO_SHOOT_CHECKBALL_WAIT_TIME = 1.0;
     public static final double CARGO_SHOOT_SPINUP_WAIT_TIME = 1.0;

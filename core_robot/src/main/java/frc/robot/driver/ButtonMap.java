@@ -291,6 +291,13 @@ public class ButtonMap implements IButtonMap
             Shift.None,
             Shift.None,
             ButtonType.Simple),
+        new DigitalOperationDescription(
+            DigitalOperation.CargoForceIntakeOnly,
+            UserInputDevice.Driver,
+            UserInputDeviceButton.XBONE_SELECT_BUTTON,
+            Shift.None,
+            Shift.None,
+            ButtonType.Simple),
 
         new DigitalOperationDescription(
             DigitalOperation.CargoHoodPointBlank,
@@ -827,7 +834,7 @@ public class ButtonMap implements IButtonMap
             Shift.None,
             ButtonType.Toggle,
             () -> ConcurrentTask.AllTasks(
-                    new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
+                    new CargoHoodTask(DigitalOperation.CargoHoodLong),
                     new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
                     SequentialTask.Sequence(
                         new WaitTask(0.25),

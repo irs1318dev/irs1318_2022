@@ -28,6 +28,7 @@ public enum DigitalOperation implements IOperation
     CargoIntakeIn,
     CargoIntakeOut,
     CargoEject,
+    CargoForceIntakeOnly,
     CargoFeed,
     CargoHoodPointBlank,
     CargoHoodLong,

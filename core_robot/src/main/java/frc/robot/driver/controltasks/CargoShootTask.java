@@ -9,6 +9,7 @@ public class CargoShootTask extends ControlTaskBase
 {
     private final boolean shootAll;
     private CargoMechanism cargo;
+    private int shotCount;
 
     private enum ShootingState
     {
@@ -30,7 +31,6 @@ public class CargoShootTask extends ControlTaskBase
 
     public CargoShootTask(boolean shootAll)
     {
-        this.currentState = ShootingState.CheckBall;
         this.shootAll = shootAll;
     }
 
@@ -40,11 +40,15 @@ public class CargoShootTask extends ControlTaskBase
         this.cargo = this.getInjector().getInstance(CargoMechanism.class);
         this.timer = this.getInjector().getInstance(ITimer.class);
         this.endTime = this.timer.get() + TuningConstants.CARGO_SHOOT_CHECKBALL_WAIT_TIME;
+
+        this.currentState = ShootingState.CheckBall;        
+        this.shotCount = 0;
     }
 
     @Override
     public void update()
     {
+        System.out.println("Current state: " + this.currentState);
         if (this.currentState == ShootingState.CheckBall)
         {
             if (this.cargo.isFeederSensorBlocked())
@@ -72,7 +76,8 @@ public class CargoShootTask extends ControlTaskBase
 
         if (this.currentState == ShootingState.Shooting && !this.cargo.isFeederSensorBlocked()) 
         {
-            if (this.shootAll && this.cargo.isConveyorSensorBlocked()) 
+            this.shotCount++;
+            if (this.shootAll && this.cargo.isConveyorSensorBlocked() && this.shotCount < 2) 
             {
                 this.currentState = ShootingState.CheckBall;
             }

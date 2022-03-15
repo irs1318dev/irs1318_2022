@@ -210,7 +210,7 @@ public class CargoMechanism implements IMechanism
                 this.currentConveyorState = ConveyorState.Off;
             }
 
-            if (this.driver.getDigital(DigitalOperation.CargoIntakeIn))
+            if (this.driver.getDigital(DigitalOperation.CargoIntakeIn) || this.driver.getDigital(DigitalOperation.CargoForceIntakeOnly))
             {
                 intakePower = TuningConstants.CARGO_INTAKE_POWER;
                 this.conveyorIntakeTimeout = currTime + TuningConstants.CARGO_CONVEYOR_RUNTIME_AFTER_INTAKE;
@@ -238,7 +238,7 @@ public class CargoMechanism implements IMechanism
         {
             this.currentIntakeState = IntakeState.Retracted;
         }
-        else if (intakePower != TuningConstants.PERRY_THE_PLATYPUS)
+        else if (intakePower != TuningConstants.PERRY_THE_PLATYPUS && !this.driver.getDigital(DigitalOperation.CargoForceIntakeOnly))
         {
             this.currentIntakeState = IntakeState.Extended;
             this.intakeExtensionTimeout = currTime + TuningConstants.CARGO_INTAKE_EXTENSION_TIMEOUT;
