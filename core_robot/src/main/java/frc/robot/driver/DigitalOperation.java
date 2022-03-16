@@ -43,4 +43,8 @@ public enum DigitalOperation implements IOperation
     ClimberWinchLock,
     ClimberWinchUnlock,
     ClimberResetWinchPosition,
+
+    //Samamamamish Climber
+    SClimberForward,
+    SClimberReverse,
 }

@@ -313,6 +313,23 @@ public class ButtonMap implements IButtonMap
             Shift.None,
             Shift.None,
             ButtonType.Click),
+        
+        new DigitalOperationDescription(
+            DigitalOperation.SClimberForward,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_12,
+            Shift.CodriverDebug,
+            Shift.None,
+            ButtonType.Click),
+
+        new DigitalOperationDescription(
+            DigitalOperation.SClimberReverse,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_13,
+            Shift.CodriverDebug,
+            Shift.None,
+            ButtonType.Click),
+
     };
 
     public static MacroOperationDescription[] MacroSchema = new MacroOperationDescription[]
@@ -679,6 +696,7 @@ public class ButtonMap implements IButtonMap
             }
         ),
 
+        /* ------------------------------------------------COMMENTED FOR SAMMAMISH CLIMBER-----------------
         new MacroOperationDescription(
             MacroOperation.ClimberRiseToMidRung,
             UserInputDevice.Codriver,
@@ -738,6 +756,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.ClimberWinchUnlock
             }
         ),
+        */
 
         new MacroOperationDescription(
             MacroOperation.ClimberSwitchToNextRung,

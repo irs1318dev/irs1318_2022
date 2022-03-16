@@ -20,6 +20,7 @@ public class SettingsManager
         // mechanismList.add(injector.getInstance(PowerManager.class));
         mechanismList.add(injector.getInstance(DriveTrainMechanism.class));
         mechanismList.add(injector.getInstance(CargoMechanism.class));
+        mechanismList.add(injector.getInstance(ClimberSammamishMechanism.class));
         // mechanismList.add(injector.getInstance(ClimberMechanism.class));
         mechanismList.add(injector.getInstance(CompressorMechanism.class));
         // mechanismList.add(injector.getInstance(OffboardVisionManager.class));
