@@ -1,10 +1,10 @@
 package frc.robot.mechanisms;
 
+import frc.robot.ElectronicsConstants;
 import frc.robot.common.ComplementaryFilter;
 import frc.robot.common.IMechanism;
 import frc.robot.common.robotprovider.IPowerDistribution;
 import frc.robot.common.robotprovider.IRobotProvider;
-import frc.robot.common.robotprovider.PowerDistributionModuleType;
 import frc.robot.driver.DigitalOperation;
 import frc.robot.driver.common.IDriver;
 
@@ -33,7 +33,7 @@ public class PowerManager implements IMechanism
     public PowerManager(IDriver driver, IRobotProvider provider)
     {
         this.driver = driver;
-        this.powerDistribution = provider.getPowerDistribution(1, PowerDistributionModuleType.PowerDistributionHub);
+        this.powerDistribution = provider.getPowerDistribution(ElectronicsConstants.POWER_DISTRIBUTION_CAN_ID, ElectronicsConstants.POWER_DISTRIBUTION_TYPE);
         this.batteryVoltageFilter = new ComplementaryFilter(0.4, 0.6, this.powerDistribution.getBatteryVoltage());
     }
 

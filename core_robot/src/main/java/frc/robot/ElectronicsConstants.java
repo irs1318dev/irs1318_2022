@@ -1,6 +1,7 @@
 package frc.robot;
 
 import frc.robot.common.robotprovider.PneumaticsModuleType;
+import frc.robot.common.robotprovider.PowerDistributionModuleType;
 
 /**
  * All constants describing how the electronics are plugged together.
@@ -30,6 +31,9 @@ public class ElectronicsConstants
 
     public static final boolean INVERT_THROTTLE_AXIS = true;
     public static final boolean INVERT_TRIGGER_AXIS = false;
+
+    public static final int POWER_DISTRIBUTION_CAN_ID = 1;
+    public static final PowerDistributionModuleType POWER_DISTRIBUTION_TYPE = PowerDistributionModuleType.PowerDistributionHub;
 
     public static final int PNEUMATICS_MODULE_A = 1; // Module A
     public static final PneumaticsModuleType PNEUMATICS_MODULE_TYPE_A = PneumaticsModuleType.PneumaticsHub; // Module A
