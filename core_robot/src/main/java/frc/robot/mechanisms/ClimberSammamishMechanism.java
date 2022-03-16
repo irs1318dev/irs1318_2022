@@ -17,32 +17,26 @@ import com.google.inject.Singleton;
 @Singleton
 public class ClimberSammamishMechanism implements IMechanism
 {
-
     private final IDriver driver;
-    private final ILogger logger;
 
     private final IDoubleSolenoid hookPiston;
-    
 
     @Inject
-    public ClimberSammamishMechanism(IDriver driver, LoggingManager logger, IRobotProvider provider)
+    public ClimberSammamishMechanism(IDriver driver, IRobotProvider provider)
     {
         // housekeeping
         this.driver = driver;
-        this.logger = logger;
 
         this.hookPiston = provider.getDoubleSolenoid(
             ElectronicsConstants.PNEUMATICS_MODULE_A,
             ElectronicsConstants.PNEUMATICS_MODULE_TYPE_A,
             ElectronicsConstants.SCLIMBER_ACTIVE_HOOK_FORWARD,
             ElectronicsConstants.SCLIMBER_ACTIVE_HOOK_BACKWARD);
-        
     }
 
     @Override
     public void readSensors()
     {
-        
     }
 
     @Override
@@ -61,7 +55,6 @@ public class ClimberSammamishMechanism implements IMechanism
     @Override
     public void stop()
     {
-        // Intentionally skipped (don't drop the Robot!): this.activeHookPiston.set(DoubleSolenoidValue.Off);
-        this.hookPiston.set(DoubleSolenoidValue.Off);
+        // Intentionally skipped (don't drop the Robot!): this.hookPiston.set(DoubleSolenoidValue.Off);
     }
 }

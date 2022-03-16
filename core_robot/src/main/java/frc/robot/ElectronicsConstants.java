@@ -96,6 +96,7 @@ public class ElectronicsConstants
     public static final int CLIMBER_WINCH_ARM_RETRACTED_LIMIT_SWITCH_DIGITAL_INPUT = 2;
 
     //================================================== Samamamamish Climber Mechanism ==============================================================
-    public static final int SCLIMBER_ACTIVE_HOOK_FORWARD = 0;
-    public static final int SCLIMBER_ACTIVE_HOOK_BACKWARD = 0;
+
+    public static final int SCLIMBER_ACTIVE_HOOK_FORWARD = 4;
+    public static final int SCLIMBER_ACTIVE_HOOK_BACKWARD = 5;
 }
