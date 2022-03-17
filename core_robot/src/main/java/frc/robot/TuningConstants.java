@@ -93,24 +93,24 @@ public class TuningConstants
     public static final int INDICATOR_OFF_COLOR_WHITE = 0;
 
     // Has (at least) a single cargo light
-    public static final int INDICATOR_SECTION_FEEDER_CARGO_COLOR_RED = 255;
-    public static final int INDICATOR_SECTION_FEEDER_CARGO_COLOR_GREEN = 0;
-    public static final int INDICATOR_SECTION_FEEDER_CARGO_COLOR_BLUE = 0;
-    public static final int INDICATOR_SECTION_FEEDER_CARGO_COLOR_WHITE = 0;
-    public static final int INDICATOR_SECTION_FEEDER_CARGO1_START = 8;
-    public static final int INDICATOR_SECTION_FEEDER_CARGO1_COUNT = 20;
-    public static final int INDICATOR_SECTION_FEEDER_CARGO2_START = 68;
-    public static final int INDICATOR_SECTION_FEEDER_CARGO2_COUNT = 20;
+    public static final int INDICATOR_SECTION_FIRST_CARGO_COLOR_RED = 255;
+    public static final int INDICATOR_SECTION_FIRST_CARGO_COLOR_GREEN = 0;
+    public static final int INDICATOR_SECTION_FIRST_CARGO_COLOR_BLUE = 0;
+    public static final int INDICATOR_SECTION_FIRST_CARGO_COLOR_WHITE = 0;
+    public static final int INDICATOR_SECTION_FIRST_CARGO1_START = 8;
+    public static final int INDICATOR_SECTION_FIRST_CARGO1_COUNT = 20;
+    public static final int INDICATOR_SECTION_FIRST_CARGO2_START = 68;
+    public static final int INDICATOR_SECTION_FIRST_CARGO2_COUNT = 20;
 
     // Has a second cargo light
-    public static final int INDICATOR_SECTION_CONVEYOR_CARGO_COLOR_RED = 255;
-    public static final int INDICATOR_SECTION_CONVEYOR_CARGO_COLOR_GREEN = 255;
-    public static final int INDICATOR_SECTION_CONVEYOR_CARGO_COLOR_BLUE = 0;
-    public static final int INDICATOR_SECTION_CONVEYOR_CARGO_COLOR_WHITE = 0;
-    public static final int INDICATOR_SECTION_CONVEYOR_CARGO1_START = 28;
-    public static final int INDICATOR_SECTION_CONVEYOR_CARGO1_COUNT = 20;
-    public static final int INDICATOR_SECTION_CONVEYOR_CARGO2_START = 88;
-    public static final int INDICATOR_SECTION_CONVEYOR_CARGO2_COUNT = 20;
+    public static final int INDICATOR_SECTION_SECOND_CARGO_COLOR_RED = 255;
+    public static final int INDICATOR_SECTION_SECOND_CARGO_COLOR_GREEN = 255;
+    public static final int INDICATOR_SECTION_SECOND_CARGO_COLOR_BLUE = 0;
+    public static final int INDICATOR_SECTION_SECOND_CARGO_COLOR_WHITE = 0;
+    public static final int INDICATOR_SECTION_SECOND_CARGO1_START = 28;
+    public static final int INDICATOR_SECTION_SECOND_CARGO1_COUNT = 20;
+    public static final int INDICATOR_SECTION_SECOND_CARGO2_START = 88;
+    public static final int INDICATOR_SECTION_SECOND_CARGO2_COUNT = 20;
 
     // Shooter spin-up lights
     public static final int INDICATOR_SECTION_SPIN_UP_COLOR_RED = 0;
@@ -306,7 +306,7 @@ public class TuningConstants
 
     public static final double CARGO_FLYWHEEL_ALLOWABLE_ERROR_RANGE = 250;
 
-    public static final double CARGO_SHOOT_CHECKBALL_WAIT_TIME = 1.0;
+    public static final double CARGO_SHOOT_CHECKBALL_WAIT_TIME = TuningConstants.CARGO_CONVEYOR_RUNTIME_FOR_ADVANCE;
     public static final double CARGO_SHOOT_SPINUP_WAIT_TIME = 1.0;
 
     public static final double UPPER_HUB_HEIGHT = 104; // inches

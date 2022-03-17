@@ -15,8 +15,8 @@ public enum MacroOperation implements IOperation
 
     // Testing operations
     VisionCenterHub,
-    VisionCenterAndAdvanceHub,
-    VisionCenterAndAdvanceCargo,
+    VisionMoveToHub,
+    VisionIntakeCargo,
 
     // Climber operations
     ClimberWinchForward,

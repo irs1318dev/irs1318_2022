@@ -32,6 +32,8 @@ public enum DigitalOperation implements IOperation
     CargoFeed,
     CargoHoodPointBlank,
     CargoHoodLong,
+    CargoEnableShootAnywayMode,
+    CargoDisableShootAnywayMode,
 
     // Climber operations 
     ClimberHookGrasp,

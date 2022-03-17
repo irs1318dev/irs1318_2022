@@ -51,7 +51,7 @@ public class CargoShootTask extends ControlTaskBase
         System.out.println("Current state: " + this.currentState);
         if (this.currentState == ShootingState.CheckBall)
         {
-            if (this.cargo.isFeederSensorBlocked())
+            if (this.cargo.hasBallReadyToShoot())
             {
                 this.currentState = ShootingState.SpinningUp;
                 this.endTime = timer.get() + TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME;
@@ -74,10 +74,10 @@ public class CargoShootTask extends ControlTaskBase
             }
         }
 
-        if (this.currentState == ShootingState.Shooting && !this.cargo.isFeederSensorBlocked()) 
+        if (this.currentState == ShootingState.Shooting && !this.cargo.hasBallReadyToShoot()) 
         {
             this.shotCount++;
-            if (this.shootAll && this.cargo.isConveyorSensorBlocked() && this.shotCount < 2) 
+            if (this.shootAll && this.cargo.hasBackupBallToShoot() && this.shotCount < 2) 
             {
                 this.currentState = ShootingState.CheckBall;
                 this.endTime = this.timer.get() + TuningConstants.CARGO_SHOOT_CHECKBALL_WAIT_TIME;

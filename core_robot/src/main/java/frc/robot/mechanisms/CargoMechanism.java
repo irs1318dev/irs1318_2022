@@ -66,6 +66,8 @@ public class CargoMechanism implements IMechanism
     private IntakeState currentIntakeState;
     private double intakeExtensionTimeout;
 
+    private boolean shootAnywayModeEnabled;
+
     @Inject
     public CargoMechanism(IDriver driver, LoggingManager logger, ITimer timer, IRobotProvider provider)
     {
@@ -140,6 +142,8 @@ public class CargoMechanism implements IMechanism
 
         this.currentIntakeState = IntakeState.Retracted;
         this.intakeExtensionTimeout = 0.0;
+
+        this.shootAnywayModeEnabled = false;
     }
 
     @Override
@@ -170,6 +174,16 @@ public class CargoMechanism implements IMechanism
     public void update()
     {
         double currTime = this.timer.get();
+
+        // shoot anyway mode
+        if (this.driver.getDigital(DigitalOperation.CargoEnableShootAnywayMode))
+        {
+            this.shootAnywayModeEnabled = true;
+        }
+        else if (this.driver.getDigital(DigitalOperation.CargoDisableShootAnywayMode))
+        {
+            this.shootAnywayModeEnabled = false;
+        }
 
         // hood positions
         if (this.driver.getDigital(DigitalOperation.CargoHoodPointBlank))
@@ -362,13 +376,28 @@ public class CargoMechanism implements IMechanism
         return this.flywheelSetpoint > 0.0 && Math.abs(this.flywheelError) <= TuningConstants.CARGO_FLYWHEEL_ALLOWABLE_ERROR_RANGE;
     }
 
-    public boolean isConveyorSensorBlocked()
+    public boolean hasBackupBallToShoot()
     {
         return this.conveyorBeamBroken;
     }
 
-    public boolean isFeederSensorBlocked()
+    public boolean hasBallReadyToShoot()
     {
         return this.feederBeamBroken;
+    }
+
+    public boolean useShootAnywayMode()
+    {
+        return this.shootAnywayModeEnabled;
+    }
+
+    public boolean ot()
+    {
+        return this.feederBeamBroken || this.shootAnywayModeEnabled;
+    }
+
+    public boolean fo()
+    {
+        return this.conveyorBeamBroken || this.shootAnywayModeEnabled;
     }
 }
