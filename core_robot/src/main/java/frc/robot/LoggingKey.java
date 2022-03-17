@@ -20,7 +20,7 @@ public enum LoggingKey
     OffboardVisionGamePieceHorizontalAngle("rpi.g_horizontalAngle", true),
     OffboardVisionEnableVision("rpi.enableVision", true),
     OffboardVisionEnableStream("rpi.enableStream", true),
-    OffboardVisionEnableProcessing("rpi.enableProcessing", true), // why do some have True?
+    OffboardVisionEnableProcessing("rpi.processingSetting", true),
     OffboardVisionMissedHeartbeats("rpi.missedHeartbeats", true),
     NavxConnected("navx.connected", true),
     NavxAngle("navx.angle", true),
