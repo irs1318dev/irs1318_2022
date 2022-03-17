@@ -309,11 +309,28 @@ public class CargoMechanism implements IMechanism
         switch (this.currentConveyorState)
         {
             case Advance:
-                this.conveyorMotor.set(TuningConstants.CARGO_CONVEYOR_ADVANCE_POWER);
+
+                if (this.feederBeamBroken)
+                {
+                    this.conveyorMotor.set(TuningConstants.CARGO_CONVEYOR_ADVANCE_TWO_POWER);
+                }
+                else
+                {
+                    this.conveyorMotor.set(TuningConstants.CARGO_CONVEYOR_ADVANCE_ONE_POWER);
+                }
+
                 break;
 
             case Intake:
-                this.conveyorMotor.set(TuningConstants.CARGO_CONVEYOR_INTAKE_POWER);
+                if (this.feederBeamBroken)
+                {
+                    this.conveyorMotor.set(TuningConstants.CARGO_CONVEYOR_INTAKE_TWO_POWER);
+                }
+                else
+                {
+                    this.conveyorMotor.set(TuningConstants.CARGO_CONVEYOR_INTAKE_ONE_POWER);
+                }
+
                 break;
 
             case Reverse:

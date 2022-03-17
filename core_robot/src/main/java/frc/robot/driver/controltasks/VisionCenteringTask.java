@@ -66,7 +66,8 @@ public class VisionCenteringTask extends ControlTaskBase
         this.setDigitalOperationState(DigitalOperation.VisionDisableStream, false);
         this.setDigitalOperationState(DigitalOperation.DriveTrainEnableFieldOrientation, false);
         this.setDigitalOperationState(DigitalOperation.DriveTrainDisableFieldOrientation, true);
-        this.setDigitalOperationState(DigitalOperation.VisionEnableRetroreflectiveProcessing, true);
+        this.setDigitalOperationState(DigitalOperation.VisionEnableRetroreflectiveProcessing, !this.gamePiece);
+        this.setDigitalOperationState(DigitalOperation.VisionEnableGamePieceProcessing, this.gamePiece);
     }
 
     /**
@@ -96,6 +97,7 @@ public class VisionCenteringTask extends ControlTaskBase
         this.setDigitalOperationState(DigitalOperation.DriveTrainEnableFieldOrientation, false);
         this.setDigitalOperationState(DigitalOperation.DriveTrainDisableFieldOrientation, false);
         this.setDigitalOperationState(DigitalOperation.VisionEnableRetroreflectiveProcessing, false);
+        this.setDigitalOperationState(DigitalOperation.VisionEnableGamePieceProcessing, false);
     }
 
     /**
@@ -171,14 +173,17 @@ public class VisionCenteringTask extends ControlTaskBase
 
     protected Double getHorizontalAngle()
     {
+        Double angle;
         if (this.gamePiece)
         {
-            return this.visionManager.getGamePieceHorizontalAngle();
+            angle = this.visionManager.getGamePieceHorizontalAngle();
         }
         else
         {
-            return this.visionManager.getVisionTargetHorizontalAngle();
+            angle = this.visionManager.getVisionTargetHorizontalAngle();
         }
+
+        return angle;
     }
 
     protected PIDHandler createTurnHandler()

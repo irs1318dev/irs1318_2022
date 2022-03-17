@@ -28,13 +28,13 @@ public class TuningConstants
     //================================================= Vision ======================================================
 
     // Acceptable vision centering range values in degrees
-    public static final double MAX_VISION_CENTERING_RANGE_DEGREES = 5.0;
+    public static final double MAX_VISION_CENTERING_RANGE_DEGREES = 2.5;
 
     // Acceptable vision distance from tape in inches
     public static final double MAX_VISION_ACCEPTABLE_FORWARD_DISTANCE = 3.25;
 
     // PID settings for Centering the robot on a vision target from one stationary place
-    public static final double VISION_STATIONARY_CENTERING_PID_KP = 0.0125;
+    public static final double VISION_STATIONARY_CENTERING_PID_KP = 0.025;
     public static final double VISION_STATIONARY_CENTERING_PID_KI = 0.0;
     public static final double VISION_STATIONARY_CENTERING_PID_KD = 0.01;
     public static final double VISION_STATIONARY_CENTERING_PID_KF = 0.0;
@@ -285,8 +285,10 @@ public class TuningConstants
     public static final double CARGO_INTAKE_POWER = 0.6;
     public static final double CARGO_INTAKE_OUT_POWER = -0.6;
     public static final double CARGO_INTAKE_EJECT_POWER = -0.8;
-    public static final double CARGO_CONVEYOR_ADVANCE_POWER = 0.4;
-    public static final double CARGO_CONVEYOR_INTAKE_POWER = 0.4;
+    public static final double CARGO_CONVEYOR_ADVANCE_ONE_POWER = 0.4;
+    public static final double CARGO_CONVEYOR_ADVANCE_TWO_POWER = 0.6;
+    public static final double CARGO_CONVEYOR_INTAKE_ONE_POWER = 0.4;
+    public static final double CARGO_CONVEYOR_INTAKE_TWO_POWER = 0.6;
     public static final double CARGO_CONVEYOR_REVERSE_POWER = -0.4;
     public static final double CARGO_FEEDER_POWER = 0.4;
 

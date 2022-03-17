@@ -48,7 +48,6 @@ public class CargoShootTask extends ControlTaskBase
     @Override
     public void update()
     {
-        System.out.println("Current state: " + this.currentState);
         if (this.currentState == ShootingState.CheckBall)
         {
             if (this.cargo.hasBallReadyToShoot())
