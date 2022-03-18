@@ -51,6 +51,10 @@ public abstract class FauxbotTalonXBase extends FauxbotAdvancedMotorBase
         }
     }
 
+    public void setGeneralFramePeriod(int periodMS)
+    {
+    }
+
     public void setFeedbackFramePeriod(int periodMS)
     {
     }

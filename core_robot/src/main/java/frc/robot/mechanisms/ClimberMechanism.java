@@ -103,6 +103,8 @@ public class ClimberMechanism implements IMechanism
         winchFollowerMotor.setNeutralMode(MotorNeutralMode.Brake);
         winchFollowerMotor.setInvert(HardwareConstants.CLIMBER_WINCH_MOTOR_FOLLOWER_INVERT);
         winchFollowerMotor.follow(this.winchMotor);
+        winchFollowerMotor.setGeneralFramePeriod(TuningConstants.CLIMBER_WINCH_FOLLOWER_GENERAL_FRAME_PERIOD_MS);
+        winchFollowerMotor.setFeedbackFramePeriod(TuningConstants.CLIMBER_WINCH_FOLLOWER_SENSOR_FRAME_PERIOD_MS);
 
         // this.activeHookPiston =
         //     provider.getDoubleSolenoid(

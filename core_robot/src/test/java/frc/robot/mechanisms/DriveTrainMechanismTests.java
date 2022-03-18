@@ -449,6 +449,11 @@ public class DriveTrainMechanismTests
         }
 
         @Override
+        public void setGeneralFramePeriod(int periodMS)
+        {
+        }
+
+        @Override
         public void setFeedbackFramePeriod(int periodMS)
         {
         }

@@ -108,9 +108,9 @@ public class CargoMechanism implements IMechanism
             TuningConstants.CARGO_FLYWHEEL_MOTOR_PID_KD,
             TuningConstants.CARGO_FLYWHEEL_MOTOR_PID_KF,
             CargoMechanism.DefaultSlotId);
-        // this.flywheelMotor.configureVelocityMeasurements(
-        //     TuningConstants.CARGO_FLYWHEEL_VELOCITY_PERIOD,
-        //     TuningConstants.CARGO_FLYWHEEL_VELOCITY_WINDOWSIZE);
+        this.flywheelMotor.configureVelocityMeasurements(
+            TuningConstants.CARGO_FLYWHEEL_VELOCITY_PERIOD,
+            TuningConstants.CARGO_FLYWHEEL_VELOCITY_WINDOWSIZE);
         this.flywheelMotor.setVoltageCompensation(
             TuningConstants.CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_ENABLED,
             TuningConstants.CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE);
@@ -120,7 +120,8 @@ public class CargoMechanism implements IMechanism
         flywheelFollower.setInvert(HardwareConstants.CARGO_FLYWHEEL_FOLLOWER_MOTOR_INVERT);
         flywheelFollower.setNeutralMode(MotorNeutralMode.Coast);
         flywheelFollower.follow(this.flywheelMotor);
-        flywheelFollower.setFeedbackFramePeriod(TuningConstants.CARGO_FLYWHEEL_SENSOR_FRAME_PERIOD_MS);
+        flywheelFollower.setGeneralFramePeriod(TuningConstants.CARGO_FLYWHEEL_FOLLOWER_GENERAL_FRAME_PERIOD_MS);
+        flywheelFollower.setFeedbackFramePeriod(TuningConstants.CARGO_FLYWHEEL_FOLLOWER_SENSOR_FRAME_PERIOD_MS);
 
         // serializer
         this.feederThroughBeamSensor = provider.getAnalogInput(ElectronicsConstants.CARGO_FEEDER_THROUGHBEAM_ANALOG_INPUT);
