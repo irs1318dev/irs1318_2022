@@ -296,7 +296,7 @@ public class TuningConstants
 
     public static final double CARGO_CONVEYOR_RUNTIME_AFTER_INTAKE = 4.0;
     public static final double CARGO_CONVEYOR_RUNTIME_FOR_ADVANCE = 2.5;
-    public static final double CARGO_INTAKE_EXTENSION_TIMEOUT = 2.5;
+    public static final double CARGO_INTAKE_EXTENSION_TIMEOUT = 4.0;
 
     public static final int CARGO_FLYWHEEL_VELOCITY_PERIOD = 10;
     public static final int CARGO_FLYWHEEL_VELOCITY_WINDOWSIZE = 8;
