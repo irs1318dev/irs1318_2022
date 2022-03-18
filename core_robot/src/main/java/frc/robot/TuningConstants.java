@@ -280,7 +280,7 @@ public class TuningConstants
 
     public static final boolean CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_ENABLED = true;
     public static final double CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE = 12.0;
-    public static final int CARGO_FLYWHEEL_SENSOR_FRAME_PERIOD_MS = 40;
+    public static final int CARGO_FLYWHEEL_SENSOR_FRAME_PERIOD_MS = 20;
     public static final int CARGO_FLYWHEEL_FOLLOWER_SENSOR_FRAME_PERIOD_MS = 255;
     public static final int CARGO_FLYWHEEL_FOLLOWER_GENERAL_FRAME_PERIOD_MS = 255;
 
