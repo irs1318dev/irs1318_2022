@@ -926,6 +926,7 @@ public class ButtonMap implements IButtonMap
             }),
 
         // autonomous testing operations
+        /*
         new MacroOperationDescription(
             MacroOperation.AutoDriveBackIntakeShoot,
             UserInputDevice.Test1,
@@ -988,6 +989,75 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.CargoHoodPointBlank,
                 DigitalOperation.CargoHoodLong,
             }),
+            */
+            // ----------------------- SAMMAMISH AUTO -------------------------
+            new MacroOperationDescription(
+                MacroOperation.AutoDriveBackIntakeDriveForwardShoot,
+                UserInputDevice.Test1,
+                UserInputDeviceButton.XBONE_A_BUTTON,
+                Shift.Test1Debug,
+                Shift.None,
+                ButtonType.Toggle,
+                () -> SequentialTask.Sequence(
+                    ConcurrentTask.AnyTasks(
+                        ConcurrentTask.AllTasks(
+                            new FollowPathTask("goBack3ftRight1Turn4"),
+                            new CargoExtendIntakeTask(true)
+                        ),
+                        new CargoIntakeTask(2.0, true)
+                    ),
+                    new FollowPathTask("goLeft1ftBack8ftTurn171"),
+                    new VisionCenteringTask(false),
+                    ConcurrentTask.AnyTasks(
+                        new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
+                        SequentialTask.Sequence(
+                            new WaitTask(1.0),
+                            new CargoShootTask()
+                        )
+                    )
+                ),
+                new IOperation[]
+                {
+                    AnalogOperation.DriveTrainMoveForward,
+                    AnalogOperation.DriveTrainMoveRight,
+                    AnalogOperation.DriveTrainTurnAngleGoal,
+                    AnalogOperation.DriveTrainTurnSpeed,
+                    AnalogOperation.DriveTrainRotationA,
+                    AnalogOperation.DriveTrainRotationB,
+                    AnalogOperation.DriveTrainPathXGoal,
+                    AnalogOperation.DriveTrainPathYGoal,
+                    AnalogOperation.DriveTrainPathXVelocityGoal,
+                    AnalogOperation.DriveTrainPathYVelocityGoal,
+                    AnalogOperation.DriveTrainPathAngleVelocityGoal,
+                    AnalogOperation.DriveTrainPositionDrive1,
+                    AnalogOperation.DriveTrainPositionDrive2,
+                    AnalogOperation.DriveTrainPositionDrive3,
+                    AnalogOperation.DriveTrainPositionDrive4,
+                    AnalogOperation.DriveTrainPositionSteer1,
+                    AnalogOperation.DriveTrainPositionSteer2,
+                    AnalogOperation.DriveTrainPositionSteer3,
+                    AnalogOperation.DriveTrainPositionSteer4,
+                    AnalogOperation.DriveTrainTurnAngleReference,
+                    AnalogOperation.CargoFlywheelVelocityGoal,
+                    DigitalOperation.DriveTrainPositionMode,
+                    DigitalOperation.DriveTrainPathMode,
+                    DigitalOperation.DriveTrainReset,
+                    DigitalOperation.DriveTrainEnableFieldOrientation,
+                    DigitalOperation.DriveTrainDisableFieldOrientation,
+                    DigitalOperation.VisionDisableStream,
+                    DigitalOperation.VisionEnableGamePieceProcessing,
+                    DigitalOperation.VisionEnableRetroreflectiveProcessing,
+                    DigitalOperation.VisionForceDisable,
+                    DigitalOperation.CargoIntakeForceExtend,
+                    DigitalOperation.CargoIntakeForceRetract,
+                    DigitalOperation.CargoIntakeIn,
+                    DigitalOperation.CargoIntakeOut,
+                    DigitalOperation.CargoEject,
+                    DigitalOperation.CargoForceIntakeOnly,
+                    DigitalOperation.CargoFeed,
+                    DigitalOperation.CargoHoodPointBlank,
+                    DigitalOperation.CargoHoodLong,
+                }),
         new MacroOperationDescription(
             MacroOperation.AutoShootDriveBack,
             UserInputDevice.Test1,

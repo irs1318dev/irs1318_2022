@@ -9,6 +9,7 @@ public enum MacroOperation implements IOperation
     AutoShootDriveBack,
     ThreeBallAuto,
     FiveBallAuto,
+    AutoDriveBackIntakeDriveForwardShoot,
 
     // DriveTrain operations:
     PIDBrake,
