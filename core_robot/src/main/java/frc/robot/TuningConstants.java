@@ -312,6 +312,7 @@ public class TuningConstants
 
     public static final double CARGO_SHOOT_CHECKBALL_WAIT_TIME = TuningConstants.CARGO_CONVEYOR_RUNTIME_FOR_ADVANCE;
     public static final double CARGO_SHOOT_SPINUP_WAIT_TIME = 1.0;
+    public static final double CARGO_SHOOT_WAIT_TIME = 1.5;
 
     public static final double UPPER_HUB_HEIGHT = 104; // inches
     public static final double LOWER_HUB_HEIGHT = 41; // inches

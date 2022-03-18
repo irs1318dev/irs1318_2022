@@ -8,8 +8,9 @@ import frc.robot.mechanisms.CargoMechanism;
 public class CargoShootTask extends ControlTaskBase
 {
     private final boolean shootAll;
+
     private CargoMechanism cargo;
-    private int shotCount;
+    private ITimer timer;
 
     private enum ShootingState
     {
@@ -20,9 +21,10 @@ public class CargoShootTask extends ControlTaskBase
     };
 
     private ShootingState currentState;
-
-    private ITimer timer;
     private double endTime;
+    private int shotsRemaining;
+
+    private boolean useShootAnywayMode;
 
     public CargoShootTask()
     {
@@ -39,23 +41,34 @@ public class CargoShootTask extends ControlTaskBase
     {
         this.cargo = this.getInjector().getInstance(CargoMechanism.class);
         this.timer = this.getInjector().getInstance(ITimer.class);
-        this.endTime = this.timer.get() + TuningConstants.CARGO_SHOOT_CHECKBALL_WAIT_TIME;
 
-        this.currentState = ShootingState.CheckBall;
-        this.shotCount = 0;
+        this.useShootAnywayMode = this.cargo.useShootAnywayMode();
+        if (this.useShootAnywayMode)
+        {
+            this.currentState = ShootingState.CheckBall;
+            this.endTime = this.timer.get() + TuningConstants.CARGO_SHOOT_CHECKBALL_WAIT_TIME;
+            this.shotsRemaining = this.shootAll ? 2 : 1;
+        }
+        else
+        {
+            this.currentState = ShootingState.Shooting;
+            this.endTime = this.timer.get() + TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME;
+            this.shotsRemaining = 1;
+        }
     }
 
     @Override
     public void update()
     {
+        double currTime = this.timer.get();
         if (this.currentState == ShootingState.CheckBall)
         {
             if (this.cargo.hasBallReadyToShoot())
             {
                 this.currentState = ShootingState.SpinningUp;
-                this.endTime = timer.get() + TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME;
+                this.endTime = currTime + TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME;
             }
-            else if (this.timer.get() > this.endTime)
+            else if (currTime >= this.endTime)
             {
                 this.currentState = ShootingState.Completed;
             }
@@ -63,23 +76,30 @@ public class CargoShootTask extends ControlTaskBase
 
         if (this.currentState == ShootingState.SpinningUp)
         {
-            if (this.cargo.isFlywheelSpunUp())
+            if (this.cargo.isFlywheelSpunUp() ||
+                (this.useShootAnywayMode && currTime >= this.endTime))
             {
                 this.currentState = ShootingState.Shooting;
+                if (this.useShootAnywayMode)
+                {
+                    this.endTime = currTime + TuningConstants.CARGO_SHOOT_WAIT_TIME;
+                }
             }
-            else if (this.timer.get() > this.endTime)
+            else if (!this.useShootAnywayMode && currTime > this.endTime)
             {
                 this.currentState = ShootingState.Completed;
             }
         }
 
-        if (this.currentState == ShootingState.Shooting && !this.cargo.hasBallReadyToShoot()) 
+        if (this.currentState == ShootingState.Shooting &&
+            (!this.cargo.hasBallReadyToShoot() ||
+                (this.useShootAnywayMode && currTime >= this.endTime)))
         {
-            this.shotCount++;
-            if (this.shootAll && this.cargo.hasBackupBallToShoot() && this.shotCount < 2) 
+            this.shotsRemaining--;
+            if (this.shotsRemaining > 0 && this.cargo.hasBackupBallToShoot()) 
             {
                 this.currentState = ShootingState.CheckBall;
-                this.endTime = this.timer.get() + TuningConstants.CARGO_SHOOT_CHECKBALL_WAIT_TIME;
+                this.endTime = currTime + TuningConstants.CARGO_SHOOT_CHECKBALL_WAIT_TIME;
             }
             else 
             {
@@ -105,6 +125,7 @@ public class CargoShootTask extends ControlTaskBase
     @Override
     public void end()
     {
+        this.setDigitalOperationState(DigitalOperation.CargoFeed, false);
     }
 
     @Override
