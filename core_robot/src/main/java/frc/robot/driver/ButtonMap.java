@@ -260,7 +260,7 @@ public class ButtonMap implements IButtonMap
             Shift.CodriverDebug,
             Shift.CodriverDebug,
             ButtonType.Click),
-
+/*
         // climber operations
         new DigitalOperationDescription(
             DigitalOperation.ClimberHookRelease,
@@ -297,7 +297,7 @@ public class ButtonMap implements IButtonMap
             Shift.CodriverDebug,
             Shift.None,
             ButtonType.Click),
-
+*/
         // cargo testing operations
         new DigitalOperationDescription(
             DigitalOperation.CargoFeed,
@@ -316,15 +316,15 @@ public class ButtonMap implements IButtonMap
 
         new DigitalOperationDescription(
             DigitalOperation.CargoHoodPointBlank,
-            UserInputDevice.Test1,
-            0,
-            Shift.None,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_6,
+            Shift.CodriverDebug,
             Shift.None,
             ButtonType.Click),
         new DigitalOperationDescription(
             DigitalOperation.CargoHoodLong,
-            UserInputDevice.Test1,
-            180,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_7,
             Shift.None,
             Shift.None,
             ButtonType.Click),
@@ -517,7 +517,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
                 DigitalOperation.VisionForceDisable,
             }),
-
+/*
         // climber control macros for codriver
         new MacroOperationDescription(
             MacroOperation.ClimberWinchForward,
@@ -689,6 +689,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.ClimberWinchUnlock
             }
         ),
+        */
         
         new MacroOperationDescription(
             MacroOperation.CargoIntakeForceExtendMacro,
@@ -780,7 +781,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.ClimberWinchUnlock
             }
         ),
-        */
+        
 
         new MacroOperationDescription(
             MacroOperation.ClimberSwitchToNextRung,
@@ -811,6 +812,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.ClimberWinchUnlock
             }
         ),
+        */
 
         // shooting macros
         new MacroOperationDescription(
