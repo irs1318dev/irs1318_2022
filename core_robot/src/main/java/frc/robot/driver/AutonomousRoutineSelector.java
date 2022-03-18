@@ -1,7 +1,5 @@
 package frc.robot.driver;
 
-import javax.swing.Icon;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -108,7 +106,7 @@ public class AutonomousRoutineSelector
 
         if (routine == AutoRoutine.ShootDriveBack)
         {
-            return ShootDriveBack();
+            return shootDriveBack();
         }
         else if (routine == AutoRoutine.ThreeBallAuto)
         {
@@ -118,10 +116,9 @@ public class AutonomousRoutineSelector
         {
             return fiveBallAutoPog();
         }
-
         else if (routine == AutoRoutine.TwoBallAuto)
         {
-            return DriveBackIntakeDriveForwardShoot();
+            return driveBackIntakeDriveForwardShoot();
         }
 
         
@@ -136,7 +133,7 @@ public class AutonomousRoutineSelector
         return new WaitTask(0.0);
     }
 
-    private static IControlTask DriveBackIntakeDriveForwardShoot()
+    private static IControlTask driveBackIntakeDriveForwardShoot()
     {
         return SequentialTask.Sequence(
             ConcurrentTask.AnyTasks(
@@ -147,7 +144,7 @@ public class AutonomousRoutineSelector
                 new CargoIntakeTask(2.0, true)
             ),
             new FollowPathTask("goLeft1ftBack8ftTurn171"),
-            new VisionCenteringTask(false),
+            new VisionCenteringTask(false, true),
             ConcurrentTask.AnyTasks(
                 new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
                 SequentialTask.Sequence(
@@ -169,7 +166,7 @@ public class AutonomousRoutineSelector
                 new CargoExtendIntakeTask(true)
             ),
             //2 center with goal
-            new VisionCenteringTask(false),
+            new VisionCenteringTask(false, true),
             //3 shoot pre-loaded ball
             ConcurrentTask.AllTasks(
                 new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
@@ -187,9 +184,9 @@ public class AutonomousRoutineSelector
             ),
             //6 shoot the 2 balls
             new FollowPathTask("goBack6ftRight5ftTurn122"),
-            new VisionCenteringTask(false),
+            new VisionCenteringTask(false, true),
             ConcurrentTask.AllTasks(
-                new VisionCenteringTask(false),
+                new VisionCenteringTask(false, true),
                 new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
                 new CargoShootTask()
             ),
@@ -199,14 +196,14 @@ public class AutonomousRoutineSelector
                 new CargoIntakeTask(10.0, true),
                 SequentialTask.Sequence(
                     new WaitTask(2.0),
-                    new VisionCenteringTask(true),
+                    new VisionCenteringTask(true, true),
                     new WaitTask(1.0),
-                    new VisionCenteringTask(true)
+                    new VisionCenteringTask(true, true)
                 )
             ),
             //8 move to shoot those balls but not during the month of november
             new FollowPathTask("goBack18ftLeft12ftTurn154"),
-            new VisionCenteringTask(false),
+            new VisionCenteringTask(false, true),
             ConcurrentTask.AllTasks(
                 new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
                 new CargoShootTask()
@@ -214,11 +211,11 @@ public class AutonomousRoutineSelector
         );
     }
 
-    private static IControlTask ShootDriveBack()
+    private static IControlTask shootDriveBack()
     {
         return SequentialTask.Sequence(
             new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
-            new VisionCenteringTask(false),
+            new VisionCenteringTask(false, true),
             ConcurrentTask.AllTasks(
                 new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
                 new CargoShootTask()
@@ -236,7 +233,7 @@ public class AutonomousRoutineSelector
                 new CargoExtendIntakeTask(true)
             ),
             //2 center with goal
-            new VisionCenteringTask(false),
+            new VisionCenteringTask(false, true),
             //3 shoot pre-loaded ball
             ConcurrentTask.AllTasks(
                 new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
@@ -255,7 +252,7 @@ public class AutonomousRoutineSelector
             //6 shoot the 2 balls
             new FollowPathTask("goBack6ftRight5ftTurn122"),
             ConcurrentTask.AllTasks(
-                new VisionCenteringTask(false),
+                new VisionCenteringTask(false, true),
                 new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
                 new CargoShootTask()
             )

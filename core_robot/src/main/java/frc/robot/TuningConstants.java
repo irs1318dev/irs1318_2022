@@ -30,7 +30,10 @@ public class TuningConstants
     // Acceptable vision centering range values in degrees
     public static final double MAX_VISION_CENTERING_RANGE_DEGREES = 2.5;
 
-    // Acceptable vision distance from tape in inches
+    // How long the robot system must remain centered on the target when using time
+    public static final double VISION_CENTERING_DURATION = 0.75;
+
+    // Acceptable vision distance from tape in inches (as measured by vision system)
     public static final double MAX_VISION_ACCEPTABLE_FORWARD_DISTANCE = 3.25;
 
     // PID settings for Centering the robot on a vision target from one stationary place
