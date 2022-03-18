@@ -42,11 +42,11 @@ public class ClimberSammamishMechanism implements IMechanism
     @Override
     public void update()
     {
-        if (this.driver.getDigital(DigitalOperation.SClimberForward))
+        if (this.driver.getDigital(DigitalOperation.SClimberUp))
         {
             this.hookPiston.set(DoubleSolenoidValue.Forward);
         }
-        else if (this.driver.getDigital(DigitalOperation.SClimberReverse))
+        else if (this.driver.getDigital(DigitalOperation.SClimberDown))
         {
             this.hookPiston.set(DoubleSolenoidValue.Reverse);
         }

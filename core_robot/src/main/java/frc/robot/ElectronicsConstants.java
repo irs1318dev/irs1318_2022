@@ -101,6 +101,6 @@ public class ElectronicsConstants
 
     //================================================== Samamamamish Climber Mechanism ==============================================================
 
-    public static final int SCLIMBER_ACTIVE_HOOK_FORWARD = 4;
-    public static final int SCLIMBER_ACTIVE_HOOK_BACKWARD = 5;
+    public static final int SCLIMBER_ACTIVE_HOOK_FORWARD = 8;
+    public static final int SCLIMBER_ACTIVE_HOOK_BACKWARD = 9;
 }

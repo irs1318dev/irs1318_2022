@@ -47,16 +47,16 @@ public class CargoShootTask extends ControlTaskBase
         this.useShootAnywayMode = this.cargo.useShootAnywayMode();
         if (this.useShootAnywayMode)
         {
+            this.currentState = ShootingState.SpinningUp;
+            this.notBeforeTime = currTime + TuningConstants.CARGO_SHOOT_SPINUP_MIN_WAIT_TIME;
+            this.timeoutTime = currTime + TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIMEOUT;
+        }
+        else
+        {
             this.currentState = ShootingState.CheckBall;
             this.notBeforeTime = currTime + TuningConstants.CARGO_SHOOT_CHECKBALL_MIN_WAIT_TIME;
             this.timeoutTime = currTime + TuningConstants.CARGO_SHOOT_CHECKBALL_WAIT_TIMEOUT;
             this.shotsRemaining = this.shootAll ? 2 : 1;
-        }
-        else
-        {
-            this.currentState = ShootingState.Shooting;
-            this.notBeforeTime = currTime + TuningConstants.CARGO_SHOOT_SPINUP_MIN_WAIT_TIME;
-            this.timeoutTime = currTime + TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIMEOUT;
         }
     }
 
@@ -64,6 +64,7 @@ public class CargoShootTask extends ControlTaskBase
     public void update()
     {
         double currTime = this.timer.get();
+        System.out.println("" + currTime + ": " + this.currentState);
 
         // don't change states before our not-before time has passed
         if (currTime >= this.notBeforeTime)

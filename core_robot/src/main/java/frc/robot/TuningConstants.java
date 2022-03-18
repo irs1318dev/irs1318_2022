@@ -288,32 +288,32 @@ public class TuningConstants
     public static final double CARGO_INTAKE_OUT_POWER = -0.6;
     public static final double CARGO_INTAKE_EJECT_POWER = -0.8;
     public static final double CARGO_CONVEYOR_ADVANCE_ONE_POWER = 0.4;
-    public static final double CARGO_CONVEYOR_ADVANCE_TWO_POWER = 0.6;
+    public static final double CARGO_CONVEYOR_ADVANCE_TWO_POWER = 0.5;
     public static final double CARGO_CONVEYOR_INTAKE_ONE_POWER = 0.4;
-    public static final double CARGO_CONVEYOR_INTAKE_TWO_POWER = 0.6;
+    public static final double CARGO_CONVEYOR_INTAKE_TWO_POWER = 0.5;
     public static final double CARGO_CONVEYOR_REVERSE_POWER = -0.4;
     public static final double CARGO_FEEDER_POWER = 0.4;
 
-    public static final double CARGO_CONVEYOR_RUNTIME_AFTER_INTAKE = 4.0;
-    public static final double CARGO_CONVEYOR_RUNTIME_FOR_ADVANCE = 2.5;
-    public static final double CARGO_INTAKE_EXTENSION_TIMEOUT = 4.0;
+    public static final double CARGO_CONVEYOR_RUNTIME_AFTER_INTAKE = 2.0;
+    public static final double CARGO_CONVEYOR_RUNTIME_FOR_ADVANCE = 1.5;
+    public static final double CARGO_INTAKE_EXTENSION_TIMEOUT = 2.0;
 
     public static final int CARGO_FLYWHEEL_VELOCITY_PERIOD = 10;
     public static final int CARGO_FLYWHEEL_VELOCITY_WINDOWSIZE = 8;
 
-    public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.55;
-    public static final double CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED = 0.25;
-    public static final double CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED = 0.65;
+    public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.70;
+    public static final double CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED = 0.35;
+    public static final double CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED = 0.80;
 
     public static final double CARGO_CONVEYOR_THROUGHBEAM_CUTOFF = 2.7;
     public static final double CARGO_FEEDER_THROUGHBEAM_CUTOFF = 2.7;
 
-    public static final double CARGO_FLYWHEEL_ALLOWABLE_ERROR_RANGE = 250;
+    public static final double CARGO_FLYWHEEL_ALLOWABLE_ERROR_RANGE = 500;
 
     public static final double CARGO_SHOOT_CHECKBALL_MIN_WAIT_TIME = 0.25;
     public static final double CARGO_SHOOT_CHECKBALL_WAIT_TIMEOUT = TuningConstants.CARGO_CONVEYOR_RUNTIME_FOR_ADVANCE;
-    public static final double CARGO_SHOOT_SPINUP_MIN_WAIT_TIME = 0.25;
-    public static final double CARGO_SHOOT_SPINUP_WAIT_TIMEOUT = 1.5;
+    public static final double CARGO_SHOOT_SPINUP_MIN_WAIT_TIME = 1.0;
+    public static final double CARGO_SHOOT_SPINUP_WAIT_TIMEOUT = 2.0;
     public static final double CARGO_SHOOT_MIN_WAIT_TIME = 0.25;
     public static final double CARGO_SHOOT_WAIT_TIMEOUT = 1.5;
 

@@ -259,7 +259,7 @@ public class CargoMechanism implements IMechanism
             this.intakeExtensionTimeout = currTime + TuningConstants.CARGO_INTAKE_EXTENSION_TIMEOUT;
         }
         else if (this.currentIntakeState == IntakeState.Extended &&
-            this.intakeExtensionTimeout > currTime)
+            currTime >= this.intakeExtensionTimeout)
         {
             this.currentIntakeState = IntakeState.Retracted;
         }

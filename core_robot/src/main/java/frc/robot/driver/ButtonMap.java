@@ -246,6 +246,21 @@ public class ButtonMap implements IButtonMap
             Shift.None,
             ButtonType.Simple),
 
+        new DigitalOperationDescription(
+            DigitalOperation.CargoEnableShootAnywayMode,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_5,
+            Shift.CodriverDebug,
+            Shift.None,
+            ButtonType.Click),
+        new DigitalOperationDescription(
+            DigitalOperation.CargoDisableShootAnywayMode,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_5,
+            Shift.CodriverDebug,
+            Shift.CodriverDebug,
+            ButtonType.Click),
+
         // climber operations
         new DigitalOperationDescription(
             DigitalOperation.ClimberHookRelease,
@@ -315,7 +330,7 @@ public class ButtonMap implements IButtonMap
             ButtonType.Click),
         
         new DigitalOperationDescription(
-            DigitalOperation.SClimberForward,
+            DigitalOperation.SClimberUp,
             UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_12,
             Shift.CodriverDebug,
@@ -323,7 +338,7 @@ public class ButtonMap implements IButtonMap
             ButtonType.Click),
 
         new DigitalOperationDescription(
-            DigitalOperation.SClimberReverse,
+            DigitalOperation.SClimberDown,
             UserInputDevice.Codriver,
             UserInputDeviceButton.BUTTON_PAD_BUTTON_13,
             Shift.CodriverDebug,
