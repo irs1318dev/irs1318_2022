@@ -23,14 +23,17 @@ public enum DigitalOperation implements IOperation
     DriveTrainDisableMaintainDirectionMode,
 
     // cargo operations
-    CargoIntakeExtend,
-    CargoIntakeRetract,
+    CargoIntakeForceExtend,
+    CargoIntakeForceRetract,
     CargoIntakeIn,
     CargoIntakeOut,
     CargoEject,
+    CargoForceIntakeOnly,
     CargoFeed,
     CargoHoodPointBlank,
     CargoHoodLong,
+    CargoEnableShootAnywayMode,
+    CargoDisableShootAnywayMode,
 
     // Climber operations 
     ClimberHookGrasp,
@@ -41,5 +44,9 @@ public enum DigitalOperation implements IOperation
     ClimberEnableUnweightedMode,
     ClimberWinchLock,
     ClimberWinchUnlock,
-    ClimberWinchRetractedOverride,
+    ClimberResetWinchPosition,
+
+    //Samamamamish Climber
+    SClimberUp,
+    SClimberDown,
 }

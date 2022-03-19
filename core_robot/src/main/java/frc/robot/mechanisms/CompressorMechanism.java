@@ -65,7 +65,11 @@ public class CompressorMechanism implements IMechanism
         }
         else if (!this.isStarted)
         {
-            if (ElectronicsConstants.PNEUMATICS_USE_ANALOG)
+            if (ElectronicsConstants.PNEUMATICS_USE_HYBRID)
+            {
+                this.compressor.enableHybrid(ElectronicsConstants.PNEUMATICS_MIN_PSI, ElectronicsConstants.PNEUMATICS_MAX_PSI);
+            }
+            else if (ElectronicsConstants.PNEUMATICS_USE_ANALOG)
             {
                 this.compressor.enableAnalog(ElectronicsConstants.PNEUMATICS_MIN_PSI, ElectronicsConstants.PNEUMATICS_MAX_PSI);
             }

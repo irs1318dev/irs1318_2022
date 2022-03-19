@@ -12,12 +12,12 @@ public class ButtonMapVerifier
 {
     public static void main(String[] args)
     {
-        ButtonMapVerifier.Verify(new ButtonMap());
+        ButtonMapVerifier.Verify(new ButtonMap(), true, true);
     }
 
     public static void Verify(IButtonMap buttonMap)
     {
-        ButtonMapVerifier.Verify(buttonMap, true, true);
+        ButtonMapVerifier.Verify(buttonMap, true, false);
     }
 
     public static void Verify(IButtonMap buttonMap, boolean failOnError, boolean printMapping)

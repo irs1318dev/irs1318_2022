@@ -94,11 +94,11 @@ public class TalonSRXWrapper implements ITalonSRX
             "TalonSRX.setSensorType");
     }
 
-    public void setPIDFFramePeriod(int periodMS)
+    public void setGeneralFramePeriod(int periodMS)
     {
         CTREErrorCodeHelper.printError(
-            this.wrappedObject.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, periodMS, TalonSRXWrapper.timeoutMS),
-            "TalonSRX.setPIDFFramePeriod");
+            this.wrappedObject.setStatusFramePeriod(StatusFrameEnhanced.Status_1_General, periodMS, TalonSRXWrapper.timeoutMS),
+            "TalonSRX.setGeneralFramePeriod");
     }
 
     public void setFeedbackFramePeriod(int periodMS)
@@ -106,6 +106,13 @@ public class TalonSRXWrapper implements ITalonSRX
         CTREErrorCodeHelper.printError(
             this.wrappedObject.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, periodMS, TalonSRXWrapper.timeoutMS),
             "TalonSRX.setFeedbackFramePeriod");
+    }
+
+    public void setPIDFFramePeriod(int periodMS)
+    {
+        CTREErrorCodeHelper.printError(
+            this.wrappedObject.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, periodMS, TalonSRXWrapper.timeoutMS),
+            "TalonSRX.setPIDFFramePeriod");
     }
 
     public void configureVelocityMeasurements(int periodMS, int windowSize)

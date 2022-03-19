@@ -6,15 +6,15 @@ public class CargoExtendIntakeTask extends CompositeOperationTask
 {
     private static DigitalOperation[] intakePositionOperations =
     {
-        DigitalOperation.CargoIntakeExtend,
-        DigitalOperation.CargoIntakeRetract
+        DigitalOperation.CargoIntakeForceExtend,
+        DigitalOperation.CargoIntakeForceRetract
     };
 
     public CargoExtendIntakeTask(boolean intakeDown)
     {
         super(
             0.1,
-            intakeDown ? DigitalOperation.CargoIntakeExtend : DigitalOperation.CargoIntakeRetract,
+            intakeDown ? DigitalOperation.CargoIntakeForceExtend : DigitalOperation.CargoIntakeForceRetract,
             CargoExtendIntakeTask.intakePositionOperations);
     }
 }

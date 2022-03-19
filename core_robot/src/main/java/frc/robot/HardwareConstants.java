@@ -54,8 +54,8 @@ public class HardwareConstants
     public static final TalonFXInvertType CARGO_FLYWHEEL_MOTOR_INVERT = TalonFXInvertType.Clockwise;
     public static final TalonFXInvertType CARGO_FLYWHEEL_FOLLOWER_MOTOR_INVERT = TalonFXInvertType.OpposeMaster;
     public static final boolean CARGO_INTAKE_MOTOR_INVERT_OUTPUT = false;
-    public static final boolean CARGO_FEEDER_MOTOR_INVERT_OUTPUT = false;
-    public static final boolean CARGO_CONVEYOR_MOTOR_INVERT_OUTPUT = false;
+    public static final boolean CARGO_FEEDER_MOTOR_INVERT_OUTPUT = true;
+    public static final boolean CARGO_CONVEYOR_MOTOR_INVERT_OUTPUT = true;
 
     public static final double CARGO_SHOOTER_HIGH_ANGLE = 80.0; // degrees
     public static final double CARGO_SHOOTER_SHALLOW_ANGLE = 70.0; // degrees

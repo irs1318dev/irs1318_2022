@@ -40,6 +40,8 @@ public class VisionSpinUpTask extends TimedTask
     @Override
     public void begin()
     {
+        super.begin();
+
         this.visionManager = this.getInjector().getInstance(OffboardVisionManager.class);
     }
 

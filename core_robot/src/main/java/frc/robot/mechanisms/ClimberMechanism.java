@@ -55,6 +55,7 @@ public class ClimberMechanism implements IMechanism
         this.winchMotor.setVoltageCompensation(
             TuningConstants.CLIMBER_WINCH_MOTOR_MASTER_VOLTAGE_COMPENSATION_ENABLED,
             TuningConstants.CLIMBER_WINCH_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE);
+        this.winchMotor.setFeedbackFramePeriod(TuningConstants.CLIMBER_WINCH_SENSOR_FRAME_PERIOD_MS);
         if (TuningConstants.CLIMBER_USE_MOTION_MAGIC)
         {
             this.winchMotor.setControlMode(TalonXControlMode.MotionMagicPosition);
@@ -100,11 +101,10 @@ public class ClimberMechanism implements IMechanism
 
         ITalonFX winchFollowerMotor = provider.getTalonFX(ElectronicsConstants.CLIMBER_WINCH_MOTOR_FOLLOWER_CAN_ID);
         winchFollowerMotor.setNeutralMode(MotorNeutralMode.Brake);
-        winchFollowerMotor.setVoltageCompensation(
-            TuningConstants.CLIMBER_WINCH_MOTOR_FOLLOWER_VOLTAGE_COMPENSATION_ENABLED,
-            TuningConstants.CLIMBER_WINCH_MOTOR_FOLLOWER_POSITION_VOLTAGE_COMPENSATION_MAXVOLTAGE);
         winchFollowerMotor.setInvert(HardwareConstants.CLIMBER_WINCH_MOTOR_FOLLOWER_INVERT);
         winchFollowerMotor.follow(this.winchMotor);
+        winchFollowerMotor.setGeneralFramePeriod(TuningConstants.CLIMBER_WINCH_FOLLOWER_GENERAL_FRAME_PERIOD_MS);
+        winchFollowerMotor.setFeedbackFramePeriod(TuningConstants.CLIMBER_WINCH_FOLLOWER_SENSOR_FRAME_PERIOD_MS);
 
         // this.activeHookPiston =
         //     provider.getDoubleSolenoid(
@@ -197,7 +197,7 @@ public class ClimberMechanism implements IMechanism
             this.winchArmLocked = false;
         }
 
-        if (this.driver.getDigital(DigitalOperation.ClimberWinchRetractedOverride))
+        if (this.driver.getDigital(DigitalOperation.ClimberResetWinchPosition))
         {
             this.winchMotor.reset();
         }
@@ -210,6 +210,7 @@ public class ClimberMechanism implements IMechanism
             this.winchMotor.set(winchMotorPower);
             this.desiredWinchPosition = this.winchMotorPosition;
 
+            this.logger.logNumber(LoggingKey.ClimberWinchPower, winchMotorPower);
             this.logger.logNumber(LoggingKey.ClimberWinchDesiredPosition, this.desiredWinchPosition);
         }
         else if (!this.winchArmLocked)
@@ -225,6 +226,7 @@ public class ClimberMechanism implements IMechanism
             this.winchMotor.setControlMode(TalonXControlMode.Position);
             this.winchMotor.set(this.desiredWinchPosition);
 
+            this.logger.logNumber(LoggingKey.ClimberWinchPower, -1318);
             this.logger.logNumber(LoggingKey.ClimberWinchDesiredPosition, this.desiredWinchPosition);
         }
         else
@@ -232,6 +234,7 @@ public class ClimberMechanism implements IMechanism
             // if the winch arm is locked, don't attempt to control the winch
             this.winchMotor.stop();
 
+            this.logger.logNumber(LoggingKey.ClimberWinchPower, 0.0);
             this.logger.logNumber(LoggingKey.ClimberWinchDesiredPosition, TuningConstants.MAGIC_NULL_VALUE);
         }
 

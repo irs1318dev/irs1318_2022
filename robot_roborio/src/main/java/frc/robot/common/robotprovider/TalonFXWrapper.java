@@ -99,11 +99,11 @@ public class TalonFXWrapper implements ITalonFX
             "TalonFX.configSelectedFeedbackSensor");
     }
 
-    public void setPIDFFramePeriod(int periodMS)
+    public void setGeneralFramePeriod(int periodMS)
     {
         CTREErrorCodeHelper.printError(
-            this.wrappedObject.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, periodMS, TalonFXWrapper.timeoutMS),
-            "TalonFX.setPIDFFramePeriod");
+            this.wrappedObject.setStatusFramePeriod(StatusFrameEnhanced.Status_1_General, periodMS, TalonFXWrapper.timeoutMS),
+            "TalonFX.setGeneralFramePeriod");
     }
 
     public void setFeedbackFramePeriod(int periodMS)
@@ -111,6 +111,13 @@ public class TalonFXWrapper implements ITalonFX
         CTREErrorCodeHelper.printError(
             this.wrappedObject.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, periodMS, TalonFXWrapper.timeoutMS),
             "TalonFX.setFeedbackFramePeriod");
+    }
+
+    public void setPIDFFramePeriod(int periodMS)
+    {
+        CTREErrorCodeHelper.printError(
+            this.wrappedObject.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, periodMS, TalonFXWrapper.timeoutMS),
+            "TalonFX.setPIDFFramePeriod");
     }
 
     public void configureVelocityMeasurements(int periodMS, int windowSize)

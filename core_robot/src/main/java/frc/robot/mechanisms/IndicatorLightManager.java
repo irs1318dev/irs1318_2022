@@ -27,8 +27,8 @@ public class IndicatorLightManager implements IMechanism
     }
 
     private boolean wasDisabled;
-    private boolean hasFeederCargoLit;
-    private boolean hasConveyorCargoLit;
+    private boolean hasFirstCargoLit;
+    private boolean hasSecondCargoLit;
     private boolean shooterSpunUpLit;
 
     @Inject
@@ -42,8 +42,8 @@ public class IndicatorLightManager implements IMechanism
         this.candle.configVBatOutput(CANdleVBatOutputMode.Off);
 
         this.wasDisabled = true;
-        this.hasFeederCargoLit = false;
-        this.hasConveyorCargoLit = false;
+        this.hasFirstCargoLit = false;
+        this.hasSecondCargoLit = false;
         this.shooterSpunUpLit = false;
     }
 
@@ -55,13 +55,13 @@ public class IndicatorLightManager implements IMechanism
     @Override
     public void update()
     {
-        boolean shouldFeederCargoLightBeOn = this.cargo.isFeederSensorBlocked();
-        boolean shouldConveyorCargoLightBeOn = this.cargo.isConveyorSensorBlocked();
+        boolean shouldFirstCargoLightBeOn = this.cargo.hasBallReadyToShoot();
+        boolean shouldSecondCargoLightBeOn = this.cargo.hasBackupBallToShoot();
         boolean shouldSpinUpLightBeOn = this.cargo.isFlywheelSpunUp();
 
         // note: we only update the light strip sections when they should be changed (as opposed to every update loop)
-        LightTransition updateFeederCargoLight = this.checkTransitionRequired(this.wasDisabled, this.hasFeederCargoLit, shouldFeederCargoLightBeOn);
-        LightTransition updateConveyorCargoLight = this.checkTransitionRequired(this.wasDisabled, this.hasConveyorCargoLit, shouldConveyorCargoLightBeOn);
+        LightTransition updateFirstCargoLight = this.checkTransitionRequired(this.wasDisabled, this.hasFirstCargoLit, shouldFirstCargoLightBeOn);
+        LightTransition updateSecondCargoLight = this.checkTransitionRequired(this.wasDisabled, this.hasSecondCargoLit, shouldSecondCargoLightBeOn);
         LightTransition updateShooterSpunUpLight = this.checkTransitionRequired(this.wasDisabled, this.shooterSpunUpLit, shouldSpinUpLightBeOn);
 
         if (this.wasDisabled)
@@ -71,34 +71,34 @@ public class IndicatorLightManager implements IMechanism
             this.wasDisabled = false;
         }
 
-        if (updateFeederCargoLight != LightTransition.NoChange)
+        if (updateFirstCargoLight != LightTransition.NoChange)
         {
-            this.hasFeederCargoLit =
+            this.hasFirstCargoLit =
                 this.updateLightRanges(
-                    updateFeederCargoLight,
-                    TuningConstants.INDICATOR_SECTION_FEEDER_CARGO_COLOR_RED,
-                    TuningConstants.INDICATOR_SECTION_FEEDER_CARGO_COLOR_GREEN,
-                    TuningConstants.INDICATOR_SECTION_FEEDER_CARGO_COLOR_BLUE,
-                    TuningConstants.INDICATOR_SECTION_FEEDER_CARGO_COLOR_WHITE,
-                    TuningConstants.INDICATOR_SECTION_FEEDER_CARGO1_START,
-                    TuningConstants.INDICATOR_SECTION_FEEDER_CARGO1_COUNT,
-                    TuningConstants.INDICATOR_SECTION_FEEDER_CARGO2_START,
-                    TuningConstants.INDICATOR_SECTION_FEEDER_CARGO2_COUNT);
+                    updateFirstCargoLight,
+                    TuningConstants.INDICATOR_SECTION_FIRST_CARGO_COLOR_RED,
+                    TuningConstants.INDICATOR_SECTION_FIRST_CARGO_COLOR_GREEN,
+                    TuningConstants.INDICATOR_SECTION_FIRST_CARGO_COLOR_BLUE,
+                    TuningConstants.INDICATOR_SECTION_FIRST_CARGO_COLOR_WHITE,
+                    TuningConstants.INDICATOR_SECTION_FIRST_CARGO1_START,
+                    TuningConstants.INDICATOR_SECTION_FIRST_CARGO1_COUNT,
+                    TuningConstants.INDICATOR_SECTION_FIRST_CARGO2_START,
+                    TuningConstants.INDICATOR_SECTION_FIRST_CARGO2_COUNT);
         }
 
-        if (updateConveyorCargoLight != LightTransition.NoChange)
+        if (updateSecondCargoLight != LightTransition.NoChange)
         {
-            this.hasConveyorCargoLit =
+            this.hasSecondCargoLit =
                 this.updateLightRanges(
-                    updateConveyorCargoLight,
-                    TuningConstants.INDICATOR_SECTION_CONVEYOR_CARGO_COLOR_RED,
-                    TuningConstants.INDICATOR_SECTION_CONVEYOR_CARGO_COLOR_GREEN,
-                    TuningConstants.INDICATOR_SECTION_CONVEYOR_CARGO_COLOR_BLUE,
-                    TuningConstants.INDICATOR_SECTION_CONVEYOR_CARGO_COLOR_WHITE,
-                    TuningConstants.INDICATOR_SECTION_CONVEYOR_CARGO1_START,
-                    TuningConstants.INDICATOR_SECTION_CONVEYOR_CARGO1_COUNT,
-                    TuningConstants.INDICATOR_SECTION_CONVEYOR_CARGO2_START,
-                    TuningConstants.INDICATOR_SECTION_CONVEYOR_CARGO2_COUNT);
+                    updateSecondCargoLight,
+                    TuningConstants.INDICATOR_SECTION_SECOND_CARGO_COLOR_RED,
+                    TuningConstants.INDICATOR_SECTION_SECOND_CARGO_COLOR_GREEN,
+                    TuningConstants.INDICATOR_SECTION_SECOND_CARGO_COLOR_BLUE,
+                    TuningConstants.INDICATOR_SECTION_SECOND_CARGO_COLOR_WHITE,
+                    TuningConstants.INDICATOR_SECTION_SECOND_CARGO1_START,
+                    TuningConstants.INDICATOR_SECTION_SECOND_CARGO1_COUNT,
+                    TuningConstants.INDICATOR_SECTION_SECOND_CARGO2_START,
+                    TuningConstants.INDICATOR_SECTION_SECOND_CARGO2_COUNT);
         }
 
         if (updateShooterSpunUpLight != LightTransition.NoChange)
@@ -121,8 +121,8 @@ public class IndicatorLightManager implements IMechanism
     public void stop()
     {
         this.wasDisabled = true;
-        this.hasFeederCargoLit = false;
-        this.hasConveyorCargoLit = false;
+        this.hasFirstCargoLit = false;
+        this.hasSecondCargoLit = false;
         this.shooterSpunUpLit = false;
 
         this.candle.startRainbowAnimation(TuningConstants.CANDLE_ANIMATION_SLOT_1, 0.5, 0.5, TuningConstants.LED_STRIP_LED_COUNT, false, TuningConstants.CANDLE_LED_COUNT);

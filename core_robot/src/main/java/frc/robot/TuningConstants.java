@@ -8,8 +8,9 @@ package frc.robot;
  */
 public class TuningConstants
 {
-    public static final boolean COMPETITION_ROBOT = false;
+    public static final boolean COMPETITION_ROBOT = true;
     public static boolean THROW_EXCEPTIONS = !TuningConstants.COMPETITION_ROBOT;
+    public static boolean LOG_EXCEPTIONS = true;
 
     //================================================== Magic Values ==============================================================
 
@@ -27,13 +28,16 @@ public class TuningConstants
     //================================================= Vision ======================================================
 
     // Acceptable vision centering range values in degrees
-    public static final double MAX_VISION_CENTERING_RANGE_DEGREES = 5.0;
+    public static final double MAX_VISION_CENTERING_RANGE_DEGREES = 2.5;
 
-    // Acceptable vision distance from tape in inches
+    // How long the robot system must remain centered on the target when using time
+    public static final double VISION_CENTERING_DURATION = 0.75;
+
+    // Acceptable vision distance from tape in inches (as measured by vision system)
     public static final double MAX_VISION_ACCEPTABLE_FORWARD_DISTANCE = 3.25;
 
     // PID settings for Centering the robot on a vision target from one stationary place
-    public static final double VISION_STATIONARY_CENTERING_PID_KP = 0.0125;
+    public static final double VISION_STATIONARY_CENTERING_PID_KP = 0.025;
     public static final double VISION_STATIONARY_CENTERING_PID_KI = 0.0;
     public static final double VISION_STATIONARY_CENTERING_PID_KD = 0.01;
     public static final double VISION_STATIONARY_CENTERING_PID_KF = 0.0;
@@ -92,24 +96,24 @@ public class TuningConstants
     public static final int INDICATOR_OFF_COLOR_WHITE = 0;
 
     // Has (at least) a single cargo light
-    public static final int INDICATOR_SECTION_FEEDER_CARGO_COLOR_RED = 255;
-    public static final int INDICATOR_SECTION_FEEDER_CARGO_COLOR_GREEN = 0;
-    public static final int INDICATOR_SECTION_FEEDER_CARGO_COLOR_BLUE = 0;
-    public static final int INDICATOR_SECTION_FEEDER_CARGO_COLOR_WHITE = 0;
-    public static final int INDICATOR_SECTION_FEEDER_CARGO1_START = 8;
-    public static final int INDICATOR_SECTION_FEEDER_CARGO1_COUNT = 20;
-    public static final int INDICATOR_SECTION_FEEDER_CARGO2_START = 68;
-    public static final int INDICATOR_SECTION_FEEDER_CARGO2_COUNT = 20;
+    public static final int INDICATOR_SECTION_FIRST_CARGO_COLOR_RED = 255;
+    public static final int INDICATOR_SECTION_FIRST_CARGO_COLOR_GREEN = 0;
+    public static final int INDICATOR_SECTION_FIRST_CARGO_COLOR_BLUE = 0;
+    public static final int INDICATOR_SECTION_FIRST_CARGO_COLOR_WHITE = 0;
+    public static final int INDICATOR_SECTION_FIRST_CARGO1_START = 8;
+    public static final int INDICATOR_SECTION_FIRST_CARGO1_COUNT = 20;
+    public static final int INDICATOR_SECTION_FIRST_CARGO2_START = 68;
+    public static final int INDICATOR_SECTION_FIRST_CARGO2_COUNT = 20;
 
     // Has a second cargo light
-    public static final int INDICATOR_SECTION_CONVEYOR_CARGO_COLOR_RED = 255;
-    public static final int INDICATOR_SECTION_CONVEYOR_CARGO_COLOR_GREEN = 255;
-    public static final int INDICATOR_SECTION_CONVEYOR_CARGO_COLOR_BLUE = 0;
-    public static final int INDICATOR_SECTION_CONVEYOR_CARGO_COLOR_WHITE = 0;
-    public static final int INDICATOR_SECTION_CONVEYOR_CARGO1_START = 28;
-    public static final int INDICATOR_SECTION_CONVEYOR_CARGO1_COUNT = 20;
-    public static final int INDICATOR_SECTION_CONVEYOR_CARGO2_START = 88;
-    public static final int INDICATOR_SECTION_CONVEYOR_CARGO2_COUNT = 20;
+    public static final int INDICATOR_SECTION_SECOND_CARGO_COLOR_RED = 255;
+    public static final int INDICATOR_SECTION_SECOND_CARGO_COLOR_GREEN = 255;
+    public static final int INDICATOR_SECTION_SECOND_CARGO_COLOR_BLUE = 0;
+    public static final int INDICATOR_SECTION_SECOND_CARGO_COLOR_WHITE = 0;
+    public static final int INDICATOR_SECTION_SECOND_CARGO1_START = 28;
+    public static final int INDICATOR_SECTION_SECOND_CARGO1_COUNT = 20;
+    public static final int INDICATOR_SECTION_SECOND_CARGO2_START = 88;
+    public static final int INDICATOR_SECTION_SECOND_CARGO2_COUNT = 20;
 
     // Shooter spin-up lights
     public static final int INDICATOR_SECTION_SPIN_UP_COLOR_RED = 0;
@@ -245,6 +249,9 @@ public class TuningConstants
     public static final double DRIVETRAIN_STEER_SUPPLY_TRIGGER_CURRENT = 40.0;
     public static final double DRIVETRAIN_STEER_SUPPLY_TRIGGER_DURATION = 100.0;
 
+    public static final int DRIVETRAIN_SENSOR_FRAME_PERIOD_MS = 10;
+    public static final int DRIVETRAIN_PID_FRAME_PERIOD_MS = 100;
+
     public static final boolean DRIVETRAIN_SKIP_ANGLE_ON_ZERO_VELOCITY = true;
     public static final double DRIVETRAIN_SKIP_ANGLE_ON_ZERO_DELTA = 0.001;
     public static final double DRIVETRAIN_SKIP_OMEGA_ON_ZERO_DELTA = 0.25;
@@ -276,28 +283,42 @@ public class TuningConstants
 
     public static final boolean CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_ENABLED = true;
     public static final double CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE = 12.0;
+    public static final int CARGO_FLYWHEEL_SENSOR_FRAME_PERIOD_MS = 20;
+    public static final int CARGO_FLYWHEEL_FOLLOWER_SENSOR_FRAME_PERIOD_MS = 255;
+    public static final int CARGO_FLYWHEEL_FOLLOWER_GENERAL_FRAME_PERIOD_MS = 255;
 
-    public static final double CARGO_INTAKE_POWER = 0.4;
-    public static final double CARGO_INTAKE_OUT_POWER = -0.4;
-    public static final double CARGO_INTAKE_EJECT_POWER = -0.5;
-    public static final double CARGO_CONVEYOR_ADVANCE_POWER = 0.4;
-    public static final double CARGO_CONVEYOR_REVERSE_POWER = 0.4;
+    public static final double CARGO_INTAKE_POWER = 0.6;
+    public static final double CARGO_INTAKE_OUT_POWER = -0.6;
+    public static final double CARGO_INTAKE_EJECT_POWER = -0.8;
+    public static final double CARGO_CONVEYOR_ADVANCE_ONE_POWER = 0.4;
+    public static final double CARGO_CONVEYOR_ADVANCE_TWO_POWER = 0.5;
+    public static final double CARGO_CONVEYOR_INTAKE_ONE_POWER = 0.4;
+    public static final double CARGO_CONVEYOR_INTAKE_TWO_POWER = 0.5;
+    public static final double CARGO_CONVEYOR_REVERSE_POWER = -0.4;
     public static final double CARGO_FEEDER_POWER = 0.4;
 
-    public static final int CARGO_FLYWHEEL_VELOCITY_PERIOD = 0;
-    public static final int CARGO_FLYWHEEL_VELOCITY_WINDOWSIZE = 0;
+    public static final double CARGO_CONVEYOR_RUNTIME_AFTER_INTAKE = 2.0;
+    public static final double CARGO_CONVEYOR_RUNTIME_FOR_ADVANCE = 1.5;
+    public static final double CARGO_INTAKE_EXTENSION_TIMEOUT = 2.0;
 
-    public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.5;
-    public static final double CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED = 0.25;
-    public static final double CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED = 0.5;
+    public static final int CARGO_FLYWHEEL_VELOCITY_PERIOD = 10;
+    public static final int CARGO_FLYWHEEL_VELOCITY_WINDOWSIZE = 8;
+
+    public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.70;
+    public static final double CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED = 0.35;
+    public static final double CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED = 0.80;
 
     public static final double CARGO_CONVEYOR_THROUGHBEAM_CUTOFF = 2.7;
     public static final double CARGO_FEEDER_THROUGHBEAM_CUTOFF = 2.7;
 
     public static final double CARGO_FLYWHEEL_ALLOWABLE_ERROR_RANGE = 500;
 
-    public static final double CARGO_SHOOT_CHECKBALL_WAIT_TIME = 1.0;
-    public static final double CARGO_SHOOT_SPINUP_WAIT_TIME = 1.0;
+    public static final double CARGO_SHOOT_CHECKBALL_MIN_WAIT_TIME = 0.25;
+    public static final double CARGO_SHOOT_CHECKBALL_WAIT_TIMEOUT = TuningConstants.CARGO_CONVEYOR_RUNTIME_FOR_ADVANCE;
+    public static final double CARGO_SHOOT_SPINUP_MIN_WAIT_TIME = 1.0;
+    public static final double CARGO_SHOOT_SPINUP_WAIT_TIMEOUT = 2.0;
+    public static final double CARGO_SHOOT_MIN_WAIT_TIME = 0.25;
+    public static final double CARGO_SHOOT_WAIT_TIMEOUT = 1.5;
 
     public static final double UPPER_HUB_HEIGHT = 104; // inches
     public static final double LOWER_HUB_HEIGHT = 41; // inches
@@ -337,11 +358,9 @@ public class TuningConstants
 
     public static final boolean CLIMBER_WINCH_MOTOR_MASTER_VOLTAGE_COMPENSATION_ENABLED = true;
     public static final double CLIMBER_WINCH_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE = 12.0;
-
-    public static final boolean CLIMBER_WINCH_MOTOR_FOLLOWER_VOLTAGE_COMPENSATION_ENABLED = true;
-    public static final double CLIMBER_WINCH_MOTOR_FOLLOWER_POSITION_VOLTAGE_COMPENSATION_MAXVOLTAGE = 12.0;
-
-    public static final double CONVEYOR_RUNTIME_AFTER_INTAKE = 3.0;
+    public static final int CLIMBER_WINCH_SENSOR_FRAME_PERIOD_MS = 50;
+    public static final int CLIMBER_WINCH_FOLLOWER_SENSOR_FRAME_PERIOD_MS = 255;
+    public static final int CLIMBER_WINCH_FOLLOWER_GENERAL_FRAME_PERIOD_MS = 255;
 
     public static final double CLIMBER_FULL_RETRACT_LENGTH = 0.0;
     public static final double CLIMBER_SHORT_EXTEND_LENGTH = 0.2;

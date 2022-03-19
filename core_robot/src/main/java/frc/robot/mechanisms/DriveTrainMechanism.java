@@ -27,7 +27,6 @@ public class DriveTrainMechanism implements IMechanism
 
     private static final int defaultPidSlotId = 0;
     private static final int secondaryPidSlotId = 1;
-    private static final int FRAME_PERIOD_MS = 5;
 
     private static final LoggingKey[] ENCODER_ANGLE_LOGGING_KEYS = { LoggingKey.DriveTrainAbsoluteEncoderAngle1, LoggingKey.DriveTrainAbsoluteEncoderAngle2, LoggingKey.DriveTrainAbsoluteEncoderAngle3, LoggingKey.DriveTrainAbsoluteEncoderAngle4 };
     private static final LoggingKey[] DRIVE_VELOCITY_LOGGING_KEYS = { LoggingKey.DriveTrainDriveVelocity1, LoggingKey.DriveTrainDriveVelocity2, LoggingKey.DriveTrainDriveVelocity3, LoggingKey.DriveTrainDriveVelocity4 };
@@ -287,8 +286,8 @@ public class DriveTrainMechanism implements IMechanism
             this.driveMotors[i] = provider.getTalonFX(driveMotorCanIds[i]);
             this.driveMotors[i].setNeutralMode(MotorNeutralMode.Brake);
             this.driveMotors[i].setSensorType(TalonXFeedbackDevice.IntegratedSensor);
-            this.driveMotors[i].setFeedbackFramePeriod(DriveTrainMechanism.FRAME_PERIOD_MS);
-            this.driveMotors[i].setPIDFFramePeriod(DriveTrainMechanism.FRAME_PERIOD_MS);
+            this.driveMotors[i].setFeedbackFramePeriod(TuningConstants.DRIVETRAIN_SENSOR_FRAME_PERIOD_MS);
+            this.driveMotors[i].setPIDFFramePeriod(TuningConstants.DRIVETRAIN_PID_FRAME_PERIOD_MS);
             this.driveMotors[i].setInvert(driveMotorInvert[i]);
             this.driveMotors[i].configureVelocityMeasurements(10, 32);
             this.driveMotors[i].setPIDF(
@@ -332,6 +331,8 @@ public class DriveTrainMechanism implements IMechanism
                 TuningConstants.DRIVETRAIN_STEER_SUPPLY_CURRENT_MAX,
                 TuningConstants.DRIVETRAIN_STEER_SUPPLY_TRIGGER_CURRENT,
                 TuningConstants.DRIVETRAIN_STEER_SUPPLY_TRIGGER_DURATION);
+            this.steerMotors[i].setFeedbackFramePeriod(TuningConstants.DRIVETRAIN_SENSOR_FRAME_PERIOD_MS);
+            this.steerMotors[i].setFeedbackFramePeriod(TuningConstants.DRIVETRAIN_PID_FRAME_PERIOD_MS);
             this.steerMotors[i].setControlMode(TalonXControlMode.Position);
             this.steerMotors[i].setSelectedSlot(DriveTrainMechanism.defaultPidSlotId);
 

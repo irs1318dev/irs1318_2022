@@ -8,7 +8,9 @@ import frc.robot.mechanisms.CargoMechanism;
 public class CargoShootTask extends ControlTaskBase
 {
     private final boolean shootAll;
+
     private CargoMechanism cargo;
+    private ITimer timer;
 
     private enum ShootingState
     {
@@ -19,9 +21,11 @@ public class CargoShootTask extends ControlTaskBase
     };
 
     private ShootingState currentState;
+    private double notBeforeTime;
+    private double timeoutTime;
+    private int shotsRemaining;
 
-    private ITimer timer;
-    private double endTime;
+    private boolean useShootAnywayMode;
 
     public CargoShootTask()
     {
@@ -30,8 +34,7 @@ public class CargoShootTask extends ControlTaskBase
 
     public CargoShootTask(boolean shootAll)
     {
-        this.currentState = ShootingState.CheckBall;
-        this.shootAll = true;
+        this.shootAll = shootAll;
     }
 
     @Override
@@ -39,47 +42,96 @@ public class CargoShootTask extends ControlTaskBase
     {
         this.cargo = this.getInjector().getInstance(CargoMechanism.class);
         this.timer = this.getInjector().getInstance(ITimer.class);
-        this.endTime = this.timer.get() + TuningConstants.CARGO_SHOOT_CHECKBALL_WAIT_TIME;
+
+        double currTime = this.timer.get();
+        this.useShootAnywayMode = this.cargo.useShootAnywayMode();
+        if (this.useShootAnywayMode)
+        {
+            this.currentState = ShootingState.SpinningUp;
+            this.notBeforeTime = currTime + TuningConstants.CARGO_SHOOT_SPINUP_MIN_WAIT_TIME;
+            this.timeoutTime = currTime + TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIMEOUT;
+        }
+        else
+        {
+            this.currentState = ShootingState.CheckBall;
+            this.notBeforeTime = currTime + TuningConstants.CARGO_SHOOT_CHECKBALL_MIN_WAIT_TIME;
+            this.timeoutTime = currTime + TuningConstants.CARGO_SHOOT_CHECKBALL_WAIT_TIMEOUT;
+            this.shotsRemaining = this.shootAll ? 2 : 1;
+        }
     }
 
     @Override
     public void update()
     {
-        if (this.currentState == ShootingState.CheckBall)
-        {
-            if (this.cargo.isFeederSensorBlocked())
-            {
-                this.currentState = ShootingState.SpinningUp;
-                this.endTime = timer.get() + TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIME;
-            }
-            else if (this.timer.get() > this.endTime)
-            {
-                this.currentState = ShootingState.Completed;
-            }
-        }
+        double currTime = this.timer.get();
+        System.out.println("" + currTime + ": " + this.currentState);
 
-        if (this.currentState == ShootingState.SpinningUp)
+        // don't change states before our not-before time has passed
+        if (currTime >= this.notBeforeTime)
         {
-            if (this.cargo.isFlywheelSpunUp())
+            if (this.useShootAnywayMode)
             {
-                this.currentState = ShootingState.Shooting;
-            }
-            else if (this.timer.get() > this.endTime)
-            {
-                this.currentState = ShootingState.Completed;
-            }
-        }
+                if (this.currentState == ShootingState.CheckBall)
+                {
+                    this.currentState = ShootingState.SpinningUp;
+                    this.notBeforeTime = currTime + TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIMEOUT;
+                }
 
-        // TODO: if throughbeam is unblocked before connecting with flywheel, change this
-        if (this.currentState == ShootingState.Shooting && !this.cargo.isFeederSensorBlocked()) 
-        {
-            if (this.shootAll && this.cargo.isConveyorSensorBlocked()) 
-            {
-                this.currentState = ShootingState.CheckBall;
+                if (this.currentState == ShootingState.SpinningUp)
+                {
+                    this.currentState = ShootingState.Shooting;
+                    this.notBeforeTime = currTime + TuningConstants.CARGO_SHOOT_WAIT_TIMEOUT;
+                }
+
+                if (this.currentState == ShootingState.Shooting)
+                {
+                    this.currentState = ShootingState.Completed;
+                }
             }
-            else 
+            else
             {
-                this.currentState = ShootingState.Completed;
+                if (this.currentState == ShootingState.CheckBall)
+                {
+                    if (this.cargo.hasBallReadyToShoot())
+                    {
+                        this.currentState = ShootingState.SpinningUp;
+                        this.notBeforeTime = currTime + TuningConstants.CARGO_SHOOT_SPINUP_MIN_WAIT_TIME;
+                        this.timeoutTime = currTime + TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIMEOUT;
+                    }
+                    else if (currTime >= this.timeoutTime)
+                    {
+                        this.currentState = ShootingState.Completed;
+                    }
+                }
+
+                if (this.currentState == ShootingState.SpinningUp)
+                {
+                    if (this.cargo.isFlywheelSpunUp())
+                    {
+                        this.currentState = ShootingState.Shooting;
+                        this.notBeforeTime = currTime + TuningConstants.CARGO_SHOOT_MIN_WAIT_TIME;
+                        this.timeoutTime = currTime + TuningConstants.CARGO_SHOOT_WAIT_TIMEOUT;
+                    }
+                    else if (currTime > this.timeoutTime)
+                    {
+                        this.currentState = ShootingState.Completed;
+                    }
+                }
+
+                if (this.currentState == ShootingState.Shooting && !this.cargo.hasBallReadyToShoot())
+                {
+                    this.shotsRemaining--;
+                    if (this.shotsRemaining > 0 && this.cargo.hasBackupBallToShoot()) 
+                    {
+                        this.currentState = ShootingState.CheckBall;
+                        this.notBeforeTime = currTime + TuningConstants.CARGO_SHOOT_CHECKBALL_MIN_WAIT_TIME;
+                        this.timeoutTime = currTime + TuningConstants.CARGO_SHOOT_CHECKBALL_WAIT_TIMEOUT;
+                    }
+                    else 
+                    {
+                        this.currentState = ShootingState.Completed;
+                    }
+                }
             }
         }
 
@@ -101,6 +153,7 @@ public class CargoShootTask extends ControlTaskBase
     @Override
     public void end()
     {
+        this.setDigitalOperationState(DigitalOperation.CargoFeed, false);
     }
 
     @Override

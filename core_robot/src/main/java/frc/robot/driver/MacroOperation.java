@@ -9,13 +9,15 @@ public enum MacroOperation implements IOperation
     AutoShootDriveBack,
     ThreeBallAuto,
     FiveBallAuto,
+    AutoDriveBackIntakeDriveForwardShoot,
 
     // DriveTrain operations:
     PIDBrake,
 
     // Testing operations
-    VisionCenter,
-    VisionCenterAndAdvance,
+    VisionCenterHub,
+    VisionMoveToHub,
+    VisionIntakeCargo,
 
     // Climber operations
     ClimberWinchForward,
@@ -33,4 +35,8 @@ public enum MacroOperation implements IOperation
     ShootPointBlankLow,
     ShootTarmacHigh,
     AutoShootHigh,
+
+    // Cargo macros
+    CargoIntakeForceExtendMacro,
+    CargoIntakeForceRetractMacro,
 }
