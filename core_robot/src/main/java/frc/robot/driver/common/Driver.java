@@ -129,11 +129,7 @@ public class Driver implements IDriver
                 devices.contains(device))
             {
                 int id = device.getId();
-                IJoystick joystick = provider.getJoystick(id);
-                if (joystick != null && joystick.isConnected())
-                {
-                    this.joysticks[id] = joystick;
-                }
+                this.joysticks[id] = provider.getJoystick(id);
             }
         }
 

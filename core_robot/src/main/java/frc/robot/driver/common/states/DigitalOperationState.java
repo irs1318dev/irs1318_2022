@@ -106,7 +106,7 @@ public class DigitalOperationState extends OperationState
         }
 
         IJoystick relevantJoystick = joysticks[userInputDevice.getId()];
-        if (relevantJoystick == null)
+        if (relevantJoystick == null || !relevantJoystick.isConnected())
         {
             if (!TuningConstants.EXPECT_UNUSED_JOYSTICKS && TuningConstants.THROW_EXCEPTIONS)
             {

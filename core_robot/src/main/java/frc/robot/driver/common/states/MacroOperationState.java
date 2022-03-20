@@ -120,7 +120,7 @@ public class MacroOperationState extends OperationState implements IMacroOperati
         }
 
         IJoystick relevantJoystick = joysticks[userInputDevice.getId()];
-        if (relevantJoystick == null)
+        if (relevantJoystick == null || !relevantJoystick.isConnected())
         {
             if (!TuningConstants.EXPECT_UNUSED_JOYSTICKS && TuningConstants.THROW_EXCEPTIONS)
             {
