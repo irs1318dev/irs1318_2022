@@ -308,8 +308,8 @@ public class TuningConstants
     public static final int CARGO_FLYWHEEL_VELOCITY_PERIOD = 10;
     public static final int CARGO_FLYWHEEL_VELOCITY_WINDOWSIZE = 8;
 
-    public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.55;
-    public static final double CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED = 0.25;
+    public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.6;
+    public static final double CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED = 0.3;
     public static final double CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED = 0.65;
 
     public static final double CARGO_CONVEYOR_THROUGHBEAM_CUTOFF = 2.7;

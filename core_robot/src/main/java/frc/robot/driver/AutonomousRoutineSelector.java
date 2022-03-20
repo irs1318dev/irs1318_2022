@@ -156,7 +156,37 @@ public class AutonomousRoutineSelector
             )
         );
     }
+/*
+    private static IControlTask shootDriveBackIntakeShoot()
+    {
 
+        return SequentialTask.Sequence(
+            new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
+            new VisionCenteringTask(false, true),
+            ConcurrentTask.AnyTasks(
+                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
+                new CargoShootTask()
+            ),
+            new FollowPathTask("goBack6ft")
+        );
+
+        return SequentialTask.Sequence(
+            ConcurrentTask.AnyTasks(
+                ConcurrentTask.AllTasks(
+                    new FollowPathTask("goBack3ftRight1Turn4"),
+                    new CargoExtendIntakeTask(true)
+                ),
+                new CargoIntakeTask(2.0, true)
+            ),
+            new FollowPathTask("goLeft1ftBack8ftTurn171"),
+            new VisionCenteringTask(false, true),
+            ConcurrentTask.AnyTasks(
+                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
+                new CargoShootTask()
+            )
+        );
+    }
+*/
     private static IControlTask fiveBallAutoPog()
     {
         return SequentialTask.Sequence(
