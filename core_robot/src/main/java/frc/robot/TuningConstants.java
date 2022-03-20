@@ -12,6 +12,8 @@ public class TuningConstants
     public static boolean THROW_EXCEPTIONS = !TuningConstants.COMPETITION_ROBOT;
     public static boolean LOG_EXCEPTIONS = true;
 
+    public static final boolean EXPECT_UNUSED_JOYSTICKS = true;
+
     //================================================== Magic Values ==============================================================
 
     public static final double MAGIC_NULL_VALUE = -1318.0;

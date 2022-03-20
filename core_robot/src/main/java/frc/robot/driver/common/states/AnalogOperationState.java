@@ -84,7 +84,7 @@ public class AnalogOperationState extends OperationState
         IJoystick relevantJoystick = joysticks[userInputDevice.getId()];
         if (relevantJoystick == null)
         {
-            if (TuningConstants.THROW_EXCEPTIONS)
+            if (!TuningConstants.EXPECT_UNUSED_JOYSTICKS && TuningConstants.THROW_EXCEPTIONS)
             {
                 throw new RuntimeException("Unexpected user input device " + userInputDevice.toString());
             }
