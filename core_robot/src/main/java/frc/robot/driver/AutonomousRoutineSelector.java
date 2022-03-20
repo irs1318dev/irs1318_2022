@@ -35,7 +35,8 @@ public class AutonomousRoutineSelector
         FiveBallAutoPog,
         ShootDriveBack,
         ShootLowDriveBack,
-        ThreeBallAuto
+        ThreeBallAuto,
+        NewSamAuto
     }
 
     /**
@@ -62,6 +63,7 @@ public class AutonomousRoutineSelector
         this.routineChooser.addObject("2 Ball Auto", AutoRoutine.TwoBallAuto);
         this.routineChooser.addObject("3 Ball Auto", AutoRoutine.ThreeBallAuto);
         this.routineChooser.addObject("5 Ball Auto", AutoRoutine.FiveBallAutoPog);
+        this.routineChooser.addObject("New Auto", AutoRoutine.NewSamAuto);
         networkTableProvider.addChooser("Auto Routine", this.routineChooser);
 
         this.positionChooser = networkTableProvider.getSendableChooser();
@@ -126,12 +128,17 @@ public class AutonomousRoutineSelector
         {
             return shootLowGoalDriveBack();
         }
+        else if(routine == AutoRoutine.NewSamAuto)
+        {
+            return newSamAutoPOGG();
+        }
 
         return new PositionStartingTask(0.0, true, true);
     }
 
     /**
-     * Gets an autonomous routine that does nothing
+     * Gets an autonomous routine that does
+     *  nothing
      */
     private static IControlTask GetFillerRoutine()
     {
@@ -149,6 +156,30 @@ public class AutonomousRoutineSelector
                 new CargoIntakeTask(2.0, true)
             ),
             new FollowPathTask("goLeft1ftBack8ftTurn171"),
+            new VisionCenteringTask(false, true),
+            ConcurrentTask.AnyTasks(
+                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
+                new CargoShootTask()
+            )
+        );
+    }
+    private static IControlTask newSamAutoPOGG()
+    {
+
+        return SequentialTask.Sequence(
+            new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
+            new VisionCenteringTask(false, true),
+            ConcurrentTask.AnyTasks(
+                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
+                new CargoShootTask()
+            ),
+            ConcurrentTask.AnyTasks(
+                new FollowPathTask("goBack7ftLeft3ftTurn165"),
+                new CargoExtendIntakeTask(true),
+                new CargoIntakeTask(5.0, true)
+            ),
+            new CargoExtendIntakeTask(false),
+            new FollowPathTask("goBack7ftLeft3ftTurnNeg165"),
             new VisionCenteringTask(false, true),
             ConcurrentTask.AnyTasks(
                 new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),

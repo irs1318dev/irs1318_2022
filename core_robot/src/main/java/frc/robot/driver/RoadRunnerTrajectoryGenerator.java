@@ -176,6 +176,23 @@ public class RoadRunnerTrajectoryGenerator
             startTrajectory(-90 * Helpers.DEGREES_TO_RADIANS)
                 .splineToSplineHeading(new Pose2d(-99.47, 15.56, -171 * Helpers.DEGREES_TO_RADIANS), -171 * Helpers.DEGREES_TO_RADIANS),
             "goLeft1ftBack8ftTurn171");//-171
+
+        addPath(
+            pathManager,
+            startTrajectory(0)
+                .splineToSplineHeading(new Pose2d(-63, 24, 165 * Helpers.DEGREES_TO_RADIANS), 165 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(-32, 12), 165 * Helpers.DEGREES_TO_RADIANS),
+            "goBack7ftLeft3ftTurn165");
+        
+        addPath(
+            pathManager,
+            startTrajectory(0)
+                .splineToSplineHeading(new Pose2d(-63, 24, -165 * Helpers.DEGREES_TO_RADIANS), -165 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(-32, 12), -165 * Helpers.DEGREES_TO_RADIANS),
+            "goBack7ftLeft3ftTurnNeg165");
+
+
+
     }
 
     private static TrajectoryBuilder startTrajectory()
