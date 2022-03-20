@@ -5,6 +5,8 @@ public enum MacroOperation implements IOperation
     AutonomousRoutine,
 
     // Auton testing *harru poyter says pog*
+    FollowPathTest1,
+    FollowPathTest2,
     AutoDriveBackIntakeShoot,
     AutoShootDriveBack,
     ThreeBallAuto,

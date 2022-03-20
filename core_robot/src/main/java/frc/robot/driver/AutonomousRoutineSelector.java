@@ -34,6 +34,7 @@ public class AutonomousRoutineSelector
         TwoBallAuto,
         FiveBallAutoPog,
         ShootDriveBack,
+        ShootLowDriveBack,
         ThreeBallAuto
     }
 
@@ -57,6 +58,7 @@ public class AutonomousRoutineSelector
         this.routineChooser = networkTableProvider.getSendableChooser();
         this.routineChooser.addDefault("None", AutoRoutine.None);
         this.routineChooser.addObject("1 Ball Auto", AutoRoutine.ShootDriveBack);
+        this.routineChooser.addObject("1 Low Ball Auto", AutoRoutine.ShootLowDriveBack);
         this.routineChooser.addObject("2 Ball Auto", AutoRoutine.TwoBallAuto);
         this.routineChooser.addObject("3 Ball Auto", AutoRoutine.ThreeBallAuto);
         this.routineChooser.addObject("5 Ball Auto", AutoRoutine.FiveBallAutoPog);
@@ -120,8 +122,11 @@ public class AutonomousRoutineSelector
         {
             return driveBackIntakeDriveForwardShoot();
         }
+        else if (routine == AutoRoutine.ShootLowDriveBack)
+        {
+            return shootLowGoalDriveBack();
+        }
 
-        
         return new PositionStartingTask(0.0, true, true);
     }
 
@@ -147,10 +152,7 @@ public class AutonomousRoutineSelector
             new VisionCenteringTask(false, true),
             ConcurrentTask.AnyTasks(
                 new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
-                SequentialTask.Sequence(
-                    new WaitTask(1.0),
-                    new CargoShootTask()
-                )
+                new CargoShootTask()
             )
         );
     }
@@ -168,7 +170,7 @@ public class AutonomousRoutineSelector
             //2 center with goal
             new VisionCenteringTask(false, true),
             //3 shoot pre-loaded ball
-            ConcurrentTask.AllTasks(
+            ConcurrentTask.AnyTasks(
                 new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
                 new CargoShootTask(false)
             ),
@@ -187,8 +189,9 @@ public class AutonomousRoutineSelector
             new VisionCenteringTask(false, true),
             ConcurrentTask.AllTasks(
                 new VisionCenteringTask(false, true),
-                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
-                new CargoShootTask()
+                ConcurrentTask.AnyTasks(
+                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
+                    new CargoShootTask())
             ),
             //7 move to terminal and start intake
             ConcurrentTask.AllTasks(
@@ -204,7 +207,7 @@ public class AutonomousRoutineSelector
             //8 move to shoot those balls but not during the month of november
             new FollowPathTask("goBack18ftLeft12ftTurn154"),
             new VisionCenteringTask(false, true),
-            ConcurrentTask.AllTasks(
+            ConcurrentTask.AnyTasks(
                 new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
                 new CargoShootTask()
             )
@@ -216,11 +219,23 @@ public class AutonomousRoutineSelector
         return SequentialTask.Sequence(
             new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
             new VisionCenteringTask(false, true),
-            ConcurrentTask.AllTasks(
-                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
+            ConcurrentTask.AnyTasks(
+                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
                 new CargoShootTask()
             ),
-            new FollowPathTask("goBack4ft")
+            new FollowPathTask("goBack6ft")
+        );
+    }
+
+    private static IControlTask shootLowGoalDriveBack()
+    {
+        return SequentialTask.Sequence(
+            new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
+            ConcurrentTask.AnyTasks(
+                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED),
+                new CargoShootTask()
+            ),
+            new FollowPathTask("goBack6ft")
         );
     }
 
@@ -235,7 +250,7 @@ public class AutonomousRoutineSelector
             //2 center with goal
             new VisionCenteringTask(false, true),
             //3 shoot pre-loaded ball
-            ConcurrentTask.AllTasks(
+            ConcurrentTask.AnyTasks(
                 new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
                 new CargoShootTask(false)
             ),
@@ -253,8 +268,9 @@ public class AutonomousRoutineSelector
             new FollowPathTask("goBack6ftRight5ftTurn122"),
             ConcurrentTask.AllTasks(
                 new VisionCenteringTask(false, true),
-                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
-                new CargoShootTask()
+                ConcurrentTask.AnyTasks(
+                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
+                    new CargoShootTask())
             )
         );
     }

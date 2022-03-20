@@ -141,7 +141,6 @@ public class VisionCenteringTask extends ControlTaskBase
         double centerAngleDifference = Math.abs(currentMeasuredAngle);
         if (centerAngleDifference > TuningConstants.MAX_VISION_CENTERING_RANGE_DEGREES)
         {
-            this.centeredTime = null;
             return false;
         }
 

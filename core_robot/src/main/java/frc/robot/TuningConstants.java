@@ -28,7 +28,7 @@ public class TuningConstants
     //================================================= Vision ======================================================
 
     // Acceptable vision centering range values in degrees
-    public static final double MAX_VISION_CENTERING_RANGE_DEGREES = 2.5;
+    public static final double MAX_VISION_CENTERING_RANGE_DEGREES = 4.0;
 
     // How long the robot system must remain centered on the target when using time
     public static final double VISION_CENTERING_DURATION = 0.75;
@@ -140,22 +140,22 @@ public class TuningConstants
     // Position PID (angle) per-module
     public static final double DRIVETRAIN_STEER_MOTOR_POSITION_PID_KS = HardwareConstants.DRIVETRAIN_STEER_TICKS_PER_DEGREE;
 
-    public static final double DRIVETRAIN_STEER_MOTOR1_POSITION_PID_KP = 1.0;
+    public static final double DRIVETRAIN_STEER_MOTOR1_POSITION_PID_KP = 0.5;
     public static final double DRIVETRAIN_STEER_MOTOR1_POSITION_PID_KI = 0.0;
     public static final double DRIVETRAIN_STEER_MOTOR1_POSITION_PID_KD = 0.0;
     public static final double DRIVETRAIN_STEER_MOTOR1_POSITION_PID_KF = 0.0;
 
-    public static final double DRIVETRAIN_STEER_MOTOR2_POSITION_PID_KP = 1.0;
+    public static final double DRIVETRAIN_STEER_MOTOR2_POSITION_PID_KP = 0.5;
     public static final double DRIVETRAIN_STEER_MOTOR2_POSITION_PID_KI = 0.0;
     public static final double DRIVETRAIN_STEER_MOTOR2_POSITION_PID_KD = 0.0;
     public static final double DRIVETRAIN_STEER_MOTOR2_POSITION_PID_KF = 0.0;
 
-    public static final double DRIVETRAIN_STEER_MOTOR3_POSITION_PID_KP = 1.0;
+    public static final double DRIVETRAIN_STEER_MOTOR3_POSITION_PID_KP = 0.5;
     public static final double DRIVETRAIN_STEER_MOTOR3_POSITION_PID_KI = 0.0;
     public static final double DRIVETRAIN_STEER_MOTOR3_POSITION_PID_KD = 0.0;
     public static final double DRIVETRAIN_STEER_MOTOR3_POSITION_PID_KF = 0.0;
 
-    public static final double DRIVETRAIN_STEER_MOTOR4_POSITION_PID_KP = 1.0;
+    public static final double DRIVETRAIN_STEER_MOTOR4_POSITION_PID_KP = 0.5;
     public static final double DRIVETRAIN_STEER_MOTOR4_POSITION_PID_KI = 0.0;
     public static final double DRIVETRAIN_STEER_MOTOR4_POSITION_PID_KD = 0.0;
     public static final double DRIVETRAIN_STEER_MOTOR4_POSITION_PID_KF = 0.0;
@@ -267,7 +267,9 @@ public class TuningConstants
     public static final double DRIVETRAIN_VELOCITY_TO_PERCENTAGE = 1.0 / TuningConstants.DRIVETRAIN_MAX_VELOCITY;
     public static final double DRIVETRAIN_TURN_GOAL_VELOCITY = 10.0; // degrees per second for turn goal
     public static final double DRIVETRAIN_TURN_SCALE = 4.0; // radians per second
-    public static final double DRIVETRAIN_TURN_APPROXIMATION = 0.5; // number of degrees off at which point we give up trying to face an angle when uncommanded
+    public static final double DRIVETRAIN_STATIONARY_VELOCITY = 0.1;
+    public static final double DRIVETRAIN_TURN_APPROXIMATION_STATIONARY = 2.0; // number of degrees off at which point we give up trying to face an angle when uncommanded
+    public static final double DRIVETRAIN_TURN_APPROXIMATION = 1.0; // number of degrees off at which point we give up trying to face an angle when uncommanded
     public static final double DRIVETRAIN_MAX_MODULE_PATH_VELOCITY = 0.85 * TuningConstants.DRIVETRAIN_MAX_VELOCITY; // up to x% of our max controllable speed
     public static final double DRIVETRAIN_MAX_PATH_TURN_VELOCITY = 45.0; // in degrees per second
     public static final double DRIVETRAIN_MAX_PATH_TRANSLATIONAL_VELOCITY = 0.80 * TuningConstants.DRIVETRAIN_MAX_VELOCITY; // in inches per second
@@ -299,14 +301,14 @@ public class TuningConstants
 
     public static final double CARGO_CONVEYOR_RUNTIME_AFTER_INTAKE = 2.0;
     public static final double CARGO_CONVEYOR_RUNTIME_FOR_ADVANCE = 1.5;
-    public static final double CARGO_INTAKE_EXTENSION_TIMEOUT = 2.0;
+    public static final double CARGO_INTAKE_EXTENSION_TIMEOUT = 0.5;
 
     public static final int CARGO_FLYWHEEL_VELOCITY_PERIOD = 10;
     public static final int CARGO_FLYWHEEL_VELOCITY_WINDOWSIZE = 8;
 
-    public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.70;
-    public static final double CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED = 0.35;
-    public static final double CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED = 0.80;
+    public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.55;
+    public static final double CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED = 0.25;
+    public static final double CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED = 0.65;
 
     public static final double CARGO_CONVEYOR_THROUGHBEAM_CUTOFF = 2.7;
     public static final double CARGO_FEEDER_THROUGHBEAM_CUTOFF = 2.7;

@@ -716,9 +716,20 @@ public class DriveTrainMechanism implements IMechanism
 
                 if (this.maintainOrientation || this.updatedOrientation)
                 {
-                    if (!this.updatedOrientation &&
-                        TuningConstants.DRIVETRAIN_TURN_APPROXIMATION != 0.0 &&
-                        Helpers.WithinDelta(this.desiredYaw, this.robotYaw, TuningConstants.DRIVETRAIN_TURN_APPROXIMATION))
+                    boolean skipTurn = false;
+                    if (!this.updatedOrientation)
+                    {
+                        if (Math.abs(centerVelocityForward) + Math.abs(centerVelocityRight) < TuningConstants.DRIVETRAIN_STATIONARY_VELOCITY)
+                        {
+                            skipTurn = TuningConstants.DRIVETRAIN_TURN_APPROXIMATION_STATIONARY != 0.0 && Helpers.WithinDelta(this.desiredYaw, this.robotYaw, TuningConstants.DRIVETRAIN_TURN_APPROXIMATION_STATIONARY);
+                        }
+                        else
+                        {
+                            skipTurn = TuningConstants.DRIVETRAIN_TURN_APPROXIMATION != 0.0 && Helpers.WithinDelta(this.desiredYaw, this.robotYaw, TuningConstants.DRIVETRAIN_TURN_APPROXIMATION);
+                        }
+                    }
+
+                    if (skipTurn)
                     {
                         // don't turn aggressively if we are within a very small delta from our goal angle
                         omega = 0.0;

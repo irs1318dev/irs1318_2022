@@ -345,6 +345,92 @@ public class ButtonMap implements IButtonMap
             Shift.None,
             ButtonType.Click),
 
+
+
+        // PS4 BACKUP CODRIVER BUTTONS
+        /*
+        new DigitalOperationDescription(
+            DigitalOperation.PositionResetFieldOrientation,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_1,
+            Shift.CodriverDebug,
+            Shift.None,
+            ButtonType.Click),
+        new DigitalOperationDescription(
+            DigitalOperation.DriveTrainReset,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_1,
+            Shift.CodriverDebug,
+            Shift.CodriverDebug,
+            ButtonType.Click),
+        new DigitalOperationDescription(
+            DigitalOperation.DriveTrainEnableFieldOrientation,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_2,
+            Shift.CodriverDebug,
+            Shift.None,
+            ButtonType.Click),
+        new DigitalOperationDescription(
+            DigitalOperation.DriveTrainDisableFieldOrientation,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_2,
+            Shift.CodriverDebug,
+            Shift.CodriverDebug,
+            ButtonType.Click),
+        new DigitalOperationDescription(
+            DigitalOperation.DriveTrainEnableMaintainDirectionMode,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_3,
+            Shift.CodriverDebug,
+            Shift.None,
+            ButtonType.Click),
+        new DigitalOperationDescription(
+            DigitalOperation.CargoEnableShootAnywayMode,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_5,
+            Shift.CodriverDebug,
+            Shift.None,
+            ButtonType.Click),
+        new DigitalOperationDescription(
+            DigitalOperation.CargoDisableShootAnywayMode,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_5,
+            Shift.CodriverDebug,
+            Shift.CodriverDebug,
+            ButtonType.Click),
+
+        new DigitalOperationDescription(
+            DigitalOperation.CargoHoodPointBlank,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.PS4_TRIANGLE_BUTTON,
+            Shift.CodriverDebug,
+            Shift.None,
+            ButtonType.Click),
+        new DigitalOperationDescription(
+            DigitalOperation.CargoHoodLong,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.PS4_X_BUTTON,
+            Shift.None,
+            Shift.None,
+            ButtonType.Click),
+        
+        new DigitalOperationDescription(
+            DigitalOperation.SClimberUp,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.PS4_CIRCLE_BUTTON,
+            Shift.CodriverDebug,
+            Shift.None,
+            ButtonType.Click),
+
+        new DigitalOperationDescription(
+            DigitalOperation.SClimberDown,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.PS4_SQUARE_BUTTON,
+            Shift.CodriverDebug,
+            Shift.None,
+            ButtonType.Click),
+        */
+
     };
 
     public static MacroOperationDescription[] MacroSchema = new MacroOperationDescription[]
@@ -393,7 +479,7 @@ public class ButtonMap implements IButtonMap
             Shift.None,
             ButtonType.Toggle,
             () -> SequentialTask.Sequence(
-                    new VisionCenteringTask(false),
+                    new VisionCenteringTask(false, true),
                     new DriveTrainFieldOrientationModeTask(true)),
             new IOperation[]
             {
@@ -437,7 +523,7 @@ public class ButtonMap implements IButtonMap
                 new CargoIntakeTask(5.0, true),
                 SequentialTask.Sequence(
                     new CargoIntakeTask(0.5, true),
-                    new VisionAdvanceAndCenterTask(false, true),
+                    new VisionAdvanceAndCenterTask(false, true, true),
                     new DriveTrainFieldOrientationModeTask(true))),
             new IOperation[]
             {
@@ -484,7 +570,7 @@ public class ButtonMap implements IButtonMap
             Shift.None,
             ButtonType.Toggle,
             () -> SequentialTask.Sequence(
-                    new VisionAdvanceAndCenterTask(false, false),
+                    new VisionAdvanceAndCenterTask(false, false, true),
                     new DriveTrainFieldOrientationModeTask(true)),
             new IOperation[]
             {
@@ -994,6 +1080,86 @@ public class ButtonMap implements IButtonMap
             */
         // ----------------------- SAMMAMISH AUTO -------------------------
         new MacroOperationDescription(
+            MacroOperation.FollowPathTest1,
+            UserInputDevice.Test1,
+            0,
+            Shift.None,
+            Shift.None,
+            ButtonType.Toggle,
+            () -> new FollowPathTask("goForward4ft"),
+            new IOperation[]
+            {
+                AnalogOperation.DriveTrainMoveForward,
+                AnalogOperation.DriveTrainMoveRight,
+                AnalogOperation.DriveTrainTurnAngleGoal,
+                AnalogOperation.DriveTrainTurnSpeed,
+                AnalogOperation.DriveTrainRotationA,
+                AnalogOperation.DriveTrainRotationB,
+                AnalogOperation.DriveTrainPathXGoal,
+                AnalogOperation.DriveTrainPathYGoal,
+                AnalogOperation.DriveTrainPathXVelocityGoal,
+                AnalogOperation.DriveTrainPathYVelocityGoal,
+                AnalogOperation.DriveTrainPathAngleVelocityGoal,
+                AnalogOperation.DriveTrainPositionDrive1,
+                AnalogOperation.DriveTrainPositionDrive2,
+                AnalogOperation.DriveTrainPositionDrive3,
+                AnalogOperation.DriveTrainPositionDrive4,
+                AnalogOperation.DriveTrainPositionSteer1,
+                AnalogOperation.DriveTrainPositionSteer2,
+                AnalogOperation.DriveTrainPositionSteer3,
+                AnalogOperation.DriveTrainPositionSteer4,
+                AnalogOperation.DriveTrainTurnAngleReference,
+                DigitalOperation.DriveTrainPositionMode,
+                DigitalOperation.DriveTrainPathMode,
+                DigitalOperation.DriveTrainReset,
+                DigitalOperation.DriveTrainEnableFieldOrientation,
+                DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.VisionDisableStream,
+                DigitalOperation.VisionEnableGamePieceProcessing,
+                DigitalOperation.VisionEnableRetroreflectiveProcessing,
+                DigitalOperation.VisionForceDisable,
+            }),
+        new MacroOperationDescription(
+            MacroOperation.FollowPathTest2,
+            UserInputDevice.Test1,
+            180,
+            Shift.None,
+            Shift.None,
+            ButtonType.Toggle,
+            () -> new FollowPathTask("turn180Path"),
+            new IOperation[]
+            {
+                AnalogOperation.DriveTrainMoveForward,
+                AnalogOperation.DriveTrainMoveRight,
+                AnalogOperation.DriveTrainTurnAngleGoal,
+                AnalogOperation.DriveTrainTurnSpeed,
+                AnalogOperation.DriveTrainRotationA,
+                AnalogOperation.DriveTrainRotationB,
+                AnalogOperation.DriveTrainPathXGoal,
+                AnalogOperation.DriveTrainPathYGoal,
+                AnalogOperation.DriveTrainPathXVelocityGoal,
+                AnalogOperation.DriveTrainPathYVelocityGoal,
+                AnalogOperation.DriveTrainPathAngleVelocityGoal,
+                AnalogOperation.DriveTrainPositionDrive1,
+                AnalogOperation.DriveTrainPositionDrive2,
+                AnalogOperation.DriveTrainPositionDrive3,
+                AnalogOperation.DriveTrainPositionDrive4,
+                AnalogOperation.DriveTrainPositionSteer1,
+                AnalogOperation.DriveTrainPositionSteer2,
+                AnalogOperation.DriveTrainPositionSteer3,
+                AnalogOperation.DriveTrainPositionSteer4,
+                AnalogOperation.DriveTrainTurnAngleReference,
+                DigitalOperation.DriveTrainPositionMode,
+                DigitalOperation.DriveTrainPathMode,
+                DigitalOperation.DriveTrainReset,
+                DigitalOperation.DriveTrainEnableFieldOrientation,
+                DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.VisionDisableStream,
+                DigitalOperation.VisionEnableGamePieceProcessing,
+                DigitalOperation.VisionEnableRetroreflectiveProcessing,
+                DigitalOperation.VisionForceDisable,
+            }),
+        new MacroOperationDescription(
             MacroOperation.AutoDriveBackIntakeDriveForwardShoot,
             UserInputDevice.Test1,
             UserInputDeviceButton.XBONE_A_BUTTON,
@@ -1074,7 +1240,7 @@ public class ButtonMap implements IButtonMap
                     new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
                     new CargoShootTask()
                 ),
-                new FollowPathTask("goBack4ft")
+                new FollowPathTask("goBack6ft")
             ),
             new IOperation[]
             {

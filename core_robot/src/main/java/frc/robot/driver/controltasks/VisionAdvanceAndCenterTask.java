@@ -14,9 +14,9 @@ public class VisionAdvanceAndCenterTask extends VisionCenteringTask
     /**
     * Initializes a new VisionForwardAndCenterTask
     */
-    public VisionAdvanceAndCenterTask(boolean useFastMode, boolean gamePiece)
+    public VisionAdvanceAndCenterTask(boolean useFastMode, boolean gamePiece, boolean bestEffort)
     {
-        super(false, gamePiece);
+        super(false, gamePiece, bestEffort);
 
         this.useFastMode = useFastMode;
         this.forwardPIDHandler = null;
