@@ -103,8 +103,7 @@ public class CargoShootTask extends ControlTaskBase
                         this.currentState = ShootingState.Completed;
                     }
                 }
-
-                if (this.currentState == ShootingState.SpinningUp)
+                else if (this.currentState == ShootingState.SpinningUp)
                 {
                     if (this.cargo.isFlywheelSpunUp())
                     {
@@ -117,8 +116,7 @@ public class CargoShootTask extends ControlTaskBase
                         this.currentState = ShootingState.Completed;
                     }
                 }
-
-                if (this.currentState == ShootingState.Shooting && !this.cargo.hasBallReadyToShoot())
+                else if (this.currentState == ShootingState.Shooting && !this.cargo.hasBallReadyToShoot())
                 {
                     this.shotsRemaining--;
                     if (this.shotsRemaining > 0 && this.cargo.hasBackupBallToShoot()) 
