@@ -519,12 +519,12 @@ public class ButtonMap implements IButtonMap
             Shift.DriverDebug,
             Shift.None,
             ButtonType.Toggle,
-            () -> ConcurrentTask.AnyTasks(
-                new CargoIntakeTask(5.0, true),
-                SequentialTask.Sequence(
+            () -> SequentialTask.Sequence(
                     new CargoIntakeTask(0.5, true),
-                    new VisionAdvanceAndCenterTask(false, true, true),
-                    new DriveTrainFieldOrientationModeTask(true))),
+                    ConcurrentTask.AnyTasks(
+                        new CargoIntakeTask(5.0, true),
+                        new VisionAdvanceAndCenterTask(false, true, true)),
+                    new DriveTrainFieldOrientationModeTask(true)),
             new IOperation[]
             {
                 AnalogOperation.DriveTrainMoveForward,
