@@ -14,11 +14,12 @@ public enum MacroOperation implements IOperation
     AutoDriveBackIntakeDriveForwardShoot,
 
     // DriveTrain operations:
-    PIDBrake,
+    PIDLightBrake,
     PIDHeavyBrake,
 
-    // Testing operations
+    // Vision operations
     VisionCenterHub,
+    VisionCenterCargo,
     VisionMoveToHub,
     VisionIntakeCargo,
 
