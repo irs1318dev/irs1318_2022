@@ -15,6 +15,7 @@ public enum MacroOperation implements IOperation
 
     // DriveTrain operations:
     PIDBrake,
+    PIDHeavyBrake,
 
     // Testing operations
     VisionCenterHub,
