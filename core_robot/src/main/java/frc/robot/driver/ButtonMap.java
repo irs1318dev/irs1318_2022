@@ -212,18 +212,18 @@ public class ButtonMap implements IButtonMap
         // cargo opertaions:
         new DigitalOperationDescription(
             DigitalOperation.CargoIntakeForceExtend,
-            UserInputDevice.Driver,
-            0,
-            Shift.DriverDebug,
-            Shift.DriverDebug,
-            ButtonType.Click),
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_10,
+            Shift.CodriverDebug,
+            Shift.None,
+            ButtonType.Simple),
         new DigitalOperationDescription(
-            DigitalOperation.CargoIntakeForceRetract,
-            UserInputDevice.Driver,
-            180,
-            Shift.DriverDebug,
-            Shift.DriverDebug,
-            ButtonType.Click),
+            DigitalOperation.CargoIntakeForceExtend,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_10,
+            Shift.CodriverDebug,
+            Shift.CodriverDebug,
+            ButtonType.Simple),
         new DigitalOperationDescription(
             DigitalOperation.CargoIntakeIn,
             UserInputDevice.Driver,
@@ -551,7 +551,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.VisionForceDisable,
             }),
         new MacroOperationDescription(
-            MacroOperation.VisionCenterHub,
+            MacroOperation.VisionCenterCargo,
             UserInputDevice.Driver,
             90, // DPAD-right
             Shift.DriverDebug,
@@ -860,36 +860,6 @@ public class ButtonMap implements IButtonMap
             }
         ),
         */
-        
-        new MacroOperationDescription(
-            MacroOperation.CargoIntakeForceExtendMacro,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_10,
-            Shift.CodriverDebug,
-            Shift.None,
-            ButtonType.Simple,
-            () -> new CargoExtendIntakeTask(true),
-            new IOperation[]
-            {
-                DigitalOperation.CargoIntakeForceExtend,
-                DigitalOperation.CargoIntakeForceRetract
-            }
-        ),
-        
-        new MacroOperationDescription(
-            MacroOperation.CargoIntakeForceRetractMacro,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_10,
-            Shift.CodriverDebug,
-            Shift.CodriverDebug,
-            ButtonType.Simple,
-            () -> new CargoExtendIntakeTask(false),
-            new IOperation[]
-            {
-                DigitalOperation.CargoIntakeForceExtend,
-                DigitalOperation.CargoIntakeForceRetract
-            }
-        ),
 
         /* ------------------------------------------------COMMENTED FOR SAMMAMISH CLIMBER-----------------
         new MacroOperationDescription(
