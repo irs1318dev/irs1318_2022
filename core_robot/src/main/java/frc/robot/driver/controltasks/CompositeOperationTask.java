@@ -9,8 +9,9 @@ import frc.robot.driver.DigitalOperation;
  */
 public abstract class CompositeOperationTask extends TimedTask
 {
-    private final DigitalOperation toPerform;
     private final DigitalOperation[] possibleOperations;
+
+    protected DigitalOperation toPerform;
 
     /**
      * Initializes a new CompositeOperationTask
@@ -54,7 +55,7 @@ public abstract class CompositeOperationTask extends TimedTask
         super.begin();
         for (DigitalOperation op : this.possibleOperations)
         {
-            this.setDigitalOperationState(op, op == toPerform);
+            this.setDigitalOperationState(op, op == this.toPerform);
         }
     }
 
@@ -66,7 +67,7 @@ public abstract class CompositeOperationTask extends TimedTask
     {
         for (DigitalOperation op : this.possibleOperations)
         {
-            this.setDigitalOperationState(op, op == toPerform);
+            this.setDigitalOperationState(op, op == this.toPerform);
         }
     }
 

@@ -1019,9 +1019,9 @@ public class ButtonMap implements IButtonMap
             Shift.None,
             ButtonType.Toggle,
             () -> SequentialTask.Sequence(
-                    new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
+                    new CargoHoodChooseTask(),
                     ConcurrentTask.AnyTasks(
-                        new VisionSpinUpTask(true),
+                        new CargoSpinupChooseTask(),
                         new CargoShootTask()
                     )
                 ),

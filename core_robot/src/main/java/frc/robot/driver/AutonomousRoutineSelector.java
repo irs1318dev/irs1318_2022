@@ -21,6 +21,15 @@ public class AutonomousRoutineSelector
     private final ISendableChooser<StartPosition> positionChooser;
     private final ISendableChooser<AutoRoutine> routineChooser;
 
+    private final INetworkTableEntry shooterSpeedSlider;
+    private final ISendableChooser<HoodPosition> hoodPositionChooser;
+
+    public enum HoodPosition
+    {
+        PointBlank,
+        Long
+    }
+
     public enum StartPosition
     {
         Center,
@@ -44,7 +53,7 @@ public class AutonomousRoutineSelector
     @Inject
     public AutonomousRoutineSelector(
         LoggingManager logger,
-        PathManager pathManager, 
+        PathManager pathManager,
         IRobotProvider provider)
     {
         // initialize robot parts that are used to select autonomous routine (e.g. dipswitches) here...
@@ -69,6 +78,13 @@ public class AutonomousRoutineSelector
         this.positionChooser.addObject("left", StartPosition.Left);
         this.positionChooser.addObject("right", StartPosition.Right);
         networkTableProvider.addChooser("Start Position", this.positionChooser);
+
+        this.shooterSpeedSlider = networkTableProvider.getNumberSlider("speed", 0.5);
+
+        this.hoodPositionChooser = networkTableProvider.getSendableChooser();
+        this.hoodPositionChooser.addDefault("PointBlank", HoodPosition.PointBlank);
+        this.hoodPositionChooser.addObject("Long", HoodPosition.Long);
+        networkTableProvider.addChooser("Hood Position", this.positionChooser);
 
         RoadRunnerTrajectoryGenerator.generateTrajectories(this.pathManager);
     }
@@ -128,6 +144,16 @@ public class AutonomousRoutineSelector
         }
 
         return new PositionStartingTask(0.0, true, true);
+    }
+
+    public HoodPosition getHoodPosition()
+    {
+        return this.hoodPositionChooser.getSelected();
+    }
+
+    public double getShooterSpeed()
+    {
+        return this.shooterSpeedSlider.getDouble(0.5);
     }
 
     /**
