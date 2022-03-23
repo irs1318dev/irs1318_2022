@@ -65,15 +65,6 @@ public class ButtonMap implements IButtonMap
             1.0,
             TuningConstants.MAGIC_NULL_VALUE,
             (x, y) -> Helpers.atan2d(x, y)),
-        // new AnalogOperationDescription(
-        //     AnalogOperation.DriveTrainTurnSpeed,
-        //     UserInputDevice.Driver,
-        //     AnalogAxis.XBONE_RSX,
-        //     Shift.DriverDebug,
-        //     Shift.DriverDebug,
-        //     !ElectronicsConstants.INVERT_XBONE_RIGHT_X_AXIS, // make left positive, as counter-clockwise is positive
-        //     -TuningConstants.DRIVETRAIN_DEAD_ZONE_TURN,
-        //     TuningConstants.DRIVETRAIN_DEAD_ZONE_TURN),
         new AnalogOperationDescription(
             AnalogOperation.DriveTrainSpinLeft,
             UserInputDevice.Driver,
@@ -88,23 +79,6 @@ public class ButtonMap implements IButtonMap
             !ElectronicsConstants.INVERT_XBONE_RIGHT_TRIGGER, // make left positive, as counter-clockwise is positive
             -TuningConstants.DRIVETRAIN_DEAD_ZONE_TURN,
             TuningConstants.DRIVETRAIN_DEAD_ZONE_TURN),
-
-        // new AnalogOperationDescription(
-        //     AnalogOperation.DriveTrainRotationA,
-        //     UserInputDevice.Driver,
-        //     AnalogAxis.XBONE_LT,
-        //     ElectronicsConstants.INVERT_TRIGGER_AXIS,
-        //     -TuningConstants.DRIVETRAIN_DEAD_ZONE_TRIGGER_AB,
-        //     TuningConstants.DRIVETRAIN_DEAD_ZONE_TRIGGER_AB,
-        //     TuningConstants.DRIVETRAIN_ROTATION_A_MULTIPLIER),
-        // new AnalogOperationDescription(
-        //     AnalogOperation.DriveTrainRotationB,
-        //     UserInputDevice.Driver,
-        //     AnalogAxis.XBONE_RT,
-        //     ElectronicsConstants.INVERT_TRIGGER_AXIS,
-        //     -TuningConstants.DRIVETRAIN_DEAD_ZONE_TRIGGER_AB,
-        //     TuningConstants.DRIVETRAIN_DEAD_ZONE_TRIGGER_AB,
-        //     TuningConstants.DRIVETRAIN_ROTATION_B_MULTIPLIER),
 
         // cargo mechanism testing operations
         new AnalogOperationDescription(
@@ -193,22 +167,6 @@ public class ButtonMap implements IButtonMap
             Shift.CodriverDebug,
             ButtonType.Click),
 
-        // vision operations
-        new DigitalOperationDescription(
-            DigitalOperation.VisionEnableRetroreflectiveProcessing,
-            UserInputDevice.Test1,
-            UserInputDeviceButton.XBONE_X_BUTTON,
-            Shift.None,
-            Shift.None,
-            ButtonType.Simple),
-        new DigitalOperationDescription(
-            DigitalOperation.VisionEnableGamePieceProcessing,
-            UserInputDevice.Test1,
-            UserInputDeviceButton.XBONE_Y_BUTTON,
-            Shift.None,
-            Shift.None,
-            ButtonType.Simple),
-
         // cargo opertaions:
         new DigitalOperationDescription(
             DigitalOperation.CargoIntakeForceExtend,
@@ -260,6 +218,39 @@ public class ButtonMap implements IButtonMap
             Shift.CodriverDebug,
             Shift.CodriverDebug,
             ButtonType.Click),
+
+        // shoot operations
+        new DigitalOperationDescription(
+            DigitalOperation.CargoHoodPointBlank,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_6,
+            Shift.None,
+            Shift.None,
+            ButtonType.Click),
+        new DigitalOperationDescription(
+            DigitalOperation.CargoHoodLong,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_7,
+            Shift.None,
+            Shift.None,
+            ButtonType.Click),
+
+        // Climber operations
+        new DigitalOperationDescription(
+            DigitalOperation.SClimberUp,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_12,
+            Shift.CodriverDebug,
+            Shift.None,
+            ButtonType.Click),
+        new DigitalOperationDescription(
+            DigitalOperation.SClimberDown,
+            UserInputDevice.Codriver,
+            UserInputDeviceButton.BUTTON_PAD_BUTTON_13,
+            Shift.CodriverDebug,
+            Shift.None,
+            ButtonType.Click),
+
 /*
         // climber operations
         new DigitalOperationDescription(
@@ -298,7 +289,22 @@ public class ButtonMap implements IButtonMap
             Shift.None,
             ButtonType.Click),
 */
-        // cargo testing operations
+        // testing operations
+        new DigitalOperationDescription(
+            DigitalOperation.VisionEnableRetroreflectiveProcessing,
+            UserInputDevice.Test1,
+            UserInputDeviceButton.XBONE_X_BUTTON,
+            Shift.None,
+            Shift.None,
+            ButtonType.Simple),
+        new DigitalOperationDescription(
+            DigitalOperation.VisionEnableGamePieceProcessing,
+            UserInputDevice.Test1,
+            UserInputDeviceButton.XBONE_Y_BUTTON,
+            Shift.None,
+            Shift.None,
+            ButtonType.Simple),
+
         new DigitalOperationDescription(
             DigitalOperation.CargoFeed,
             UserInputDevice.Test1,
@@ -313,39 +319,6 @@ public class ButtonMap implements IButtonMap
             Shift.None,
             Shift.None,
             ButtonType.Simple),
-
-        new DigitalOperationDescription(
-            DigitalOperation.CargoHoodPointBlank,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_6,
-            Shift.CodriverDebug,
-            Shift.None,
-            ButtonType.Click),
-        new DigitalOperationDescription(
-            DigitalOperation.CargoHoodLong,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_7,
-            Shift.None,
-            Shift.None,
-            ButtonType.Click),
-        
-        new DigitalOperationDescription(
-            DigitalOperation.SClimberUp,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_12,
-            Shift.CodriverDebug,
-            Shift.None,
-            ButtonType.Click),
-
-        new DigitalOperationDescription(
-            DigitalOperation.SClimberDown,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_13,
-            Shift.CodriverDebug,
-            Shift.None,
-            ButtonType.Click),
-
-
 
         // PS4 BACKUP CODRIVER BUTTONS
         /*
@@ -413,7 +386,7 @@ public class ButtonMap implements IButtonMap
             Shift.None,
             Shift.None,
             ButtonType.Click),
-        
+
         new DigitalOperationDescription(
             DigitalOperation.SClimberUp,
             UserInputDevice.Codriver,
@@ -421,7 +394,6 @@ public class ButtonMap implements IButtonMap
             Shift.CodriverDebug,
             Shift.None,
             ButtonType.Click),
-
         new DigitalOperationDescription(
             DigitalOperation.SClimberDown,
             UserInputDevice.Codriver,

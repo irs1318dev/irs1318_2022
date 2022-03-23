@@ -83,9 +83,9 @@ public class ShiftDescription
             relevantJoystick = joysticks[userInputDevice.getId()];
         }
 
-        if (relevantJoystick == null)
+        if (relevantJoystick == null || !relevantJoystick.isConnected())
         {
-            if (TuningConstants.THROW_EXCEPTIONS)
+            if (!TuningConstants.EXPECT_UNUSED_JOYSTICKS && TuningConstants.THROW_EXCEPTIONS)
             {
                 throw new RuntimeException("Unexpected user input device " + userInputDevice.toString());
             }
