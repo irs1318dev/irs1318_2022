@@ -22,6 +22,11 @@ public class FauxbotCompressor implements ICompressor
     {
     }
 
+    public double getPressure()
+    {
+        return 0.0;
+    }
+
     public void disable()
     {
     }

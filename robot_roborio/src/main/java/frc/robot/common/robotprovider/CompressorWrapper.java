@@ -31,6 +31,11 @@ public class CompressorWrapper implements ICompressor
         this.wrappedObject.enableDigital();
     }
 
+    public double getPressure()
+    {
+        return this.wrappedObject.getPressure();
+    }
+
     public void disable()
     {
         this.wrappedObject.disable();
