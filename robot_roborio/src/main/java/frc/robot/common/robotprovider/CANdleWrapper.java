@@ -11,6 +11,11 @@ public class CANdleWrapper implements ICANdle
         this.wrappedObject = new CANdle(deviceNumber);
     }
 
+    public CANdleWrapper(int deviceNumber, String canbus)
+    {
+        this.wrappedObject = new CANdle(deviceNumber, canbus);
+    }
+
     public double getBusVoltage()
     {
         return this.wrappedObject.getBusVoltage();

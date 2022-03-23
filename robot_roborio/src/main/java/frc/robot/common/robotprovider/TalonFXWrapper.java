@@ -26,6 +26,12 @@ public class TalonFXWrapper implements ITalonFX
         this.controlMode = ControlMode.PercentOutput;
     }
 
+    public TalonFXWrapper(int deviceNumber, String canbus)
+    {
+        this.wrappedObject = new TalonFX(deviceNumber, canbus);
+        this.controlMode = ControlMode.PercentOutput;
+    }
+
     public void set(double value)
     {
         this.wrappedObject.set(this.controlMode, value);
