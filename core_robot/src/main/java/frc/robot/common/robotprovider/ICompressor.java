@@ -22,6 +22,12 @@ public interface ICompressor
     void enableDigital();
 
     /**
+     * Query the analog sensor pressure.
+     * @return The analog sensor pressure, in PSI
+     */
+    double getPressure();
+
+    /**
      * Forcibly disable the compressor
      */
     void disable();

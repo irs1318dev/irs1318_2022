@@ -65,6 +65,7 @@ public class DriveTrainMechanism implements IMechanism
     private final PIDHandler pathOmegaPID;
     private final PIDHandler pathXOffsetPID;
     private final PIDHandler pathYOffsetPID;
+    private final int[] driveSlotIds;
 
     private final double[] driveVelocities;
     private final double[] drivePositions;
@@ -350,6 +351,7 @@ public class DriveTrainMechanism implements IMechanism
         this.encoderAngles = new double[DriveTrainMechanism.NUM_MODULES];
 
         this.isDirectionSwapped = new boolean[DriveTrainMechanism.NUM_MODULES];
+        this.driveSlotIds = new int[DriveTrainMechanism.NUM_MODULES];
 
         this.omegaPID = new PIDHandler(
             TuningConstants.DRIVETRAIN_OMEGA_POSITION_PID_KP,
@@ -535,7 +537,16 @@ public class DriveTrainMechanism implements IMechanism
             if (driveControlMode != TalonXControlMode.Disabled)
             {
                 this.driveMotors[i].set(driveSetpoint);
-                this.driveMotors[i].setSelectedSlot(driveDesiredPidSlotId);
+
+                if (driveDesiredPidSlotId != this.driveSlotIds[i])
+                {
+                    this.driveMotors[i].setSelectedSlot(driveDesiredPidSlotId);
+                    this.driveSlotIds[i] = driveDesiredPidSlotId;
+                }
+            }
+            else
+            {
+                this.driveMotors[i].stop();
             }
 
             if (steerSetpoint != null)
@@ -589,12 +600,20 @@ public class DriveTrainMechanism implements IMechanism
 
     private void calculateSetpoints()
     {
-        if (this.driver.getDigital(DigitalOperation.DriveTrainPositionMode))
+        boolean maintainPositionMode = this.driver.getDigital(DigitalOperation.DriveTrainMaintainPositionMode);
+        if (maintainPositionMode || this.driver.getDigital(DigitalOperation.DriveTrainSteerMode))
         {
             for (int i = 0; i < DriveTrainMechanism.NUM_MODULES; i++)
             {
                 this.result[i].driveVelocity = null;
-                this.result[i].drivePosition = this.driver.getAnalog(DriveTrainMechanism.DRIVE_SETPOINT_OPERATIONS[i]);
+                if (maintainPositionMode)
+                {
+                    this.result[i].drivePosition = this.driver.getAnalog(DriveTrainMechanism.DRIVE_SETPOINT_OPERATIONS[i]);
+                }
+                else
+                {
+                    this.result[i].drivePosition = null;
+                }
 
                 double moduleSteerPositionGoal = this.driver.getAnalog(DriveTrainMechanism.STEER_SETPOINT_OPERATIONS[i]);
                 double currentAngle = this.steerPositions[i] * HardwareConstants.DRIVETRAIN_STEER_TICK_DISTANCE;
