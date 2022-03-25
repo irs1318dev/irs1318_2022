@@ -1044,6 +1044,10 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.DriveTrainReset,
                 DigitalOperation.DriveTrainEnableFieldOrientation,
                 DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.VisionDisableStream,
+                DigitalOperation.VisionEnableGamePieceProcessing,
+                DigitalOperation.VisionEnableRetroreflectiveProcessing,
+                DigitalOperation.VisionForceDisable,
                 AnalogOperation.CargoFlywheelVelocityGoal,
                 AnalogOperation.DriveTrainMoveForward,
                 AnalogOperation.DriveTrainMoveRight,
@@ -1089,6 +1093,10 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.CargoHoodPointBlank,
                 DigitalOperation.CargoHoodLong,
                 AnalogOperation.CargoFlywheelVelocityGoal,
+                DigitalOperation.VisionDisableStream,
+                DigitalOperation.VisionEnableGamePieceProcessing,
+                DigitalOperation.VisionEnableRetroreflectiveProcessing,
+                DigitalOperation.VisionForceDisable,
             }),
 
             /*
