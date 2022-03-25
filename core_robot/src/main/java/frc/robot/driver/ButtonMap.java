@@ -1010,7 +1010,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.CargoHoodLong,
                 AnalogOperation.CargoFlywheelVelocityGoal,
             }),
-
+        /*
         new MacroOperationDescription(
             MacroOperation.AutoPositionAndShoot,
             UserInputDevice.Driver,
@@ -1089,11 +1089,10 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.CargoHoodPointBlank,
                 DigitalOperation.CargoHoodLong,
                 AnalogOperation.CargoFlywheelVelocityGoal,
-            }),
+            }),*/
 
-            /*
         new MacroOperationDescription(
-            MacroOperation.AutoShootHigh,
+            MacroOperation.ChooseShoot,
             UserInputDevice.Driver,
             UserInputDeviceButton.XBONE_Y_BUTTON,
             Shift.DriverDebug,
@@ -1119,7 +1118,6 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.CargoHoodLong,
                 AnalogOperation.CargoFlywheelVelocityGoal,
             }),
-            */
 
         // autonomous testing operations
         /*
