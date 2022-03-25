@@ -4,7 +4,7 @@ import frc.robot.TuningConstants;
 
 public class VisionShootPositionTask extends VisionAdvanceAndCenterTaskBase
 {
-    private Double desiredPosition;
+    private Double desiredDistance;
 
     public VisionShootPositionTask()
     {
@@ -17,25 +17,25 @@ public class VisionShootPositionTask extends VisionAdvanceAndCenterTaskBase
     }
 
     @Override
-    protected double getDesiredDistance()
+    protected double getDesiredDistance(double currentDistance)
     {
-        if (this.desiredPosition == null)
+        if (this.desiredDistance == null)
         {
-            double currentPosition = this.getDistance();
-            int wantedIndex = 0;
-            double lowestDistance = currentPosition - TuningConstants.CARGO_FLYWHEEL_KNOWN_DISTANCES[0];
-            for (int i = 1; i < TuningConstants.CARGO_FLYWHEEL_KNOWN_DISTANCES.length; i++) {
-                double newDistance = currentPosition - TuningConstants.CARGO_FLYWHEEL_KNOWN_DISTANCES[i];
-                if (Math.abs(newDistance) < Math.abs(lowestDistance))
+            int desiredIndex = 0;
+            double smallestDistanceOffset = currentDistance - TuningConstants.CARGO_KNOWN_SHOOTING_DISTANCES[0];
+            for (int i = 1; i < TuningConstants.CARGO_KNOWN_SHOOTING_DISTANCES.length; i++)
+            {
+                double newDistanceOffset = currentDistance - TuningConstants.CARGO_KNOWN_SHOOTING_DISTANCES[i];
+                if (Math.abs(newDistanceOffset) < Math.abs(smallestDistanceOffset))
                 {
-                    lowestDistance = newDistance;
-                    wantedIndex = i;
+                    smallestDistanceOffset = newDistanceOffset;
+                    desiredIndex = i;
                 }
             }
 
-            this.desiredPosition = TuningConstants.CARGO_FLYWHEEL_KNOWN_DISTANCES[wantedIndex];
+            this.desiredDistance = TuningConstants.CARGO_KNOWN_SHOOTING_DISTANCES[desiredIndex];
         }
 
-        return this.desiredPosition;
+        return this.desiredDistance;
     }
 }

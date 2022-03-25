@@ -98,25 +98,25 @@ public class ButtonMap implements IButtonMap
             -0.1,
             0.1),
 
-        // climber mechanism testing operations
-        new AnalogOperationDescription(
-            AnalogOperation.ClimberWinchDesiredPosition,
-            UserInputDevice.Test1,
-            AnalogAxis.XBONE_RSX,
-            Shift.Test1Debug,
-            Shift.None,
-            ElectronicsConstants.INVERT_XBONE_RIGHT_X_AXIS,
-            -1.0,
-            0.1),
-        new AnalogOperationDescription(
-            AnalogOperation.ClimberWinchMotorPower,
-            UserInputDevice.Test1,
-            AnalogAxis.XBONE_RSX,
-            Shift.Test1Debug,
-            Shift.Test1Debug,
-            ElectronicsConstants.INVERT_XBONE_RIGHT_X_AXIS,
-            -0.1,
-            0.1),
+        // // climber mechanism testing operations
+        // new AnalogOperationDescription(
+        //     AnalogOperation.ClimberWinchDesiredPosition,
+        //     UserInputDevice.Test1,
+        //     AnalogAxis.XBONE_RSX,
+        //     Shift.Test1Debug,
+        //     Shift.None,
+        //     ElectronicsConstants.INVERT_XBONE_RIGHT_X_AXIS,
+        //     -1.0,
+        //     0.1),
+        // new AnalogOperationDescription(
+        //     AnalogOperation.ClimberWinchMotorPower,
+        //     UserInputDevice.Test1,
+        //     AnalogAxis.XBONE_RSX,
+        //     Shift.Test1Debug,
+        //     Shift.Test1Debug,
+        //     ElectronicsConstants.INVERT_XBONE_RIGHT_X_AXIS,
+        //     -0.1,
+        //     0.1),
     };
 
     public static DigitalOperationDescription[] DigitalOperationSchema = new DigitalOperationDescription[]
@@ -249,44 +249,43 @@ public class ButtonMap implements IButtonMap
             Shift.None,
             ButtonType.Click),
 
-/*
         // climber operations
-        new DigitalOperationDescription(
-            DigitalOperation.ClimberHookRelease,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_6,
-            Shift.CodriverDebug,
-            Shift.None,
-            ButtonType.Click),
-        new DigitalOperationDescription(
-            DigitalOperation.ClimberHookGrasp,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_6,
-            Shift.CodriverDebug,
-            Shift.CodriverDebug,
-            ButtonType.Click),
-        new DigitalOperationDescription(
-            DigitalOperation.ClimberArmUp,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_7,
-            Shift.CodriverDebug,
-            Shift.None,
-            ButtonType.Click),
-        new DigitalOperationDescription(
-            DigitalOperation.ClimberArmOut,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_7,
-            Shift.CodriverDebug,
-            Shift.CodriverDebug,
-            ButtonType.Click),
-        new DigitalOperationDescription(
-            DigitalOperation.ClimberResetWinchPosition,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_9,
-            Shift.CodriverDebug,
-            Shift.None,
-            ButtonType.Click),
-*/
+        // new DigitalOperationDescription(
+        //     DigitalOperation.ClimberHookRelease,
+        //     UserInputDevice.Codriver,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_6,
+        //     Shift.CodriverDebug,
+        //     Shift.None,
+        //     ButtonType.Click),
+        // new DigitalOperationDescription(
+        //     DigitalOperation.ClimberHookGrasp,
+        //     UserInputDevice.Codriver,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_6,
+        //     Shift.CodriverDebug,
+        //     Shift.CodriverDebug,
+        //     ButtonType.Click),
+        // new DigitalOperationDescription(
+        //     DigitalOperation.ClimberArmUp,
+        //     UserInputDevice.Codriver,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_7,
+        //     Shift.CodriverDebug,
+        //     Shift.None,
+        //     ButtonType.Click),
+        // new DigitalOperationDescription(
+        //     DigitalOperation.ClimberArmOut,
+        //     UserInputDevice.Codriver,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_7,
+        //     Shift.CodriverDebug,
+        //     Shift.CodriverDebug,
+        //     ButtonType.Click),
+        // new DigitalOperationDescription(
+        //     DigitalOperation.ClimberResetWinchPosition,
+        //     UserInputDevice.Codriver,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_9,
+        //     Shift.CodriverDebug,
+        //     Shift.None,
+        //     ButtonType.Click),
+
         // testing operations
         new DigitalOperationDescription(
             DigitalOperation.VisionEnableRetroreflectiveProcessing,
@@ -317,90 +316,6 @@ public class ButtonMap implements IButtonMap
             Shift.None,
             Shift.None,
             ButtonType.Simple),
-
-        // PS4 BACKUP CODRIVER BUTTONS
-        /*
-        new DigitalOperationDescription(
-            DigitalOperation.PositionResetFieldOrientation,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_1,
-            Shift.CodriverDebug,
-            Shift.None,
-            ButtonType.Click),
-        new DigitalOperationDescription(
-            DigitalOperation.DriveTrainReset,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_1,
-            Shift.CodriverDebug,
-            Shift.CodriverDebug,
-            ButtonType.Click),
-        new DigitalOperationDescription(
-            DigitalOperation.DriveTrainEnableFieldOrientation,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_2,
-            Shift.CodriverDebug,
-            Shift.None,
-            ButtonType.Click),
-        new DigitalOperationDescription(
-            DigitalOperation.DriveTrainDisableFieldOrientation,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_2,
-            Shift.CodriverDebug,
-            Shift.CodriverDebug,
-            ButtonType.Click),
-        new DigitalOperationDescription(
-            DigitalOperation.DriveTrainEnableMaintainDirectionMode,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_3,
-            Shift.CodriverDebug,
-            Shift.None,
-            ButtonType.Click),
-        new DigitalOperationDescription(
-            DigitalOperation.CargoEnableShootAnywayMode,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_5,
-            Shift.CodriverDebug,
-            Shift.None,
-            ButtonType.Click),
-        new DigitalOperationDescription(
-            DigitalOperation.CargoDisableShootAnywayMode,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_5,
-            Shift.CodriverDebug,
-            Shift.CodriverDebug,
-            ButtonType.Click),
-
-        new DigitalOperationDescription(
-            DigitalOperation.CargoHoodPointBlank,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.PS4_TRIANGLE_BUTTON,
-            Shift.CodriverDebug,
-            Shift.None,
-            ButtonType.Click),
-        new DigitalOperationDescription(
-            DigitalOperation.CargoHoodLong,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.PS4_X_BUTTON,
-            Shift.None,
-            Shift.None,
-            ButtonType.Click),
-
-        new DigitalOperationDescription(
-            DigitalOperation.SClimberUp,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.PS4_CIRCLE_BUTTON,
-            Shift.CodriverDebug,
-            Shift.None,
-            ButtonType.Click),
-        new DigitalOperationDescription(
-            DigitalOperation.SClimberDown,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.PS4_SQUARE_BUTTON,
-            Shift.CodriverDebug,
-            Shift.None,
-            ButtonType.Click),
-        */
-
     };
 
     public static MacroOperationDescription[] MacroSchema = new MacroOperationDescription[]
@@ -655,274 +570,6 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
                 DigitalOperation.VisionForceDisable,
             }),
-/*
-        // climber control macros for codriver
-        new MacroOperationDescription(
-            MacroOperation.ClimberWinchForward,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_8,
-            Shift.CodriverDebug,
-            Shift.None,
-            ButtonType.Simple,
-            () -> new ClimberWinchPowerTask(0.5),
-            new IOperation[]
-            {
-                AnalogOperation.ClimberWinchMotorPower,
-            }),
-        new MacroOperationDescription(
-            MacroOperation.ClimberWinchBackward,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_8,
-            Shift.CodriverDebug,
-            Shift.CodriverDebug,
-            ButtonType.Simple,
-            () -> new ClimberWinchPowerTask(-0.5),
-            new IOperation[]
-            {
-                AnalogOperation.ClimberWinchMotorPower
-            }),
-
-        // Climbing macros:
-        new MacroOperationDescription(
-            MacroOperation.ClimbSetUpWall,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_11,
-            Shift.CodriverDebug,
-            Shift.None,
-            ButtonType.Toggle,
-            () -> SequentialTask.Sequence(
-                new FollowPathTask("lineUpUnder1stClimberBarWall"),
-                new ClimberArmUnlockTask(true),
-                ConcurrentTask.AllTasks(
-                    new ClimberArmTask(true),
-                    new ClimberWeightedTask(false)
-                ),
-                new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_FULL_EXTEND_LENGTH),
-                new FollowPathTask("goForward5in")
-            ),
-            new IOperation[]
-            {
-                AnalogOperation.DriveTrainMoveForward,
-                AnalogOperation.DriveTrainMoveRight,
-                AnalogOperation.DriveTrainTurnAngleGoal,
-                AnalogOperation.DriveTrainTurnSpeed,
-                AnalogOperation.DriveTrainRotationA,
-                AnalogOperation.DriveTrainRotationB,
-                AnalogOperation.DriveTrainPathXGoal,
-                AnalogOperation.DriveTrainPathYGoal,
-                AnalogOperation.DriveTrainPathXVelocityGoal,
-                AnalogOperation.DriveTrainPathYVelocityGoal,
-                AnalogOperation.DriveTrainPathAngleVelocityGoal,
-                AnalogOperation.DriveTrainPositionDrive1,
-                AnalogOperation.DriveTrainPositionDrive2,
-                AnalogOperation.DriveTrainPositionDrive3,
-                AnalogOperation.DriveTrainPositionDrive4,
-                AnalogOperation.DriveTrainPositionSteer1,
-                AnalogOperation.DriveTrainPositionSteer2,
-                AnalogOperation.DriveTrainPositionSteer3,
-                AnalogOperation.DriveTrainPositionSteer4,
-                AnalogOperation.DriveTrainTurnAngleReference,
-                AnalogOperation.ClimberWinchDesiredPosition,
-                AnalogOperation.ClimberWinchMotorPower,
-                DigitalOperation.DriveTrainSteerMode,
-                DigitalOperation.DriveTrainMaintainPositionMode,
-                DigitalOperation.DriveTrainPathMode,
-                DigitalOperation.DriveTrainReset,
-                DigitalOperation.DriveTrainEnableFieldOrientation,
-                DigitalOperation.DriveTrainDisableFieldOrientation,
-                DigitalOperation.ClimberHookGrasp,
-                DigitalOperation.ClimberHookRelease,
-                DigitalOperation.ClimberArmOut,
-                DigitalOperation.ClimberArmUp,
-                DigitalOperation.ClimberEnableWeightedMode,
-                DigitalOperation.ClimberEnableUnweightedMode,
-                DigitalOperation.ClimberWinchLock,
-                DigitalOperation.ClimberWinchUnlock
-            }
-        ),
-
-        new MacroOperationDescription(
-            MacroOperation.ClimbSetUpNotWall,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_11,
-            Shift.CodriverDebug,
-            Shift.CodriverDebug,
-            ButtonType.Toggle,
-            () -> SequentialTask.Sequence(
-                new FollowPathTask("lineUpUnder1stClimberBarNotWall"),
-                new ClimberArmUnlockTask(true),
-                ConcurrentTask.AllTasks(
-                    new ClimberArmTask(true),
-                    new ClimberWeightedTask(false)
-                ),
-                new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_FULL_EXTEND_LENGTH),
-                new FollowPathTask("goForward5in")
-            ),
-            new IOperation[]
-            {
-                AnalogOperation.DriveTrainMoveForward,
-                AnalogOperation.DriveTrainMoveRight,
-                AnalogOperation.DriveTrainTurnAngleGoal,
-                AnalogOperation.DriveTrainTurnSpeed,
-                AnalogOperation.DriveTrainRotationA,
-                AnalogOperation.DriveTrainRotationB,
-                AnalogOperation.DriveTrainPathXGoal,
-                AnalogOperation.DriveTrainPathYGoal,
-                AnalogOperation.DriveTrainPathXVelocityGoal,
-                AnalogOperation.DriveTrainPathYVelocityGoal,
-                AnalogOperation.DriveTrainPathAngleVelocityGoal,
-                AnalogOperation.DriveTrainPositionDrive1,
-                AnalogOperation.DriveTrainPositionDrive2,
-                AnalogOperation.DriveTrainPositionDrive3,
-                AnalogOperation.DriveTrainPositionDrive4,
-                AnalogOperation.DriveTrainPositionSteer1,
-                AnalogOperation.DriveTrainPositionSteer2,
-                AnalogOperation.DriveTrainPositionSteer3,
-                AnalogOperation.DriveTrainPositionSteer4,
-                AnalogOperation.DriveTrainTurnAngleReference,
-                AnalogOperation.ClimberWinchDesiredPosition,
-                AnalogOperation.ClimberWinchMotorPower,
-                DigitalOperation.DriveTrainSteerMode,
-                DigitalOperation.DriveTrainMaintainPositionMode,
-                DigitalOperation.DriveTrainPathMode,
-                DigitalOperation.DriveTrainReset,
-                DigitalOperation.DriveTrainEnableFieldOrientation,
-                DigitalOperation.DriveTrainDisableFieldOrientation,
-                DigitalOperation.ClimberHookGrasp,
-                DigitalOperation.ClimberHookRelease,
-                DigitalOperation.ClimberArmOut,
-                DigitalOperation.ClimberArmUp,
-                DigitalOperation.ClimberEnableWeightedMode,
-                DigitalOperation.ClimberEnableUnweightedMode,
-                DigitalOperation.ClimberWinchLock,
-                DigitalOperation.ClimberWinchUnlock
-            }
-        ),
-
-        // extends arm and stuff, driver has to activate this then drive towards the bar and hook it on
-        new MacroOperationDescription(
-            MacroOperation.ClimbSetUpManual,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_15,
-            Shift.CodriverDebug,
-            Shift.None,
-            ButtonType.Toggle,
-            () -> SequentialTask.Sequence(
-                new ClimberArmUnlockTask(true),
-                ConcurrentTask.AllTasks(
-                    new ClimberArmTask(true),
-                    new ClimberWeightedTask(false)
-                ),
-                new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_FULL_EXTEND_LENGTH)
-            ),
-            new IOperation[]
-            {
-                AnalogOperation.ClimberWinchDesiredPosition,
-                AnalogOperation.ClimberWinchMotorPower,
-                DigitalOperation.ClimberHookGrasp,
-                DigitalOperation.ClimberHookRelease,
-                DigitalOperation.ClimberArmOut,
-                DigitalOperation.ClimberArmUp,
-                DigitalOperation.ClimberEnableWeightedMode,
-                DigitalOperation.ClimberEnableUnweightedMode,
-                DigitalOperation.ClimberWinchLock,
-                DigitalOperation.ClimberWinchUnlock
-            }
-        ),
-        */
-
-        /* ------------------------------------------------COMMENTED FOR SAMMAMISH CLIMBER-----------------
-        new MacroOperationDescription(
-            MacroOperation.ClimberRiseToMidRung,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_12,
-            Shift.CodriverDebug,
-            Shift.None,
-            ButtonType.Toggle,
-            () -> SequentialTask.Sequence(
-                ConcurrentTask.AllTasks(
-                    new ClimberHookTask(false),
-                    new ClimberWeightedTask(true)
-                ),
-                new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_FULL_RETRACT_LENGTH),
-                new ClimberHookTask(true)
-            ),
-            new IOperation[]
-            {
-                AnalogOperation.ClimberWinchDesiredPosition,
-                AnalogOperation.ClimberWinchMotorPower,
-                DigitalOperation.ClimberHookGrasp,
-                DigitalOperation.ClimberHookRelease,
-                DigitalOperation.ClimberArmOut,
-                DigitalOperation.ClimberArmUp,
-                DigitalOperation.ClimberEnableWeightedMode,
-                DigitalOperation.ClimberEnableUnweightedMode,
-                DigitalOperation.ClimberWinchLock,
-                DigitalOperation.ClimberWinchUnlock
-            }
-        ),
-
-        new MacroOperationDescription(
-            MacroOperation.ClimberExtendToNextRung,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_13,
-            Shift.CodriverDebug,
-            Shift.None,
-            ButtonType.Toggle,
-            () -> SequentialTask.Sequence(
-                new ClimberWeightedTask(false),
-                new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_SHORT_EXTEND_LENGTH),
-                new ClimberArmTask(false),
-                new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_FULL_EXTEND_LENGTH),
-                new ClimberArmTask(true),
-                new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_MOSTLY_EXTEND_LENGTH)
-            ),
-            new IOperation[]
-            {
-                AnalogOperation.ClimberWinchDesiredPosition,
-                AnalogOperation.ClimberWinchMotorPower,
-                DigitalOperation.ClimberHookGrasp,
-                DigitalOperation.ClimberHookRelease,
-                DigitalOperation.ClimberArmOut,
-                DigitalOperation.ClimberArmUp,
-                DigitalOperation.ClimberEnableWeightedMode,
-                DigitalOperation.ClimberEnableUnweightedMode,
-                DigitalOperation.ClimberWinchLock,
-                DigitalOperation.ClimberWinchUnlock
-            }
-        ),
-        
-
-        new MacroOperationDescription(
-            MacroOperation.ClimberSwitchToNextRung,
-            UserInputDevice.Codriver,
-            UserInputDeviceButton.BUTTON_PAD_BUTTON_14,
-            Shift.CodriverDebug,
-            Shift.None,
-            ButtonType.Toggle,
-            () -> SequentialTask.Sequence(
-                new ClimberWeightedTask(true),
-                ConcurrentTask.AllTasks(
-                    new ClimberHookTask(false),
-                    new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_FULL_RETRACT_LENGTH)
-                ),
-                new ClimberHookTask(true)
-            ),
-            new IOperation[]
-            {
-                AnalogOperation.ClimberWinchDesiredPosition,
-                AnalogOperation.ClimberWinchMotorPower,
-                DigitalOperation.ClimberHookGrasp,
-                DigitalOperation.ClimberHookRelease,
-                DigitalOperation.ClimberArmOut,
-                DigitalOperation.ClimberArmUp,
-                DigitalOperation.ClimberEnableWeightedMode,
-                DigitalOperation.ClimberEnableUnweightedMode,
-                DigitalOperation.ClimberWinchLock,
-                DigitalOperation.ClimberWinchUnlock
-            }
-        ),
-        */
 
         // shooting macros
         new MacroOperationDescription(
@@ -1097,102 +744,336 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.VisionForceDisable,
             }),
 
-            /*
-        new MacroOperationDescription(
-            MacroOperation.AutoShootHigh,
-            UserInputDevice.Driver,
-            UserInputDeviceButton.XBONE_Y_BUTTON,
-            Shift.DriverDebug,
-            Shift.None,
-            ButtonType.Toggle,
-            () -> SequentialTask.Sequence(
-                    new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
-                    ConcurrentTask.AnyTasks(
-                        new VisionSpinUpTask(true),
-                        new CargoShootTask()
-                    )
-                ),
-            new IOperation[]
-            {
-                DigitalOperation.CargoIntakeForceExtend,
-                DigitalOperation.CargoIntakeForceRetract,
-                DigitalOperation.CargoIntakeIn,
-                DigitalOperation.CargoIntakeOut,
-                DigitalOperation.CargoEject,
-                DigitalOperation.CargoForceIntakeOnly,
-                DigitalOperation.CargoFeed,
-                DigitalOperation.CargoHoodPointBlank,
-                DigitalOperation.CargoHoodLong,
-                AnalogOperation.CargoFlywheelVelocityGoal,
-            }),
-            */
+        // // climber control macros for codriver
+        // new MacroOperationDescription(
+        //     MacroOperation.ClimberWinchForward,
+        //     UserInputDevice.Codriver,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_8,
+        //     Shift.CodriverDebug,
+        //     Shift.None,
+        //     ButtonType.Simple,
+        //     () -> new ClimberWinchPowerTask(0.5),
+        //     new IOperation[]
+        //     {
+        //         AnalogOperation.ClimberWinchMotorPower,
+        //     }),
+        // new MacroOperationDescription(
+        //     MacroOperation.ClimberWinchBackward,
+        //     UserInputDevice.Codriver,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_8,
+        //     Shift.CodriverDebug,
+        //     Shift.CodriverDebug,
+        //     ButtonType.Simple,
+        //     () -> new ClimberWinchPowerTask(-0.5),
+        //     new IOperation[]
+        //     {
+        //         AnalogOperation.ClimberWinchMotorPower
+        //     }),
+
+        // // Climbing macros:
+        // new MacroOperationDescription(
+        //     MacroOperation.ClimbSetUpWall,
+        //     UserInputDevice.Codriver,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_11,
+        //     Shift.CodriverDebug,
+        //     Shift.None,
+        //     ButtonType.Toggle,
+        //     () -> SequentialTask.Sequence(
+        //         new FollowPathTask("lineUpUnder1stClimberBarWall"),
+        //         new ClimberArmUnlockTask(true),
+        //         ConcurrentTask.AllTasks(
+        //             new ClimberArmTask(true),
+        //             new ClimberWeightedTask(false)
+        //         ),
+        //         new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_FULL_EXTEND_LENGTH),
+        //         new FollowPathTask("goForward5in")
+        //     ),
+        //     new IOperation[]
+        //     {
+        //         AnalogOperation.DriveTrainMoveForward,
+        //         AnalogOperation.DriveTrainMoveRight,
+        //         AnalogOperation.DriveTrainTurnAngleGoal,
+        //         AnalogOperation.DriveTrainTurnSpeed,
+        //         AnalogOperation.DriveTrainRotationA,
+        //         AnalogOperation.DriveTrainRotationB,
+        //         AnalogOperation.DriveTrainPathXGoal,
+        //         AnalogOperation.DriveTrainPathYGoal,
+        //         AnalogOperation.DriveTrainPathXVelocityGoal,
+        //         AnalogOperation.DriveTrainPathYVelocityGoal,
+        //         AnalogOperation.DriveTrainPathAngleVelocityGoal,
+        //         AnalogOperation.DriveTrainPositionDrive1,
+        //         AnalogOperation.DriveTrainPositionDrive2,
+        //         AnalogOperation.DriveTrainPositionDrive3,
+        //         AnalogOperation.DriveTrainPositionDrive4,
+        //         AnalogOperation.DriveTrainPositionSteer1,
+        //         AnalogOperation.DriveTrainPositionSteer2,
+        //         AnalogOperation.DriveTrainPositionSteer3,
+        //         AnalogOperation.DriveTrainPositionSteer4,
+        //         AnalogOperation.DriveTrainTurnAngleReference,
+        //         AnalogOperation.ClimberWinchDesiredPosition,
+        //         AnalogOperation.ClimberWinchMotorPower,
+        //         DigitalOperation.DriveTrainSteerMode,
+        //         DigitalOperation.DriveTrainMaintainPositionMode,
+        //         DigitalOperation.DriveTrainPathMode,
+        //         DigitalOperation.DriveTrainReset,
+        //         DigitalOperation.DriveTrainEnableFieldOrientation,
+        //         DigitalOperation.DriveTrainDisableFieldOrientation,
+        //         DigitalOperation.ClimberHookGrasp,
+        //         DigitalOperation.ClimberHookRelease,
+        //         DigitalOperation.ClimberArmOut,
+        //         DigitalOperation.ClimberArmUp,
+        //         DigitalOperation.ClimberEnableWeightedMode,
+        //         DigitalOperation.ClimberEnableUnweightedMode,
+        //         DigitalOperation.ClimberWinchLock,
+        //         DigitalOperation.ClimberWinchUnlock
+        //     }
+        // ),
+
+        // new MacroOperationDescription(
+        //     MacroOperation.ClimbSetUpNotWall,
+        //     UserInputDevice.Codriver,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_11,
+        //     Shift.CodriverDebug,
+        //     Shift.CodriverDebug,
+        //     ButtonType.Toggle,
+        //     () -> SequentialTask.Sequence(
+        //         new FollowPathTask("lineUpUnder1stClimberBarNotWall"),
+        //         new ClimberArmUnlockTask(true),
+        //         ConcurrentTask.AllTasks(
+        //             new ClimberArmTask(true),
+        //             new ClimberWeightedTask(false)
+        //         ),
+        //         new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_FULL_EXTEND_LENGTH),
+        //         new FollowPathTask("goForward5in")
+        //     ),
+        //     new IOperation[]
+        //     {
+        //         AnalogOperation.DriveTrainMoveForward,
+        //         AnalogOperation.DriveTrainMoveRight,
+        //         AnalogOperation.DriveTrainTurnAngleGoal,
+        //         AnalogOperation.DriveTrainTurnSpeed,
+        //         AnalogOperation.DriveTrainRotationA,
+        //         AnalogOperation.DriveTrainRotationB,
+        //         AnalogOperation.DriveTrainPathXGoal,
+        //         AnalogOperation.DriveTrainPathYGoal,
+        //         AnalogOperation.DriveTrainPathXVelocityGoal,
+        //         AnalogOperation.DriveTrainPathYVelocityGoal,
+        //         AnalogOperation.DriveTrainPathAngleVelocityGoal,
+        //         AnalogOperation.DriveTrainPositionDrive1,
+        //         AnalogOperation.DriveTrainPositionDrive2,
+        //         AnalogOperation.DriveTrainPositionDrive3,
+        //         AnalogOperation.DriveTrainPositionDrive4,
+        //         AnalogOperation.DriveTrainPositionSteer1,
+        //         AnalogOperation.DriveTrainPositionSteer2,
+        //         AnalogOperation.DriveTrainPositionSteer3,
+        //         AnalogOperation.DriveTrainPositionSteer4,
+        //         AnalogOperation.DriveTrainTurnAngleReference,
+        //         AnalogOperation.ClimberWinchDesiredPosition,
+        //         AnalogOperation.ClimberWinchMotorPower,
+        //         DigitalOperation.DriveTrainSteerMode,
+        //         DigitalOperation.DriveTrainMaintainPositionMode,
+        //         DigitalOperation.DriveTrainPathMode,
+        //         DigitalOperation.DriveTrainReset,
+        //         DigitalOperation.DriveTrainEnableFieldOrientation,
+        //         DigitalOperation.DriveTrainDisableFieldOrientation,
+        //         DigitalOperation.ClimberHookGrasp,
+        //         DigitalOperation.ClimberHookRelease,
+        //         DigitalOperation.ClimberArmOut,
+        //         DigitalOperation.ClimberArmUp,
+        //         DigitalOperation.ClimberEnableWeightedMode,
+        //         DigitalOperation.ClimberEnableUnweightedMode,
+        //         DigitalOperation.ClimberWinchLock,
+        //         DigitalOperation.ClimberWinchUnlock
+        //     }
+        // ),
+
+        // // extends arm and stuff, driver has to activate this then drive towards the bar and hook it on
+        // new MacroOperationDescription(
+        //     MacroOperation.ClimbSetUpManual,
+        //     UserInputDevice.Codriver,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_15,
+        //     Shift.CodriverDebug,
+        //     Shift.None,
+        //     ButtonType.Toggle,
+        //     () -> SequentialTask.Sequence(
+        //         new ClimberArmUnlockTask(true),
+        //         ConcurrentTask.AllTasks(
+        //             new ClimberArmTask(true),
+        //             new ClimberWeightedTask(false)
+        //         ),
+        //         new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_FULL_EXTEND_LENGTH)
+        //     ),
+        //     new IOperation[]
+        //     {
+        //         AnalogOperation.ClimberWinchDesiredPosition,
+        //         AnalogOperation.ClimberWinchMotorPower,
+        //         DigitalOperation.ClimberHookGrasp,
+        //         DigitalOperation.ClimberHookRelease,
+        //         DigitalOperation.ClimberArmOut,
+        //         DigitalOperation.ClimberArmUp,
+        //         DigitalOperation.ClimberEnableWeightedMode,
+        //         DigitalOperation.ClimberEnableUnweightedMode,
+        //         DigitalOperation.ClimberWinchLock,
+        //         DigitalOperation.ClimberWinchUnlock
+        //     }
+        // ),
+
+        // new MacroOperationDescription(
+        //     MacroOperation.ClimberRiseToMidRung,
+        //     UserInputDevice.Codriver,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_12,
+        //     Shift.CodriverDebug,
+        //     Shift.None,
+        //     ButtonType.Toggle,
+        //     () -> SequentialTask.Sequence(
+        //         ConcurrentTask.AllTasks(
+        //             new ClimberHookTask(false),
+        //             new ClimberWeightedTask(true)
+        //         ),
+        //         new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_FULL_RETRACT_LENGTH),
+        //         new ClimberHookTask(true)
+        //     ),
+        //     new IOperation[]
+        //     {
+        //         AnalogOperation.ClimberWinchDesiredPosition,
+        //         AnalogOperation.ClimberWinchMotorPower,
+        //         DigitalOperation.ClimberHookGrasp,
+        //         DigitalOperation.ClimberHookRelease,
+        //         DigitalOperation.ClimberArmOut,
+        //         DigitalOperation.ClimberArmUp,
+        //         DigitalOperation.ClimberEnableWeightedMode,
+        //         DigitalOperation.ClimberEnableUnweightedMode,
+        //         DigitalOperation.ClimberWinchLock,
+        //         DigitalOperation.ClimberWinchUnlock
+        //     }
+        // ),
+
+        // new MacroOperationDescription(
+        //     MacroOperation.ClimberExtendToNextRung,
+        //     UserInputDevice.Codriver,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_13,
+        //     Shift.CodriverDebug,
+        //     Shift.None,
+        //     ButtonType.Toggle,
+        //     () -> SequentialTask.Sequence(
+        //         new ClimberWeightedTask(false),
+        //         new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_SHORT_EXTEND_LENGTH),
+        //         new ClimberArmTask(false),
+        //         new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_FULL_EXTEND_LENGTH),
+        //         new ClimberArmTask(true),
+        //         new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_MOSTLY_EXTEND_LENGTH)
+        //     ),
+        //     new IOperation[]
+        //     {
+        //         AnalogOperation.ClimberWinchDesiredPosition,
+        //         AnalogOperation.ClimberWinchMotorPower,
+        //         DigitalOperation.ClimberHookGrasp,
+        //         DigitalOperation.ClimberHookRelease,
+        //         DigitalOperation.ClimberArmOut,
+        //         DigitalOperation.ClimberArmUp,
+        //         DigitalOperation.ClimberEnableWeightedMode,
+        //         DigitalOperation.ClimberEnableUnweightedMode,
+        //         DigitalOperation.ClimberWinchLock,
+        //         DigitalOperation.ClimberWinchUnlock
+        //     }
+        // ),
+        
+
+        // new MacroOperationDescription(
+        //     MacroOperation.ClimberSwitchToNextRung,
+        //     UserInputDevice.Codriver,
+        //     UserInputDeviceButton.BUTTON_PAD_BUTTON_14,
+        //     Shift.CodriverDebug,
+        //     Shift.None,
+        //     ButtonType.Toggle,
+        //     () -> SequentialTask.Sequence(
+        //         new ClimberWeightedTask(true),
+        //         ConcurrentTask.AllTasks(
+        //             new ClimberHookTask(false),
+        //             new ClimberWinchPositionExtensionTask(TuningConstants.CLIMBER_FULL_RETRACT_LENGTH)
+        //         ),
+        //         new ClimberHookTask(true)
+        //     ),
+        //     new IOperation[]
+        //     {
+        //         AnalogOperation.ClimberWinchDesiredPosition,
+        //         AnalogOperation.ClimberWinchMotorPower,
+        //         DigitalOperation.ClimberHookGrasp,
+        //         DigitalOperation.ClimberHookRelease,
+        //         DigitalOperation.ClimberArmOut,
+        //         DigitalOperation.ClimberArmUp,
+        //         DigitalOperation.ClimberEnableWeightedMode,
+        //         DigitalOperation.ClimberEnableUnweightedMode,
+        //         DigitalOperation.ClimberWinchLock,
+        //         DigitalOperation.ClimberWinchUnlock
+        //     }
+        // ),
 
         // autonomous testing operations
-        /*
-        new MacroOperationDescription(
-            MacroOperation.AutoDriveBackIntakeShoot,
-            UserInputDevice.Test1,
-            UserInputDeviceButton.XBONE_A_BUTTON,
-            Shift.Test1Debug,
-            Shift.None,
-            ButtonType.Toggle,
-            () -> SequentialTask.Sequence(
-                ConcurrentTask.AllTasks(
-                    new FollowPathTask("goForward4ft"),
-                    new CargoExtendIntakeTask(true),
-                    new CargoIntakeTask(1.0, true)
-                ),
-                new FollowPathTask("goBack7ftRotate"),
-                new VisionCenteringTask(false),
-                ConcurrentTask.AnyTasks(
-                    new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
-                    new CargoShootTask()
-                )
-            ),
-            new IOperation[]
-            {
-                AnalogOperation.DriveTrainMoveForward,
-                AnalogOperation.DriveTrainMoveRight,
-                AnalogOperation.DriveTrainTurnAngleGoal,
-                AnalogOperation.DriveTrainTurnSpeed,
-                AnalogOperation.DriveTrainRotationA,
-                AnalogOperation.DriveTrainRotationB,
-                AnalogOperation.DriveTrainPathXGoal,
-                AnalogOperation.DriveTrainPathYGoal,
-                AnalogOperation.DriveTrainPathXVelocityGoal,
-                AnalogOperation.DriveTrainPathYVelocityGoal,
-                AnalogOperation.DriveTrainPathAngleVelocityGoal,
-                AnalogOperation.DriveTrainPositionDrive1,
-                AnalogOperation.DriveTrainPositionDrive2,
-                AnalogOperation.DriveTrainPositionDrive3,
-                AnalogOperation.DriveTrainPositionDrive4,
-                AnalogOperation.DriveTrainPositionSteer1,
-                AnalogOperation.DriveTrainPositionSteer2,
-                AnalogOperation.DriveTrainPositionSteer3,
-                AnalogOperation.DriveTrainPositionSteer4,
-                AnalogOperation.DriveTrainTurnAngleReference,
-                AnalogOperation.CargoFlywheelVelocityGoal,
-                DigitalOperation.DriveTrainSteerMode,
-                DigitalOperation.DriveTrainMaintainPositionMode,
-                DigitalOperation.DriveTrainPathMode,
-                DigitalOperation.DriveTrainReset,
-                DigitalOperation.DriveTrainEnableFieldOrientation,
-                DigitalOperation.DriveTrainDisableFieldOrientation,
-                DigitalOperation.VisionDisableStream,
-                DigitalOperation.VisionEnableGamePieceProcessing,
-                DigitalOperation.VisionEnableRetroreflectiveProcessing,
-                DigitalOperation.VisionForceDisable,
-                DigitalOperation.CargoIntakeForceExtend,
-                DigitalOperation.CargoIntakeForceRetract,
-                DigitalOperation.CargoIntakeIn,
-                DigitalOperation.CargoIntakeOut,
-                DigitalOperation.CargoEject,
-                DigitalOperation.CargoForceIntakeOnly,
-                DigitalOperation.CargoFeed,
-                DigitalOperation.CargoHoodPointBlank,
-                DigitalOperation.CargoHoodLong,
-            }),
-            */
+        // new MacroOperationDescription(
+        //     MacroOperation.AutoDriveBackIntakeShoot,
+        //     UserInputDevice.Test1,
+        //     UserInputDeviceButton.XBONE_A_BUTTON,
+        //     Shift.Test1Debug,
+        //     Shift.None,
+        //     ButtonType.Toggle,
+        //     () -> SequentialTask.Sequence(
+        //         ConcurrentTask.AllTasks(
+        //             new FollowPathTask("goForward4ft"),
+        //             new CargoExtendIntakeTask(true),
+        //             new CargoIntakeTask(1.0, true)
+        //         ),
+        //         new FollowPathTask("goBack7ftRotate"),
+        //         new VisionCenteringTask(false),
+        //         ConcurrentTask.AnyTasks(
+        //             new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
+        //             new CargoShootTask()
+        //         )
+        //     ),
+        //     new IOperation[]
+        //     {
+        //         AnalogOperation.DriveTrainMoveForward,
+        //         AnalogOperation.DriveTrainMoveRight,
+        //         AnalogOperation.DriveTrainTurnAngleGoal,
+        //         AnalogOperation.DriveTrainTurnSpeed,
+        //         AnalogOperation.DriveTrainRotationA,
+        //         AnalogOperation.DriveTrainRotationB,
+        //         AnalogOperation.DriveTrainPathXGoal,
+        //         AnalogOperation.DriveTrainPathYGoal,
+        //         AnalogOperation.DriveTrainPathXVelocityGoal,
+        //         AnalogOperation.DriveTrainPathYVelocityGoal,
+        //         AnalogOperation.DriveTrainPathAngleVelocityGoal,
+        //         AnalogOperation.DriveTrainPositionDrive1,
+        //         AnalogOperation.DriveTrainPositionDrive2,
+        //         AnalogOperation.DriveTrainPositionDrive3,
+        //         AnalogOperation.DriveTrainPositionDrive4,
+        //         AnalogOperation.DriveTrainPositionSteer1,
+        //         AnalogOperation.DriveTrainPositionSteer2,
+        //         AnalogOperation.DriveTrainPositionSteer3,
+        //         AnalogOperation.DriveTrainPositionSteer4,
+        //         AnalogOperation.DriveTrainTurnAngleReference,
+        //         AnalogOperation.CargoFlywheelVelocityGoal,
+        //         DigitalOperation.DriveTrainSteerMode,
+        //         DigitalOperation.DriveTrainMaintainPositionMode,
+        //         DigitalOperation.DriveTrainPathMode,
+        //         DigitalOperation.DriveTrainReset,
+        //         DigitalOperation.DriveTrainEnableFieldOrientation,
+        //         DigitalOperation.DriveTrainDisableFieldOrientation,
+        //         DigitalOperation.VisionDisableStream,
+        //         DigitalOperation.VisionEnableGamePieceProcessing,
+        //         DigitalOperation.VisionEnableRetroreflectiveProcessing,
+        //         DigitalOperation.VisionForceDisable,
+        //         DigitalOperation.CargoIntakeForceExtend,
+        //         DigitalOperation.CargoIntakeForceRetract,
+        //         DigitalOperation.CargoIntakeIn,
+        //         DigitalOperation.CargoIntakeOut,
+        //         DigitalOperation.CargoEject,
+        //         DigitalOperation.CargoForceIntakeOnly,
+        //         DigitalOperation.CargoFeed,
+        //         DigitalOperation.CargoHoodPointBlank,
+        //         DigitalOperation.CargoHoodLong,
+        //     }),
+
         // ----------------------- SAMMAMISH AUTO -------------------------
         new MacroOperationDescription(
             MacroOperation.FollowPathTest1,

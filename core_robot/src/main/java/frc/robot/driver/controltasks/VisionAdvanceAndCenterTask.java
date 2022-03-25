@@ -12,7 +12,7 @@ public class VisionAdvanceAndCenterTask extends VisionAdvanceAndCenterTaskBase
     }
 
     @Override
-    protected double getDesiredDistance()
+    protected double getDesiredDistance(double currentDistance)
     {
         return 0.0;
     }
