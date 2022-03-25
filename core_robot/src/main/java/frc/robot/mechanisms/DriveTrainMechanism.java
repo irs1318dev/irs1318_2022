@@ -682,8 +682,8 @@ public class DriveTrainMechanism implements IMechanism
             rotationCenterB = this.driver.getAnalog(AnalogOperation.DriveTrainRotationB);
 
             // get the center velocity control values (could be field-oriented or robot-oriented center velocity)
-            double centerVelocityRightRaw = this.driver.getAnalog(AnalogOperation.DriveTrainMoveRight);
-            double centerVelocityForwardRaw = this.driver.getAnalog(AnalogOperation.DriveTrainMoveForward);
+            double centerVelocityRightRaw = TuningConstants.DRIVETRAIN_MAX_VELOCITY * this.driver.getAnalog(AnalogOperation.DriveTrainMoveRight);
+            double centerVelocityForwardRaw = TuningConstants.DRIVETRAIN_MAX_VELOCITY * this.driver.getAnalog(AnalogOperation.DriveTrainMoveForward);
 
             if (this.fieldOriented)
             {

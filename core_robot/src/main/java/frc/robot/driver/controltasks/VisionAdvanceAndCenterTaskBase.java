@@ -62,7 +62,9 @@ public abstract class VisionAdvanceAndCenterTaskBase extends VisionCenteringTask
         Double currentDistance = this.getDistance();
         if (currentDistance != null)
         {
-            this.setAnalogOperationState(AnalogOperation.DriveTrainMoveForward, this.forwardPIDHandler.calculatePosition(this.getDesiredDistance(), -currentDistance));
+            this.setAnalogOperationState(
+                AnalogOperation.DriveTrainMoveForward,
+                this.forwardPIDHandler.calculatePosition(this.getDesiredDistance(currentDistance), currentDistance));
         }
     }
 
@@ -99,5 +101,5 @@ public abstract class VisionAdvanceAndCenterTaskBase extends VisionCenteringTask
             this.getInjector().getInstance(ITimer.class));
     }
 
-    protected abstract double getDesiredDistance();
+    protected abstract double getDesiredDistance(double currentDistance);
 }

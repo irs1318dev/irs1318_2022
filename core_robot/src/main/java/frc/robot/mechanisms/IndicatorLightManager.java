@@ -17,34 +17,39 @@ import com.google.inject.Singleton;
 public class IndicatorLightManager implements IMechanism
 {
     private final CargoMechanism cargo;
+    private final CompressorMechanism compress;
     private final ICANdle candle;
-
-    private enum LightTransition
+    private final IDriverStation ds;
+    
+    private LightMode currentMode;
+    
+    private enum LightMode
     {
-        NoChange,
-        TurnOn,
-        TurnOff;
+        Off,
+        Red,
+        Yellow,
+        YellowFlashing,
+        Green,
+        Rainbow,
+        PurpleTwinkling,
     }
-
-    private boolean wasDisabled;
-    private boolean hasFirstCargoLit;
-    private boolean hasSecondCargoLit;
-    private boolean shooterSpunUpLit;
 
     @Inject
     public IndicatorLightManager(
         IRobotProvider provider,
-        CargoMechanism cargo)
+        CargoMechanism cargo,
+        CompressorMechanism compress)
     {
         this.cargo = cargo;
+        this.compress = compress;
+
         this.candle = provider.getCANdle(ElectronicsConstants.INDICATOR_LIGHT_CANDLE_CAN_ID);
         this.candle.configLEDType(CANdleLEDStripType.GRB);
         this.candle.configVBatOutput(CANdleVBatOutputMode.Off);
 
-        this.wasDisabled = true;
-        this.hasFirstCargoLit = false;
-        this.hasSecondCargoLit = false;
-        this.shooterSpunUpLit = false;
+        this.ds = provider.getDriverStation();
+
+        this.currentMode = LightMode.Off;
     }
 
     @Override
@@ -55,163 +60,203 @@ public class IndicatorLightManager implements IMechanism
     @Override
     public void update()
     {
-        boolean shouldFirstCargoLightBeOn = this.cargo.hasBallReadyToShoot();
-        boolean shouldSecondCargoLightBeOn = this.cargo.hasBackupBallToShoot();
-        boolean shouldSpinUpLightBeOn = this.cargo.isFlywheelSpunUp();
+        boolean noCargo = this.cargo.hasNoCargo();
+        boolean oneCargo = this.cargo.hasBallReadyToShoot() && !this.cargo.hasBackupBallToShoot();
+        boolean isInEndgame = this.ds.getMode() == RobotMode.Teleop &&
+                                this.ds.getMatchTime() <= TuningConstants.ENDGAME_START_TIME;
+        double compressorPressure = this.compress.getPressureValue();
 
-        // note: we only update the light strip sections when they should be changed (as opposed to every update loop)
-        LightTransition updateFirstCargoLight = this.checkTransitionRequired(this.wasDisabled, this.hasFirstCargoLit, shouldFirstCargoLightBeOn);
-        LightTransition updateSecondCargoLight = this.checkTransitionRequired(this.wasDisabled, this.hasSecondCargoLit, shouldSecondCargoLightBeOn);
-        LightTransition updateShooterSpunUpLight = this.checkTransitionRequired(this.wasDisabled, this.shooterSpunUpLit, shouldSpinUpLightBeOn);
+        boolean isSpinningUp = this.cargo.getFlywheelSetpoint() > 0;
+        boolean isSpunUp = this.cargo.isFlywheelSpunUp();
 
-        if (this.wasDisabled)
+        LightMode newLightMode;
+
+        if (ds.getMode() == RobotMode.Autonomous) 
         {
-            this.candle.stopAnimation(TuningConstants.CANDLE_ANIMATION_SLOT_1);
-            this.candle.stopAnimation(TuningConstants.CANDLE_ANIMATION_SLOT_2);
-            this.wasDisabled = false;
+            newLightMode = LightMode.PurpleTwinkling;
+        }
+        else
+        {
+            if (isSpinningUp)
+            {
+                if (noCargo)
+                {
+                    newLightMode = LightMode.Red;
+                }
+                else if (isSpunUp)
+                {
+                    newLightMode = LightMode.Rainbow;
+                }
+                else
+                {
+                    newLightMode = LightMode.YellowFlashing;
+                }
+            }
+            else if (isInEndgame)
+            {
+                double timeRemaining = this.ds.getMatchTime() - TuningConstants.ENDGAME_CLIMB_TIME;
+                double endPressure = compressorPressure + timeRemaining * TuningConstants.COMPRESSOR_FILL_RATE;
+                if (compressorPressure >= TuningConstants.COMPRESSOR_ENOUGH_PRESSURE)
+                {
+                    newLightMode = LightMode.Green;
+                }
+                else if (endPressure >= TuningConstants.COMPRESSOR_ENOUGH_PRESSURE)
+                {
+                    newLightMode = LightMode.Yellow;
+                }
+                else
+                {
+                    newLightMode = LightMode.Red;
+                }
+            }
+            else
+            {
+                if (noCargo)
+                {
+                    newLightMode = LightMode.Red;
+                }
+                else if (oneCargo)
+                {
+                    newLightMode = LightMode.Yellow;
+                }
+                else
+                {
+                    newLightMode = LightMode.Green;
+                }
+            }
         }
 
-        if (updateFirstCargoLight != LightTransition.NoChange)
+        if (newLightMode != this.currentMode) //lightmode needs to change
         {
-            this.hasFirstCargoLit =
-                this.updateLightRanges(
-                    updateFirstCargoLight,
-                    TuningConstants.INDICATOR_SECTION_FIRST_CARGO_COLOR_RED,
-                    TuningConstants.INDICATOR_SECTION_FIRST_CARGO_COLOR_GREEN,
-                    TuningConstants.INDICATOR_SECTION_FIRST_CARGO_COLOR_BLUE,
-                    TuningConstants.INDICATOR_SECTION_FIRST_CARGO_COLOR_WHITE,
-                    TuningConstants.INDICATOR_SECTION_FIRST_CARGO1_START,
-                    TuningConstants.INDICATOR_SECTION_FIRST_CARGO1_COUNT,
-                    TuningConstants.INDICATOR_SECTION_FIRST_CARGO2_START,
-                    TuningConstants.INDICATOR_SECTION_FIRST_CARGO2_COUNT);
-        }
+            this.updateLightRange(
+                this.currentMode,
+                newLightMode,
+                0,
+                TuningConstants.CANDLE_TOTAL_NUMBER_LEDS,
+                TuningConstants.CANDLE_ANIMATION_SLOT_1);
 
-        if (updateSecondCargoLight != LightTransition.NoChange)
-        {
-            this.hasSecondCargoLit =
-                this.updateLightRanges(
-                    updateSecondCargoLight,
-                    TuningConstants.INDICATOR_SECTION_SECOND_CARGO_COLOR_RED,
-                    TuningConstants.INDICATOR_SECTION_SECOND_CARGO_COLOR_GREEN,
-                    TuningConstants.INDICATOR_SECTION_SECOND_CARGO_COLOR_BLUE,
-                    TuningConstants.INDICATOR_SECTION_SECOND_CARGO_COLOR_WHITE,
-                    TuningConstants.INDICATOR_SECTION_SECOND_CARGO1_START,
-                    TuningConstants.INDICATOR_SECTION_SECOND_CARGO1_COUNT,
-                    TuningConstants.INDICATOR_SECTION_SECOND_CARGO2_START,
-                    TuningConstants.INDICATOR_SECTION_SECOND_CARGO2_COUNT);
-        }
-
-        if (updateShooterSpunUpLight != LightTransition.NoChange)
-        {
-            this.shooterSpunUpLit =
-                this.updateLightRanges(
-                    updateShooterSpunUpLight,
-                    TuningConstants.INDICATOR_SECTION_SPIN_UP_COLOR_RED,
-                    TuningConstants.INDICATOR_SECTION_SPIN_UP_COLOR_GREEN,
-                    TuningConstants.INDICATOR_SECTION_SPIN_UP_COLOR_BLUE,
-                    TuningConstants.INDICATOR_SECTION_SPIN_UP_COLOR_WHITE,
-                    TuningConstants.INDICATOR_SECTION_SPIN_UP1_START,
-                    TuningConstants.INDICATOR_SECTION_SPIN_UP1_COUNT,
-                    TuningConstants.INDICATOR_SECTION_SPIN_UP2_START,
-                    TuningConstants.INDICATOR_SECTION_SPIN_UP2_COUNT);
+            this.currentMode = newLightMode;
         }
     }
 
     @Override
     public void stop()
     {
-        this.wasDisabled = true;
-        this.hasFirstCargoLit = false;
-        this.hasSecondCargoLit = false;
-        this.shooterSpunUpLit = false;
+        this.updateLightRange(
+            this.currentMode,
+            LightMode.Rainbow,
+            0,
+            TuningConstants.CANDLE_TOTAL_NUMBER_LEDS,
+            TuningConstants.CANDLE_ANIMATION_SLOT_1);
 
-        this.candle.startRainbowAnimation(TuningConstants.CANDLE_ANIMATION_SLOT_1, 0.5, 0.5, TuningConstants.LED_STRIP_LED_COUNT, false, TuningConstants.CANDLE_LED_COUNT);
-        this.candle.startRainbowAnimation(TuningConstants.CANDLE_ANIMATION_SLOT_2, 1.0, 0.25, TuningConstants.LED_STRIP_LED_COUNT, false, TuningConstants.CANDLE_LED_COUNT + TuningConstants.LED_STRIP_LED_COUNT);
-        // this.candle.startTwinkleAnimation(
-        //     TuningConstants.CANDLE_ANIMATION_SLOT_2,
-        //     TuningConstants.TEAM_PURPLE_RED,
-        //     TuningConstants.TEAM_PURPLE_GREEN,
-        //     TuningConstants.TEAM_PURPLE_BLUE,
-        //     TuningConstants.TEAM_PURPLE_WHITE,
-        //     0.25,
-        //     TuningConstants.LED_STRIP_LED_COUNT,
-        //     CANdleTwinklePercent.Percent42,
-        //     TuningConstants.CANDLE_LED_COUNT + TuningConstants.LED_STRIP_LED_COUNT);
+        this.currentMode = LightMode.Rainbow;
     }
 
-    /**
-     * Check whether there is a transition required given the current state and the new state
-     * @param needsUpdate
-     * @param currentState the current state of the lights (on or off)
-     * @param newState the new desired state of the lights (on or off)
-     * @return NoChange if no state change is required, TurnOn if we need to turn the lights on, TurnOff if we need to turn the lights off
-     */
-    private LightTransition checkTransitionRequired(boolean needsUpdate, boolean currentState, boolean newState)
-    {
-        if (!needsUpdate &&
-            currentState == newState)
-        {
-            return LightTransition.NoChange;
-        }
-
-        if (newState)
-        {
-            return LightTransition.TurnOn;
-        }
-
-        return LightTransition.TurnOff;
-    }
 
     /**
-     * Update a pair of light ranges to a certiain color (if TurnOn) or to the off (if TurnOff)
-     * @param updateType whether to turn the lights to the on color, or the off color (NoChange not supported!!)
-     * @param onColorRed the on color's red content [0, 255]
-     * @param onColorGreen the on color's green content [0, 255]
-     * @param onColorBlue the on color's blue content [0, 255]
-     * @param onColorWhite the on color's white content [0, 255]
-     * @param range1Start the beginning of the first range to modify
-     * @param range1Count the size of the first range to modify
-     * @param range2Start the beginning of the second range to modify
-     * @param range2Count the size of the second range to modify
-     * @return true if we turned on the light ranges, false if we turned off the light ranges
+     * Update a light range to a certiain mode
+     * @param previousMode the previous mode for the lights
+     * @param desiredMode the desired mode for the lights
+     * @param rangeStart the beginning of the range to modify
+     * @param rangeCount the size of the range to modify
      */
-    private boolean updateLightRanges(
-        LightTransition updateType,
-        int onColorRed,
-        int onColorGreen,
-        int onColorBlue,
-        int onColorWhite,
-        int range1Start,
-        int range1Count,
-        int range2Start,
-        int range2Count)
+    private void updateLightRange(
+        LightMode previousMode,
+        LightMode desiredMode,
+        int rangeStart,
+        int rangeCount,
+        int animationSlot)
     {
-        boolean result;
+        // if we were in an animation previously, stop it:
+        switch (previousMode)
+        {
+            case Rainbow:
+            case YellowFlashing:
+            case PurpleTwinkling:
+                this.candle.stopAnimation(animationSlot);
+                break;
 
-        int r;
-        int g;
-        int b;
-        int w;
-        if (updateType == LightTransition.TurnOn)
-        {
-            result = true;
-            r = onColorRed;
-            g = onColorGreen;
-            b = onColorBlue;
-            w = onColorWhite;
-        }
-        else // if (updateType == LightTransition.TurnOff)
-        {
-            result = false;
-            r = TuningConstants.INDICATOR_OFF_COLOR_RED;
-            g = TuningConstants.INDICATOR_OFF_COLOR_GREEN;
-            b = TuningConstants.INDICATOR_OFF_COLOR_BLUE;
-            w = TuningConstants.INDICATOR_OFF_COLOR_WHITE;
+            default:
+                break;
         }
 
-        this.candle.setLEDs(r, g, b, w, range1Start, range1Count);
-        this.candle.setLEDs(r, g, b, w, range2Start, range2Count);
+        // set based on our new mode:
+        switch (desiredMode)
+        {
+            case Rainbow:
+                this.candle.startRainbowAnimation(
+                    animationSlot,
+                    1.0,
+                    0.25,
+                    rangeCount,
+                    false,
+                    rangeStart);
+                break;
 
-        return result;
+            case YellowFlashing:
+                this.candle.startStrobeAnimation(
+                    animationSlot,
+                    TuningConstants.INDICATOR_YELLOW_COLOR_RED,
+                    TuningConstants.INDICATOR_YELLOW_COLOR_GREEN,
+                    TuningConstants.INDICATOR_YELLOW_COLOR_BLUE,
+                    TuningConstants.INDICATOR_YELLOW_COLOR_WHITE,
+                    0.75,
+                    rangeStart,
+                    rangeCount);
+
+            case Green:
+                this.candle.setLEDs(
+                    TuningConstants.INDICATOR_GREEN_COLOR_RED,
+                    TuningConstants.INDICATOR_GREEN_COLOR_GREEN,
+                    TuningConstants.INDICATOR_GREEN_COLOR_BLUE,
+                    TuningConstants.INDICATOR_GREEN_COLOR_WHITE,
+                    rangeStart,
+                    rangeCount);
+                break;
+
+            case Yellow:
+                this.candle.setLEDs(
+                    TuningConstants.INDICATOR_YELLOW_COLOR_RED,
+                    TuningConstants.INDICATOR_YELLOW_COLOR_GREEN,
+                    TuningConstants.INDICATOR_YELLOW_COLOR_BLUE,
+                    TuningConstants.INDICATOR_YELLOW_COLOR_WHITE,
+                    rangeStart,
+                    rangeCount);
+                break;
+
+            case Red:
+                this.candle.setLEDs(
+                    TuningConstants.INDICATOR_RED_COLOR_RED,
+                    TuningConstants.INDICATOR_RED_COLOR_GREEN,
+                    TuningConstants.INDICATOR_RED_COLOR_BLUE,
+                    TuningConstants.INDICATOR_RED_COLOR_WHITE,
+                    rangeStart,
+                    rangeCount);
+                break;
+
+            case PurpleTwinkling:
+                this.candle.startTwinkleAnimation(
+                    animationSlot,
+                    TuningConstants.INDICATOR_PURPLE_RED,
+                    TuningConstants.INDICATOR_PURPLE_GREEN,
+                    TuningConstants.INDICATOR_PURPLE_BLUE,
+                    TuningConstants.INDICATOR_PURPLE_WHITE,
+                    0.75,
+                    rangeCount,
+                    CANdleTwinklePercent.Percent88,
+                    rangeStart);
+                break;
+
+            default:
+            case Off:
+                this.candle.setLEDs(
+                    TuningConstants.INDICATOR_OFF_COLOR_RED,
+                    TuningConstants.INDICATOR_OFF_COLOR_GREEN,
+                    TuningConstants.INDICATOR_OFF_COLOR_BLUE,
+                    TuningConstants.INDICATOR_OFF_COLOR_WHITE,
+                    rangeStart,
+                    rangeCount);
+                break;
+        }
     }
 }

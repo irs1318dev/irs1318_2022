@@ -80,6 +80,8 @@ public enum LoggingKey
     DriveTrainSteerError4("dt.steer_err4"),
     DriveTrainSteerPositionGoal4("dt.steer_goal4"),
 
+    CompressorPreassure("com.pres"),
+
     ClimberWinchPower("c.winch_pow"),
     ClimberWinchPosition("c.winch_pos"),
     ClimberWinchError("c.winch_error"),
