@@ -408,4 +408,9 @@ public class CargoMechanism implements IMechanism
     {
         return this.useShootAnywayMode;
     }
+
+    public boolean hasNoCargo()
+    {
+        return this.conveyorBeamBroken && this.feederBeamBroken;
+    }
 }

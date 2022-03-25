@@ -18,6 +18,8 @@ public class TuningConstants
 
     public static final double MAGIC_NULL_VALUE = -1318.0;
     public static final double PERRY_THE_PLATYPUS = 0.0;
+    public static final double ENDGAME_START_TIME = 30.0;
+    public static final double ENDGAME_CLIMB_TIME = 5.0;
 
     //================================================== Logging  ==============================================================
 
@@ -87,10 +89,10 @@ public class TuningConstants
     public static final int CANDLE_ANIMATION_SLOT_1 = 0;
     public static final int CANDLE_ANIMATION_SLOT_2 = 1;
 
-    public static final int TEAM_PURPLE_RED = 101;
-    public static final int TEAM_PURPLE_GREEN = 34;
-    public static final int TEAM_PURPLE_BLUE = 129;
-    public static final int TEAM_PURPLE_WHITE = 0;
+    public static final int INDICATOR_PURPLE_RED = 101;
+    public static final int INDICATOR_PURPLE_GREEN = 34;
+    public static final int INDICATOR_PURPLE_BLUE = 129;
+    public static final int INDICATOR_PURPLE_WHITE = 0;
 
     public static final int INDICATOR_OFF_COLOR_RED = 0;
     public static final int INDICATOR_OFF_COLOR_GREEN = 0;
@@ -98,34 +100,22 @@ public class TuningConstants
     public static final int INDICATOR_OFF_COLOR_WHITE = 0;
 
     // Has (at least) a single cargo light
-    public static final int INDICATOR_SECTION_FIRST_CARGO_COLOR_RED = 255;
-    public static final int INDICATOR_SECTION_FIRST_CARGO_COLOR_GREEN = 0;
-    public static final int INDICATOR_SECTION_FIRST_CARGO_COLOR_BLUE = 0;
-    public static final int INDICATOR_SECTION_FIRST_CARGO_COLOR_WHITE = 0;
-    public static final int INDICATOR_SECTION_FIRST_CARGO1_START = 8;
-    public static final int INDICATOR_SECTION_FIRST_CARGO1_COUNT = 20;
-    public static final int INDICATOR_SECTION_FIRST_CARGO2_START = 68;
-    public static final int INDICATOR_SECTION_FIRST_CARGO2_COUNT = 20;
+    public static final int INDICATOR_RED_COLOR_RED = 255;
+    public static final int INDICATOR_RED_COLOR_GREEN = 0;
+    public static final int INDICATOR_RED_COLOR_BLUE = 0;
+    public static final int INDICATOR_RED_COLOR_WHITE = 0;
 
     // Has a second cargo light
-    public static final int INDICATOR_SECTION_SECOND_CARGO_COLOR_RED = 255;
-    public static final int INDICATOR_SECTION_SECOND_CARGO_COLOR_GREEN = 255;
-    public static final int INDICATOR_SECTION_SECOND_CARGO_COLOR_BLUE = 0;
-    public static final int INDICATOR_SECTION_SECOND_CARGO_COLOR_WHITE = 0;
-    public static final int INDICATOR_SECTION_SECOND_CARGO1_START = 28;
-    public static final int INDICATOR_SECTION_SECOND_CARGO1_COUNT = 20;
-    public static final int INDICATOR_SECTION_SECOND_CARGO2_START = 88;
-    public static final int INDICATOR_SECTION_SECOND_CARGO2_COUNT = 20;
+    public static final int INDICATOR_YELLOW_COLOR_RED = 255;
+    public static final int INDICATOR_YELLOW_COLOR_GREEN = 255;
+    public static final int INDICATOR_YELLOW_COLOR_BLUE = 0;
+    public static final int INDICATOR_YELLOW_COLOR_WHITE = 0;
 
     // Shooter spin-up lights
-    public static final int INDICATOR_SECTION_SPIN_UP_COLOR_RED = 0;
-    public static final int INDICATOR_SECTION_SPIN_UP_COLOR_GREEN = 255;
-    public static final int INDICATOR_SECTION_SPIN_UP_COLOR_BLUE = 0;
-    public static final int INDICATOR_SECTION_SPIN_UP_COLOR_WHITE = 0;
-    public static final int INDICATOR_SECTION_SPIN_UP1_START = 48;
-    public static final int INDICATOR_SECTION_SPIN_UP1_COUNT = 20;
-    public static final int INDICATOR_SECTION_SPIN_UP2_START = 108;
-    public static final int INDICATOR_SECTION_SPIN_UP2_COUNT = 20;
+    public static final int INDICATOR_GREEN_COLOR_RED = 0;
+    public static final int INDICATOR_GREEN_COLOR_GREEN = 255;
+    public static final int INDICATOR_GREEN_COLOR_BLUE = 0;
+    public static final int INDICATOR_GREEN_COLOR_WHITE = 0;
 
     //================================================== DriveTrain ==============================================================
 
@@ -324,7 +314,7 @@ public class TuningConstants
 
     public static final double CARGO_SHOOT_CHECKBALL_MIN_WAIT_TIME = 0.25;
     public static final double CARGO_SHOOT_CHECKBALL_WAIT_TIMEOUT = TuningConstants.CARGO_CONVEYOR_RUNTIME_FOR_ADVANCE;
-    public static final double CARGO_SHOOT_SPINUP_MIN_WAIT_TIME = 1.0;
+    public static final double CARGO_SHOOT_SPINUP_MIN_WAIT_TIME = 0.75;
     public static final double CARGO_SHOOT_SPINUP_WAIT_TIMEOUT = 2.0;
     public static final double CARGO_SHOOT_MIN_WAIT_TIME = 0.25;
     public static final double CARGO_SHOOT_WAIT_TIMEOUT = 1.5;
@@ -377,4 +367,8 @@ public class TuningConstants
     public static final double CLIMBER_FULL_EXTEND_LENGTH = 1.0;
 
     public static final double CLIMBER_WINCH_POSITION_EXTEND_ACCEPTABLE_DELTA = 0.05;
-}
+
+    //================================================== Climber Mechanism ==============================================================
+    public static final double COMPRESSOR_ENOUGH_PRESSURE = 100.0;
+    public static final double COMPRESSOR_FILL_RATE = 1.0; //PSI PER SECOND
+}   

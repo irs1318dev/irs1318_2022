@@ -1012,6 +1012,87 @@ public class ButtonMap implements IButtonMap
             }),
 
         new MacroOperationDescription(
+            MacroOperation.AutoPositionAndShoot,
+            UserInputDevice.Driver,
+            UserInputDeviceButton.XBONE_Y_BUTTON,
+            Shift.DriverDebug,
+            Shift.None,
+            ButtonType.Toggle,
+            () -> 
+                SequentialTask.Sequence(
+                    new VisionShootPositionTask(),
+                    new DriveTrainFieldOrientationModeTask(true),
+                    ConcurrentTask.AnyTasks(
+                        new VisionShootSpinTask(10.0, true),
+                        new CargoShootTask()
+                    )
+                ),
+            new IOperation[]
+            {
+                DigitalOperation.CargoIntakeForceExtend,
+                DigitalOperation.CargoIntakeForceRetract,
+                DigitalOperation.CargoIntakeIn,
+                DigitalOperation.CargoIntakeOut,
+                DigitalOperation.CargoEject,
+                DigitalOperation.CargoForceIntakeOnly,
+                DigitalOperation.CargoFeed,
+                DigitalOperation.CargoHoodPointBlank,
+                DigitalOperation.CargoHoodLong,
+                DigitalOperation.DriveTrainSteerMode,
+                DigitalOperation.DriveTrainMaintainPositionMode,
+                DigitalOperation.DriveTrainPathMode,
+                DigitalOperation.DriveTrainReset,
+                DigitalOperation.DriveTrainEnableFieldOrientation,
+                DigitalOperation.DriveTrainDisableFieldOrientation,
+                AnalogOperation.CargoFlywheelVelocityGoal,
+                AnalogOperation.DriveTrainMoveForward,
+                AnalogOperation.DriveTrainMoveRight,
+                AnalogOperation.DriveTrainTurnAngleGoal,
+                AnalogOperation.DriveTrainTurnSpeed,
+                AnalogOperation.DriveTrainRotationA,
+                AnalogOperation.DriveTrainRotationB,
+                AnalogOperation.DriveTrainPathXGoal,
+                AnalogOperation.DriveTrainPathYGoal,
+                AnalogOperation.DriveTrainPathXVelocityGoal,
+                AnalogOperation.DriveTrainPathYVelocityGoal,
+                AnalogOperation.DriveTrainPathAngleVelocityGoal,
+                AnalogOperation.DriveTrainPositionDrive1,
+                AnalogOperation.DriveTrainPositionDrive2,
+                AnalogOperation.DriveTrainPositionDrive3,
+                AnalogOperation.DriveTrainPositionDrive4,
+                AnalogOperation.DriveTrainPositionSteer1,
+                AnalogOperation.DriveTrainPositionSteer2,
+                AnalogOperation.DriveTrainPositionSteer3,
+                AnalogOperation.DriveTrainPositionSteer4,
+                AnalogOperation.DriveTrainTurnAngleReference,
+            }),
+        new MacroOperationDescription(
+            MacroOperation.AutoShootOnly,
+            UserInputDevice.Driver,
+            UserInputDeviceButton.XBONE_Y_BUTTON,
+            Shift.DriverDebug,
+            Shift.DriverDebug,
+            ButtonType.Toggle,
+            () -> ConcurrentTask.AnyTasks(
+                    new VisionShootSpinTask(10.0, true),
+                    new CargoShootTask()
+                ),
+            new IOperation[]
+            {
+                DigitalOperation.CargoIntakeForceExtend,
+                DigitalOperation.CargoIntakeForceRetract,
+                DigitalOperation.CargoIntakeIn,
+                DigitalOperation.CargoIntakeOut,
+                DigitalOperation.CargoEject,
+                DigitalOperation.CargoForceIntakeOnly,
+                DigitalOperation.CargoFeed,
+                DigitalOperation.CargoHoodPointBlank,
+                DigitalOperation.CargoHoodLong,
+                AnalogOperation.CargoFlywheelVelocityGoal,
+            }),
+
+            /*
+        new MacroOperationDescription(
             MacroOperation.AutoShootHigh,
             UserInputDevice.Driver,
             UserInputDeviceButton.XBONE_Y_BUTTON,
@@ -1038,6 +1119,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.CargoHoodLong,
                 AnalogOperation.CargoFlywheelVelocityGoal,
             }),
+            */
 
         // autonomous testing operations
         /*
