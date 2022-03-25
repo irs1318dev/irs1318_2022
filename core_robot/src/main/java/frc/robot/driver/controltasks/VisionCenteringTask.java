@@ -176,7 +176,7 @@ public class VisionCenteringTask extends ControlTaskBase
         if (this.bestEffort)
         {
             // note: in best-effort mode, this is done in hasCompleted() instead.
-            return false;
+            return super.shouldCancel();
         }
 
         if (this.getHorizontalAngle() == null)
@@ -188,7 +188,7 @@ public class VisionCenteringTask extends ControlTaskBase
             this.noCenterCount = 0;
         }
 
-        return this.noCenterCount >= VisionCenteringTask.NO_CENTER_THRESHOLD;
+        return this.noCenterCount >= VisionCenteringTask.NO_CENTER_THRESHOLD || super.shouldCancel();
     }
 
     protected Double getDistance()
