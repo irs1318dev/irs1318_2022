@@ -62,10 +62,9 @@ public abstract class VisionAdvanceAndCenterTaskBase extends VisionCenteringTask
         Double currentDistance = this.getDistance();
         if (currentDistance != null)
         {
-            double desiredDistance = this.getDesiredDistance();
-            double moveForward = this.forwardPIDHandler.calculatePosition(desiredDistance, currentDistance);
-            System.out.println("Desired: " + desiredDistance + ", actual: " + currentDistance + " -> " + moveForward);
-            this.setAnalogOperationState(AnalogOperation.DriveTrainMoveForward, moveForward);
+            this.setAnalogOperationState(
+                AnalogOperation.DriveTrainMoveForward,
+                this.forwardPIDHandler.calculatePosition(this.getDesiredDistance(), currentDistance));
         }
     }
 

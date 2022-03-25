@@ -40,16 +40,14 @@ public class ButtonMap implements IButtonMap
             AnalogAxis.XBONE_LSY,
             ElectronicsConstants.INVERT_XBONE_LEFT_Y_AXIS,
             -TuningConstants.DRIVETRAIN_DEAD_ZONE_VELOCITY,
-            TuningConstants.DRIVETRAIN_DEAD_ZONE_VELOCITY,
-            TuningConstants.DRIVETRAIN_MAX_VELOCITY),
+            TuningConstants.DRIVETRAIN_DEAD_ZONE_VELOCITY),
         new AnalogOperationDescription(
             AnalogOperation.DriveTrainMoveRight,
             UserInputDevice.Driver,
             AnalogAxis.XBONE_LSX,
             ElectronicsConstants.INVERT_XBONE_LEFT_X_AXIS,
             -TuningConstants.DRIVETRAIN_DEAD_ZONE_VELOCITY,
-            TuningConstants.DRIVETRAIN_DEAD_ZONE_VELOCITY,
-            TuningConstants.DRIVETRAIN_MAX_VELOCITY),
+            TuningConstants.DRIVETRAIN_DEAD_ZONE_VELOCITY),
         new AnalogOperationDescription(
             AnalogOperation.DriveTrainTurnAngleGoal,
             UserInputDevice.Driver,
