@@ -64,7 +64,6 @@ public class CargoShootTask extends ControlTaskBase
     public void update()
     {
         double currTime = this.timer.get();
-        System.out.println("" + currTime + ": " + this.currentState);
 
         // don't change states before our not-before time has passed
         if (currTime >= this.notBeforeTime)

@@ -48,21 +48,24 @@ public class VisionShootSpinTask extends TimedTask
     {
         if (!this.hasDeterminedSettings)
         {
-            Double distance = this.visionManager.getVisionTargetDistance();
-            if (distance != null)
+            Double currentDistance = this.visionManager.getVisionTargetDistance();
+            if (currentDistance != null)
             {
-                int wantedIndex = 0;
-                for (int i = 0; i < TuningConstants.CARGO_FLYWHEEL_KNOWN_DISTANCES.length; i++)
+                int desiredIndex = 0;
+                double smallestDistanceOffset = currentDistance - TuningConstants.CARGO_KNOWN_SHOOTING_DISTANCES[0];
+                for (int i = 1; i < TuningConstants.CARGO_KNOWN_SHOOTING_DISTANCES.length; i++)
                 {
-                    if (TuningConstants.CARGO_FLYWHEEL_KNOWN_DISTANCES[i] == distance)
+                    double newDistanceOffset = currentDistance - TuningConstants.CARGO_KNOWN_SHOOTING_DISTANCES[i];
+                    if (Math.abs(newDistanceOffset) < Math.abs(smallestDistanceOffset))
                     {
-                        wantedIndex = i;
+                        smallestDistanceOffset = newDistanceOffset;
+                        desiredIndex = i;
                     }
                 }
 
                 this.hasDeterminedSettings = true;
-                this.spinUpSpeed = TuningConstants.CARGO_FLYWHEEL_KNOWN_SPIN_SPEED[wantedIndex];
-                this.hoodUp = TuningConstants.CARGO_HOOD_UP[wantedIndex];
+                this.spinUpSpeed = TuningConstants.CARGO_KNOWN_SHOOTING_FLYWHEEL_SPIN_SPEED[desiredIndex];
+                this.hoodUp = TuningConstants.CARGO_KNOWN_SHOOTING_HOOD_UP[desiredIndex];
             }
         }
 
