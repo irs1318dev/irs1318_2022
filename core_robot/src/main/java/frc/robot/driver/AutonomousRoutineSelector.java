@@ -314,9 +314,12 @@ public class AutonomousRoutineSelector
     private static IControlTask threeBallAutoStartClose()
     {
         return SequentialTask.Sequence(
+            //0 Set hood position
+            new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
+
             //1 shoot pre-loaded ball
             ConcurrentTask.AnyTasks(
-                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
+                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_SPEED_TEST_AUTO),
                 new CargoShootTask(false)
             ),
             //2 get first ball
@@ -344,7 +347,7 @@ public class AutonomousRoutineSelector
             new FollowPathTask("goBack7ftRight1ftTurn8"),
             new FollowPathTask("goRight8ftTurn90"),
             ConcurrentTask.AllTasks(
-                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
+                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_SPEED_TEST_AUTO),
                 new CargoShootTask()
             )
         );
