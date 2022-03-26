@@ -1,5 +1,7 @@
 package frc.robot;
 
+import frc.robot.driver.DigitalOperation;
+
 /**
  * All constants related to tuning the operation of the robot.
  * 
@@ -24,8 +26,8 @@ public class TuningConstants
     //================================================== Logging  ==============================================================
 
     public static final int CALENDAR_YEAR = 2022;
-    public static final boolean LOG_TO_FILE = TuningConstants.COMPETITION_ROBOT;
-    public static final boolean LOG_FILE_ONLY_COMPETITION_MATCHES = true;
+    public static final boolean LOG_TO_FILE = true; //TuningConstants.COMPETITION_ROBOT;
+    public static final boolean LOG_FILE_ONLY_COMPETITION_MATCHES = false; //true;
     public static final long LOG_FILE_REQUIRED_FREE_SPACE = 50 * 1024 * 1024; // require at least 50 MB of space
     public static final int LOG_FLUSH_THRESHOLD = 25;
 
@@ -38,7 +40,7 @@ public class TuningConstants
     public static final double VISION_CENTERING_DURATION = 0.75;
 
     // Acceptable vision distance from tape in inches (as measured by vision system)
-    public static final double MAX_VISION_ACCEPTABLE_FORWARD_DISTANCE = 2.5;
+    public static final double MAX_VISION_ACCEPTABLE_FORWARD_DISTANCE = 1.5;
 
     // PID settings for Centering the robot on a vision target from one stationary place
     public static final double VISION_STATIONARY_CENTERING_PID_KP = 0.025;
@@ -50,16 +52,16 @@ public class TuningConstants
     public static final double VISION_STATIONARY_CENTERING_PID_MAX = 0.4;
 
     // PID settings for Centering the robot on a vision target
-    public static final double VISION_MOVING_CENTERING_PID_KP = 0.02;
+    public static final double VISION_MOVING_CENTERING_PID_KP = 0.01;
     public static final double VISION_MOVING_CENTERING_PID_KI = 0.0;
-    public static final double VISION_MOVING_CENTERING_PID_KD = 0.03;
+    public static final double VISION_MOVING_CENTERING_PID_KD = 0.0;
     public static final double VISION_MOVING_CENTERING_PID_KF = 0.0;
     public static final double VISION_MOVING_CENTERING_PID_KS = 1.0;
     public static final double VISION_MOVING_CENTERING_PID_MIN = -0.3;
     public static final double VISION_MOVING_CENTERING_PID_MAX = 0.3;
 
     // PID settings for Advancing the robot towards a vision target
-    public static final double VISION_ADVANCING_PID_KP = 0.1;
+    public static final double VISION_ADVANCING_PID_KP = 0.01;
     public static final double VISION_ADVANCING_PID_KI = 0.0;
     public static final double VISION_ADVANCING_PID_KD = 0.0;
     public static final double VISION_ADVANCING_PID_KF = 0.0;
@@ -299,9 +301,39 @@ public class TuningConstants
     public static final int CARGO_FLYWHEEL_VELOCITY_WINDOWSIZE = 8;
 
     // Real-world distances: 25.5", 51", 66", 83", 100", 118", 127"
-    public static final double[] CARGO_KNOWN_SHOOTING_DISTANCES =           new double[] {  36.0,   63.0,   80.0,   100.0,  120.0,  140.0,  150.0 };
-    public static final boolean[] CARGO_KNOWN_SHOOTING_HOOD_UP =           new boolean[] {  false,  false,  true,   true,   true,   true,   true };
-    public static final double[] CARGO_KNOWN_SHOOTING_FLYWHEEL_SPIN_SPEED = new double[] {  0.675,  0.70,   0.65,   0.7,    0.74,   0.8,    0.95 };
+    public static final double[] CARGO_KNOWN_SHOOTING_DISTANCES =
+        new double[]
+        {
+            36.0,
+            63.0,
+            80.0,
+            100.0,
+            120.0,
+            140.0,
+            150.0
+        };
+    public static final DigitalOperation[] CARGO_KNOWN_SHOOTING_HOOD_UP =
+        new DigitalOperation[]
+        {
+            DigitalOperation.CargoHoodPointBlank,
+            DigitalOperation.CargoHoodPointBlank,
+            DigitalOperation.CargoHoodLong,
+            DigitalOperation.CargoHoodLong,
+            DigitalOperation.CargoHoodLong,
+            DigitalOperation.CargoHoodLong,
+            DigitalOperation.CargoHoodLong
+        };
+    public static final double[] CARGO_KNOWN_SHOOTING_FLYWHEEL_SPIN_SPEED =
+        new double[]
+        {
+            0.675,
+            0.70,
+            0.65,
+            0.7,
+            0.74,
+            0.8,
+            0.95
+        };
 
     public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.6;
     public static final double CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED = 0.3;
