@@ -46,7 +46,8 @@ public class AutonomousRoutineSelector
         FiveBallAutoPog,
         ShootDriveBack,
         ShootLowDriveBack,
-        ThreeBallAuto
+        ThreeBallAuto,
+        ThreeBallCloseAuto
     }
 
     /**
@@ -73,6 +74,7 @@ public class AutonomousRoutineSelector
         this.routineChooser.addObject("2 Ball Auto", AutoRoutine.TwoBallAuto);
         this.routineChooser.addObject("3 Ball Auto", AutoRoutine.ThreeBallAuto);
         this.routineChooser.addObject("5 Ball Auto", AutoRoutine.FiveBallAutoPog);
+        this.routineChooser.addObject("3 Ball Close Auto", AutoRoutine.ThreeBallCloseAuto);
         networkTableProvider.addChooser("Auto Routine", this.routineChooser);
 
         this.positionChooser = networkTableProvider.getSendableChooser();
@@ -145,6 +147,10 @@ public class AutonomousRoutineSelector
         else if (routine == AutoRoutine.ShootLowDriveBack)
         {
             return shootLowGoalDriveBack();
+        }
+        else if (routine == AutoRoutine.ThreeBallCloseAuto)
+        {
+            return threeBallAutoStartClose();
         }
 
         return new PositionStartingTask(0.0, true, true);
@@ -331,6 +337,48 @@ public class AutonomousRoutineSelector
                 ConcurrentTask.AnyTasks(
                     new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
                     new CargoShootTask())
+            )
+        );
+    }
+
+    private static IControlTask threeBallAutoStartClose()
+    {
+        return SequentialTask.Sequence(
+            //0 Set hood position
+            new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
+
+            //1 shoot pre-loaded ball
+            ConcurrentTask.AnyTasks(
+                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_SPEED_TEST_AUTO),
+                new CargoShootTask(false)
+            ),
+            //2 get first ball
+            ConcurrentTask.AllTasks(
+                new FollowPathTask("goBack9ftRight2ftTurn164"),
+                SequentialTask.Sequence(
+                    new WaitTask(1.0),
+                    ConcurrentTask.AllTasks(
+                        new CargoExtendIntakeTask(true),
+                        new CargoIntakeTask(4.0, true)
+                    )
+                )
+            ),
+
+            //3 get second ball
+            ConcurrentTask.AllTasks(
+                new FollowPathTask("goBack4ftRight9ftTurn113"),
+                SequentialTask.Sequence(
+                    new WaitTask(1.0),
+                    new CargoIntakeTask(4.0, true)
+                )
+            ),
+
+            //4 shoot two balls
+            new FollowPathTask("goBack7ftRight1ftTurn8"),
+            new FollowPathTask("goRight8ftTurn90"),
+            ConcurrentTask.AllTasks(
+                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_SPEED_TEST_AUTO),
+                new CargoShootTask()
             )
         );
     }
