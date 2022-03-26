@@ -11,8 +11,8 @@ public class VisionShootSpinTask extends TimedTask
     private static DigitalOperation[] hoodOperations =
     {
         DigitalOperation.CargoHoodPointBlank,
-        DigitalOperation.CargoHoodShort,
-        DigitalOperation.CargoHoodMedium,
+        // DigitalOperation.CargoHoodShort,
+        // DigitalOperation.CargoHoodMedium,
         DigitalOperation.CargoHoodLong
     };
 

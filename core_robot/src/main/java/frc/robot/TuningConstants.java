@@ -317,11 +317,11 @@ public class TuningConstants
         {
             DigitalOperation.CargoHoodPointBlank,
             DigitalOperation.CargoHoodPointBlank,
-            DigitalOperation.CargoHoodMedium,
-            DigitalOperation.CargoHoodMedium,
-            DigitalOperation.CargoHoodMedium,
-            DigitalOperation.CargoHoodMedium,
-            DigitalOperation.CargoHoodMedium
+            DigitalOperation.CargoHoodLong,
+            DigitalOperation.CargoHoodLong,
+            DigitalOperation.CargoHoodLong,
+            DigitalOperation.CargoHoodLong,
+            DigitalOperation.CargoHoodLong
         };
     public static final double[] CARGO_KNOWN_SHOOTING_FLYWHEEL_SPIN_SPEED =
         new double[]

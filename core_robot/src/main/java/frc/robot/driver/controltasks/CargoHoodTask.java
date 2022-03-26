@@ -7,8 +7,8 @@ public class CargoHoodTask extends CompositeOperationTask
     private static DigitalOperation[] hoodOperations =
     {
         DigitalOperation.CargoHoodPointBlank,
-        DigitalOperation.CargoHoodShort,
-        DigitalOperation.CargoHoodMedium,
+        // DigitalOperation.CargoHoodShort,
+        // DigitalOperation.CargoHoodMedium,
         DigitalOperation.CargoHoodLong
     };
 
