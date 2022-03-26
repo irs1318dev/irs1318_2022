@@ -685,6 +685,7 @@ public class ButtonMap implements IButtonMap
             ButtonType.Toggle,
             () -> 
                 SequentialTask.Sequence(
+                    new VisionCenteringTask(false),
                     new VisionShootPositionTask(),
                     new DriveTrainFieldOrientationModeTask(true),
                     ConcurrentTask.AnyTasks(

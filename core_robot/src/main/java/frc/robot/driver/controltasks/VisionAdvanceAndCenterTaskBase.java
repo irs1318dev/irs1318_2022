@@ -8,17 +8,19 @@ import frc.robot.driver.*;
 public abstract class VisionAdvanceAndCenterTaskBase extends VisionCenteringTask
 {
     private final boolean useFastMode;
+    private final boolean verifyAngle;
 
     private PIDHandler forwardPIDHandler;
 
     /**
     * Initializes a new VisionAdvanceAndCenterTaskBase
     */
-    protected VisionAdvanceAndCenterTaskBase(boolean useFastMode, boolean gamePiece, boolean bestEffort)
+    protected VisionAdvanceAndCenterTaskBase(boolean useFastMode, boolean gamePiece, boolean bestEffort, boolean verifyAngle)
     {
         super(false, gamePiece, bestEffort);
 
         this.useFastMode = useFastMode;
+        this.verifyAngle = verifyAngle;
         this.forwardPIDHandler = null;
     }
 
@@ -62,9 +64,11 @@ public abstract class VisionAdvanceAndCenterTaskBase extends VisionCenteringTask
         Double currentDistance = this.getDistance();
         if (currentDistance != null)
         {
+            double desiredDistance = this.getDesiredDistance(currentDistance);
+            double forwardSpeed = -this.forwardPIDHandler.calculatePosition(desiredDistance, currentDistance);
             this.setAnalogOperationState(
                 AnalogOperation.DriveTrainMoveForward,
-                this.forwardPIDHandler.calculatePosition(this.getDesiredDistance(currentDistance), currentDistance));
+                forwardSpeed);
         }
     }
 
@@ -84,7 +88,13 @@ public abstract class VisionAdvanceAndCenterTaskBase extends VisionCenteringTask
             return false;
         }
 
-        return currentDistance <= TuningConstants.MAX_VISION_ACCEPTABLE_FORWARD_DISTANCE;
+        double distanceOffset = Math.abs(this.getDesiredDistance(currentDistance) - currentDistance);
+        if (distanceOffset > TuningConstants.MAX_VISION_ACCEPTABLE_FORWARD_DISTANCE)
+        {
+            return false;
+        }
+
+        return !this.verifyAngle || super.hasCompleted();
     }
 
     @Override

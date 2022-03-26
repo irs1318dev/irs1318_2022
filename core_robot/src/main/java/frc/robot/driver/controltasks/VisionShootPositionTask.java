@@ -8,12 +8,12 @@ public class VisionShootPositionTask extends VisionAdvanceAndCenterTaskBase
 
     public VisionShootPositionTask()
     {
-        this(true);
+        this(false);
     }
 
     public VisionShootPositionTask(boolean bestEffort)
     {
-        super(false, false, bestEffort);
+        super(false, false, bestEffort, false);
     }
 
     @Override
