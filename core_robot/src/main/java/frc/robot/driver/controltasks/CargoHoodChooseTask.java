@@ -28,6 +28,14 @@ public class CargoHoodChooseTask extends CompositeOperationTask
                 this.toPerform = DigitalOperation.CargoHoodPointBlank;
                 break;
 
+            case Short:
+                this.toPerform = DigitalOperation.CargoHoodShort;
+                break;
+
+            case Medium:
+                this.toPerform = DigitalOperation.CargoHoodMedium;
+                break;
+
             default:
             case Long:
                 this.toPerform = DigitalOperation.CargoHoodLong;

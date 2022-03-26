@@ -27,6 +27,8 @@ public class AutonomousRoutineSelector
     public enum HoodPosition
     {
         PointBlank,
+        Short,
+        Medium,
         Long
     }
 
@@ -83,6 +85,8 @@ public class AutonomousRoutineSelector
 
         this.hoodPositionChooser = networkTableProvider.getSendableChooser();
         this.hoodPositionChooser.addDefault("PointBlank", HoodPosition.PointBlank);
+        this.hoodPositionChooser.addObject("Short", HoodPosition.Short);
+        this.hoodPositionChooser.addObject("Medium", HoodPosition.Medium);
         this.hoodPositionChooser.addObject("Long", HoodPosition.Long);
         networkTableProvider.addChooser("Hood Position", this.positionChooser);
 
