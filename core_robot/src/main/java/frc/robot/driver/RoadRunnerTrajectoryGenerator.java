@@ -176,6 +176,36 @@ public class RoadRunnerTrajectoryGenerator
             startTrajectory(-90 * Helpers.DEGREES_TO_RADIANS)
                 .splineToSplineHeading(new Pose2d(-99.47, 15.56, -171 * Helpers.DEGREES_TO_RADIANS), -171 * Helpers.DEGREES_TO_RADIANS),
             "goLeft1ftBack8ftTurn171");//-171
+
+        // FIXED 3 BALL 
+
+        addPath(
+            pathManager,
+            startTrajectory(0)
+                .splineToConstantHeading(new Vector2d(-36, -18), 0)
+                .splineToSplineHeading(new Pose2d(-86, -28, -164.5 * Helpers.DEGREES_TO_RADIANS), -164.5 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(-110, -28), -164.5 * Helpers.DEGREES_TO_RADIANS),  // 28 and 110
+            "goBack9ftRight2ftTurn164");
+
+        addPath(
+            pathManager,
+            startTrajectory(0)
+                .splineToSplineHeading(new Pose2d(-30, -70, -113 * Helpers.DEGREES_TO_RADIANS), -113 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(-45, -105), -113 * Helpers.DEGREES_TO_RADIANS), // 45 and 105
+            "goBack4ftRight9ftTurn113");
+        
+        addPath(
+            pathManager,
+            startTrajectory(0)
+                .splineToSplineHeading(new Pose2d(-84, -13, 8.9 * Helpers.DEGREES_TO_RADIANS), Helpers.DEGREES_TO_RADIANS), // 13 and 84 
+            "goBack7ftRight1ftTurn8");
+        
+        addPath(
+            pathManager,
+            startTrajectory(0)
+                .splineToSplineHeading(new Pose2d(0, -62, 90 * Helpers.DEGREES_TO_RADIANS), 90 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(0, -93), 90 * Helpers.DEGREES_TO_RADIANS), // 93
+            "goRight8ftTurn90");
     }
 
     private static TrajectoryBuilder startTrajectory()
