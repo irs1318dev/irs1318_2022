@@ -319,7 +319,7 @@ public class AutonomousRoutineSelector
 
             //1 shoot pre-loaded ball
             ConcurrentTask.AnyTasks(
-                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_SPEED_TEST_AUTO),
+                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
                 new CargoShootTask(false)
             ),
             //2 get first ball
@@ -347,7 +347,7 @@ public class AutonomousRoutineSelector
             new FollowPathTask("goBack7ftRight1ftTurn8"),
             new FollowPathTask("goRight8ftTurn90"),
             ConcurrentTask.AllTasks(
-                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_SPEED_TEST_AUTO),
+                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
                 new CargoShootTask()
             )
         );

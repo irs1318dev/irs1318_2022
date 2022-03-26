@@ -304,19 +304,27 @@ public class TuningConstants
     public static final double[] CARGO_KNOWN_SHOOTING_DISTANCES =
         new double[]
         {
-            36.0,
-            63.0,
+            40.0,
+            50.0,
+            60.0,
+            70.0,
             80.0,
+            90.0,
             100.0,
+            110.0,
             120.0,
-            140.0,
-            150.0
+            130.0,
+            140.0
         };
     public static final DigitalOperation[] CARGO_KNOWN_SHOOTING_HOOD_UP =
         new DigitalOperation[]
         {
-            DigitalOperation.CargoHoodPointBlank,
-            DigitalOperation.CargoHoodPointBlank,
+            DigitalOperation.CargoHoodShort,
+            DigitalOperation.CargoHoodMedium,
+            DigitalOperation.CargoHoodMedium,
+            DigitalOperation.CargoHoodMedium,
+            DigitalOperation.CargoHoodMedium,
+            DigitalOperation.CargoHoodLong,
             DigitalOperation.CargoHoodLong,
             DigitalOperation.CargoHoodLong,
             DigitalOperation.CargoHoodLong,
@@ -326,19 +334,22 @@ public class TuningConstants
     public static final double[] CARGO_KNOWN_SHOOTING_FLYWHEEL_SPIN_SPEED =
         new double[]
         {
-            0.675,
-            0.70,
+            0.60,
+            0.62,
             0.65,
-            0.7,
-            0.74,
-            0.8,
-            0.95
+            0.67,
+            0.72,
+            0.69,
+            0.70,
+            0.72,
+            0.79,
+            0.82,
+            0.92
         };
 
     public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.6;
     public static final double CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED = 0.3;
     public static final double CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED = 0.65;
-    public static final double CARGO_FLYWHEEL_SPEED_TEST_AUTO = 0.60;
 
     public static final double CARGO_CONVEYOR_THROUGHBEAM_CUTOFF = 2.7;
     public static final double CARGO_FEEDER_THROUGHBEAM_CUTOFF = 2.7;
