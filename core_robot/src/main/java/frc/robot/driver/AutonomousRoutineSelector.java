@@ -88,7 +88,7 @@ public class AutonomousRoutineSelector
         this.hoodPositionChooser.addObject("Short", HoodPosition.Short);
         this.hoodPositionChooser.addObject("Medium", HoodPosition.Medium);
         this.hoodPositionChooser.addObject("Long", HoodPosition.Long);
-        networkTableProvider.addChooser("Hood Position", this.positionChooser);
+        networkTableProvider.addChooser("Hood Position", this.hoodPositionChooser);
 
         RoadRunnerTrajectoryGenerator.generateTrajectories(this.pathManager);
     }
