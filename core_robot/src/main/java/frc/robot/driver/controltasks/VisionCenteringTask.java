@@ -93,9 +93,10 @@ public class VisionCenteringTask extends ControlTaskBase
         Double currentMeasuredAngle = this.getHorizontalAngle();
         if (currentMeasuredAngle != null)
         {
+            double turnSpeed = this.turnPidHandler.calculatePosition(0.0, currentMeasuredAngle);
             this.setAnalogOperationState(
                 AnalogOperation.DriveTrainTurnSpeed,
-                this.turnPidHandler.calculatePosition(0.0, currentMeasuredAngle));
+                turnSpeed);
         }
     }
 

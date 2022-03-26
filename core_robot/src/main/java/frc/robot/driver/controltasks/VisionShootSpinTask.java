@@ -8,6 +8,13 @@ import frc.robot.mechanisms.OffboardVisionManager;
 public class VisionShootSpinTask extends TimedTask
 {
     private static final int NO_TARGET_THRESHOLD = 40;
+    private static DigitalOperation[] hoodOperations =
+    {
+        DigitalOperation.CargoHoodPointBlank,
+        DigitalOperation.CargoHoodShort,
+        DigitalOperation.CargoHoodMedium,
+        DigitalOperation.CargoHoodLong
+    };
 
     private final boolean bestEffort;
 
@@ -17,7 +24,7 @@ public class VisionShootSpinTask extends TimedTask
 
     private boolean hasDeterminedSettings;
     private double spinUpSpeed;
-    private boolean hoodUp;
+    private DigitalOperation hoodPosition;
 
     public VisionShootSpinTask(double duration, boolean bestEffort)
     {
@@ -28,7 +35,7 @@ public class VisionShootSpinTask extends TimedTask
         this.noTargetCount = 0;
         this.hasDeterminedSettings = false;
         this.spinUpSpeed = 0.0;
-        this.hoodUp = false;
+        this.hoodPosition = DigitalOperation.CargoHoodPointBlank;
     }
 
     @Override
@@ -41,6 +48,10 @@ public class VisionShootSpinTask extends TimedTask
         this.setDigitalOperationState(DigitalOperation.VisionDisableStream, false);
         this.setDigitalOperationState(DigitalOperation.VisionEnableRetroreflectiveProcessing, true);
         this.setDigitalOperationState(DigitalOperation.VisionEnableGamePieceProcessing, false);
+        for (DigitalOperation hoodOperation : VisionShootSpinTask.hoodOperations)
+        {
+            this.setDigitalOperationState(hoodOperation, false);
+        }
     }
 
     @Override
@@ -65,15 +76,17 @@ public class VisionShootSpinTask extends TimedTask
 
                 this.hasDeterminedSettings = true;
                 this.spinUpSpeed = TuningConstants.CARGO_KNOWN_SHOOTING_FLYWHEEL_SPIN_SPEED[desiredIndex];
-                this.hoodUp = TuningConstants.CARGO_KNOWN_SHOOTING_HOOD_UP[desiredIndex];
+                this.hoodPosition = TuningConstants.CARGO_KNOWN_SHOOTING_HOOD_UP[desiredIndex];
             }
         }
 
         if (this.hasDeterminedSettings)
         {
             this.setAnalogOperationState(AnalogOperation.CargoFlywheelVelocityGoal, this.spinUpSpeed);
-            this.setDigitalOperationState(DigitalOperation.CargoHoodPointBlank, !this.hoodUp);
-            this.setDigitalOperationState(DigitalOperation.CargoHoodLong, this.hoodUp);
+            for (DigitalOperation hoodOperation : VisionShootSpinTask.hoodOperations)
+            {
+                this.setDigitalOperationState(hoodOperation, this.hoodPosition == hoodOperation);
+            }
         }
     }
 
@@ -83,8 +96,10 @@ public class VisionShootSpinTask extends TimedTask
         super.end();
 
         this.setAnalogOperationState(AnalogOperation.CargoFlywheelVelocityGoal, 0.0);
-        this.setDigitalOperationState(DigitalOperation.CargoHoodPointBlank, false);
-        this.setDigitalOperationState(DigitalOperation.CargoHoodLong, false);
+        for (DigitalOperation hoodOperation : VisionShootSpinTask.hoodOperations)
+        {
+            this.setDigitalOperationState(hoodOperation, false);
+        }
     }
 
     @Override

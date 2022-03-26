@@ -8,7 +8,7 @@ public class VisionAdvanceAndCenterTask extends VisionAdvanceAndCenterTaskBase
     */
     public VisionAdvanceAndCenterTask(boolean useFastMode, boolean gamePiece, boolean bestEffort)
     {
-        super(useFastMode, gamePiece, bestEffort);
+        super(useFastMode, gamePiece, bestEffort, false);
     }
 
     @Override
