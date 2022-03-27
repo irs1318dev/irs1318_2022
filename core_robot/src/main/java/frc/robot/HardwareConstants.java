@@ -57,8 +57,10 @@ public class HardwareConstants
     public static final boolean CARGO_FEEDER_MOTOR_INVERT_OUTPUT = true;
     public static final boolean CARGO_CONVEYOR_MOTOR_INVERT_OUTPUT = true;
 
-    public static final double CARGO_SHOOTER_HIGH_ANGLE = 80.0; // degrees
-    public static final double CARGO_SHOOTER_SHALLOW_ANGLE = 70.0; // degrees
+    public static final double CARGO_SHOOTER_POINTBLANK_ANGLE = 74.0; // degrees
+    public static final double CARGO_SHOOTER_SHORT_ANGLE = 68.5; // degrees
+    public static final double CARGO_SHOOTER_MEDIUM_ANGLE = 66.0; // degrees
+    public static final double CARGO_SHOOTER_LONG_ANGLE = 59.0; // degrees
     public static final double CARGO_SHOOTER_HEIGHT = 19.81; // inches
     public static final double CARGO_FLYWHEEL_DIAMETER = 4.0; // inches
     public static final double CARGO_FLYWHEEL_TICKS_PER_REVOLUTION = 2048.0;

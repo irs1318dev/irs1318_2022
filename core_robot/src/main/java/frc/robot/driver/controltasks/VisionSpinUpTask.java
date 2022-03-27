@@ -15,7 +15,7 @@ public class VisionSpinUpTask extends TimedTask
     private static final int NO_CENTER_THRESHOLD = 40;
     private static final double SHOOTER_FLYWHEEL_INCHES_PER_SECOND_TO_PERCENTAGE = HardwareConstants.CARGO_FLYWHEEL_INCHES_PER_SECOND_TO_MOTOR_VELOCITY / TuningConstants.CARGO_FLYWHEEL_MOTOR_PID_KS;
 
-    private final double shootAngleRadians = HardwareConstants.CARGO_SHOOTER_HIGH_ANGLE * Helpers.DEGREES_TO_RADIANS; // TODO hard coded value
+    private final double shootAngleRadians = HardwareConstants.CARGO_SHOOTER_LONG_ANGLE * Helpers.DEGREES_TO_RADIANS; // TODO hard coded value
     private final double relativeGoalHeight;
 
     private OffboardVisionManager visionManager;
