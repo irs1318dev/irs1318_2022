@@ -327,10 +327,7 @@ public class AutonomousRoutineSelector
                 new FollowPathTask("goBack9ftRight2ftTurn164"),
                 SequentialTask.Sequence(
                     new WaitTask(1.0),
-                    ConcurrentTask.AllTasks(
-                        new CargoExtendIntakeTask(true),
-                        new CargoIntakeTask(4.0, true)
-                    )
+                    new CargoIntakeTask(4.0, true)
                 )
             ),
 
@@ -346,7 +343,7 @@ public class AutonomousRoutineSelector
             //4 shoot two balls
             new FollowPathTask("goBack7ftRight1ftTurn8"),
             new FollowPathTask("goRight8ftTurn90"),
-            ConcurrentTask.AllTasks(
+            ConcurrentTask.AnyTasks(
                 new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
                 new CargoShootTask()
             )
