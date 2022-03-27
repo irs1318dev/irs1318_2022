@@ -37,8 +37,8 @@ public class HardwareConstants
     public static final double DRIVETRAIN_DRIVE_MOTOR_VELOCITY_TO_INCHES_PER_SECOND = 10.0 * HardwareConstants.DRIVETRAIN_DRIVE_TICK_DISTANCE; // converts #ticks per 100ms into inches per second.
     public static final double DRIVETRAIN_DRIVE_INCHES_PER_SECOND_TO_MOTOR_VELOCITY = 0.1 * HardwareConstants.DRIVETRAIN_DRIVE_TICKS_PER_INCH; // converts inches per second into #ticks per 100ms.
 
-    public static final double DRIVETRAIN_HORIZONTAL_WHEEL_SEPERATION_DISTANCE = 22.75; // (in inches)
-    public static final double DRIVETRAIN_VERTICAL_WHEEL_SEPERATION_DISTANCE = 26.75; // (in inches)
+    public static final double DRIVETRAIN_HORIZONTAL_WHEEL_SEPERATION_DISTANCE = 22.75; // (in inches) 35" side-to-side with bumpers
+    public static final double DRIVETRAIN_VERTICAL_WHEEL_SEPERATION_DISTANCE = 26.75; // (in inches) 38" front-to-back with bumpers
     public static final double DRIVETRAIN_HORIZONTAL_WHEEL_CENTER_DISTANCE = HardwareConstants.DRIVETRAIN_HORIZONTAL_WHEEL_SEPERATION_DISTANCE / 2.0; // (in inches)
     public static final double DRIVETRAIN_VERTICAL_WHEEL_CENTER_DISTANCE = HardwareConstants.DRIVETRAIN_VERTICAL_WHEEL_SEPERATION_DISTANCE / 2.0; // (in inches)
 
@@ -57,8 +57,10 @@ public class HardwareConstants
     public static final boolean CARGO_FEEDER_MOTOR_INVERT_OUTPUT = true;
     public static final boolean CARGO_CONVEYOR_MOTOR_INVERT_OUTPUT = true;
 
-    public static final double CARGO_SHOOTER_HIGH_ANGLE = 80.0; // degrees
-    public static final double CARGO_SHOOTER_SHALLOW_ANGLE = 70.0; // degrees
+    public static final double CARGO_SHOOTER_POINTBLANK_ANGLE = 74.0; // degrees
+    public static final double CARGO_SHOOTER_SHORT_ANGLE = 68.5; // degrees
+    public static final double CARGO_SHOOTER_MEDIUM_ANGLE = 66.0; // degrees
+    public static final double CARGO_SHOOTER_LONG_ANGLE = 59.0; // degrees
     public static final double CARGO_SHOOTER_HEIGHT = 19.81; // inches
     public static final double CARGO_FLYWHEEL_DIAMETER = 4.0; // inches
     public static final double CARGO_FLYWHEEL_TICKS_PER_REVOLUTION = 2048.0;
