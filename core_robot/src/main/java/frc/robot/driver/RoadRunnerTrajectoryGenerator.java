@@ -181,17 +181,17 @@ public class RoadRunnerTrajectoryGenerator
 
         addPath(
             pathManager,
-            startTrajectory(0)
-                .splineToConstantHeading(new Vector2d(-36, -18), 0)
-                .splineToSplineHeading(new Pose2d(-86, -28, -164.5 * Helpers.DEGREES_TO_RADIANS), -164.5 * Helpers.DEGREES_TO_RADIANS)
-                .splineToConstantHeading(new Vector2d(-110, -28), -164.5 * Helpers.DEGREES_TO_RADIANS),  // 28 and 110
+            startTrajectory(-180.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(-36, -18), -90.0)
+                .splineToSplineHeading(new Pose2d(-46, -44, -135.0 * Helpers.DEGREES_TO_RADIANS), -164.5 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(-66.0, -60.0), -135.0 * Helpers.DEGREES_TO_RADIANS),  // 28 and 110
             "goBack9ftRight2ftTurn164");
 
         addPath(
             pathManager,
             startTrajectory(0)
-                .splineToSplineHeading(new Pose2d(-30, -70, -113 * Helpers.DEGREES_TO_RADIANS), -113 * Helpers.DEGREES_TO_RADIANS)
-                .splineToConstantHeading(new Vector2d(-45, -105), -113 * Helpers.DEGREES_TO_RADIANS), // 45 and 105
+                .splineToSplineHeading(new Pose2d(30, 70, 83.0 * Helpers.DEGREES_TO_RADIANS), -113 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(45, 105), 83.0 * Helpers.DEGREES_TO_RADIANS), // 45 and 105
             "goBack4ftRight9ftTurn113");
         
         addPath(
@@ -203,8 +203,8 @@ public class RoadRunnerTrajectoryGenerator
         addPath(
             pathManager,
             startTrajectory(0)
-                .splineToSplineHeading(new Pose2d(0, -62, 90 * Helpers.DEGREES_TO_RADIANS), 90 * Helpers.DEGREES_TO_RADIANS)
-                .splineToConstantHeading(new Vector2d(0, -93), 90 * Helpers.DEGREES_TO_RADIANS), // 93
+                .splineToSplineHeading(new Pose2d(0, -62, 90.0 * Helpers.DEGREES_TO_RADIANS), 90.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(0, -93), 90.0 * Helpers.DEGREES_TO_RADIANS), // 93
             "goRight8ftTurn90");
     }
 
