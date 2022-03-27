@@ -11,7 +11,7 @@ import frc.robot.driver.DigitalOperation;
 public class TuningConstants
 {
     public static final boolean COMPETITION_ROBOT = false;
-    public static boolean THROW_EXCEPTIONS = !TuningConstants.COMPETITION_ROBOT;
+    public static boolean THROW_EXCEPTIONS = false; //!TuningConstants.COMPETITION_ROBOT;
     public static boolean LOG_EXCEPTIONS = true;
 
     public static final boolean EXPECT_UNUSED_JOYSTICKS = true;
@@ -265,7 +265,7 @@ public class TuningConstants
     public static final double DRIVETRAIN_TURN_APPROXIMATION_STATIONARY = 2.0; // number of degrees off at which point we give up trying to face an angle when uncommanded
     public static final double DRIVETRAIN_TURN_APPROXIMATION = 1.0; // number of degrees off at which point we give up trying to face an angle when uncommanded
     public static final double DRIVETRAIN_MAX_MODULE_PATH_VELOCITY = 0.85 * TuningConstants.DRIVETRAIN_MAX_VELOCITY; // up to x% of our max controllable speed
-    public static final double DRIVETRAIN_MAX_PATH_TURN_VELOCITY = 45.0; // in degrees per second
+    public static final double DRIVETRAIN_MAX_PATH_TURN_VELOCITY = 180.0; // in degrees per second
     public static final double DRIVETRAIN_MAX_PATH_TRANSLATIONAL_VELOCITY = 0.80 * TuningConstants.DRIVETRAIN_MAX_VELOCITY; // in inches per second
     public static final double DRIVETRAIN_MAX_PATH_TRANSLATIONAL_ACCELERATION = 0.75 * TuningConstants.DRIVETRAIN_MAX_VELOCITY; // in inches per second per second
 
