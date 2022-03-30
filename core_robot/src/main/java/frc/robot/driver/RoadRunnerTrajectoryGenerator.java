@@ -36,7 +36,7 @@ public class RoadRunnerTrajectoryGenerator
     {
         PathManager pathManager = new PathManager();
         RoadRunnerTrajectoryGenerator.generateTrajectories(pathManager);
-        ITrajectory trajectory = pathManager.getTrajectory("w3ba-turnToShoot");
+        ITrajectory trajectory = pathManager.getTrajectory("w2ba-goToPickUpBall2");
 
         try (CsvWriter csvWriter = CsvWriter.builder().build(java.nio.file.Path.of("test.csv"), StandardCharsets.UTF_8))
         {
@@ -206,7 +206,6 @@ public class RoadRunnerTrajectoryGenerator
                 .splineToConstantHeading(new Vector2d(0, -93), 90.0 * Helpers.DEGREES_TO_RADIANS), // 93
             "goRight8ftTurn90");
 
-
         // WILL's 3-ball auto:
         addPath(
             pathManager,
@@ -229,7 +228,22 @@ public class RoadRunnerTrajectoryGenerator
                 .splineToSplineHeading(new Pose2d(-76.5, -33.9, 23.9 * Helpers.DEGREES_TO_RADIANS), 23.9 * Helpers.DEGREES_TO_RADIANS),
             "w3ba-turnToShoot");
 
-        // UR MOMS BALLS
+        // WILL's 2-ball auto:
+        addPath(
+            pathManager,
+            startTrajectory(0.0, 0.0, -23.0 * Helpers.DEGREES_TO_RADIANS, 142.1 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(9.5, 7.4), 142.1 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-55.6, 43.4, 142.1 * Helpers.DEGREES_TO_RADIANS), 142.1 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(-65.1, 50.8), 142.1 * Helpers.DEGREES_TO_RADIANS),
+            "w2ba-goToPickUpBall2");
+
+        addPath(
+            pathManager,
+            startTrajectory(-65.1, 50.8, 142.1 * Helpers.DEGREES_TO_RADIANS, -37.9 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-55.6, 43.4, -37.9 * Helpers.DEGREES_TO_RADIANS), -37.9 * Helpers.DEGREES_TO_RADIANS),
+            "w2ba-turnToShoot");
+
+        // PRAVIN's 3-ball
         addPath(
             pathManager,
             startTrajectory(0.0, 0.0, -20.90 * Helpers.DEGREES_TO_RADIANS, 159.1 * Helpers.DEGREES_TO_RADIANS)
