@@ -372,7 +372,7 @@ public class AutonomousRoutineSelector
     private static IControlTask willThreeBallAuto()
     {
         return SequentialTask.Sequence(
-            new PositionStartingTask(67.0, false, false),
+            new PositionStartingTask(67.0, false, true),
             new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
             ConcurrentTask.AnyTasks(
                 new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
@@ -405,7 +405,7 @@ public class AutonomousRoutineSelector
     private static IControlTask willTwoBallAuto()
     {
         return SequentialTask.Sequence(
-            new PositionStartingTask(-23.0, false, false),
+            new PositionStartingTask(-23.0, false, true),
             new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
             ConcurrentTask.AnyTasks(
                 new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
@@ -431,6 +431,7 @@ public class AutonomousRoutineSelector
     private static IControlTask pravinThreeBallAuto()
     {
         return SequentialTask.Sequence(
+            new PositionStartingTask(-20.9, false, true),
             //0 Set hood position
             new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
 

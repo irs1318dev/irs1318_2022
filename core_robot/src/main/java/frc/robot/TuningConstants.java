@@ -34,7 +34,7 @@ public class TuningConstants
     //================================================= Vision ======================================================
 
     // Acceptable vision centering range values in degrees
-    public static final double MAX_VISION_CENTERING_RANGE_DEGREES = 4.0;
+    public static final double MAX_VISION_CENTERING_RANGE_DEGREES = 5.0;
 
     // How long the robot system must remain centered on the target when using time
     public static final double VISION_CENTERING_DURATION = 0.75;

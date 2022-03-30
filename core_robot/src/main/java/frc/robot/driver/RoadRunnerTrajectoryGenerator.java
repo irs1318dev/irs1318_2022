@@ -209,17 +209,17 @@ public class RoadRunnerTrajectoryGenerator
         // WILL's 3-ball auto:
         addPath(
             pathManager,
-            startTrajectory(0.0, 0.0, 67.0 * Helpers.DEGREES_TO_RADIANS, -113.0 * Helpers.DEGREES_TO_RADIANS)
-                .splineToConstantHeading(new Vector2d(-7.2, -16.9), -90.0 * Helpers.DEGREES_TO_RADIANS)
-                .splineToSplineHeading(new Pose2d(-7.2, -70.3, -90.0 * Helpers.DEGREES_TO_RADIANS), -90.0 * Helpers.DEGREES_TO_RADIANS)
-                .splineToConstantHeading(new Vector2d(-7.2, -82.3), -90.0 * Helpers.DEGREES_TO_RADIANS),
+            startTrajectory(0.0, 0.0, 67.0 * Helpers.DEGREES_TO_RADIANS, -90.0 * Helpers.DEGREES_TO_RADIANS)
+                // .splineToConstantHeading(new Vector2d(-7.2, -16.9), -90.0 * Helpers.DEGREES_TO_RADIANS)
+                // .splineToSplineHeading(new Pose2d(-7.2, -70.3, -90.0 * Helpers.DEGREES_TO_RADIANS), -90.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-7.2, -82.3, -90.0 * Helpers.DEGREES_TO_RADIANS), -90.0 * Helpers.DEGREES_TO_RADIANS),
             "w3ba-goToPickUpBall2");
 
         addPath(
             pathManager,
             startTrajectory(-7.2, -82.3, -90.0 * Helpers.DEGREES_TO_RADIANS, -61.5 * Helpers.DEGREES_TO_RADIANS)
-                .splineToSplineHeading(new Pose2d(-75.5, -38.8, -180.0 * Helpers.DEGREES_TO_RADIANS), -180.0 * Helpers.DEGREES_TO_RADIANS)
-                .splineToConstantHeading(new Vector2d(-87.5, -38.8), -180.0 * Helpers.DEGREES_TO_RADIANS),
+//                .splineToSplineHeading(new Pose2d(-75.5, -38.8, -180.0 * Helpers.DEGREES_TO_RADIANS), -180.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-87.5, -38.8, -180.0 * Helpers.DEGREES_TO_RADIANS), -180.0 * Helpers.DEGREES_TO_RADIANS),
             "w3ba-goToPickUpBall3");
 
         addPath(
