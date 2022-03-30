@@ -228,6 +228,30 @@ public class RoadRunnerTrajectoryGenerator
             startTrajectory(-87.5, -38.8, -180.0 * Helpers.DEGREES_TO_RADIANS, 23.9 * Helpers.DEGREES_TO_RADIANS)
                 .splineToSplineHeading(new Pose2d(-76.5, -33.9, 23.9 * Helpers.DEGREES_TO_RADIANS), 23.9 * Helpers.DEGREES_TO_RADIANS),
             "w3ba-turnToShoot");
+
+        // UR MOMS BALLS
+        addPath(
+            pathManager,
+            startTrajectory(0.0, 0.0, -20.90 * Helpers.DEGREES_TO_RADIANS, 159.1 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(-28, 7.6), 180 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-60, 7.6, 180 * Helpers.DEGREES_TO_RADIANS), 180 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(-85, 7.6), 180 * Helpers.DEGREES_TO_RADIANS),
+            "urMom");
+
+        addPath(
+            pathManager,
+            startTrajectory(-85, 7.6, 180 * Helpers.DEGREES_TO_RADIANS, 90 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-73.2, 66.73, 67.8 * Helpers.DEGREES_TO_RADIANS), 67.8 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(-49.7, 94), 67.8 * Helpers.DEGREES_TO_RADIANS),
+            "urDad"
+        );
+
+        addPath(
+            pathManager,
+            startTrajectory(-49.7, 94, 67.8 * Helpers.DEGREES_TO_RADIANS, 0)
+                .splineToSplineHeading(new Pose2d( -49.7, 0.0, -20.90 * Helpers.DEGREES_TO_RADIANS), -20.90 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(0.0, 0.0), -20.90 * Helpers.DEGREES_TO_RADIANS),
+            "urStepSister");
     }
 
     private static TrajectoryBuilder startTrajectory()
