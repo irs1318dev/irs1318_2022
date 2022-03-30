@@ -370,6 +370,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.DriveTrainReset,
                 DigitalOperation.DriveTrainEnableFieldOrientation,
                 DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.DriveTrainUseRobotOrientation,
             }),
         new MacroOperationDescription(
             MacroOperation.PIDHeavyBrake,
@@ -406,6 +407,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.DriveTrainReset,
                 DigitalOperation.DriveTrainEnableFieldOrientation,
                 DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.DriveTrainUseRobotOrientation,
             }),
         new MacroOperationDescription(
             MacroOperation.VisionCenterHub,
@@ -414,9 +416,7 @@ public class ButtonMap implements IButtonMap
             Shift.DriverDebug,
             Shift.DriverDebug,
             ButtonType.Toggle,
-            () -> SequentialTask.Sequence(
-                    new VisionCenteringTask(false, true),
-                    new DriveTrainFieldOrientationModeTask(true)),
+            () -> new VisionCenteringTask(false, true),
             new IOperation[]
             {
                 AnalogOperation.DriveTrainMoveForward,
@@ -444,6 +444,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.DriveTrainReset,
                 DigitalOperation.DriveTrainEnableFieldOrientation,
                 DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.DriveTrainUseRobotOrientation,
                 DigitalOperation.VisionDisableStream,
                 DigitalOperation.VisionEnableGamePieceProcessing,
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
@@ -456,9 +457,7 @@ public class ButtonMap implements IButtonMap
             Shift.DriverDebug,
             Shift.DriverDebug,
             ButtonType.Toggle,
-            () -> SequentialTask.Sequence(
-                    new VisionCenteringTask(true, true),
-                    new DriveTrainFieldOrientationModeTask(true)),
+            () -> new VisionCenteringTask(true, true),
             new IOperation[]
             {
                 AnalogOperation.DriveTrainMoveForward,
@@ -486,6 +485,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.DriveTrainReset,
                 DigitalOperation.DriveTrainEnableFieldOrientation,
                 DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.DriveTrainUseRobotOrientation,
                 DigitalOperation.VisionDisableStream,
                 DigitalOperation.VisionEnableGamePieceProcessing,
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
@@ -502,8 +502,7 @@ public class ButtonMap implements IButtonMap
                     new CargoIntakeTask(0.5, true),
                     ConcurrentTask.AnyTasks(
                         new CargoIntakeTask(5.0, true),
-                        new VisionAdvanceAndCenterTask(false, true, true)),
-                    new DriveTrainFieldOrientationModeTask(true)),
+                        new VisionAdvanceAndCenterTask(false, true, true))),
             new IOperation[]
             {
                 AnalogOperation.DriveTrainMoveForward,
@@ -531,6 +530,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.DriveTrainReset,
                 DigitalOperation.DriveTrainEnableFieldOrientation,
                 DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.DriveTrainUseRobotOrientation,
                 DigitalOperation.VisionDisableStream,
                 DigitalOperation.VisionEnableGamePieceProcessing,
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
@@ -549,9 +549,7 @@ public class ButtonMap implements IButtonMap
             Shift.DriverDebug,
             Shift.DriverDebug,
             ButtonType.Toggle,
-            () -> SequentialTask.Sequence(
-                    new VisionAdvanceAndCenterTask(false, false, true),
-                    new DriveTrainFieldOrientationModeTask(true)),
+            () -> new VisionAdvanceAndCenterTask(false, false, true),
             new IOperation[]
             {
                 AnalogOperation.DriveTrainMoveForward,
@@ -579,6 +577,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.DriveTrainReset,
                 DigitalOperation.DriveTrainEnableFieldOrientation,
                 DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.DriveTrainUseRobotOrientation,
                 DigitalOperation.VisionDisableStream,
                 DigitalOperation.VisionEnableGamePieceProcessing,
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
@@ -687,7 +686,6 @@ public class ButtonMap implements IButtonMap
                 SequentialTask.Sequence(
                     new VisionCenteringTask(false),
                     new VisionShootPositionTask(),
-                    new DriveTrainFieldOrientationModeTask(true),
                     ConcurrentTask.AnyTasks(
                         new VisionShootSpinTask(10.0, true),
                         new CargoShootTask()
@@ -712,6 +710,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.DriveTrainReset,
                 DigitalOperation.DriveTrainEnableFieldOrientation,
                 DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.DriveTrainUseRobotOrientation,
                 DigitalOperation.VisionDisableStream,
                 DigitalOperation.VisionEnableGamePieceProcessing,
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
@@ -843,6 +842,7 @@ public class ButtonMap implements IButtonMap
         //         DigitalOperation.DriveTrainReset,
         //         DigitalOperation.DriveTrainEnableFieldOrientation,
         //         DigitalOperation.DriveTrainDisableFieldOrientation,
+        //         DigitalOperation.DriveTrainUseRobotOrientation,
         //         DigitalOperation.ClimberHookGrasp,
         //         DigitalOperation.ClimberHookRelease,
         //         DigitalOperation.ClimberArmOut,
@@ -901,6 +901,7 @@ public class ButtonMap implements IButtonMap
         //         DigitalOperation.DriveTrainReset,
         //         DigitalOperation.DriveTrainEnableFieldOrientation,
         //         DigitalOperation.DriveTrainDisableFieldOrientation,
+        //         DigitalOperation.DriveTrainUseRobotOrientation,
         //         DigitalOperation.ClimberHookGrasp,
         //         DigitalOperation.ClimberHookRelease,
         //         DigitalOperation.ClimberArmOut,
@@ -1084,6 +1085,7 @@ public class ButtonMap implements IButtonMap
         //         DigitalOperation.DriveTrainReset,
         //         DigitalOperation.DriveTrainEnableFieldOrientation,
         //         DigitalOperation.DriveTrainDisableFieldOrientation,
+        //         DigitalOperation.DriveTrainUseRobotOrientation,
         //         DigitalOperation.VisionDisableStream,
         //         DigitalOperation.VisionEnableGamePieceProcessing,
         //         DigitalOperation.VisionEnableRetroreflectiveProcessing,
@@ -1138,6 +1140,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.DriveTrainReset,
                 DigitalOperation.DriveTrainEnableFieldOrientation,
                 DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.DriveTrainUseRobotOrientation,
                 DigitalOperation.VisionDisableStream,
                 DigitalOperation.VisionEnableGamePieceProcessing,
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
@@ -1179,6 +1182,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.DriveTrainReset,
                 DigitalOperation.DriveTrainEnableFieldOrientation,
                 DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.DriveTrainUseRobotOrientation,
                 DigitalOperation.VisionDisableStream,
                 DigitalOperation.VisionEnableGamePieceProcessing,
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
@@ -1238,6 +1242,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.DriveTrainReset,
                 DigitalOperation.DriveTrainEnableFieldOrientation,
                 DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.DriveTrainUseRobotOrientation,
                 DigitalOperation.VisionDisableStream,
                 DigitalOperation.VisionEnableGamePieceProcessing,
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
@@ -1299,6 +1304,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.DriveTrainReset,
                 DigitalOperation.DriveTrainEnableFieldOrientation,
                 DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.DriveTrainUseRobotOrientation,
                 DigitalOperation.VisionDisableStream,
                 DigitalOperation.VisionEnableGamePieceProcessing,
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
@@ -1405,6 +1411,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.DriveTrainReset,
                 DigitalOperation.DriveTrainEnableFieldOrientation,
                 DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.DriveTrainUseRobotOrientation,
                 DigitalOperation.VisionDisableStream,
                 DigitalOperation.VisionEnableGamePieceProcessing,
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
@@ -1490,6 +1497,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.DriveTrainReset,
                 DigitalOperation.DriveTrainEnableFieldOrientation,
                 DigitalOperation.DriveTrainDisableFieldOrientation,
+                DigitalOperation.DriveTrainUseRobotOrientation,
                 DigitalOperation.VisionDisableStream,
                 DigitalOperation.VisionEnableGamePieceProcessing,
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,

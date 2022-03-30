@@ -471,6 +471,8 @@ public class DriveTrainMechanism implements IMechanism
             this.fieldOriented = false;
         }
 
+        boolean useFieldOriented = this.fieldOriented && !this.driver.getDigital(DigitalOperation.DriveTrainUseRobotOrientation);
+
         if (this.driver.getDigital(DigitalOperation.DriveTrainEnableMaintainDirectionMode))
         {
             this.maintainOrientation = true;
@@ -482,7 +484,7 @@ public class DriveTrainMechanism implements IMechanism
             this.maintainOrientation = false;
         }
 
-        this.logger.logBoolean(LoggingKey.DriveTrainFieldOriented, this.fieldOriented);
+        this.logger.logBoolean(LoggingKey.DriveTrainFieldOriented, useFieldOriented);
         this.logger.logBoolean(LoggingKey.DriveTrainMaintainOrientation, this.maintainOrientation);
 
         if (this.driver.getDigital(DigitalOperation.PositionResetFieldOrientation))
@@ -508,7 +510,7 @@ public class DriveTrainMechanism implements IMechanism
             this.firstRun = false;
         }
 
-        this.calculateSetpoints();
+        this.calculateSetpoints(useFieldOriented);
         for (int i = 0; i < DriveTrainMechanism.NUM_MODULES; i++)
         {
             Setpoint current = this.result[i];
@@ -598,7 +600,7 @@ public class DriveTrainMechanism implements IMechanism
         return new Pose2d(this.xPosition, this.yPosition, this.robotYaw);
     }
 
-    private void calculateSetpoints()
+    private void calculateSetpoints(boolean useFieldOriented)
     {
         boolean maintainPositionMode = this.driver.getDigital(DigitalOperation.DriveTrainMaintainPositionMode);
         if (maintainPositionMode || this.driver.getDigital(DigitalOperation.DriveTrainSteerMode))
@@ -652,7 +654,7 @@ public class DriveTrainMechanism implements IMechanism
             double angleVelocityGoal = this.driver.getAnalog(AnalogOperation.DriveTrainPathAngleVelocityGoal);
 
             omega = angleVelocityGoal * Helpers.DEGREES_TO_RADIANS;
-            if (this.fieldOriented)
+            if (useFieldOriented)
             {
                 // add correction for x/y drift
                 xVelocityGoal += this.pathXOffsetPID.calculatePosition(xGoal, this.xPosition);
@@ -685,7 +687,7 @@ public class DriveTrainMechanism implements IMechanism
             double centerVelocityRightRaw = TuningConstants.DRIVETRAIN_MAX_VELOCITY * this.driver.getAnalog(AnalogOperation.DriveTrainMoveRight);
             double centerVelocityForwardRaw = TuningConstants.DRIVETRAIN_MAX_VELOCITY * this.driver.getAnalog(AnalogOperation.DriveTrainMoveForward);
 
-            if (this.fieldOriented)
+            if (useFieldOriented)
             {
                 centerVelocityRight = Helpers.cosd(this.robotYaw) * centerVelocityRightRaw + Helpers.sind(this.robotYaw) * centerVelocityForwardRaw;
                 centerVelocityForward = Helpers.cosd(this.robotYaw) * centerVelocityForwardRaw - Helpers.sind(this.robotYaw) * centerVelocityRightRaw;
@@ -702,7 +704,7 @@ public class DriveTrainMechanism implements IMechanism
                 this.desiredYaw = this.robotYaw;
                 omega = forcedOmega * TuningConstants.DRIVETRAIN_TURN_SCALE;
             }
-            else if (!this.fieldOriented)
+            else if (!useFieldOriented)
             {
                 omega = this.driver.getAnalog(AnalogOperation.DriveTrainTurnSpeed) * TuningConstants.DRIVETRAIN_TURN_SCALE;
             }

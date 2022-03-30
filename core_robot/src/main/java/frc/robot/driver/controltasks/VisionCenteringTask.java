@@ -79,7 +79,8 @@ public class VisionCenteringTask extends ControlTaskBase
 
         this.setDigitalOperationState(DigitalOperation.VisionDisableStream, false);
         this.setDigitalOperationState(DigitalOperation.DriveTrainEnableFieldOrientation, false);
-        this.setDigitalOperationState(DigitalOperation.DriveTrainDisableFieldOrientation, true);
+        this.setDigitalOperationState(DigitalOperation.DriveTrainDisableFieldOrientation, false);
+        this.setDigitalOperationState(DigitalOperation.DriveTrainUseRobotOrientation, true);
         this.setDigitalOperationState(DigitalOperation.VisionEnableRetroreflectiveProcessing, !this.gamePiece);
         this.setDigitalOperationState(DigitalOperation.VisionEnableGamePieceProcessing, this.gamePiece);
     }
@@ -111,6 +112,7 @@ public class VisionCenteringTask extends ControlTaskBase
         this.setDigitalOperationState(DigitalOperation.VisionDisableStream, false);
         this.setDigitalOperationState(DigitalOperation.DriveTrainEnableFieldOrientation, false);
         this.setDigitalOperationState(DigitalOperation.DriveTrainDisableFieldOrientation, false);
+        this.setDigitalOperationState(DigitalOperation.DriveTrainUseRobotOrientation, false);
         this.setDigitalOperationState(DigitalOperation.VisionEnableRetroreflectiveProcessing, false);
         this.setDigitalOperationState(DigitalOperation.VisionEnableGamePieceProcessing, false);
     }

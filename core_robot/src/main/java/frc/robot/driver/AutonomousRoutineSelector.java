@@ -396,7 +396,6 @@ public class AutonomousRoutineSelector
             new FollowPathTask("w3ba-turnToShoot", false, false),
             new VisionCenteringTask(false),
             new VisionShootPositionTask(),
-            new DriveTrainFieldOrientationModeTask(true),
             ConcurrentTask.AnyTasks(
                 new VisionShootSpinTask(10.0, true),
                 new CargoShootTask()));
@@ -422,7 +421,6 @@ public class AutonomousRoutineSelector
             new FollowPathTask("w2ba-turnToShoot", false, false),
             new VisionCenteringTask(false),
             new VisionShootPositionTask(),
-            new DriveTrainFieldOrientationModeTask(true),
             ConcurrentTask.AnyTasks(
                 new VisionShootSpinTask(10.0, true),
                 new CargoShootTask()));
