@@ -34,21 +34,19 @@ public class RoadRunnerTrajectoryGenerator
 
     public static void main(String[] args)
     {
-        Trajectory turnArcLeft = startTrajectory()
-            .splineToSplineHeading(new Pose2d(72.0, 40.0, 90.0 * Helpers.DEGREES_TO_RADIANS), 90.0 * Helpers.DEGREES_TO_RADIANS)
-            .splineToSplineHeading(new Pose2d(100.0, 90.0, 0.0 * Helpers.DEGREES_TO_RADIANS), 0.0 * Helpers.DEGREES_TO_RADIANS)
-            .build();
-
-        ITrajectory trajectory = new TrajectoryWrapper(turnArcLeft);
+        PathManager pathManager = new PathManager();
+        RoadRunnerTrajectoryGenerator.generateTrajectories(pathManager);
+        ITrajectory trajectory = pathManager.getTrajectory("w3ba-turnToShoot");
 
         try (CsvWriter csvWriter = CsvWriter.builder().build(java.nio.file.Path.of("test.csv"), StandardCharsets.UTF_8))
         {
-            csvWriter.writeRow("x", "y", "theta", "vx", "vy", "omega");
+            csvWriter.writeRow("t", "x", "y", "theta", "vx", "vy", "omega");
 
             for (double t = 0.0; t < trajectory.getDuration() + 0.01; t += 0.02)
             {
                 TrajectoryState state = trajectory.get(t);
                 csvWriter.writeRow(
+                    Double.toString(t),
                     Double.toString(state.xPosition),
                     Double.toString(state.yPosition),
                     Double.toString(state.angle),
@@ -167,7 +165,7 @@ public class RoadRunnerTrajectoryGenerator
 
         addPath(
             pathManager, 
-            startTrajectory(0)
+            startTrajectory()
                 .splineToSplineHeading(new Pose2d(41.87, -2.97, 4.1 * Helpers.DEGREES_TO_RADIANS), 4.1 * Helpers.DEGREES_TO_RADIANS),
             "goBack3ftRight1Turn4");
 
@@ -179,7 +177,7 @@ public class RoadRunnerTrajectoryGenerator
 
         // FIXED 3 BALL 
         
-        /*
+        
         addPath(
             pathManager,
             startTrajectory(-180.0 * Helpers.DEGREES_TO_RADIANS)
@@ -190,41 +188,61 @@ public class RoadRunnerTrajectoryGenerator
 
         addPath(
             pathManager,
-            startTrajectory(0)
+            startTrajectory()
                 .splineToSplineHeading(new Pose2d(30, 70, 83.0 * Helpers.DEGREES_TO_RADIANS), -113 * Helpers.DEGREES_TO_RADIANS)
                 .splineToConstantHeading(new Vector2d(45, 105), 83.0 * Helpers.DEGREES_TO_RADIANS), // 45 and 105
             "goBack4ftRight9ftTurn113");
         
         addPath(
             pathManager,
-            startTrajectory(0)
+            startTrajectory()
                 .splineToSplineHeading(new Pose2d(-84, -13, 8.9 * Helpers.DEGREES_TO_RADIANS), Helpers.DEGREES_TO_RADIANS), // 13 and 84 
             "goBack7ftRight1ftTurn8");
         
         addPath(
             pathManager,
-            startTrajectory(0)
+            startTrajectory()
                 .splineToSplineHeading(new Pose2d(0, -62, 90.0 * Helpers.DEGREES_TO_RADIANS), 90.0 * Helpers.DEGREES_TO_RADIANS)
                 .splineToConstantHeading(new Vector2d(0, -93), 90.0 * Helpers.DEGREES_TO_RADIANS), // 93
             "goRight8ftTurn90");
-        
-        
 
-        addPath(pathManager,
-        new TrajectoryBuilder(new Pose2d(0, 0, -20.9), RoadRunnerTrajectoryGenerator.velocityConstraint, RoadRunnerTrajectoryGenerator.accelerationConstraint)
-            .splineToSplineHeading(new Posed2d(,,), endTangent),
-             "ur mom");
-        */
+
+        // WILL's 3-ball auto:
+        addPath(
+            pathManager,
+            startTrajectory(0.0, 0.0, 67.0 * Helpers.DEGREES_TO_RADIANS, -113.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(-7.2, -16.9), -90.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-7.2, -70.3, -90.0 * Helpers.DEGREES_TO_RADIANS), -90.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(-7.2, -82.3), -90.0 * Helpers.DEGREES_TO_RADIANS),
+            "w3ba-goToPickUpBall2");
+
+        addPath(
+            pathManager,
+            startTrajectory(-7.2, -82.3, -90.0 * Helpers.DEGREES_TO_RADIANS, -61.5 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-75.5, -38.8, -180.0 * Helpers.DEGREES_TO_RADIANS), -180.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(-87.5, -38.8), -180.0 * Helpers.DEGREES_TO_RADIANS),
+            "w3ba-goToPickUpBall3");
+
+        addPath(
+            pathManager,
+            startTrajectory(-87.5, -38.8, -180.0 * Helpers.DEGREES_TO_RADIANS, 23.9 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-76.5, -33.9, 23.9 * Helpers.DEGREES_TO_RADIANS), 23.9 * Helpers.DEGREES_TO_RADIANS),
+            "w3ba-turnToShoot");
     }
 
     private static TrajectoryBuilder startTrajectory()
     {
-        return startTrajectory(0.0);
+        return startTrajectory(0.0, 0.0, 0.0, 0.0);
     }
 
     private static TrajectoryBuilder startTrajectory(double startTangent)
     {
-        return new TrajectoryBuilder(new Pose2d(0, 0, 0), RoadRunnerTrajectoryGenerator.velocityConstraint, RoadRunnerTrajectoryGenerator.accelerationConstraint);
+        return startTrajectory(startTangent, 0.0, 0.0, 0.0);
+    }
+
+    private static TrajectoryBuilder startTrajectory(double startXPos, double startYPos, double startHeading, double startTangent)
+    {
+        return new TrajectoryBuilder(new Pose2d(startXPos, startYPos, startHeading), startTangent, RoadRunnerTrajectoryGenerator.velocityConstraint, RoadRunnerTrajectoryGenerator.accelerationConstraint);
     }
 
     private static void addPath(PathManager pathManager, TrajectoryBuilder trajectoryBuilder, String name)
