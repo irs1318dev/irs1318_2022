@@ -387,6 +387,44 @@ public class AutonomousRoutineSelector
                 new VisionShootSpinTask(10.0, true),
                 new CargoShootTask()));
     }
+
+    private static IControlTask pravinThreeBallAuto()
+    {
+        return SequentialTask.Sequence(
+            //0 Set hood position
+            new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
+
+            //1 shoot pre-loaded ball
+            ConcurrentTask.AnyTasks(
+                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
+                new CargoShootTask(false)
+            ),
+            //2 get first ball
+            ConcurrentTask.AllTasks(
+                new FollowPathTask("pravinGetFirstBall"),
+                SequentialTask.Sequence(
+                    new WaitTask(1.0),
+                    new CargoIntakeTask(4.0, true)
+                )
+            ),
+
+            //3 get second ball
+            ConcurrentTask.AllTasks(
+                new FollowPathTask("pravinGetSecondBall"),
+                SequentialTask.Sequence(
+                    new WaitTask(1.0),
+                    new CargoIntakeTask(4.0, true)
+                )
+            ),
+
+            //4 shoot two balls
+            new FollowPathTask("pravinMoveToShoot"),
+            ConcurrentTask.AnyTasks(
+                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
+                new CargoShootTask()
+            )
+        );
+    }
 } // yaaaaaAAAaaaAaaaAAAAaa
 
 

@@ -236,22 +236,21 @@ public class RoadRunnerTrajectoryGenerator
                 .splineToConstantHeading(new Vector2d(-28, 7.6), 180 * Helpers.DEGREES_TO_RADIANS)
                 .splineToSplineHeading(new Pose2d(-60, 7.6, 180 * Helpers.DEGREES_TO_RADIANS), 180 * Helpers.DEGREES_TO_RADIANS)
                 .splineToConstantHeading(new Vector2d(-85, 7.6), 180 * Helpers.DEGREES_TO_RADIANS),
-            "urMom");
+            "pravinGetFirstBall");
 
         addPath(
             pathManager,
             startTrajectory(-85, 7.6, 180 * Helpers.DEGREES_TO_RADIANS, 90 * Helpers.DEGREES_TO_RADIANS)
                 .splineToSplineHeading(new Pose2d(-73.2, 66.73, 67.8 * Helpers.DEGREES_TO_RADIANS), 67.8 * Helpers.DEGREES_TO_RADIANS)
                 .splineToConstantHeading(new Vector2d(-49.7, 94), 67.8 * Helpers.DEGREES_TO_RADIANS),
-            "urDad"
-        );
+            "pravinGetSecondBall");
 
         addPath(
             pathManager,
             startTrajectory(-49.7, 94, 67.8 * Helpers.DEGREES_TO_RADIANS, 0)
                 .splineToSplineHeading(new Pose2d( -49.7, 0.0, -20.90 * Helpers.DEGREES_TO_RADIANS), -20.90 * Helpers.DEGREES_TO_RADIANS)
                 .splineToConstantHeading(new Vector2d(0.0, 0.0), -20.90 * Helpers.DEGREES_TO_RADIANS),
-            "urStepSister");
+            "pravinMoveToShoot");
     }
 
     private static TrajectoryBuilder startTrajectory()
