@@ -36,7 +36,8 @@ public class AutonomousRoutineSelector
         ShootDriveBack,
         ShootLowDriveBack,
         ThreeBallAuto,
-        ThreeBallCloseAuto
+        ThreeBallCloseAuto,
+        WillThreeBallAuto
     }
 
     /**
@@ -64,6 +65,7 @@ public class AutonomousRoutineSelector
         this.routineChooser.addObject("3 Ball Auto", AutoRoutine.ThreeBallAuto);
         this.routineChooser.addObject("5 Ball Auto", AutoRoutine.FiveBallAutoPog);
         this.routineChooser.addObject("3 Ball Close Auto", AutoRoutine.ThreeBallCloseAuto);
+        this.routineChooser.addObject("Will's 3 Ball Auto", AutoRoutine.WillThreeBallAuto);
         networkTableProvider.addChooser("Auto Routine", this.routineChooser);
 
         this.positionChooser = networkTableProvider.getSendableChooser();
@@ -131,6 +133,10 @@ public class AutonomousRoutineSelector
         else if (routine == AutoRoutine.ThreeBallCloseAuto)
         {
             return threeBallAutoStartClose();
+        }
+        else if (routine == AutoRoutine.WillThreeBallAuto)
+        {
+            return willThreeBallAuto();
         }
 
         return new PositionStartingTask(0.0, true, true);
@@ -348,6 +354,38 @@ public class AutonomousRoutineSelector
                 new CargoShootTask()
             )
         );
+    }
+
+    private static IControlTask willThreeBallAuto()
+    {
+        return SequentialTask.Sequence(
+            new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
+            ConcurrentTask.AnyTasks(
+                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
+                new CargoShootTask(false)),
+
+            // get second cargo
+            ConcurrentTask.AllTasks(
+                new FollowPathTask("w3ba-goToPickUpBall2", false, false),
+                SequentialTask.Sequence(
+                    new WaitTask(1.0),
+                    new CargoIntakeTask(2.0, true))),
+
+            // get third cargo
+            ConcurrentTask.AllTasks(
+                new FollowPathTask("w3ba-goToPickUpBall3", false, false),
+                SequentialTask.Sequence(
+                    new WaitTask(1.0),
+                    new CargoIntakeTask(2.0, true))),
+
+            // auto-align and shoot two cargo
+            new FollowPathTask("w3ba-turnToShoot", false, false),
+            new VisionCenteringTask(false),
+            new VisionShootPositionTask(),
+            new DriveTrainFieldOrientationModeTask(true),
+            ConcurrentTask.AnyTasks(
+                new VisionShootSpinTask(10.0, true),
+                new CargoShootTask()));
     }
 } // yaaaaaAAAaaaAaaaAAAAaa
 
