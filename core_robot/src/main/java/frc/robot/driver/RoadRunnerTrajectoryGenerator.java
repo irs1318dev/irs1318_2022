@@ -107,139 +107,40 @@ public class RoadRunnerTrajectoryGenerator
                 .splineTo(new Vector2d(-10,-15), 0),
             "lineUpUnder1stClimberBarNotWall");
 
-        addPath(
-            pathManager,
-            startTrajectory()
-                .splineTo(new Vector2d(5, 0), 0),
-            "goForward5in");
-
-        addPath(
-            pathManager,
-            startTrajectory(180.0 * Helpers.DEGREES_TO_RADIANS)
-                .splineToSplineHeading(new Pose2d(-60, 0, 180.0 * Helpers.DEGREES_TO_RADIANS), 180 * Helpers.DEGREES_TO_RADIANS)
-                .splineToConstantHeading(new Vector2d(-84, 0), 180 * Helpers.DEGREES_TO_RADIANS),
-            "goBack5ftTurn180GoBack2ft");
-
-        // 5-BALL AUTO PATHS
-
-        addPath(
-            pathManager,
-            startTrajectory()
-                .splineTo(new Vector2d(60, 0), 0),
-            "goForward5ft");
-
-        addPath(
-            pathManager,
-            startTrajectory(135.0 * Helpers.DEGREES_TO_RADIANS)
-                .splineToSplineHeading(new Pose2d(-60, 54.82, 180.0 * Helpers.DEGREES_TO_RADIANS), 180 * Helpers.DEGREES_TO_RADIANS)
-                .splineToConstantHeading(new Vector2d(-100.4, 54.82), 180 * Helpers.DEGREES_TO_RADIANS),
-            "goBack5ftLeft3ftTurn180GoBack3ft");
-
-        addPath(
-            pathManager,
-            startTrajectory(-90 * Helpers.DEGREES_TO_RADIANS)
-                .splineToSplineHeading(new Pose2d(-40, -62, -122.25 * Helpers.DEGREES_TO_RADIANS), -122.25 * Helpers.DEGREES_TO_RADIANS)
-                .splineToConstantHeading(new Vector2d(-60, -96), -122.25 * Helpers.DEGREES_TO_RADIANS),
-            "goBack3ftRight5ftTurn122GoBack2ftRight3ft");
-        
-        addPath(
-            pathManager,
-            startTrajectory(-60 * Helpers.DEGREES_TO_RADIANS)
-                .splineToSplineHeading(new Pose2d(-74,-63, -79.2 * Helpers.DEGREES_TO_RADIANS), -139.3 * Helpers.DEGREES_TO_RADIANS),
-            "goBack6ftRight5ftTurn122");
-
-        addPath(
-            pathManager,
-            startTrajectory(110 * Helpers.DEGREES_TO_RADIANS)
-                .splineToSplineHeading(new Pose2d(-76,193, 154.7 * Helpers.DEGREES_TO_RADIANS), 154.7 * Helpers.DEGREES_TO_RADIANS)
-                .splineToConstantHeading(new Vector2d(-110, 209), 154.7 * Helpers.DEGREES_TO_RADIANS),
-            "goBack6ftLeft16ftTurn154GoBack3ftLeft1ft");
-
-        addPath(
-            pathManager,
-            startTrajectory(90 * Helpers.DEGREES_TO_RADIANS)
-                .splineToSplineHeading(new Pose2d(-215,142, -154.7 * Helpers.DEGREES_TO_RADIANS), -154.7 * Helpers.DEGREES_TO_RADIANS),
-            "goBack18ftLeft12ftTurn154");
-
-        // 2 BALL AUTO SAMMAMISH PATHS
-
-        addPath(
-            pathManager, 
-            startTrajectory()
-                .splineToSplineHeading(new Pose2d(41.87, -2.97, 4.1 * Helpers.DEGREES_TO_RADIANS), 4.1 * Helpers.DEGREES_TO_RADIANS),
-            "goBack3ftRight1Turn4");
-
-        addPath(
-            pathManager,
-            startTrajectory(-90 * Helpers.DEGREES_TO_RADIANS)
-                .splineToSplineHeading(new Pose2d(-99.47, 15.56, -171 * Helpers.DEGREES_TO_RADIANS), -171 * Helpers.DEGREES_TO_RADIANS),
-            "goLeft1ftBack8ftTurn171");//-171
-
-        // FIXED 3 BALL 
-        
-        
-        addPath(
-            pathManager,
-            startTrajectory(-180.0 * Helpers.DEGREES_TO_RADIANS)
-                .splineToConstantHeading(new Vector2d(-36, -18), -90.0)
-                .splineToSplineHeading(new Pose2d(-46, -44, -135.0 * Helpers.DEGREES_TO_RADIANS), -164.5 * Helpers.DEGREES_TO_RADIANS)
-                .splineToConstantHeading(new Vector2d(-66.0, -60.0), -135.0 * Helpers.DEGREES_TO_RADIANS),  // 28 and 110
-            "goBack9ftRight2ftTurn164");
-
-        addPath(
-            pathManager,
-            startTrajectory()
-                .splineToSplineHeading(new Pose2d(30, 70, 83.0 * Helpers.DEGREES_TO_RADIANS), -113 * Helpers.DEGREES_TO_RADIANS)
-                .splineToConstantHeading(new Vector2d(45, 105), 83.0 * Helpers.DEGREES_TO_RADIANS), // 45 and 105
-            "goBack4ftRight9ftTurn113");
-        
-        addPath(
-            pathManager,
-            startTrajectory()
-                .splineToSplineHeading(new Pose2d(-84, -13, 8.9 * Helpers.DEGREES_TO_RADIANS), Helpers.DEGREES_TO_RADIANS), // 13 and 84 
-            "goBack7ftRight1ftTurn8");
-        
-        addPath(
-            pathManager,
-            startTrajectory()
-                .splineToSplineHeading(new Pose2d(0, -62, 90.0 * Helpers.DEGREES_TO_RADIANS), 90.0 * Helpers.DEGREES_TO_RADIANS)
-                .splineToConstantHeading(new Vector2d(0, -93), 90.0 * Helpers.DEGREES_TO_RADIANS), // 93
-            "goRight8ftTurn90");
-
         // WILL's 3-ball auto:
         addPath(
             pathManager,
-            startTrajectory(0.0, 0.0, 67.0 * Helpers.DEGREES_TO_RADIANS, -90.0 * Helpers.DEGREES_TO_RADIANS)
-                // .splineToConstantHeading(new Vector2d(-7.2, -16.9), -90.0 * Helpers.DEGREES_TO_RADIANS)
-                // .splineToSplineHeading(new Pose2d(-7.2, -70.3, -90.0 * Helpers.DEGREES_TO_RADIANS), -90.0 * Helpers.DEGREES_TO_RADIANS)
-                .splineToSplineHeading(new Pose2d(-7.2, -82.3, -90.0 * Helpers.DEGREES_TO_RADIANS), -90.0 * Helpers.DEGREES_TO_RADIANS),
+            startTrajectory(0.0, 0.0, 69.0 * Helpers.DEGREES_TO_RADIANS, -69.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(-6.8, -17.7), -90.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-7.8, -70.3, -90.0 * Helpers.DEGREES_TO_RADIANS), -90.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-7.8, -82.1, -90.0 * Helpers.DEGREES_TO_RADIANS), -90.0 * Helpers.DEGREES_TO_RADIANS),
             "w3ba-goToPickUpBall2");
 
         addPath(
             pathManager,
-            startTrajectory(-7.2, -82.3, -90.0 * Helpers.DEGREES_TO_RADIANS, -61.5 * Helpers.DEGREES_TO_RADIANS)
-//                .splineToSplineHeading(new Pose2d(-75.5, -38.8, -180.0 * Helpers.DEGREES_TO_RADIANS), -180.0 * Helpers.DEGREES_TO_RADIANS)
-                .splineToSplineHeading(new Pose2d(-87.5, -38.8, -180.0 * Helpers.DEGREES_TO_RADIANS), -180.0 * Helpers.DEGREES_TO_RADIANS),
+            startTrajectory(-7.8, -82.1, -90.0 * Helpers.DEGREES_TO_RADIANS, -61.5 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-76.1, -38.6, -180.0 * Helpers.DEGREES_TO_RADIANS), -180.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-88.1, -38.6, -180.0 * Helpers.DEGREES_TO_RADIANS), -180.0 * Helpers.DEGREES_TO_RADIANS),
             "w3ba-goToPickUpBall3");
 
         addPath(
             pathManager,
-            startTrajectory(-87.5, -38.8, -180.0 * Helpers.DEGREES_TO_RADIANS, 23.9 * Helpers.DEGREES_TO_RADIANS)
+            startTrajectory(-88.1, -38.6, -180.0 * Helpers.DEGREES_TO_RADIANS, 23.9 * Helpers.DEGREES_TO_RADIANS)
                 .splineToSplineHeading(new Pose2d(-76.5, -33.9, 23.9 * Helpers.DEGREES_TO_RADIANS), 23.9 * Helpers.DEGREES_TO_RADIANS),
             "w3ba-turnToShoot");
 
         // WILL's 2-ball auto:
         addPath(
             pathManager,
-            startTrajectory(0.0, 0.0, -23.0 * Helpers.DEGREES_TO_RADIANS, 142.1 * Helpers.DEGREES_TO_RADIANS)
+            startTrajectory(0.0, 0.0, -21.0 * Helpers.DEGREES_TO_RADIANS, 142.1 * Helpers.DEGREES_TO_RADIANS)
                 .splineToConstantHeading(new Vector2d(9.5, 7.4), 142.1 * Helpers.DEGREES_TO_RADIANS)
                 .splineToSplineHeading(new Pose2d(-55.6, 43.4, 142.1 * Helpers.DEGREES_TO_RADIANS), 142.1 * Helpers.DEGREES_TO_RADIANS)
-                .splineToConstantHeading(new Vector2d(-65.1, 50.8), 142.1 * Helpers.DEGREES_TO_RADIANS),
+                .splineToConstantHeading(new Vector2d(-64.9, 51.4), 142.1 * Helpers.DEGREES_TO_RADIANS),
             "w2ba-goToPickUpBall2");
 
         addPath(
             pathManager,
-            startTrajectory(-65.1, 50.8, 142.1 * Helpers.DEGREES_TO_RADIANS, -37.9 * Helpers.DEGREES_TO_RADIANS)
+            startTrajectory(-64.9, 51.4, 142.1 * Helpers.DEGREES_TO_RADIANS, -37.9 * Helpers.DEGREES_TO_RADIANS)
                 .splineToSplineHeading(new Pose2d(-55.6, 43.4, -37.9 * Helpers.DEGREES_TO_RADIANS), -37.9 * Helpers.DEGREES_TO_RADIANS),
             "w2ba-turnToShoot");
 

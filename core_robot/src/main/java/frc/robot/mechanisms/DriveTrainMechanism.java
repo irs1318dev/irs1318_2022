@@ -491,6 +491,13 @@ public class DriveTrainMechanism implements IMechanism
         {
             this.robotYaw = this.imuManager.getAngle();
             this.desiredYaw = this.robotYaw;
+            this.angle = 0.0;
+        }
+
+        double startingAngle = this.driver.getAnalog(AnalogOperation.PositionStartingAngle);
+        if (startingAngle != TuningConstants.PERRY_THE_PLATYPUS)
+        {
+            this.angle = startingAngle;
         }
 
         if (this.firstRun || this.driver.getDigital(DigitalOperation.DriveTrainReset))
