@@ -10,8 +10,8 @@ import frc.robot.driver.DigitalOperation;
  */
 public class TuningConstants
 {
-    public static final boolean COMPETITION_ROBOT = false;
-    public static boolean THROW_EXCEPTIONS = false; //!TuningConstants.COMPETITION_ROBOT;
+    public static final boolean COMPETITION_ROBOT = true;
+    public static boolean THROW_EXCEPTIONS = !TuningConstants.COMPETITION_ROBOT;
     public static boolean LOG_EXCEPTIONS = true;
 
     public static final boolean EXPECT_UNUSED_JOYSTICKS = true;
@@ -26,8 +26,8 @@ public class TuningConstants
     //================================================== Logging  ==============================================================
 
     public static final int CALENDAR_YEAR = 2022;
-    public static final boolean LOG_TO_FILE = true; //TuningConstants.COMPETITION_ROBOT;
-    public static final boolean LOG_FILE_ONLY_COMPETITION_MATCHES = false; //true;
+    public static final boolean LOG_TO_FILE = TuningConstants.COMPETITION_ROBOT;
+    public static final boolean LOG_FILE_ONLY_COMPETITION_MATCHES = true;
     public static final long LOG_FILE_REQUIRED_FREE_SPACE = 50 * 1024 * 1024; // require at least 50 MB of space
     public static final int LOG_FLUSH_THRESHOLD = 25;
 
@@ -86,7 +86,7 @@ public class TuningConstants
 
     public static final int CANDLE_LED_COUNT = 8;
     public static final int LED_STRIP_LED_COUNT = 60; // 60 LEDs per meter-long strip from CTRE
-    public static final int CANDLE_TOTAL_NUMBER_LEDS = TuningConstants.CANDLE_LED_COUNT + TuningConstants.LED_STRIP_LED_COUNT * 2;
+    public static final int CANDLE_TOTAL_NUMBER_LEDS = TuningConstants.CANDLE_LED_COUNT + TuningConstants.LED_STRIP_LED_COUNT; // * 2;
 
     public static final int CANDLE_ANIMATION_SLOT_1 = 0;
     public static final int CANDLE_ANIMATION_SLOT_2 = 1;

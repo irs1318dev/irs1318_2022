@@ -80,13 +80,13 @@ public class RoadRunnerTrajectoryGenerator
         addPath(
             pathManager,
             startTrajectory()
-                .splineToSplineHeading(new Pose2d(-1, 0, 180.0 * Helpers.DEGREES_TO_RADIANS), 180 * Helpers.DEGREES_TO_RADIANS),
+                .splineToSplineHeading(new Pose2d(-1, 0, 180.0 * Helpers.DEGREES_TO_RADIANS), 180.0 * Helpers.DEGREES_TO_RADIANS),
             "turn180Path");
 
         addPath(
             pathManager,
-            startTrajectory()
-                .splineToSplineHeading(new Pose2d(-84, 0, 180.0 * Helpers.DEGREES_TO_RADIANS), 180 * Helpers.DEGREES_TO_RADIANS),
+            startTrajectory(180.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-84, 0, 180.0 * Helpers.DEGREES_TO_RADIANS), 180.0 * Helpers.DEGREES_TO_RADIANS),
             "goBack7ftRotate");
 
         addPath(

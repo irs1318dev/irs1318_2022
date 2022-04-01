@@ -578,6 +578,9 @@ public class DriveTrainMechanism implements IMechanism
             this.driveMotors[i].stop();
             this.steerMotors[i].stop();
         }
+
+        this.xPosition = 0.0;
+        this.yPosition = 0.0;
     }
 
     public double[] getModuleTurnInPlaceAngles()
@@ -666,6 +669,9 @@ public class DriveTrainMechanism implements IMechanism
                 // add correction for x/y drift
                 xVelocityGoal += this.pathXOffsetPID.calculatePosition(xGoal, this.xPosition);
                 yVelocityGoal += this.pathYOffsetPID.calculatePosition(yGoal, this.yPosition);
+
+                this.logger.logNumber(LoggingKey.DriveTrainXPositionGoal, xGoal);
+                this.logger.logNumber(LoggingKey.DriveTrainYPositionGoal, yGoal);
 
                 // convert velocity to be robot-oriented
                 centerVelocityRight = Helpers.cosd(this.robotYaw) * xVelocityGoal + Helpers.sind(this.robotYaw) * yVelocityGoal;
