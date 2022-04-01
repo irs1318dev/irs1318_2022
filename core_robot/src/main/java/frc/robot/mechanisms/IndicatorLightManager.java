@@ -43,7 +43,7 @@ public class IndicatorLightManager implements IMechanism
         this.cargo = cargo;
         this.compress = compress;
 
-        this.candle = provider.getCANdle(ElectronicsConstants.INDICATOR_LIGHT_CANDLE_CAN_ID);
+        this.candle = provider.getCANdle(ElectronicsConstants.INDICATOR_LIGHT_CANDLE_CAN_ID, ElectronicsConstants.CANIVORE_NAME);
         this.candle.configLEDType(CANdleLEDStripType.GRB);
         this.candle.configVBatOutput(CANdleVBatOutputMode.Off);
 
