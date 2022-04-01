@@ -80,13 +80,13 @@ public class RoadRunnerTrajectoryGenerator
         addPath(
             pathManager,
             startTrajectory()
-                .splineToSplineHeading(new Pose2d(-1, 0, 180.0 * Helpers.DEGREES_TO_RADIANS), 180 * Helpers.DEGREES_TO_RADIANS),
+                .splineToSplineHeading(new Pose2d(-1, 0, 180.0 * Helpers.DEGREES_TO_RADIANS), 180.0 * Helpers.DEGREES_TO_RADIANS),
             "turn180Path");
 
         addPath(
             pathManager,
-            startTrajectory()
-                .splineToSplineHeading(new Pose2d(-84, 0, 180.0 * Helpers.DEGREES_TO_RADIANS), 180 * Helpers.DEGREES_TO_RADIANS),
+            startTrajectory(180.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-84, 0, 180.0 * Helpers.DEGREES_TO_RADIANS), 180.0 * Helpers.DEGREES_TO_RADIANS),
             "goBack7ftRotate");
 
         addPath(
@@ -118,7 +118,7 @@ public class RoadRunnerTrajectoryGenerator
 
         addPath(
             pathManager,
-            startTrajectory(-7.8, -82.1, -90.0 * Helpers.DEGREES_TO_RADIANS, -61.5 * Helpers.DEGREES_TO_RADIANS)
+            startTrajectory(-7.8, -82.1, -90.0 * Helpers.DEGREES_TO_RADIANS, -220.0 * Helpers.DEGREES_TO_RADIANS)
                 .splineToSplineHeading(new Pose2d(-76.1, -38.6, -180.0 * Helpers.DEGREES_TO_RADIANS), -180.0 * Helpers.DEGREES_TO_RADIANS)
                 .splineToSplineHeading(new Pose2d(-88.1, -38.6, -180.0 * Helpers.DEGREES_TO_RADIANS), -180.0 * Helpers.DEGREES_TO_RADIANS),
             "w3ba-goToPickUpBall3");
