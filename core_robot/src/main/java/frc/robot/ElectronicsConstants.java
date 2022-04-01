@@ -35,6 +35,8 @@ public class ElectronicsConstants
     public static final int POWER_DISTRIBUTION_CAN_ID = 1;
     public static final PowerDistributionModuleType POWER_DISTRIBUTION_TYPE = PowerDistributionModuleType.PowerDistributionHub;
 
+    public static final String CANIVORE_NAME = "CANIVORE1"; // Module A
+
     public static final int PNEUMATICS_MODULE_A = 1; // Module A
     public static final PneumaticsModuleType PNEUMATICS_MODULE_TYPE_A = PneumaticsModuleType.PneumaticsHub; // Module A
     public static final int PNEUMATICS_MODULE_B = 2; // Module B
