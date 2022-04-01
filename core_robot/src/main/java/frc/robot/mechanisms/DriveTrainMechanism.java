@@ -870,8 +870,8 @@ public class DriveTrainMechanism implements IMechanism
 
         double rightFieldVelocity = rightRobotVelocity * Helpers.cosd(this.robotYaw) - forwardRobotVelocity * Helpers.sind(this.robotYaw);
         double forwardFieldVelocity = rightRobotVelocity * Helpers.sind(this.robotYaw) + forwardRobotVelocity * Helpers.cosd(this.robotYaw);
-        this.xPosition += rightFieldVelocity * this.deltaT;
-        this.yPosition += forwardFieldVelocity * this.deltaT;
+        this.xPosition += forwardFieldVelocity * this.deltaT;
+        this.yPosition -= rightFieldVelocity * this.deltaT;
     }
 
     /**
