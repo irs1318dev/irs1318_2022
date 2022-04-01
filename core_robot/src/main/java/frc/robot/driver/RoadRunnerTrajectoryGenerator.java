@@ -166,6 +166,41 @@ public class RoadRunnerTrajectoryGenerator
                 .splineToSplineHeading(new Pose2d( -45.2, 0.0, -20.90 * Helpers.DEGREES_TO_RADIANS), -20.90 * Helpers.DEGREES_TO_RADIANS)
                 .splineToConstantHeading(new Vector2d(0.0, 0.0), -20.90 * Helpers.DEGREES_TO_RADIANS),
             "pravinMoveToShoot");
+
+        // PRAVIN'S 4 Ball
+
+        addPath(
+            pathManager, 
+            startTrajectory(0, 0, -178.6 * Helpers.DEGREES_TO_RADIANS, -178.6 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(-40,0), -178.6 * Helpers.DEGREES_TO_RADIANS),
+            "pravinGetFirstBall4");
+        
+        addPath(
+            pathManager,
+            startTrajectory(-40, 0, -178.6 * Helpers.DEGREES_TO_RADIANS, 45 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-16.2, 15.2, -20.6 * Helpers.DEGREES_TO_RADIANS), -20.6 * Helpers.DEGREES_TO_RADIANS), 
+            "pravinMoveToShootFirstSetBalls");
+        
+        addPath(
+            pathManager,
+            startTrajectory(-16.2, 15.2, -20.6 * Helpers.DEGREES_TO_RADIANS, 75 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(1.6, -75, 90 * Helpers.DEGREES_TO_RADIANS), 90 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(1.6, -100), 90 * Helpers.DEGREES_TO_RADIANS), 
+            "pravinGetSecondBall4");
+        
+        addPath(
+            pathManager,
+            startTrajectory(1.6, -100, 90 * Helpers.DEGREES_TO_RADIANS, 110 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(9.2, 219.5, 133.9 * Helpers.DEGREES_TO_RADIANS), 133.9 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(-11.6, 241.1), 133.9 * Helpers.DEGREES_TO_RADIANS),
+            "pravinGetThirdBall4");
+        
+        addPath(
+            pathManager,
+            startTrajectory(-11.6, 241.1, 133.9 * Helpers.DEGREES_TO_RADIANS, -45 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-16.2, 15.2, -20.6 * Helpers.DEGREES_TO_RADIANS), -20.6 * Helpers.DEGREES_TO_RADIANS),
+            "pravinMoveToShootSecondSetBalls");
+
     }
 
     private static TrajectoryBuilder startTrajectory()
