@@ -349,6 +349,7 @@ public class TuningConstants
 
     public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.6;
     public static final double CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED = 0.3;
+    public static final double CARGO_FLYWHEEL_AUTO_FOUR_BALL_SHOOT_SPEED = 0.67;
     public static final double CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED = 0.65;
 
     public static final double CARGO_CONVEYOR_THROUGHBEAM_CUTOFF = 2.7;

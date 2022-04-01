@@ -47,7 +47,8 @@ public class AutonomousRoutineSelector
         ShootLowDriveBack,
         WillThreeBallAuto,
         WillTwoBallAuto,
-        PravinThreeBallAuto
+        PravinThreeBallAuto,
+        PravinFourBallAuto
     }
 
     /**
@@ -75,6 +76,7 @@ public class AutonomousRoutineSelector
         this.routineChooser.addObject("Will's 3-Ball Auto", AutoRoutine.WillThreeBallAuto);
         this.routineChooser.addObject("Will's 2-Ball Auto", AutoRoutine.WillTwoBallAuto);
         this.routineChooser.addObject("Pravin's 3-Ball Auto", AutoRoutine.PravinThreeBallAuto);
+        this.routineChooser.addObject("Pravin's 4-Ball Auto", AutoRoutine.PravinFourBallAuto);
         networkTableProvider.addChooser("Auto Routine", this.routineChooser);
 
         // this.positionChooser = networkTableProvider.getSendableChooser();
@@ -152,6 +154,10 @@ public class AutonomousRoutineSelector
         else if (routine == AutoRoutine.PravinThreeBallAuto)
         {
             return pravinThreeBallAuto();
+        }
+        else if (routine == AutoRoutine.PravinFourBallAuto)
+        {
+            return pravinFourBallAuto();
         }
 
         return new PositionStartingTask(0.0, true, true);
@@ -303,6 +309,55 @@ public class AutonomousRoutineSelector
             new FollowPathTask("pravinMoveToShoot", false, false),
             ConcurrentTask.AnyTasks(
                 new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
+                new CargoShootTask()
+            )
+        );
+    }
+
+    private static IControlTask pravinFourBallAuto()
+    {
+        return SequentialTask.Sequence(
+            new PositionStartingTask(-178.6, false, true),
+            //0 Set hood position
+            new CargoHoodTask(DigitalOperation.CargoHoodMedium),
+
+            //1 get first ball
+            ConcurrentTask.AnyTasks(
+                new FollowPathTask("pravinGetFirstBall4"),
+                SequentialTask.Sequence(
+                    new WaitTask(3.0),
+                    new CargoIntakeTask(2.0, true)
+                )
+            ),
+            //2 shoot current balls
+            new FollowPathTask("pravinMoveToShootFirstSetBalls", false, false),
+            ConcurrentTask.AnyTasks(
+                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_AUTO_FOUR_BALL_SHOOT_SPEED),
+                new CargoShootTask()
+            ),
+
+            //3 get second ball
+            ConcurrentTask.AllTasks(
+                new FollowPathTask("pravinGetSecondBall4", false, false),
+                SequentialTask.Sequence(
+                    new WaitTask(2.0),
+                    new CargoIntakeTask(2.0, true)
+                )
+            ),
+
+            //4 get third ball
+            ConcurrentTask.AllTasks(
+                new FollowPathTask("pravinGetThirdBall4", false, false),
+                SequentialTask.Sequence(
+                    new WaitTask(3.0),
+                    new CargoIntakeTask(4.0, true)
+                )
+            ),
+
+            //4 shoot current balls
+            new FollowPathTask("pravinMoveToShootSecondSetBalls", false, false),
+            ConcurrentTask.AnyTasks(
+                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_AUTO_FOUR_BALL_SHOOT_SPEED),
                 new CargoShootTask()
             )
         );
