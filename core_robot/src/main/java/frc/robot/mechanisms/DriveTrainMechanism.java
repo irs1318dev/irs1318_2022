@@ -713,6 +713,7 @@ public class DriveTrainMechanism implements IMechanism
             }
             else if (!useFieldOriented)
             {
+                this.desiredYaw = this.robotYaw;
                 omega = this.driver.getAnalog(AnalogOperation.DriveTrainTurnSpeed) * TuningConstants.DRIVETRAIN_TURN_SCALE;
             }
             else

@@ -40,7 +40,7 @@ public class TuningConstants
     public static final double VISION_CENTERING_DURATION = 0.75;
 
     // Acceptable vision distance from tape in inches (as measured by vision system)
-    public static final double MAX_VISION_ACCEPTABLE_FORWARD_DISTANCE = 1.5;
+    public static final double MAX_VISION_ACCEPTABLE_FORWARD_DISTANCE = 1.75;
 
     // PID settings for Centering the robot on a vision target from one stationary place
     public static final double VISION_STATIONARY_CENTERING_PID_KP = 0.025;
@@ -61,7 +61,7 @@ public class TuningConstants
     public static final double VISION_MOVING_CENTERING_PID_MAX = 0.3;
 
     // PID settings for Advancing the robot towards a vision target
-    public static final double VISION_ADVANCING_PID_KP = 0.01;
+    public static final double VISION_ADVANCING_PID_KP = 0.015;
     public static final double VISION_ADVANCING_PID_KI = 0.0;
     public static final double VISION_ADVANCING_PID_KD = 0.0;
     public static final double VISION_ADVANCING_PID_KF = 0.0;

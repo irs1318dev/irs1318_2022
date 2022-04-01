@@ -118,7 +118,7 @@ public class RoadRunnerTrajectoryGenerator
 
         addPath(
             pathManager,
-            startTrajectory(-7.8, -82.1, -90.0 * Helpers.DEGREES_TO_RADIANS, -61.5 * Helpers.DEGREES_TO_RADIANS)
+            startTrajectory(-7.8, -82.1, -90.0 * Helpers.DEGREES_TO_RADIANS, -220.0 * Helpers.DEGREES_TO_RADIANS)
                 .splineToSplineHeading(new Pose2d(-76.1, -38.6, -180.0 * Helpers.DEGREES_TO_RADIANS), -180.0 * Helpers.DEGREES_TO_RADIANS)
                 .splineToSplineHeading(new Pose2d(-88.1, -38.6, -180.0 * Helpers.DEGREES_TO_RADIANS), -180.0 * Helpers.DEGREES_TO_RADIANS),
             "w3ba-goToPickUpBall3");
