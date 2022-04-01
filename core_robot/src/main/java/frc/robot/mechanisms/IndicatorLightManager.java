@@ -60,30 +60,21 @@ public class IndicatorLightManager implements IMechanism
     @Override
     public void update()
     {
-        boolean noCargo = this.cargo.hasNoCargo();
-        boolean oneCargo = this.cargo.hasBallReadyToShoot() && !this.cargo.hasBackupBallToShoot();
-        boolean isInEndgame = this.ds.getMode() == RobotMode.Teleop &&
-                                this.ds.getMatchTime() <= TuningConstants.ENDGAME_START_TIME;
-        double compressorPressure = this.compress.getPressureValue();
-
-        boolean isSpinningUp = this.cargo.getFlywheelSetpoint() > 0;
-        boolean isSpunUp = this.cargo.isFlywheelSpunUp();
-
         LightMode newLightMode;
 
-        if (ds.getMode() == RobotMode.Autonomous) 
+        if (this.ds.getMode() == RobotMode.Autonomous) 
         {
             newLightMode = LightMode.PurpleTwinkling;
         }
         else
         {
-            if (isSpinningUp)
+            if (this.cargo.getFlywheelSetpoint() > 0.0)
             {
-                if (noCargo)
+                if (this.cargo.hasNoCargo())
                 {
                     newLightMode = LightMode.Red;
                 }
-                else if (isSpunUp)
+                else if (this.cargo.isFlywheelSpunUp())
                 {
                     newLightMode = LightMode.Rainbow;
                 }
@@ -92,8 +83,11 @@ public class IndicatorLightManager implements IMechanism
                     newLightMode = LightMode.YellowFlashing;
                 }
             }
-            else if (isInEndgame)
+            else if (this.ds.getMode() == RobotMode.Teleop &&
+                this.ds.getMatchTime() <= TuningConstants.ENDGAME_START_TIME)
             {
+                double compressorPressure = this.compress.getPressureValue();
+
                 double timeRemaining = this.ds.getMatchTime() - TuningConstants.ENDGAME_CLIMB_TIME;
                 double endPressure = compressorPressure + timeRemaining * TuningConstants.COMPRESSOR_FILL_RATE;
                 if (compressorPressure >= TuningConstants.COMPRESSOR_ENOUGH_PRESSURE)
@@ -111,11 +105,11 @@ public class IndicatorLightManager implements IMechanism
             }
             else
             {
-                if (noCargo)
+                if (this.cargo.hasNoCargo())
                 {
                     newLightMode = LightMode.Red;
                 }
-                else if (oneCargo)
+                else if (this.cargo.hasBallReadyToShoot() && !this.cargo.hasBackupBallToShoot())
                 {
                     newLightMode = LightMode.Yellow;
                 }
@@ -126,7 +120,7 @@ public class IndicatorLightManager implements IMechanism
             }
         }
 
-        if (newLightMode != this.currentMode) //lightmode needs to change
+        if (newLightMode != this.currentMode)
         {
             this.updateLightRange(
                 this.currentMode,
@@ -151,7 +145,6 @@ public class IndicatorLightManager implements IMechanism
 
         this.currentMode = LightMode.Rainbow;
     }
-
 
     /**
      * Update a light range to a certiain mode
