@@ -7,11 +7,6 @@ public enum MacroOperation implements IOperation
     // Auton testing *harru poyter says pog*
     FollowPathTest1,
     FollowPathTest2,
-    AutoDriveBackIntakeShoot,
-    AutoShootDriveBack,
-    ThreeBallAuto,
-    FiveBallAuto,
-    AutoDriveBackIntakeDriveForwardShoot,
 
     // DriveTrain operations:
     PIDLightBrake,
