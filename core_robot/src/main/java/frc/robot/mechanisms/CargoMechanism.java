@@ -226,6 +226,8 @@ public class CargoMechanism implements IMechanism
         }
 
         // control intake rollers
+        boolean forceIntakeAndConveyor = this.driver.getDigital(DigitalOperation.CargoForceIntakeAndConveyorOnly);
+        boolean forceIntake = forceIntakeAndConveyor || this.driver.getDigital(DigitalOperation.CargoForceIntakeOnly);
         double intakePower = TuningConstants.PERRY_THE_PLATYPUS;
         if (this.driver.getDigital(DigitalOperation.CargoEject))
         {
@@ -244,7 +246,7 @@ public class CargoMechanism implements IMechanism
                 this.currentConveyorState = ConveyorState.Off;
             }
 
-            if (this.driver.getDigital(DigitalOperation.CargoIntakeIn) || this.driver.getDigital(DigitalOperation.CargoForceIntakeOnly))
+            if (this.driver.getDigital(DigitalOperation.CargoIntakeIn) || forceIntake)
             {
                 intakePower = TuningConstants.CARGO_INTAKE_POWER;
                 this.conveyorIntakeTimeout = currTime + TuningConstants.CARGO_CONVEYOR_RUNTIME_AFTER_INTAKE;
@@ -272,7 +274,7 @@ public class CargoMechanism implements IMechanism
         {
             this.currentIntakeState = IntakeState.Retracted;
         }
-        else if (intakePower != TuningConstants.PERRY_THE_PLATYPUS && !this.driver.getDigital(DigitalOperation.CargoForceIntakeOnly))
+        else if (intakePower != TuningConstants.PERRY_THE_PLATYPUS && !forceIntake)
         {
             this.currentIntakeState = IntakeState.Extended;
             this.intakeExtensionTimeout = currTime + TuningConstants.CARGO_INTAKE_EXTENSION_TIMEOUT;
@@ -296,7 +298,8 @@ public class CargoMechanism implements IMechanism
         }
 
         // stop when both throughbeams broken
-        if (this.conveyorBeamBroken &&
+        if (!forceIntakeAndConveyor &&
+            this.conveyorBeamBroken &&
             this.feederBeamBroken &&
             (this.currentConveyorState == ConveyorState.Intake || this.currentConveyorState == ConveyorState.Advance))
         {
