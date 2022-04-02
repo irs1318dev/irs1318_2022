@@ -240,12 +240,14 @@ public class AutonomousRoutineSelector
                 new FollowPathTask("winavGoToBall2Ball", false, false),
                 SequentialTask.Sequence(
                     new WaitTask(1.0),
-                    new CargoIntakeTask(2.0, true))),
+                    new CargoIntakeTask(3.0, true))),
 
-            // auto-align and shoot two cargo
-            new FollowPathTask("winavGoToShoot2Ball", false, false),
+            // auto-align and shoot cargo
+            new FollowPathTask("turn180Path"),
+            new VisionCenteringTask(false),
+            new VisionShootPositionTask(),
             ConcurrentTask.AnyTasks(
-                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
+                new VisionShootSpinTask(10.0, true),
                 new CargoShootTask()));
     }
 

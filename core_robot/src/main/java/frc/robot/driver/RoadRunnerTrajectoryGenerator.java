@@ -119,8 +119,8 @@ public class RoadRunnerTrajectoryGenerator
         addPath(
             pathManager,
             startTrajectory(-7.8, -82.1, -90.0 * Helpers.DEGREES_TO_RADIANS, -220.0 * Helpers.DEGREES_TO_RADIANS)
-                .splineToSplineHeading(new Pose2d(-76.1, -38.6, -180.0 * Helpers.DEGREES_TO_RADIANS), -180.0 * Helpers.DEGREES_TO_RADIANS)
-                .splineToSplineHeading(new Pose2d(-88.1, -38.6, -180.0 * Helpers.DEGREES_TO_RADIANS), -180.0 * Helpers.DEGREES_TO_RADIANS),
+                .splineToSplineHeading(new Pose2d(-76.1, -48.6, -180.0 * Helpers.DEGREES_TO_RADIANS), -180.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-88.1, -48.6, -180.0 * Helpers.DEGREES_TO_RADIANS), -180.0 * Helpers.DEGREES_TO_RADIANS),
             "w3ba-goToPickUpBall3");
 
         addPath(
@@ -229,7 +229,7 @@ public class RoadRunnerTrajectoryGenerator
 
     private static TrajectoryBuilder startTrajectory(double startTangent)
     {
-        return startTrajectory(startTangent, 0.0, 0.0, 0.0);
+        return startTrajectory(0.0, 0.0, 0.0, startTangent);
     }
 
     private static TrajectoryBuilder startTrajectory(double startXPos, double startYPos, double startHeading, double startTangent)

@@ -86,7 +86,7 @@ public class TuningConstants
 
     public static final int CANDLE_LED_COUNT = 8;
     public static final int LED_STRIP_LED_COUNT = 60; // 60 LEDs per meter-long strip from CTRE
-    public static final int CANDLE_TOTAL_NUMBER_LEDS = TuningConstants.CANDLE_LED_COUNT + TuningConstants.LED_STRIP_LED_COUNT; // * 2;
+    public static final int CANDLE_TOTAL_NUMBER_LEDS = TuningConstants.CANDLE_LED_COUNT; //+ TuningConstants.LED_STRIP_LED_COUNT; // * 2;
 
     public static final int CANDLE_ANIMATION_SLOT_1 = 0;
     public static final int CANDLE_ANIMATION_SLOT_2 = 1;
@@ -213,7 +213,7 @@ public class TuningConstants
     public static final double DRIVETRAIN_PATH_OMEGA_MAX_OUTPUT = 4.0;
     public static final double DRIVETRAIN_PATH_OMEGA_MIN_OUTPUT = -4.0;
 
-    public static final double DRIVETRAIN_PATH_X_POSITION_PID_KP = 1.0;
+    public static final double DRIVETRAIN_PATH_X_POSITION_PID_KP = 0.0; // 1.0;
     public static final double DRIVETRAIN_PATH_X_POSITION_PID_KI = 0.0;
     public static final double DRIVETRAIN_PATH_X_POSITION_PID_KD = 0.0;
     public static final double DRIVETRAIN_PATH_X_POSITION_PID_KF = 0.0;
@@ -221,7 +221,7 @@ public class TuningConstants
     public static final double DRIVETRAIN_PATH_X_MAX_OUTPUT = 10.0;
     public static final double DRIVETRAIN_PATH_X_MIN_OUTPUT = -10.0;
 
-    public static final double DRIVETRAIN_PATH_Y_POSITION_PID_KP = 1.0;
+    public static final double DRIVETRAIN_PATH_Y_POSITION_PID_KP = 0.0; // 1.0;
     public static final double DRIVETRAIN_PATH_Y_POSITION_PID_KI = 0.0;
     public static final double DRIVETRAIN_PATH_Y_POSITION_PID_KD = 0.0;
     public static final double DRIVETRAIN_PATH_Y_POSITION_PID_KF = 0.0;

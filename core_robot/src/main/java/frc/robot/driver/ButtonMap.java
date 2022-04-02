@@ -1153,7 +1153,7 @@ public class ButtonMap implements IButtonMap
             Shift.None,
             Shift.None,
             ButtonType.Toggle,
-            () -> new FollowPathTask("goBack7ftRotate"),
+            () -> new FollowPathTask("goLeft4ft"),
             new IOperation[]
             {
                 AnalogOperation.DriveTrainMoveForward,
