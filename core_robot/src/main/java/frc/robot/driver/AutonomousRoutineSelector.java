@@ -37,7 +37,8 @@ public class AutonomousRoutineSelector
         WillThreeBallAuto,
         WillTwoBallAuto,
         PravinThreeBallAuto,
-        PravinFourBallAuto
+        PravinFourBallAuto,
+        WinavTwoBallAuto
     }
 
     /**
@@ -66,6 +67,7 @@ public class AutonomousRoutineSelector
         this.routineChooser.addObject("Will's 2-Ball Auto", AutoRoutine.WillTwoBallAuto);
         this.routineChooser.addObject("Pravin's 3-Ball Auto", AutoRoutine.PravinThreeBallAuto);
         this.routineChooser.addObject("Pravin's 4-Ball Auto", AutoRoutine.PravinFourBallAuto);
+        this.routineChooser.addObject("Winav's 2-Ball Auto", AutoRoutine.WinavTwoBallAuto);
         networkTableProvider.addChooser("Auto Routine", this.routineChooser);
 
         // this.positionChooser = networkTableProvider.getSendableChooser();
@@ -138,6 +140,10 @@ public class AutonomousRoutineSelector
         else if (routine == AutoRoutine.PravinFourBallAuto)
         {
             return pravinFourBallAuto();
+        }
+        else if (routine == AutoRoutine.WinavTwoBallAuto)
+        {
+            return winavTwoBall();
         }
 
         return new PositionStartingTask(0.0, true, true);
@@ -217,6 +223,29 @@ public class AutonomousRoutineSelector
             new VisionShootPositionTask(),
             ConcurrentTask.AnyTasks(
                 new VisionShootSpinTask(10.0, true),
+                new CargoShootTask()));
+    }
+
+    private static IControlTask winavTwoBall()
+    {
+        return SequentialTask.Sequence(
+            new PositionStartingTask(69.0, false, true),
+            new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
+            ConcurrentTask.AnyTasks(
+                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
+                new CargoShootTask(false)),
+
+            // get second cargo
+            ConcurrentTask.AllTasks(
+                new FollowPathTask("winavGoToBall2Ball", false, false),
+                SequentialTask.Sequence(
+                    new WaitTask(1.0),
+                    new CargoIntakeTask(2.0, true))),
+
+            // auto-align and shoot two cargo
+            new FollowPathTask("winavGoToShoot2Ball", false, false),
+            ConcurrentTask.AnyTasks(
+                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
                 new CargoShootTask()));
     }
 

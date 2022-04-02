@@ -128,7 +128,26 @@ public class RoadRunnerTrajectoryGenerator
             startTrajectory(-88.1, -38.6, -180.0 * Helpers.DEGREES_TO_RADIANS, 23.9 * Helpers.DEGREES_TO_RADIANS)
                 .splineToSplineHeading(new Pose2d(-76.5, -33.9, 23.9 * Helpers.DEGREES_TO_RADIANS), 23.9 * Helpers.DEGREES_TO_RADIANS),
             "w3ba-turnToShoot");
+        
+        // WINAV's 2-ball auto:
 
+        addPath(
+            pathManager,
+            startTrajectory(0.0, 0.0, 69.0 * Helpers.DEGREES_TO_RADIANS, -69.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToConstantHeading(new Vector2d(-6.8, -17.7), -90.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-7.8, -70.3, -90.0 * Helpers.DEGREES_TO_RADIANS), -90.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-7.8, -82.1, -90.0 * Helpers.DEGREES_TO_RADIANS), -90.0 * Helpers.DEGREES_TO_RADIANS),
+            "winavGoToBall2Ball");
+        
+        addPath(
+            pathManager,
+            startTrajectory(-7.8, -82.1, -90.0 * Helpers.DEGREES_TO_RADIANS, 90 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-6.8, -17.7, 69.0 * Helpers.DEGREES_TO_RADIANS), 69.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(0.0, 0.0, 69.0 * Helpers.DEGREES_TO_RADIANS), 69.0 * Helpers.DEGREES_TO_RADIANS),
+            "winavGoToShoot2Ball");
+        
+        
+            
         // WILL's 2-ball auto:
         addPath(
             pathManager,
