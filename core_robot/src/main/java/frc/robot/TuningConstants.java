@@ -414,6 +414,6 @@ public class TuningConstants
     public static final double CLIMBER_WINCH_POSITION_EXTEND_ACCEPTABLE_DELTA = 0.05;
 
     //================================================== Climber Mechanism ==============================================================
-    public static final double COMPRESSOR_ENOUGH_PRESSURE = 100.0;
+    public static final double COMPRESSOR_ENOUGH_PRESSURE = 90.0;
     public static final double COMPRESSOR_FILL_RATE = 1.0; //PSI PER SECOND
 }   
