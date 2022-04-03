@@ -335,7 +335,7 @@ public class TuningConstants
         new double[]
         {
             0.64,
-            0.62,
+            0.60,
             0.65,
             0.67,
             0.72,

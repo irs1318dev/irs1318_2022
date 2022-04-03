@@ -818,8 +818,6 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
                 DigitalOperation.VisionForceDisable,
                 AnalogOperation.CargoFlywheelVelocityGoal,
-<<<<<<< HEAD
-=======
                 AnalogOperation.DriveTrainMoveForward,
                 AnalogOperation.DriveTrainMoveRight,
                 AnalogOperation.DriveTrainTurnAngleGoal,
@@ -871,7 +869,6 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.VisionEnableGamePieceProcessing,
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
                 DigitalOperation.VisionForceDisable,
->>>>>>> main
             }),
 
         // // climber control macros for codriver
