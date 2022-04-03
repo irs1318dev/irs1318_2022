@@ -314,7 +314,7 @@ public class TuningConstants
             110.0,
             120.0,
             130.0,
-            140.0
+            // 140.0
         };
     public static final DigitalOperation[] CARGO_KNOWN_SHOOTING_HOOD_UP =
         new DigitalOperation[]
@@ -329,7 +329,7 @@ public class TuningConstants
             DigitalOperation.CargoHoodLong,
             DigitalOperation.CargoHoodLong,
             DigitalOperation.CargoHoodLong,
-            DigitalOperation.CargoHoodLong
+            // DigitalOperation.CargoHoodLong
         };
     public static final double[] CARGO_KNOWN_SHOOTING_FLYWHEEL_SPIN_SPEED =
         new double[]
@@ -344,7 +344,7 @@ public class TuningConstants
             0.75,
             0.80,
             0.83,
-            0.92
+            // 0.92
         };
 
     public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.62;

@@ -135,8 +135,8 @@ public class RoadRunnerTrajectoryGenerator
             pathManager,
             startTrajectory(0.0, 0.0, 69.0 * Helpers.DEGREES_TO_RADIANS, -69.0 * Helpers.DEGREES_TO_RADIANS)
                 .splineToConstantHeading(new Vector2d(-6.8, -17.7), -90.0 * Helpers.DEGREES_TO_RADIANS)
-                .splineToSplineHeading(new Pose2d(-7.8, -70.3, -90.0 * Helpers.DEGREES_TO_RADIANS), -90.0 * Helpers.DEGREES_TO_RADIANS)
-                .splineToSplineHeading(new Pose2d(-7.8, -82.1, -90.0 * Helpers.DEGREES_TO_RADIANS), -90.0 * Helpers.DEGREES_TO_RADIANS),
+                .splineToSplineHeading(new Pose2d(-7.8, -82.3, -90.0 * Helpers.DEGREES_TO_RADIANS), -90.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-7.8, -88.1, -90.0 * Helpers.DEGREES_TO_RADIANS), -90.0 * Helpers.DEGREES_TO_RADIANS),
             "winavGoToBall2Ball");
         
         addPath(
