@@ -334,20 +334,20 @@ public class TuningConstants
     public static final double[] CARGO_KNOWN_SHOOTING_FLYWHEEL_SPIN_SPEED =
         new double[]
         {
-            0.60,
+            0.64,
             0.62,
             0.65,
             0.67,
             0.72,
             0.69,
-            0.70,
-            0.72,
-            0.79,
-            0.82,
+            0.71,
+            0.75,
+            0.80,
+            0.83,
             0.92
         };
 
-    public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.6;
+    public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.62;
     public static final double CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED = 0.3;
     public static final double CARGO_FLYWHEEL_AUTO_FOUR_BALL_SHOOT_SPEED = 0.67;
     public static final double CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED = 0.65;
