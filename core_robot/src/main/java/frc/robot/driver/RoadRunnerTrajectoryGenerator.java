@@ -91,8 +91,8 @@ public class RoadRunnerTrajectoryGenerator
 
         addPath(
             pathManager,
-            startTrajectory()
-                .splineTo(new Vector2d(-72, 0), 0),
+            startTrajectory(180.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineTo(new Vector2d(-72, 0), 180.0 * Helpers.DEGREES_TO_RADIANS),
             "goBack6ft");
 
         addPath(
