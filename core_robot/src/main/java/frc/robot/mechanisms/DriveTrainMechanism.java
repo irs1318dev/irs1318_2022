@@ -655,6 +655,7 @@ public class DriveTrainMechanism implements IMechanism
             rotationCenterA = 0.0;
             rotationCenterB = 0.0;
 
+            // Note: using the right-hand rule, "x" is forward, "y" is left, and "angle" is 0 straight ahead and increases counter-clockwise
             double xGoal = this.driver.getAnalog(AnalogOperation.DriveTrainPathXGoal);
             double yGoal = this.driver.getAnalog(AnalogOperation.DriveTrainPathYGoal);
             double angleGoal = this.driver.getAnalog(AnalogOperation.DriveTrainTurnAngleGoal);
@@ -674,8 +675,8 @@ public class DriveTrainMechanism implements IMechanism
                 this.logger.logNumber(LoggingKey.DriveTrainYPositionGoal, yGoal);
 
                 // convert velocity to be robot-oriented
-                centerVelocityRight = Helpers.cosd(this.robotYaw) * xVelocityGoal + Helpers.sind(this.robotYaw) * yVelocityGoal;
-                centerVelocityForward = Helpers.cosd(this.robotYaw) * yVelocityGoal - Helpers.sind(this.robotYaw) * xVelocityGoal;
+                centerVelocityRight = -Helpers.cosd(this.robotYaw) * yVelocityGoal + Helpers.sind(this.robotYaw) * xVelocityGoal;
+                centerVelocityForward = Helpers.cosd(this.robotYaw) * xVelocityGoal + Helpers.sind(this.robotYaw) * yVelocityGoal;
 
                 // add correction for angle drift
                 AnglePair anglePair = AnglePair.getClosestAngle(angleGoal + angleReference, this.robotYaw, false);
