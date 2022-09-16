@@ -67,6 +67,8 @@ public class ButtonMap implements IButtonMap
             AnalogOperation.DriveTrainSpinLeft,
             UserInputDevice.Driver,
             AnalogAxis.XBONE_LT,
+            Shift.DriverDebug,
+            Shift.DriverDebug,
             ElectronicsConstants.INVERT_XBONE_LEFT_TRIGGER, // turning left should be positive, as counter-clockwise is positive
             -TuningConstants.DRIVETRAIN_DEAD_ZONE_TURN,
             TuningConstants.DRIVETRAIN_DEAD_ZONE_TURN),
@@ -74,6 +76,8 @@ public class ButtonMap implements IButtonMap
             AnalogOperation.DriveTrainSpinRight,
             UserInputDevice.Driver,
             AnalogAxis.XBONE_RT,
+            Shift.DriverDebug,
+            Shift.DriverDebug,
             !ElectronicsConstants.INVERT_XBONE_RIGHT_TRIGGER, // make left positive, as counter-clockwise is positive
             -TuningConstants.DRIVETRAIN_DEAD_ZONE_TURN,
             TuningConstants.DRIVETRAIN_DEAD_ZONE_TURN),
@@ -596,7 +600,10 @@ public class ButtonMap implements IButtonMap
         new MacroOperationDescription(
             MacroOperation.ShootPointBlankHigh,
             UserInputDevice.Driver,
-            UserInputDeviceButton.XBONE_B_BUTTON,
+            //// UserInputDeviceButton.XBONE_B_BUTTON,
+            AnalogAxis.XBONE_LT,
+            0.5,
+            1.0,
             Shift.DriverDebug,
             Shift.None,
             ButtonType.Toggle,
@@ -658,7 +665,10 @@ public class ButtonMap implements IButtonMap
         new MacroOperationDescription(
             MacroOperation.ShootTarmacHigh,
             UserInputDevice.Driver,
-            UserInputDeviceButton.XBONE_X_BUTTON,
+            ////UserInputDeviceButton.XBONE_X_BUTTON,
+            AnalogAxis.XBONE_RT,
+            0.5,
+            1.0,
             Shift.DriverDebug,
             Shift.None,
             ButtonType.Toggle,
