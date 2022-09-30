@@ -63,24 +63,24 @@ public class ButtonMap implements IButtonMap
             1.0,
             TuningConstants.MAGIC_NULL_VALUE,
             (x, y) -> Helpers.atan2d(x, y)),
-        new AnalogOperationDescription(
-            AnalogOperation.DriveTrainSpinLeft,
-            UserInputDevice.Driver,
-            AnalogAxis.XBONE_LT,
-            Shift.DriverDebug,
-            Shift.DriverDebug,
-            ElectronicsConstants.INVERT_XBONE_LEFT_TRIGGER, // turning left should be positive, as counter-clockwise is positive
-            -TuningConstants.DRIVETRAIN_DEAD_ZONE_TURN,
-            TuningConstants.DRIVETRAIN_DEAD_ZONE_TURN),
-        new AnalogOperationDescription(
-            AnalogOperation.DriveTrainSpinRight,
-            UserInputDevice.Driver,
-            AnalogAxis.XBONE_RT,
-            Shift.DriverDebug,
-            Shift.DriverDebug,
-            !ElectronicsConstants.INVERT_XBONE_RIGHT_TRIGGER, // make left positive, as counter-clockwise is positive
-            -TuningConstants.DRIVETRAIN_DEAD_ZONE_TURN,
-            TuningConstants.DRIVETRAIN_DEAD_ZONE_TURN),
+        // new AnalogOperationDescription(
+        //     AnalogOperation.DriveTrainSpinLeft,
+        //     UserInputDevice.Driver,
+        //     AnalogAxis.XBONE_LT,
+        //     Shift.DriverDebug,
+        //     Shift.DriverDebug,
+        //     ElectronicsConstants.INVERT_XBONE_LEFT_TRIGGER, // turning left should be positive, as counter-clockwise is positive
+        //     -TuningConstants.DRIVETRAIN_DEAD_ZONE_TURN,
+        //     TuningConstants.DRIVETRAIN_DEAD_ZONE_TURN),
+        // new AnalogOperationDescription(
+        //     AnalogOperation.DriveTrainSpinRight,
+        //     UserInputDevice.Driver,
+        //     AnalogAxis.XBONE_RT,
+        //     Shift.DriverDebug,
+        //     Shift.DriverDebug,
+        //     !ElectronicsConstants.INVERT_XBONE_RIGHT_TRIGGER, // make left positive, as counter-clockwise is positive
+        //     -TuningConstants.DRIVETRAIN_DEAD_ZONE_TURN,
+        //     TuningConstants.DRIVETRAIN_DEAD_ZONE_TURN),
 
         // cargo mechanism testing operations
         new AnalogOperationDescription(
@@ -665,10 +665,7 @@ public class ButtonMap implements IButtonMap
         new MacroOperationDescription(
             MacroOperation.ShootTarmacHigh,
             UserInputDevice.Driver,
-            ////UserInputDeviceButton.XBONE_X_BUTTON,
-            AnalogAxis.XBONE_RT,
-            0.5,
-            1.0,
+            UserInputDeviceButton.XBONE_Y_BUTTON,
             Shift.DriverDebug,
             Shift.None,
             ButtonType.Toggle,
@@ -699,7 +696,10 @@ public class ButtonMap implements IButtonMap
         new MacroOperationDescription(
             MacroOperation.AutoPositionAndShoot,
             UserInputDevice.Driver,
-            UserInputDeviceButton.XBONE_Y_BUTTON,
+            AnalogAxis.XBONE_RT,
+            0.5,
+            1.0,
+            ////UserInputDeviceButton.XBONE_Y_BUTTON,
             Shift.DriverDebug,
             Shift.None,
             ButtonType.Toggle,
@@ -762,7 +762,10 @@ public class ButtonMap implements IButtonMap
         new MacroOperationDescription(
             MacroOperation.AutoShootOnly,
             UserInputDevice.Driver,
-            UserInputDeviceButton.XBONE_Y_BUTTON,
+            AnalogAxis.XBONE_RT,
+            0.5,
+            1.0,
+            ////UserInputDeviceButton.XBONE_Y_BUTTON,
             Shift.DriverDebug,
             Shift.DriverDebug,
             ButtonType.Toggle,
