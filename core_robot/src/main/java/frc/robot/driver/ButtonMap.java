@@ -759,7 +759,7 @@ public class ButtonMap implements IButtonMap
                 AnalogOperation.DriveTrainPositionSteer4,
                 AnalogOperation.DriveTrainTurnAngleReference,
             }),
-        new MacroOperationDescription(
+        /*new MacroOperationDescription(
             MacroOperation.AutoShootOnly,
             UserInputDevice.Driver,
             AnalogAxis.XBONE_RT,
@@ -792,7 +792,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.VisionEnableGamePieceProcessing,
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
                 DigitalOperation.VisionForceDisable,
-            }),
+            }),*/
 
         // // climber control macros for codriver
         // new MacroOperationDescription(

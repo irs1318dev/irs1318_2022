@@ -126,7 +126,7 @@ public class TuningConstants
     public static final boolean DRIVETRAIN_FIELD_ORIENTED_ON_ROBOT_START = true;
     public static final boolean DRIVETRAIN_MAINTAIN_ORIENTATION_ON_ROBOT_START = true;
 
-    public static final double DRIVETRAIN_STEER_MOTOR1_ABSOLUTE_OFFSET = -124.365;
+    public static final double DRIVETRAIN_STEER_MOTOR1_ABSOLUTE_OFFSET = -126.0;
     public static final double DRIVETRAIN_STEER_MOTOR2_ABSOLUTE_OFFSET = 51.943;
     public static final double DRIVETRAIN_STEER_MOTOR3_ABSOLUTE_OFFSET = -128.848;
     public static final double DRIVETRAIN_STEER_MOTOR4_ABSOLUTE_OFFSET = -128.672;
@@ -202,8 +202,8 @@ public class TuningConstants
     public static final double DRIVETRAIN_OMEGA_POSITION_PID_KD = 0.0;
     public static final double DRIVETRAIN_OMEGA_POSITION_PID_KF = 0.0;
     public static final double DRIVETRAIN_OMEGA_POSITION_PID_KS = 1.0;
-    public static final double DRIVETRAIN_OMEGA_MAX_OUTPUT = 4.0;
-    public static final double DRIVETRAIN_OMEGA_MIN_OUTPUT = -4.0;
+    public static final double DRIVETRAIN_OMEGA_MAX_OUTPUT = 5.0;
+    public static final double DRIVETRAIN_OMEGA_MIN_OUTPUT = -5.0;
 
     public static final double DRIVETRAIN_PATH_OMEGA_POSITION_PID_KP = 0.1;
     public static final double DRIVETRAIN_PATH_OMEGA_POSITION_PID_KI = 0.0;
