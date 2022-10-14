@@ -607,13 +607,13 @@ public class ButtonMap implements IButtonMap
             Shift.DriverDebug,
             Shift.None,
             ButtonType.Toggle,
-            () -> SequentialTask.Sequence(
-                    new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
-                    ConcurrentTask.AnyTasks(
-                        new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
-                        new CargoShootTask()
-                    )
-                ),
+            () -> ConcurrentTask.AllTasks(
+                    new RumbleTask(),
+                    SequentialTask.Sequence(
+                        new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
+                        ConcurrentTask.AnyTasks(
+                            new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
+                            new CargoShootTask()))),
             new IOperation[]
             {
                 DigitalOperation.CargoIntakeForceExtend,
@@ -638,13 +638,13 @@ public class ButtonMap implements IButtonMap
             Shift.DriverDebug,
             Shift.None,
             ButtonType.Toggle,
-            () -> SequentialTask.Sequence(
-                    new CargoHoodTask(DigitalOperation.CargoHoodLong),
-                    ConcurrentTask.AnyTasks(
-                        new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED),
-                        new CargoShootTask()
-                    )
-                ),
+            () -> ConcurrentTask.AllTasks(
+                    new RumbleTask(),
+                    SequentialTask.Sequence(
+                        new CargoHoodTask(DigitalOperation.CargoHoodLong),
+                        ConcurrentTask.AnyTasks(
+                            new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED),
+                            new CargoShootTask()))),
             new IOperation[]
             {
                 DigitalOperation.CargoIntakeForceExtend,
@@ -669,13 +669,13 @@ public class ButtonMap implements IButtonMap
             Shift.DriverDebug,
             Shift.None,
             ButtonType.Toggle,
-            () -> SequentialTask.Sequence(
-                    new CargoHoodTask(DigitalOperation.CargoHoodLong),
-                    ConcurrentTask.AnyTasks(
-                        new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
-                        new CargoShootTask()
-                    )
-                ),
+            () -> ConcurrentTask.AllTasks(
+                    new RumbleTask(),
+                    SequentialTask.Sequence(
+                        new CargoHoodTask(DigitalOperation.CargoHoodLong),
+                        ConcurrentTask.AnyTasks(
+                            new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
+                            new CargoShootTask()))),
             new IOperation[]
             {
                 DigitalOperation.CargoIntakeForceExtend,
@@ -703,15 +703,14 @@ public class ButtonMap implements IButtonMap
             Shift.DriverDebug,
             Shift.None,
             ButtonType.Toggle,
-            () -> 
-                SequentialTask.Sequence(
-                    new VisionCenteringTask(false),
-                    new VisionShootPositionTask(),
-                    ConcurrentTask.AnyTasks(
-                        new VisionShootSpinTask(10.0, true),
-                        new CargoShootTask()
-                    )
-                ),
+            () -> ConcurrentTask.AllTasks(
+                    new RumbleTask(),
+                    SequentialTask.Sequence(
+                        new VisionCenteringTask(false),
+                        new VisionShootPositionTask(),
+                        ConcurrentTask.AnyTasks(
+                            new VisionShootSpinTask(10.0, true),
+                            new CargoShootTask()))),
             new IOperation[]
             {
                 DigitalOperation.CargoIntakeForceExtend,

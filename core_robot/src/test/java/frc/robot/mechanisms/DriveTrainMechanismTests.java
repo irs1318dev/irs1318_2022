@@ -10,6 +10,7 @@ import frc.robot.common.robotprovider.ITalonFX;
 import frc.robot.common.robotprovider.ITalonSRX;
 import frc.robot.common.robotprovider.ITimer;
 import frc.robot.common.robotprovider.IVictorSPX;
+import frc.robot.common.robotprovider.JoystickRumbleType;
 import frc.robot.common.robotprovider.MotorNeutralMode;
 import frc.robot.common.robotprovider.NullLogger;
 import frc.robot.common.robotprovider.Pose2d;
@@ -21,6 +22,7 @@ import frc.robot.common.robotprovider.TalonXLimitSwitchStatus;
 import frc.robot.driver.AnalogOperation;
 import frc.robot.driver.DigitalOperation;
 import frc.robot.driver.common.IDriver;
+import frc.robot.driver.common.descriptions.UserInputDevice;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -615,6 +617,11 @@ public class DriveTrainMechanismTests
         public double getAnalog(AnalogOperation analogOperation)
         {
             return 0.0;
+        }
+
+        @Override
+        public void setRumble(UserInputDevice device, JoystickRumbleType type, double value)
+        {
         }
     }
 }

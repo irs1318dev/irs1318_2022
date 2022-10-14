@@ -22,9 +22,8 @@ public class SettingsManager
         mechanismList.add(injector.getInstance(DriveTrainMechanism.class));
         mechanismList.add(injector.getInstance(CargoMechanism.class));
         mechanismList.add(injector.getInstance(ClimberSammamishMechanism.class));
-        // mechanismList.add(injector.getInstance(ClimberMechanism.class));
         mechanismList.add(injector.getInstance(OffboardVisionManager.class));
-        // mechanismList.add(injector.getInstance(IndicatorLightManager.class));
+        mechanismList.add(injector.getInstance(DriverFeedbackManager.class));
         return mechanismList;
     }
 
