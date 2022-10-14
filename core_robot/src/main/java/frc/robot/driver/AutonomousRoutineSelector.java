@@ -38,7 +38,8 @@ public class AutonomousRoutineSelector
         WillTwoBallAuto,
         PravinThreeBallAuto,
         PravinFourBallAuto,
-        WinavTwoBallAuto
+        WinavTwoBallAuto,
+        PraTwoBallBrodie
     }
 
     /**
@@ -68,6 +69,7 @@ public class AutonomousRoutineSelector
         this.routineChooser.addObject("Pravin's 3-Ball Auto", AutoRoutine.PravinThreeBallAuto);
         this.routineChooser.addObject("Pravin's 4-Ball Auto", AutoRoutine.PravinFourBallAuto);
         this.routineChooser.addObject("Winav's 2-Ball Auto", AutoRoutine.WinavTwoBallAuto);
+        this.routineChooser.addObject("Pra's 2-Ball Brodie Auto", AutoRoutine.PraTwoBallBrodie);
         networkTableProvider.addChooser("Auto Routine", this.routineChooser);
 
         // this.positionChooser = networkTableProvider.getSendableChooser();
@@ -144,6 +146,10 @@ public class AutonomousRoutineSelector
         else if (routine == AutoRoutine.WinavTwoBallAuto)
         {
             return winavTwoBall();
+        }
+        else if (routine == AutoRoutine.PraTwoBallBrodie)
+        {
+            return praTwoBallBrodieAuto();
         }
 
         return new PositionStartingTask(0.0, true, true);
@@ -361,6 +367,28 @@ public class AutonomousRoutineSelector
                 new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_AUTO_FOUR_BALL_SHOOT_SPEED),
                 new CargoShootTask()
             )
+        );
+    }
+
+    private static IControlTask praTwoBallBrodieAuto()
+    {
+        return SequentialTask.Sequence(
+            new PositionStartingTask(-90.0, false, true),
+            // get second ball
+            ConcurrentTask.AnyTasks(
+                new FollowPathTask("goForwardBrodie"),
+                SequentialTask.Sequence(
+                    new WaitTask(2.0),
+                    new CargoIntakeTask(2.0, true)
+                )
+            ),
+
+            // shoot current balls
+            new FollowPathTask("goBackBrodie", true, false),
+            ConcurrentTask.AnyTasks(
+                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
+                new CargoShootTask()
+            )            
         );
     }
 } // yaaaaaAAAaaaAaaaAAAAaa
