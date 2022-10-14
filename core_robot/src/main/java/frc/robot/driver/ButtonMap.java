@@ -607,7 +607,7 @@ public class ButtonMap implements IButtonMap
             Shift.DriverDebug,
             Shift.None,
             ButtonType.Toggle,
-            () -> ConcurrentTask.AllTasks(
+            () -> ConcurrentTask.AnyTasks(
                     new RumbleTask(),
                     SequentialTask.Sequence(
                         new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
@@ -638,7 +638,7 @@ public class ButtonMap implements IButtonMap
             Shift.DriverDebug,
             Shift.None,
             ButtonType.Toggle,
-            () -> ConcurrentTask.AllTasks(
+            () -> ConcurrentTask.AnyTasks(
                     new RumbleTask(),
                     SequentialTask.Sequence(
                         new CargoHoodTask(DigitalOperation.CargoHoodLong),
@@ -669,7 +669,7 @@ public class ButtonMap implements IButtonMap
             Shift.DriverDebug,
             Shift.None,
             ButtonType.Toggle,
-            () -> ConcurrentTask.AllTasks(
+            () -> ConcurrentTask.AnyTasks(
                     new RumbleTask(),
                     SequentialTask.Sequence(
                         new CargoHoodTask(DigitalOperation.CargoHoodLong),
@@ -703,7 +703,7 @@ public class ButtonMap implements IButtonMap
             Shift.DriverDebug,
             Shift.None,
             ButtonType.Toggle,
-            () -> ConcurrentTask.AllTasks(
+            () -> ConcurrentTask.AnyTasks(
                     new RumbleTask(),
                     SequentialTask.Sequence(
                         new VisionCenteringTask(false),

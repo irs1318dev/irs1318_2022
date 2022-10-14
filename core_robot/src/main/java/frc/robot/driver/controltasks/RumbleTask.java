@@ -2,18 +2,32 @@ package frc.robot.driver.controltasks;
 
 import frc.robot.driver.DigitalOperation;
 
-public class RumbleTask extends CompositeOperationTask
+public class RumbleTask extends ControlTaskBase
 {
-    private static DigitalOperation[] rumbleOperations =
-    {
-        DigitalOperation.ForceLightDriverRumble,
-    };
-
     public RumbleTask()
     {
-        super(
-            0.1,
-            DigitalOperation.ForceLightDriverRumble,
-            RumbleTask.rumbleOperations);
+    }
+
+    @Override
+    public void begin()
+    {
+    }
+
+    @Override
+    public void update()
+    {
+        this.setDigitalOperationState(DigitalOperation.ForceLightDriverRumble, true);
+    }
+
+    @Override
+    public void end()
+    {
+        this.setDigitalOperationState(DigitalOperation.ForceLightDriverRumble, false);
+    }
+
+    @Override
+    public boolean hasCompleted()
+    {
+        return false;
     }
 }
