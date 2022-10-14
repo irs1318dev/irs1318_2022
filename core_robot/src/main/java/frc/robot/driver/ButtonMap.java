@@ -762,6 +762,20 @@ public class ButtonMap implements IButtonMap
                 AnalogOperation.DriveTrainPositionSteer4,
                 AnalogOperation.DriveTrainTurnAngleReference,
             }),
+
+        new MacroOperationDescription(
+            MacroOperation.SpinUpFlywheel,
+            UserInputDevice.Driver,
+            270, // DPAD-right
+            Shift.DriverDebug,
+            Shift.None,
+            ButtonType.Toggle,
+            () -> new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
+            new IOperation[]
+            {
+                AnalogOperation.CargoFlywheelVelocityGoal,
+            }),
+
         /*new MacroOperationDescription(
             MacroOperation.AutoShootOnly,
             UserInputDevice.Driver,
