@@ -766,7 +766,7 @@ public class ButtonMap implements IButtonMap
         new MacroOperationDescription(
             MacroOperation.SpinUpFlywheel,
             UserInputDevice.Driver,
-            270, // DPAD-right
+            90, // DPAD-right
             Shift.DriverDebug,
             Shift.None,
             ButtonType.Toggle,
