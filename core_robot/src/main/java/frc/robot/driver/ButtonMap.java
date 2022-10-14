@@ -628,6 +628,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.CargoHoodShort,
                 DigitalOperation.CargoHoodMedium,
                 DigitalOperation.CargoHoodLong,
+                DigitalOperation.ForceLightDriverRumble,
                 AnalogOperation.CargoFlywheelVelocityGoal,
             }),
 
@@ -659,6 +660,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.CargoHoodShort,
                 DigitalOperation.CargoHoodMedium,
                 DigitalOperation.CargoHoodLong,
+                DigitalOperation.ForceLightDriverRumble,
                 AnalogOperation.CargoFlywheelVelocityGoal,
             }),
 
@@ -690,6 +692,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.CargoHoodShort,
                 DigitalOperation.CargoHoodMedium,
                 DigitalOperation.CargoHoodLong,
+                DigitalOperation.ForceLightDriverRumble,
                 AnalogOperation.CargoFlywheelVelocityGoal,
             }),
 
@@ -736,6 +739,7 @@ public class ButtonMap implements IButtonMap
                 DigitalOperation.VisionEnableGamePieceProcessing,
                 DigitalOperation.VisionEnableRetroreflectiveProcessing,
                 DigitalOperation.VisionForceDisable,
+                DigitalOperation.ForceLightDriverRumble,
                 AnalogOperation.CargoFlywheelVelocityGoal,
                 AnalogOperation.DriveTrainMoveForward,
                 AnalogOperation.DriveTrainMoveRight,

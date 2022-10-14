@@ -138,16 +138,13 @@ public class DriverFeedbackManager implements IMechanism
         //     this.currentMode = newLightMode;
         // }
 
-        System.out.print("rumble? ");
         if (this.driver.getDigital(DigitalOperation.ForceLightDriverRumble))
         {
-            System.out.println("true");
             this.driver.setRumble(UserInputDevice.Driver, JoystickRumbleType.Left, 0.25);
             this.driver.setRumble(UserInputDevice.Driver, JoystickRumbleType.Right, 0.25);
         }
         else
         {
-            System.out.println("false");
             this.driver.setRumble(UserInputDevice.Driver, JoystickRumbleType.Left, 0.0);
             this.driver.setRumble(UserInputDevice.Driver, JoystickRumbleType.Right, 0.0);
         }
