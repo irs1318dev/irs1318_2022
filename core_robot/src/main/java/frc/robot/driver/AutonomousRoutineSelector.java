@@ -376,11 +376,10 @@ public class AutonomousRoutineSelector
             new PositionStartingTask(-90.0, false, true),
             // get second ball
             ConcurrentTask.AnyTasks(
-                new FollowPathTask("goForwardBrodie"),
                 SequentialTask.Sequence(
-                    new WaitTask(2.0),
-                    new CargoIntakeTask(2.0, true)
-                )
+                    new FollowPathTask("goForwardBrodie"),
+                    new WaitTask(2.0)),
+                new CargoIntakeTask(4.0, true)
             ),
 
             // shoot current balls
@@ -388,7 +387,7 @@ public class AutonomousRoutineSelector
             ConcurrentTask.AnyTasks(
                 new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
                 new CargoShootTask()
-            )            
+            )
         );
     }
 } // yaaaaaAAAaaaAaaaAAAAaa

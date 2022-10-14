@@ -85,14 +85,14 @@ public class RoadRunnerTrajectoryGenerator
         
         addPath(
             pathManager,
-            startTrajectory(-90 * Helpers.DEGREES_TO_RADIANS)
-                .splineTo(new Vector2d(  0, -42), -90),
+            startTrajectory(-90.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineTo(new Vector2d(0, -42), -90.0 * Helpers.DEGREES_TO_RADIANS),
              "goForwardBrodie");
         
         addPath(
             pathManager,
-            startTrajectory(-90 * Helpers.DEGREES_TO_RADIANS)
-                .splineToSplineHeading(new Pose2d(0, 42, 90 * Helpers.DEGREES_TO_RADIANS), 90),
+            startTrajectory(-90.0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(0, 42, 90.0 * Helpers.DEGREES_TO_RADIANS), 90.0 * Helpers.DEGREES_TO_RADIANS),
              "goBackBrodie");
 
         addPath(
