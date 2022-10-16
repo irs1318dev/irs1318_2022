@@ -384,8 +384,10 @@ public class AutonomousRoutineSelector
 
             // shoot current balls
             new FollowPathTask("goBackBrodie", true, false),
+            new VisionCenteringTask(false),
+            new VisionShootPositionTask(),
             ConcurrentTask.AnyTasks(
-                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED),
+                new VisionShootSpinTask(10.0, true),
                 new CargoShootTask()
             )
         );

@@ -126,7 +126,7 @@ public class TuningConstants
     public static final boolean DRIVETRAIN_FIELD_ORIENTED_ON_ROBOT_START = true;
     public static final boolean DRIVETRAIN_MAINTAIN_ORIENTATION_ON_ROBOT_START = true;
 
-    public static final double DRIVETRAIN_STEER_MOTOR1_ABSOLUTE_OFFSET = -126.0;
+    public static final double DRIVETRAIN_STEER_MOTOR1_ABSOLUTE_OFFSET = 80;
     public static final double DRIVETRAIN_STEER_MOTOR2_ABSOLUTE_OFFSET = 51.943;
     public static final double DRIVETRAIN_STEER_MOTOR3_ABSOLUTE_OFFSET = -128.848;
     public static final double DRIVETRAIN_STEER_MOTOR4_ABSOLUTE_OFFSET = -128.672;
@@ -234,14 +234,14 @@ public class TuningConstants
     public static final boolean DRIVETRAIN_DRIVE_SUPPLY_CURRENT_LIMITING_ENABLED = true;
     public static final double DRIVETRAIN_DRIVE_SUPPLY_CURRENT_MAX = 30.0;
     public static final double DRIVETRAIN_DRIVE_SUPPLY_TRIGGER_CURRENT = 40.0;
-    public static final double DRIVETRAIN_DRIVE_SUPPLY_TRIGGER_DURATION = 100.0;
+    public static final double DRIVETRAIN_DRIVE_SUPPLY_TRIGGER_DURATION = 1.0;
 
     public static final boolean DRIVETRAIN_STEER_VOLTAGE_COMPENSATION_ENABLED = true;
     public static final double DRIVETRAIN_STEER_VOLTAGE_COMPENSATION = 11.0;
     public static final boolean DRIVETRAIN_STEER_SUPPLY_CURRENT_LIMITING_ENABLED = true;
     public static final double DRIVETRAIN_STEER_SUPPLY_CURRENT_MAX = 30.0;
-    public static final double DRIVETRAIN_STEER_SUPPLY_TRIGGER_CURRENT = 40.0;
-    public static final double DRIVETRAIN_STEER_SUPPLY_TRIGGER_DURATION = 100.0;
+    public static final double DRIVETRAIN_STEER_SUPPLY_TRIGGER_CURRENT = 32.5;
+    public static final double DRIVETRAIN_STEER_SUPPLY_TRIGGER_DURATION = 0.75;
 
     public static final int DRIVETRAIN_SENSOR_FRAME_PERIOD_MS = 10;
     public static final int DRIVETRAIN_PID_FRAME_PERIOD_MS = 100;
@@ -304,50 +304,50 @@ public class TuningConstants
     public static final double[] CARGO_KNOWN_SHOOTING_DISTANCES =
         new double[]
         {
-            40.0,
+            // 40.0,
             50.0,
             60.0,
             70.0,
-            80.0,
+            //80.0,
             90.0,
             100.0,
             110.0,
-            120.0,
-            130.0,
+            // 120.0,
+            // 130.0,
             // 140.0
         };
     public static final DigitalOperation[] CARGO_KNOWN_SHOOTING_HOOD_UP =
         new DigitalOperation[]
         {
-            DigitalOperation.CargoHoodShort,
+            // DigitalOperation.CargoHoodShort,
             DigitalOperation.CargoHoodMedium,
             DigitalOperation.CargoHoodMedium,
             DigitalOperation.CargoHoodMedium,
-            DigitalOperation.CargoHoodMedium,
+            //DigitalOperation.CargoHoodMedium,
             DigitalOperation.CargoHoodLong,
             DigitalOperation.CargoHoodLong,
             DigitalOperation.CargoHoodLong,
-            DigitalOperation.CargoHoodLong,
-            DigitalOperation.CargoHoodLong,
+            // DigitalOperation.CargoHoodLong,
+            // DigitalOperation.CargoHoodLong,
             // DigitalOperation.CargoHoodLong
         };
     public static final double[] CARGO_KNOWN_SHOOTING_FLYWHEEL_SPIN_SPEED =
         new double[]
         {
-            0.64,
-            0.62,
+            // 0.64,
+            0.60,
+            0.625,
+            0.66,
+            // 0.72,
             0.65,
-            0.67,
-            0.72,
             0.69,
-            0.71,
-            0.75,
-            0.80,
-            0.83,
+            0.73,
+            // 0.825,
+            // 0.83,
             // 0.92
         };
 
-    public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.62;
+    public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.615;
     public static final double CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED = 0.3;
     public static final double CARGO_FLYWHEEL_AUTO_FOUR_BALL_SHOOT_SPEED = 0.67;
     public static final double CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED = 0.65;
@@ -357,9 +357,9 @@ public class TuningConstants
 
     public static final double CARGO_FLYWHEEL_ALLOWABLE_ERROR_RANGE = 500;
 
-    public static final double CARGO_SHOOT_CHECKBALL_MIN_WAIT_TIME = 0.25;
+    public static final double CARGO_SHOOT_CHECKBALL_MIN_WAIT_TIME = 1.0;
     public static final double CARGO_SHOOT_CHECKBALL_WAIT_TIMEOUT = TuningConstants.CARGO_CONVEYOR_RUNTIME_FOR_ADVANCE;
-    public static final double CARGO_SHOOT_SPINUP_MIN_WAIT_TIME = 0.75;
+    public static final double CARGO_SHOOT_SPINUP_MIN_WAIT_TIME = 1.00;///0.75;
     public static final double CARGO_SHOOT_SPINUP_WAIT_TIMEOUT = 2.0;
     public static final double CARGO_SHOOT_MIN_WAIT_TIME = 0.25;
     public static final double CARGO_SHOOT_WAIT_TIMEOUT = 1.5;
