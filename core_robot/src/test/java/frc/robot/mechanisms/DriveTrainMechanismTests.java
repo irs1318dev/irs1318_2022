@@ -68,13 +68,16 @@ public class DriveTrainMechanismTests
             provider.setTalonFX(2 * i + 2, steer[i]);
         }
 
+        IDriver driver = new MockDriver();
         LoggingManager logger = new LoggingManager(new NullLogger());
-        PigeonManager pigeonManager = new PigeonManager(new MockDriver(), logger, provider);
+        PigeonManager pigeonManager = new PigeonManager(driver, logger, provider);
+        PowerManager powerManager = new PowerManager(driver, timer, logger, provider);
         DriveTrainMechanism driveTrain = new DriveTrainMechanism(
-            new MockDriver(), 
+            driver,
             logger,
             provider,
             pigeonManager,
+            powerManager,
             timer);
 
         for (int timestep = 0; timestep < 10; timestep++)
@@ -110,13 +113,16 @@ public class DriveTrainMechanismTests
             provider.setTalonFX(2 * i + 2, steer[i]);
         }
 
+        IDriver driver = new MockDriver();
         LoggingManager logger = new LoggingManager(new NullLogger());
-        PigeonManager pigeonManager = new PigeonManager(new MockDriver(), logger, provider);
+        PigeonManager pigeonManager = new PigeonManager(driver, logger, provider);
+        PowerManager powerManager = new PowerManager(driver, timer, logger, provider);
         DriveTrainMechanism driveTrain = new DriveTrainMechanism(
-            new MockDriver(), 
+            driver,
             logger,
             provider,
             pigeonManager,
+            powerManager,
             timer);
 
         for (int timestep = 0; timestep < 50; timestep++)
@@ -158,13 +164,16 @@ public class DriveTrainMechanismTests
             provider.setTalonFX(2 * i + 2, steer[i]);
         }
 
+        IDriver driver = new MockDriver();
         LoggingManager logger = new LoggingManager(new NullLogger());
-        PigeonManager pigeonManager = new PigeonManager(new MockDriver(), logger, provider);
+        PigeonManager pigeonManager = new PigeonManager(driver, logger, provider);
+        PowerManager powerManager = new PowerManager(driver, timer, logger, provider);
         DriveTrainMechanism driveTrain = new DriveTrainMechanism(
-            new MockDriver(), 
+            driver,
             logger,
             provider,
             pigeonManager,
+            powerManager,
             timer);
 
         for (int timestep = 0; timestep < 50; timestep++)
@@ -207,13 +216,16 @@ public class DriveTrainMechanismTests
             provider.setTalonFX(2 * i + 2, steer[i]);
         }
 
+        IDriver driver = new MockDriver();
         LoggingManager logger = new LoggingManager(new NullLogger());
-        PigeonManager pigeonManager = new PigeonManager(new MockDriver(), logger, provider);
+        PigeonManager pigeonManager = new PigeonManager(driver, logger, provider);
+        PowerManager powerManager = new PowerManager(driver, timer, logger, provider);
         DriveTrainMechanism driveTrain = new DriveTrainMechanism(
-            new MockDriver(), 
+            driver,
             logger,
             provider,
             pigeonManager,
+            powerManager,
             timer);
 
         for (int timestep = 0; timestep < 50; timestep++)
@@ -257,13 +269,16 @@ public class DriveTrainMechanismTests
             provider.setTalonFX(2 * i + 2, steer[i]);
         }
 
+        IDriver driver = new MockDriver();
         LoggingManager logger = new LoggingManager(new NullLogger());
-        PigeonManager pigeonManager = new PigeonManager(new MockDriver(), logger, provider);
+        PigeonManager pigeonManager = new PigeonManager(driver, logger, provider);
+        PowerManager powerManager = new PowerManager(driver, timer, logger, provider);
         DriveTrainMechanism driveTrain = new DriveTrainMechanism(
-            new MockDriver(), 
+            driver,
             logger,
             provider,
             pigeonManager,
+            powerManager,
             timer);
 
         for (int timestep = 0; timestep < 50; timestep++)
@@ -306,13 +321,16 @@ public class DriveTrainMechanismTests
             provider.setTalonFX(2 * i + 2, drive[i]);
         }
 
+        IDriver driver = new MockDriver();
         LoggingManager logger = new LoggingManager(new NullLogger());
-        PigeonManager pigeonManager = new PigeonManager(new MockDriver(), logger, provider);
+        PigeonManager pigeonManager = new PigeonManager(driver, logger, provider);
+        PowerManager powerManager = new PowerManager(driver, timer, logger, provider);
         DriveTrainMechanism driveTrain = new DriveTrainMechanism(
-            new MockDriver(), 
+            driver,
             logger,
             provider,
             pigeonManager,
+            powerManager,
             timer);
 
         double robotVelocityRight = 0.0;

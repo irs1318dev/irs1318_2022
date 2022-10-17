@@ -398,6 +398,10 @@ public class CargoMechanism implements IMechanism
     @Override
     public void stop()
     {
+        this.intakeExtensionTimeout = 0.0;
+        this.conveyorIntakeTimeout = 0.0;
+        this.conveyorAdvanceTimeout = 0.0;
+
         this.conveyorMotor.stop();
         this.flywheelMotor.stop();
         this.feederMotor.stop();
