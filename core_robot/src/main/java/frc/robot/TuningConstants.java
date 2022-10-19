@@ -249,7 +249,7 @@ public class TuningConstants
     public static final double DRIVETRAIN_DRIVE_VOLTAGE_COMPENSATION = 11.0;
     public static final boolean DRIVETRAIN_DRIVE_SUPPLY_CURRENT_LIMITING_ENABLED = true;
     public static final double DRIVETRAIN_DRIVE_SUPPLY_CURRENT_MAX = 30.0;
-    public static final double DRIVETRAIN_DRIVE_SUPPLY_TRIGGER_CURRENT = 40.0;
+    public static final double DRIVETRAIN_DRIVE_SUPPLY_TRIGGER_CURRENT = 40.0; // NOTE: during Bordie we should have lowered this to 32.5, not the STEER trigger current below...
     public static final double DRIVETRAIN_DRIVE_SUPPLY_TRIGGER_DURATION = 1.0;
 
     public static final boolean DRIVETRAIN_STEER_VOLTAGE_COMPENSATION_ENABLED = true;
