@@ -138,10 +138,6 @@ public class TuningConstants
     public static final boolean DRIVETRAIN_FIELD_ORIENTED_ON_ROBOT_START = true;
     public static final boolean DRIVETRAIN_MAINTAIN_ORIENTATION_ON_ROBOT_START = true;
 
-    public static final boolean DRIVETRAIN_USE_OVERCURRENT_ADJUSTMENT = false;
-    public static final double DRIVETRAIN_OVERCURRENT_ADJUSTMENT = 0.75;
-    public static final double DRIVETRAIN_OVERCURRENT_HIGH_ADJUSTMENT = 0.5;
-
     public static final double DRIVETRAIN_STEER_MOTOR1_ABSOLUTE_OFFSET = 80;
     public static final double DRIVETRAIN_STEER_MOTOR2_ABSOLUTE_OFFSET = 51.943;
     public static final double DRIVETRAIN_STEER_MOTOR3_ABSOLUTE_OFFSET = -128.848;
@@ -244,6 +240,10 @@ public class TuningConstants
     public static final double DRIVETRAIN_PATH_Y_POSITION_PID_KS = 1.0;
     public static final double DRIVETRAIN_PATH_Y_MAX_OUTPUT = 10.0;
     public static final double DRIVETRAIN_PATH_Y_MIN_OUTPUT = -10.0;
+
+    public static final boolean DRIVETRAIN_USE_OVERCURRENT_ADJUSTMENT = false;
+    public static final double DRIVETRAIN_OVERCURRENT_ADJUSTMENT = 0.75;
+    public static final double DRIVETRAIN_OVERCURRENT_HIGH_ADJUSTMENT = 0.5;
 
     public static final boolean DRIVETRAIN_DRIVE_VOLTAGE_COMPENSATION_ENABLED = true;
     public static final double DRIVETRAIN_DRIVE_VOLTAGE_COMPENSATION = 11.0;
