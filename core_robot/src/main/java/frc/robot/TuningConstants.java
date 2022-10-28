@@ -287,11 +287,11 @@ public class TuningConstants
             // 40.0,
             50.0,
             //60.0,
-            //70.0,
+            70.0,
             //80.0,
             90.0,
             100.0,
-            110.0,
+            //110.0,
             // 120.0,
             // 130.0,
             // 140.0
@@ -302,11 +302,11 @@ public class TuningConstants
             // DigitalOperation.CargoHoodShort,
             DigitalOperation.CargoHoodMedium,
             //DigitalOperation.CargoHoodLong,
-            //DigitalOperation.CargoHoodLong,
+            DigitalOperation.CargoHoodLong,
             //DigitalOperation.CargoHoodMedium,
             DigitalOperation.CargoHoodLong,
             DigitalOperation.CargoHoodLong,
-            DigitalOperation.CargoHoodLong,
+            //DigitalOperation.CargoHoodLong,
             // DigitalOperation.CargoHoodLong,
             // DigitalOperation.CargoHoodLong,
             // DigitalOperation.CargoHoodLong
@@ -315,19 +315,19 @@ public class TuningConstants
         new double[]
         {
             // 0.64,
-            0.62,
+            0.585,
             //0.67,
-            //0.69,
+            0.59,
             // 0.72,
-            0.75,
-            0.79,
-            0.83,
+            0.60,
+            0.62,
+            //0.63,
             // 0.825,
             // 0.83,
             // 0.92
         };
 
-    public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.615;
+    public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.60;
     public static final double CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED = 0.3;
     public static final double CARGO_FLYWHEEL_AUTO_FOUR_BALL_SHOOT_SPEED = 0.67;
     public static final double CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED = 0.65;
@@ -342,7 +342,7 @@ public class TuningConstants
     public static final double CARGO_SHOOT_SPINUP_MIN_WAIT_TIME = 1.00;///0.75;
     public static final double CARGO_SHOOT_SPINUP_WAIT_TIMEOUT = 2.0;
     public static final double CARGO_SHOOT_MIN_WAIT_TIME = 0.5;
-    public static final double CARGO_SHOOT_WAIT_TIMEOUT = 1.5;
+    public static final double CARGO_SHOOT_WAIT_TIMEOUT = 1.75;
 
     public static final double UPPER_HUB_HEIGHT = 104; // inches
     public static final double LOWER_HUB_HEIGHT = 41; // inches
