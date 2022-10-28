@@ -286,8 +286,8 @@ public class TuningConstants
         {
             // 40.0,
             50.0,
-            60.0,
-            70.0,
+            //60.0,
+            //70.0,
             //80.0,
             90.0,
             100.0,
@@ -301,8 +301,8 @@ public class TuningConstants
         {
             // DigitalOperation.CargoHoodShort,
             DigitalOperation.CargoHoodMedium,
-            DigitalOperation.CargoHoodMedium,
-            DigitalOperation.CargoHoodMedium,
+            //DigitalOperation.CargoHoodLong,
+            //DigitalOperation.CargoHoodLong,
             //DigitalOperation.CargoHoodMedium,
             DigitalOperation.CargoHoodLong,
             DigitalOperation.CargoHoodLong,
@@ -315,13 +315,13 @@ public class TuningConstants
         new double[]
         {
             // 0.64,
-            0.60,
-            0.625,
-            0.66,
+            0.62,
+            //0.67,
+            //0.69,
             // 0.72,
-            0.65,
-            0.69,
-            0.73,
+            0.75,
+            0.79,
+            0.83,
             // 0.825,
             // 0.83,
             // 0.92
@@ -341,7 +341,7 @@ public class TuningConstants
     public static final double CARGO_SHOOT_CHECKBALL_WAIT_TIMEOUT = TuningConstants.CARGO_CONVEYOR_RUNTIME_FOR_ADVANCE;
     public static final double CARGO_SHOOT_SPINUP_MIN_WAIT_TIME = 1.00;///0.75;
     public static final double CARGO_SHOOT_SPINUP_WAIT_TIMEOUT = 2.0;
-    public static final double CARGO_SHOOT_MIN_WAIT_TIME = 0.25;
+    public static final double CARGO_SHOOT_MIN_WAIT_TIME = 0.5;
     public static final double CARGO_SHOOT_WAIT_TIMEOUT = 1.5;
 
     public static final double UPPER_HUB_HEIGHT = 104; // inches
