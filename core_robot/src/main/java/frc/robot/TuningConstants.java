@@ -64,7 +64,7 @@ public class TuningConstants
     public static final double VISION_STATIONARY_CENTERING_PID_MAX = 0.4;
 
     // PID settings for Centering the robot on a vision target
-    public static final double VISION_MOVING_CENTERING_PID_KP = 0.01;
+    public static final double VISION_MOVING_CENTERING_PID_KP = 0.012;
     public static final double VISION_MOVING_CENTERING_PID_KI = 0.0;
     public static final double VISION_MOVING_CENTERING_PID_KD = 0.0;
     public static final double VISION_MOVING_CENTERING_PID_KF = 0.0;
@@ -285,11 +285,11 @@ public class TuningConstants
         new double[]
         {
             // 40.0,
-            50.0,
+            //50.0,
             //60.0,
-            70.0,
+            //70.0,
             //80.0,
-            90.0,
+            //90.0,
             100.0,
             //110.0,
             // 120.0,
@@ -300,11 +300,11 @@ public class TuningConstants
         new DigitalOperation[]
         {
             // DigitalOperation.CargoHoodShort,
-            DigitalOperation.CargoHoodMedium,
-            //DigitalOperation.CargoHoodLong,
-            DigitalOperation.CargoHoodLong,
             //DigitalOperation.CargoHoodMedium,
-            DigitalOperation.CargoHoodLong,
+            //DigitalOperation.CargoHoodLong,
+            //DigitalOperation.CargoHoodLong,
+            //DigitalOperation.CargoHoodMedium,
+            //DigitalOperation.CargoHoodLong,
             DigitalOperation.CargoHoodLong,
             //DigitalOperation.CargoHoodLong,
             // DigitalOperation.CargoHoodLong,
@@ -315,19 +315,19 @@ public class TuningConstants
         new double[]
         {
             // 0.64,
-            0.585,
+            //0.583,
             //0.67,
-            0.59,
+            //0.58,
             // 0.72,
-            0.60,
-            0.62,
+            //0.60,
+            0.615,
             //0.63,
             // 0.825,
             // 0.83,
             // 0.92
         };
 
-    public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.60;
+    public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.56;
     public static final double CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED = 0.3;
     public static final double CARGO_FLYWHEEL_AUTO_FOUR_BALL_SHOOT_SPEED = 0.67;
     public static final double CARGO_FLYWHEEL_TARMAC_HIGH_SPINUP_SPEED = 0.65;
@@ -343,6 +343,20 @@ public class TuningConstants
     public static final double CARGO_SHOOT_SPINUP_WAIT_TIMEOUT = 2.0;
     public static final double CARGO_SHOOT_MIN_WAIT_TIME = 0.5;
     public static final double CARGO_SHOOT_WAIT_TIMEOUT = 1.75;
+    public static final double CARGO_SHOOT_AFTER_SHOOTING_CHECKBALL_MIN_WAIT_TIME = TuningConstants.CARGO_SHOOT_CHECKBALL_MIN_WAIT_TIME;
+    public static final double CARGO_SHOOT_AFTER_SHOOTING_CHECKBALL_WAIT_TIMEOUT = TuningConstants.CARGO_SHOOT_CHECKBALL_WAIT_TIMEOUT;
+
+    public static final boolean CARGO_USE_SHOOT_2 = true;
+    public static final double CARGO_SHOOT2_CHECKBALL_MIN_WAIT_TIME = 0.25;
+    public static final double CARGO_SHOOT2_CHECKBALL_WAIT_TIMEOUT = TuningConstants.CARGO_CONVEYOR_RUNTIME_FOR_ADVANCE;
+    public static final double CARGO_SHOOT2_SPINUP_MIN_WAIT_TIME = 0.25;
+    public static final double CARGO_SHOOT2_SPINUP_WAIT_TIMEOUT = 1.5;
+    public static final double CARGO_SHOOT2_MIN_WAIT_TIME = 0.2;
+    public static final double CARGO_SHOOT2_WAIT_TIMEOUT = 2.0;
+    public static final double CARGO_SHOOT2_AFTER_SHOOTING_CHECKBALL_MIN_WAIT_TIME = 1.0;
+    public static final double CARGO_SHOOT2_AFTER_SHOOTING_CHECKBALL_WAIT_TIMEOUT = 2.0;
+    public static final double CARGO_SHOOT2_BETWEEN_SHOTS_MIN_WAIT_TIME = 0.2;
+    public static final double CARGO_SHOOT2_BETWEEN_SHOTS_WAIT_TIMEOUT = 1.5;
 
     public static final double UPPER_HUB_HEIGHT = 104; // inches
     public static final double LOWER_HUB_HEIGHT = 41; // inches

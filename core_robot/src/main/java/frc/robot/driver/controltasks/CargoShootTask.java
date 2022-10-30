@@ -17,6 +17,7 @@ public class CargoShootTask extends ControlTaskBase
         CheckBall,
         SpinningUp,
         Shooting,
+        ShootingWait, // only for shoot 2
         Completed
     };
 
@@ -50,6 +51,13 @@ public class CargoShootTask extends ControlTaskBase
             this.currentState = ShootingState.SpinningUp;
             this.notBeforeTime = currTime + TuningConstants.CARGO_SHOOT_SPINUP_MIN_WAIT_TIME;
             this.timeoutTime = currTime + TuningConstants.CARGO_SHOOT_SPINUP_WAIT_TIMEOUT;
+        }
+        else if (TuningConstants.CARGO_USE_SHOOT_2)
+        {
+            this.currentState = ShootingState.CheckBall;
+            this.notBeforeTime = currTime + TuningConstants.CARGO_SHOOT2_CHECKBALL_MIN_WAIT_TIME;
+            this.timeoutTime = currTime + TuningConstants.CARGO_SHOOT2_CHECKBALL_WAIT_TIMEOUT;
+            this.shotsRemaining = this.shootAll ? 2 : 1;
         }
         else
         {
@@ -87,6 +95,62 @@ public class CargoShootTask extends ControlTaskBase
                     this.currentState = ShootingState.Completed;
                 }
             }
+            else if (TuningConstants.CARGO_USE_SHOOT_2)
+            {
+                if (this.currentState == ShootingState.CheckBall)
+                {
+                    if (this.cargo.hasBallReadyToShoot())
+                    {
+                        this.currentState = ShootingState.SpinningUp;
+                        this.notBeforeTime = currTime + TuningConstants.CARGO_SHOOT2_SPINUP_MIN_WAIT_TIME;
+                        this.timeoutTime = currTime + TuningConstants.CARGO_SHOOT2_SPINUP_WAIT_TIMEOUT;
+                    }
+                    else if (currTime >= this.timeoutTime)
+                    {
+                        this.currentState = ShootingState.Completed;
+                    }
+                }
+                else if (this.currentState == ShootingState.SpinningUp)
+                {
+                    if (this.cargo.isFlywheelSpunUp())
+                    {
+                        this.currentState = ShootingState.Shooting;
+                        this.notBeforeTime = currTime + TuningConstants.CARGO_SHOOT2_MIN_WAIT_TIME;
+                        this.timeoutTime = currTime + TuningConstants.CARGO_SHOOT2_WAIT_TIMEOUT;
+                    }
+                    else if (currTime > this.timeoutTime)
+                    {
+                        this.currentState = ShootingState.Completed;
+                    }
+                }
+                else if (this.currentState == ShootingState.Shooting)
+                {
+                    if (!this.cargo.hasBallReadyToShoot())
+                    {
+                        this.currentState = ShootingState.ShootingWait;
+                        this.notBeforeTime = currTime + TuningConstants.CARGO_SHOOT2_AFTER_SHOOTING_CHECKBALL_MIN_WAIT_TIME;
+                        this.timeoutTime = currTime + TuningConstants.CARGO_SHOOT2_AFTER_SHOOTING_CHECKBALL_WAIT_TIMEOUT;
+                    }
+                    else if (currTime > this.timeoutTime)
+                    {
+                        this.currentState = ShootingState.Completed;
+                    }
+                }
+                else if (this.currentState == ShootingState.ShootingWait)
+                {
+                    this.shotsRemaining--;
+                    if (this.shotsRemaining > 0 && (this.cargo.hasBallReadyToShoot() || this.cargo.hasBackupBallToShoot()))
+                    {
+                        this.currentState = ShootingState.CheckBall;
+                        this.notBeforeTime = currTime + TuningConstants.CARGO_SHOOT2_BETWEEN_SHOTS_MIN_WAIT_TIME;
+                        this.timeoutTime = currTime + TuningConstants.CARGO_SHOOT2_BETWEEN_SHOTS_WAIT_TIMEOUT;
+                    }
+                    else if (currTime > this.timeoutTime)
+                    {
+                        this.currentState = ShootingState.Completed;
+                    }
+                }
+            }
             else
             {
                 if (this.currentState == ShootingState.CheckBall)
@@ -121,8 +185,8 @@ public class CargoShootTask extends ControlTaskBase
                     if (this.shotsRemaining > 0 && this.cargo.hasBackupBallToShoot()) 
                     {
                         this.currentState = ShootingState.CheckBall;
-                        this.notBeforeTime = currTime + TuningConstants.CARGO_SHOOT_CHECKBALL_MIN_WAIT_TIME;
-                        this.timeoutTime = currTime + TuningConstants.CARGO_SHOOT_CHECKBALL_WAIT_TIMEOUT;
+                        this.notBeforeTime = currTime + TuningConstants.CARGO_SHOOT_AFTER_SHOOTING_CHECKBALL_MIN_WAIT_TIME;
+                        this.timeoutTime = currTime + TuningConstants.CARGO_SHOOT_AFTER_SHOOTING_CHECKBALL_WAIT_TIMEOUT;
                     }
                     else 
                     {
@@ -137,6 +201,7 @@ public class CargoShootTask extends ControlTaskBase
         {
             case CheckBall:
             case SpinningUp:
+            case ShootingWait:
             case Completed:
                 this.setDigitalOperationState(DigitalOperation.CargoFeed, false);
                 break;

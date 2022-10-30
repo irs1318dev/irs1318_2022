@@ -98,8 +98,43 @@ public class RoadRunnerTrajectoryGenerator
         addPath(
             pathManager,
             startTrajectory(-90.0 * Helpers.DEGREES_TO_RADIANS)
-                .splineToSplineHeading(new Pose2d(0, 42, 90.0 * Helpers.DEGREES_TO_RADIANS), 90.0 * Helpers.DEGREES_TO_RADIANS),
+                .splineToSplineHeading(new Pose2d(0, 17, 90.0 * Helpers.DEGREES_TO_RADIANS), 90.0 * Helpers.DEGREES_TO_RADIANS),
              "goBackBrodie");
+
+        addPath(
+            pathManager,
+            startTrajectory(0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d( -46, -6, 157 * Helpers.DEGREES_TO_RADIANS), 157 * Helpers.DEGREES_TO_RADIANS),
+                "ThreeBallStep1");
+        
+        addPath(
+            pathManager,
+            startTrajectory(0 * Helpers.DEGREES_TO_RADIANS)
+                .splineTo(new Vector2d(42, 0), 0 * Helpers.DEGREES_TO_RADIANS),
+                "ThreeBallStep2");
+        
+        addPath(
+            pathManager,
+            startTrajectory(0 * Helpers.DEGREES_TO_RADIANS)
+                .splineTo(new Vector2d(-42, 0), 0 * Helpers.DEGREES_TO_RADIANS),
+                "ThreeBallStep3");
+        
+        addPath(
+            pathManager,
+            startTrajectory(0 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-58, -58, 45 * Helpers.DEGREES_TO_RADIANS), 45 * Helpers.DEGREES_TO_RADIANS),
+                "ThreeBallStep4");
+        addPath(
+            pathManager, 
+            startTrajectory(0 * Helpers.DEGREES_TO_RADIANS) 
+                .splineTo(new Vector2d(42, 0), 0 * Helpers.DEGREES_TO_RADIANS),
+                "ThreeBallStep5");
+        
+        addPath(
+            pathManager, 
+            startTrajectory(0 * Helpers.DEGREES_TO_RADIANS) 
+                .splineToSplineHeading(new Pose2d(-42, 50, 150 * Helpers.DEGREES_TO_RADIANS), 150 * Helpers.DEGREES_TO_RADIANS),
+                "ThreeBallStep6");
 
         addPath(
             pathManager,

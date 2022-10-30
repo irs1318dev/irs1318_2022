@@ -40,7 +40,8 @@ public class AutonomousRoutineSelector
         PravinFourBallAuto,
         WinavTwoBallAuto,
         PraTwoBallAll,
-        PraTwoBallMid
+        PraTwoBallMid,
+        PNWThreeBall
     }
 
     /**
@@ -72,6 +73,7 @@ public class AutonomousRoutineSelector
         this.routineChooser.addObject("Winav's 2-Ball Auto", AutoRoutine.WinavTwoBallAuto);
         this.routineChooser.addObject("Pra's 2-Ball Auto All", AutoRoutine.PraTwoBallAll);
         this.routineChooser.addObject("Pra's 2-Ball Auto Mid", AutoRoutine.PraTwoBallMid);
+        this.routineChooser.addObject("PNW Pravin's 3-Ball Auto", AutoRoutine.PNWThreeBall);
         networkTableProvider.addChooser("Auto Routine", this.routineChooser);
 
         // this.positionChooser = networkTableProvider.getSendableChooser();
@@ -156,6 +158,10 @@ public class AutonomousRoutineSelector
         else if (routine == AutoRoutine.PraTwoBallMid)
         {
             return praTwoBallAutoMid();
+        }
+        else if (routine == AutoRoutine.PNWThreeBall) 
+        {
+            return PNWThreeBall();
         }
 
         return new PositionStartingTask(0.0, true, true);
@@ -413,6 +419,48 @@ public class AutonomousRoutineSelector
 
             // shoot current balls
             new FollowPathTask("goBackBrodie", true, false),
+            new VisionCenteringTask(false),
+            new VisionShootPositionTask(),
+            ConcurrentTask.AnyTasks(
+                new VisionShootSpinTask(10.0, true),
+                new CargoShootTask()
+            )
+        );
+    }
+
+    private static IControlTask PNWThreeBall()
+    {
+        return SequentialTask.Sequence(
+            new PositionStartingTask(0.0, false, true),
+            
+
+            //1 shoot pre-loaded ball
+            new CargoHoodTask(DigitalOperation.CargoHoodPointBlank),
+            ConcurrentTask.AnyTasks(
+                new CargoSpinupTask(TuningConstants.CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED),
+                new CargoShootTask(false)
+            ),
+            new FollowPathTask("ThreeBallStep1"),
+            new PositionStartingTask(0.0, false, true),
+            ConcurrentTask.AnyTasks(
+                SequentialTask.Sequence(
+                    new FollowPathTask("ThreeBallStep2"),
+                    new WaitTask(2.5)),
+                new CargoIntakeTask(5.0, true)
+            ),
+            new PositionStartingTask(0.0, false, true),
+            new FollowPathTask("ThreeBallStep3"),
+            new PositionStartingTask(0.0, false, true),
+            new FollowPathTask("ThreeBallStep4"),
+            new PositionStartingTask(0.0, false, true),
+            ConcurrentTask.AnyTasks(
+                SequentialTask.Sequence(
+                    new FollowPathTask("ThreeBallStep5"),
+                    new WaitTask(2.5)),
+                new CargoIntakeTask(5.0, true)
+            ),
+            new PositionStartingTask(0.0, false, true),
+            new FollowPathTask("ThreeBallStep6"),
             new VisionCenteringTask(false),
             new VisionShootPositionTask(),
             ConcurrentTask.AnyTasks(
