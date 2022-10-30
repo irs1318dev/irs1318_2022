@@ -284,7 +284,7 @@ public class TuningConstants
     public static final double[] CARGO_KNOWN_SHOOTING_DISTANCES =
         new double[]
         {
-            // 40.0,
+            // 83.0,
             //50.0,
             //60.0,
             //70.0,
@@ -314,7 +314,7 @@ public class TuningConstants
     public static final double[] CARGO_KNOWN_SHOOTING_FLYWHEEL_SPIN_SPEED =
         new double[]
         {
-            // 0.64,
+            // 0.4, //dummy value
             //0.583,
             //0.67,
             //0.58,

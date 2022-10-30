@@ -41,7 +41,8 @@ public class AutonomousRoutineSelector
         WinavTwoBallAuto,
         PraTwoBallAll,
         PraTwoBallMid,
-        PNWThreeBall
+        PNWThreeBall,
+        tester
     }
 
     /**
@@ -74,6 +75,7 @@ public class AutonomousRoutineSelector
         this.routineChooser.addObject("Pra's 2-Ball Auto All", AutoRoutine.PraTwoBallAll);
         this.routineChooser.addObject("Pra's 2-Ball Auto Mid", AutoRoutine.PraTwoBallMid);
         this.routineChooser.addObject("PNW Pravin's 3-Ball Auto", AutoRoutine.PNWThreeBall);
+        this.routineChooser.addObject("Tester", AutoRoutine.tester);
         networkTableProvider.addChooser("Auto Routine", this.routineChooser);
 
         // this.positionChooser = networkTableProvider.getSendableChooser();
@@ -163,6 +165,10 @@ public class AutonomousRoutineSelector
         {
             return PNWThreeBall();
         }
+        else if (routine == AutoRoutine.tester)
+        {
+            return tester();
+        }
 
         return new PositionStartingTask(0.0, true, true);
     }
@@ -232,7 +238,7 @@ public class AutonomousRoutineSelector
             ConcurrentTask.AllTasks(
                 new FollowPathTask("w3ba-goToPickUpBall3", false, false),
                 SequentialTask.Sequence(
-                    new WaitTask(1.0),
+                    new WaitTask(0.5),
                     new CargoIntakeTask(2.0, true))),
 
             // auto-align and shoot two cargo
@@ -240,8 +246,13 @@ public class AutonomousRoutineSelector
             new VisionCenteringTask(false),
             new VisionShootPositionTask(),
             ConcurrentTask.AnyTasks(
-                new VisionShootSpinTask(10.0, true),
-                new CargoShootTask()));
+                new VisionShootSpinTask(5.0, true),
+                new CargoShootTask()),
+            ConcurrentTask.AllTasks(
+                new VisionShootSpinTask(6.0, true),
+                new CargoShootTask())
+                
+                );
     }
 
     private static IControlTask winavTwoBall()
@@ -422,10 +433,30 @@ public class AutonomousRoutineSelector
             new VisionCenteringTask(false),
             new VisionShootPositionTask(),
             ConcurrentTask.AnyTasks(
-                new VisionShootSpinTask(10.0, true),
+                new VisionShootSpinTask(7.0, true),
+                new CargoShootTask()
+            ),
+            ConcurrentTask.AnyTasks(
+                new VisionShootSpinTask(3.0, true),
                 new CargoShootTask()
             )
         );
+    }
+
+    private static IControlTask tester()
+    {
+        return SequentialTask.Sequence(
+            new VisionCenteringTask(false),
+            new VisionShootPositionTask(),
+            ConcurrentTask.AnyTasks(
+                new VisionShootSpinTask(5.0, true),
+                new CargoShootTask()
+                ),
+            ConcurrentTask.AnyTasks(
+                new VisionShootSpinTask(5.0, true),
+                new CargoShootTask()
+                )
+                );
     }
 
     private static IControlTask PNWThreeBall()

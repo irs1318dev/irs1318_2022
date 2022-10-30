@@ -179,14 +179,14 @@ public class RoadRunnerTrajectoryGenerator
             pathManager,
             startTrajectory(-7.8, -82.1, -90.0 * Helpers.DEGREES_TO_RADIANS, -220.0 * Helpers.DEGREES_TO_RADIANS)
                 .splineToSplineHeading(new Pose2d(-76.1, -48.6, -180.0 * Helpers.DEGREES_TO_RADIANS), -180.0 * Helpers.DEGREES_TO_RADIANS)
-                .splineToSplineHeading(new Pose2d(-88.1, -48.6, -180.0 * Helpers.DEGREES_TO_RADIANS), -180.0 * Helpers.DEGREES_TO_RADIANS),
+                .splineToSplineHeading(new Pose2d(-98.1, -39.6, -180.0 * Helpers.DEGREES_TO_RADIANS), -180.0 * Helpers.DEGREES_TO_RADIANS),
             "w3ba-goToPickUpBall3");
 
         addPath(
             pathManager,
-            startTrajectory(-88.1, -38.6, -180.0 * Helpers.DEGREES_TO_RADIANS, 23.9 * Helpers.DEGREES_TO_RADIANS)
-                .splineToSplineHeading(new Pose2d(-76.5, -33.9, 23.9 * Helpers.DEGREES_TO_RADIANS), 23.9 * Helpers.DEGREES_TO_RADIANS),
-            "w3ba-turnToShoot");
+            startTrajectory(-98.1, -39.6, -180.0 * Helpers.DEGREES_TO_RADIANS, 45.9 * Helpers.DEGREES_TO_RADIANS)
+                .splineToSplineHeading(new Pose2d(-60.5, -54.9, 47.9 * Helpers.DEGREES_TO_RADIANS), 45.9 * Helpers.DEGREES_TO_RADIANS),
+            "w3ba-turnToShoot");// -50.5, -44.9, 50.9
         
         // WINAV's 2-ball auto:
 
