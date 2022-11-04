@@ -286,7 +286,7 @@ public class TuningConstants
         {
             // 83.0,
             //50.0,
-            //60.0,
+            60.0,
             //70.0,
             //80.0,
             //90.0,
@@ -301,7 +301,7 @@ public class TuningConstants
         {
             // DigitalOperation.CargoHoodShort,
             //DigitalOperation.CargoHoodMedium,
-            //DigitalOperation.CargoHoodLong,
+            DigitalOperation.CargoHoodLong,
             //DigitalOperation.CargoHoodLong,
             //DigitalOperation.CargoHoodMedium,
             //DigitalOperation.CargoHoodLong,
@@ -316,7 +316,7 @@ public class TuningConstants
         {
             // 0.4, //dummy value
             //0.583,
-            //0.67,
+            0.67,
             //0.58,
             // 0.72,
             //0.60,
@@ -326,6 +326,10 @@ public class TuningConstants
             // 0.83,
             // 0.92
         };
+    
+    public static final double CARGO_FLYWHEEL_CUSTOM_SPEED = 0.2;
+    
+    public static final double CARGO_DISTANCE_TO_VELOCITY_MULTIPLIER = 0.00615;
 
     public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.56;
     public static final double CARGO_FLYWHEEL_POINT_BLANK_LOW_SPINUP_SPEED = 0.3;
@@ -347,7 +351,7 @@ public class TuningConstants
     public static final double CARGO_SHOOT_AFTER_SHOOTING_CHECKBALL_WAIT_TIMEOUT = TuningConstants.CARGO_SHOOT_CHECKBALL_WAIT_TIMEOUT;
 
     public static final boolean CARGO_USE_SHOOT_2 = true;
-    public static final double CARGO_SHOOT2_CHECKBALL_MIN_WAIT_TIME = 0.25;
+    public static final double CARGO_SHOOT2_CHECKBALL_MIN_WAIT_TIME = 0.5;
     public static final double CARGO_SHOOT2_CHECKBALL_WAIT_TIMEOUT = TuningConstants.CARGO_CONVEYOR_RUNTIME_FOR_ADVANCE;
     public static final double CARGO_SHOOT2_SPINUP_MIN_WAIT_TIME = 0.25;
     public static final double CARGO_SHOOT2_SPINUP_WAIT_TIMEOUT = 1.5;
