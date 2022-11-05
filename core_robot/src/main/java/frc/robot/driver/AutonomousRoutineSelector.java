@@ -6,6 +6,7 @@ import com.google.inject.Singleton;
 import frc.robot.LoggingKey;
 import frc.robot.common.LoggingManager;
 import frc.robot.common.robotprovider.*;
+import frc.robot.driver.SmartDashboardSelectionManager.AutoRoutine;
 import frc.robot.driver.common.*;
 import frc.robot.driver.controltasks.*;
 import frc.robot.*;
@@ -16,34 +17,8 @@ public class AutonomousRoutineSelector
     private final ILogger logger;
 
     private final PathManager pathManager;
+    private final SmartDashboardSelectionManager selectionManager;
     private final IDriverStation driverStation;
-
-    // private final ISendableChooser<StartPosition> positionChooser;
-    private final ISendableChooser<AutoRoutine> routineChooser;
-
-    // public enum StartPosition
-    // {
-    //     Center,
-    //     Left,
-    //     Right
-    // }
-
-    public enum AutoRoutine
-    {
-        None,
-        AutoShootDriveBack,
-        ShootDriveBack,
-        ShootLowDriveBack,
-        WillThreeBallAuto,
-        WillTwoBallAuto,
-        PravinThreeBallAuto,
-        PravinFourBallAuto,
-        WinavTwoBallAuto,
-        PraTwoBallAll,
-        PraTwoBallMid,
-        PNWThreeBall,
-        tester
-    }
 
     /**
      * Initializes a new AutonomousRoutineSelector
@@ -52,37 +27,14 @@ public class AutonomousRoutineSelector
     public AutonomousRoutineSelector(
         LoggingManager logger,
         PathManager pathManager,
+        SmartDashboardSelectionManager selectionManager,
         IRobotProvider provider)
     {
-        // initialize robot parts that are used to select autonomous routine (e.g. dipswitches) here...
         this.logger = logger;
         this.pathManager = pathManager;
+        this.selectionManager = selectionManager;
 
         this.driverStation = provider.getDriverStation();
-
-        INetworkTableProvider networkTableProvider = provider.getNetworkTableProvider();
-
-        this.routineChooser = networkTableProvider.getSendableChooser();
-        this.routineChooser.addDefault("None", AutoRoutine.None);
-        this.routineChooser.addObject("1 Ball Autoshoot", AutoRoutine.ShootDriveBack);
-        this.routineChooser.addObject("1 Ball Point-Blank", AutoRoutine.ShootDriveBack);
-        this.routineChooser.addObject("1 Low Ball Point-Blank", AutoRoutine.ShootLowDriveBack);
-        this.routineChooser.addObject("Will's 3-Ball Auto", AutoRoutine.WillThreeBallAuto);
-        this.routineChooser.addObject("Will's 2-Ball Auto", AutoRoutine.WillTwoBallAuto);
-        this.routineChooser.addObject("Pravin's 3-Ball Auto", AutoRoutine.PravinThreeBallAuto);
-        this.routineChooser.addObject("Pravin's 4-Ball Auto", AutoRoutine.PravinFourBallAuto);
-        this.routineChooser.addObject("Winav's 2-Ball Auto", AutoRoutine.WinavTwoBallAuto);
-        this.routineChooser.addObject("Pra's 2-Ball Auto All", AutoRoutine.PraTwoBallAll);
-        this.routineChooser.addObject("Pra's 2-Ball Auto Mid", AutoRoutine.PraTwoBallMid);
-        this.routineChooser.addObject("PNW Pravin's 3-Ball Auto", AutoRoutine.PNWThreeBall);
-        this.routineChooser.addObject("Tester", AutoRoutine.tester);
-        networkTableProvider.addChooser("Auto Routine", this.routineChooser);
-
-        // this.positionChooser = networkTableProvider.getSendableChooser();
-        // this.positionChooser.addDefault("center", StartPosition.Center);
-        // this.positionChooser.addObject("left", StartPosition.Left);
-        // this.positionChooser.addObject("right", StartPosition.Right);
-        // networkTableProvider.addChooser("Start Position", this.positionChooser);
 
         RoadRunnerTrajectoryGenerator.generateTrajectories(this.pathManager);
     }
@@ -106,17 +58,7 @@ public class AutonomousRoutineSelector
             return null;
         }
 
-        // StartPosition startPosition = this.positionChooser.getSelected();
-        // if (startPosition == null)
-        // {
-        //     startPosition = StartPosition.Center;
-        // }
-
-        AutoRoutine routine = this.routineChooser.getSelected();
-        if (routine == null)
-        {
-            routine = AutoRoutine.None;
-        }
+        AutoRoutine routine = this.selectionManager.getSelectedAutoRoutine();
 
         String autoSelection = routine.toString(); //startPosition.toString() + "." + routine.toString();
         this.logger.logString(LoggingKey.AutonomousSelection, autoSelection);

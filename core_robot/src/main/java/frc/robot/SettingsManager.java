@@ -23,7 +23,7 @@ public class SettingsManager
         mechanismList.add(injector.getInstance(CargoMechanism.class));
         mechanismList.add(injector.getInstance(ClimberSammamishMechanism.class));
         mechanismList.add(injector.getInstance(OffboardVisionManager.class));
-        mechanismList.add(injector.getInstance(DriverFeedbackManager.class));
+        mechanismList.add(injector.getInstance(DriverFeedbackManager.class)); // DriverFeedbackManager should always be the last mechanism on the list
         return mechanismList;
     }
 
