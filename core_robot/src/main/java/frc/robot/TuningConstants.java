@@ -285,12 +285,11 @@ public class TuningConstants
     public static final double[] CARGO_KNOWN_SHOOTING_DISTANCES =
         new double[]
         {
-            // 83.0,
-            //50.0,
+            50.0,
             60.0,
-            //70.0,
-            //80.0,
-            //90.0,
+            70.0,
+            80.0,
+            90.0,
             100.0,
             //110.0,
             // 120.0,
@@ -300,12 +299,11 @@ public class TuningConstants
     public static final DigitalOperation[] CARGO_KNOWN_SHOOTING_HOOD_UP =
         new DigitalOperation[]
         {
-            // DigitalOperation.CargoHoodShort,
-            //DigitalOperation.CargoHoodMedium,
+            DigitalOperation.CargoHoodMedium,
             DigitalOperation.CargoHoodLong,
-            //DigitalOperation.CargoHoodLong,
-            //DigitalOperation.CargoHoodMedium,
-            //DigitalOperation.CargoHoodLong,
+            DigitalOperation.CargoHoodLong,
+            DigitalOperation.CargoHoodMedium,
+            DigitalOperation.CargoHoodLong,
             DigitalOperation.CargoHoodLong,
             //DigitalOperation.CargoHoodLong,
             // DigitalOperation.CargoHoodLong,
@@ -315,12 +313,11 @@ public class TuningConstants
     public static final double[] CARGO_KNOWN_SHOOTING_FLYWHEEL_SPIN_SPEED =
         new double[]
         {
-            // 0.4, //dummy value
-            //0.583,
+            0.583,
             0.67,
-            //0.58,
-            // 0.72,
-            //0.60,
+            0.58,
+            0.72,
+            0.60,
             0.615,
             //0.63,
             // 0.825,
@@ -330,6 +327,10 @@ public class TuningConstants
     
     public static final double CARGO_FLYWHEEL_CUSTOM_SPEED = 0.2;
     
+    // MY FAV CONSTANTS
+    public static final double Y_DISTANCE_SHOOTER_TO_HUB = 80;
+
+
     public static final double CARGO_DISTANCE_TO_VELOCITY_MULTIPLIER = 0.00615;
 
     public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.56;
