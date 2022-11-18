@@ -256,7 +256,7 @@ public class TuningConstants
     public static final double CARGO_FLYWHEEL_MOTOR_PID_KI = 0.0;
     public static final double CARGO_FLYWHEEL_MOTOR_PID_KD = 0.01;
     public static final double CARGO_FLYWHEEL_MOTOR_PID_KF = 0.0487143; // 1023 / 21000 
-    public static final double CARGO_FLYWHEEL_MOTOR_PID_KS = 21000.0; // max speed we will use, in ticks per 100ms
+    public static final double CARGO_FLYWHEEL_MOTOR_PID_KS = 21000.0; // max speed we will use, in ticks per 100ms yes
 
     public static final boolean CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_ENABLED = true;
     public static final double CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE = 12.0;
@@ -329,6 +329,9 @@ public class TuningConstants
     
     // MY FAV CONSTANTS
     public static final double Y_DISTANCE_SHOOTER_TO_HUB = 80;
+    public static final double X_DISTANCE_FROM_EDGE_OF_HUB_TO_SHOOTING_SPOT = 36;
+    public static final double X_DISTANCE_BUMBER_TO_FLYWHEEL = 20;
+    public static final double G_INCHES = 386.1;
 
 
     public static final double CARGO_DISTANCE_TO_VELOCITY_MULTIPLIER = 0.00615;
