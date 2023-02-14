@@ -136,7 +136,7 @@ public class Driver implements IDriver
         this.currentMode = RobotMode.Disabled;
 
         // initialize the path manager and load all of the paths
-        injector.getInstance(PathManager.class);
+        injector.getInstance(TrajectoryManager.class);
     }
 
     /**
@@ -316,7 +316,8 @@ public class Driver implements IDriver
     }
 
     /**
-     * Starts the autonomous period of the match (e.g. begins auto routine)
+     * Starts a particular mode of the match
+     * @param mode that is being started
      */
     @Override
     public void startMode(RobotMode mode)

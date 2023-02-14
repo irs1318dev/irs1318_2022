@@ -203,4 +203,32 @@ public class Helpers
             return Helpers.atand(y / x) + 360.0;
         }
     }
+
+    /**
+     * Calculate the distance of the link in a triange opposite the provided angle, with the two adjacent lengths known
+     * @param adjacent1 first length adjacent to the provided angle
+     * @param adjacent2 second length adjacent to the provided angle
+     * @param angle in degrees
+     * @return length of the link opposite the provided angle
+     */
+    public static double calculateLawOfCosinesDistance(double adjacent1, double adjacent2, double angle)
+    {
+        double opposite;
+        opposite = Math.sqrt(adjacent1 * adjacent1 + adjacent2 * adjacent2 - 2.0 * adjacent1 * adjacent2 * Helpers.cosd(angle));
+        return opposite;
+    }
+
+    /**
+     * Calculate the angle between a pair of adjacent lines with the length in the triangle known 
+     * @param adjacent1 first length adjacent to the desired angle
+     * @param adjacent2 second length adjacent to the desired angle
+     * @param opposite length of the line opposite to the desired angle
+     * @return angle of the value in degrees
+     */
+    public static double calculateLawOfCosinesAngle(double adjacent1, double adjacent2, double opposite)
+    {
+        double angle;
+        angle = Helpers.acosd((adjacent1 * adjacent1 + adjacent2 * adjacent2 - opposite * opposite) / (2.0 * adjacent1 * adjacent2));
+        return angle;
+    }
 }

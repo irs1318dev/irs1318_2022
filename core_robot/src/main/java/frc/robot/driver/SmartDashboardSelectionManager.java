@@ -35,7 +35,7 @@ public class SmartDashboardSelectionManager
 
     private final ISendableChooser<AutoRoutine> routineChooser;
     private final ISendableChooser<HoodPosition> hoodChooser;
-    private final INetworkTableEntry shooterSpeedSlider;
+    private final IDoubleSubscriber shooterSpeedSlider;
 
     /**
      * Initializes a new SmartDashboardSelectionManager
@@ -84,7 +84,7 @@ public class SmartDashboardSelectionManager
 
     public double getSelectedShooterSpeed()
     {
-        return this.shooterSpeedSlider.getDouble(0.0);
+        return this.shooterSpeedSlider.get(0.0);
     }
 
     private static <T> T GetSelectedOrDefault(ISendableChooser<T> chooser, T defaultValue)

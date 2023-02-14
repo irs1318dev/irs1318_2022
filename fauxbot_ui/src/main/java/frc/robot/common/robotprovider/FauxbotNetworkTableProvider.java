@@ -3,7 +3,17 @@ package frc.robot.common.robotprovider;
 public class FauxbotNetworkTableProvider implements INetworkTableProvider
 {
     @Override
-    public INetworkTableEntry getNumberSlider(String title, double initialValue)
+    public void startShuffleboardRecording()
+    {
+    }
+
+    @Override
+    public void stopShuffleboardRecording()
+    {
+    }
+
+    @Override
+    public IDoubleSubscriber getNumberSlider(String title, double initialValue)
     {
         return null;
     }
@@ -23,20 +33,50 @@ public class FauxbotNetworkTableProvider implements INetworkTableProvider
     }
 
     @Override
-    public double getSmartDashboardNumber(String key)
+    public IDoubleSubscriber getDoubleSubscriber(String key)
     {
-        return 0.0;
+        return null;
     }
 
     @Override
-    public boolean getSmartDashboardBoolean(String key)
+    public IDoubleSubscriber getDoubleSubscriber(String key, double defaultValue)
     {
-        return false;
+        return null;
     }
 
     @Override
-    public String getSmartDashboardString(String key)
+    public IBooleanSubscriber getBooleanSubscriber(String key)
     {
-        return "";
+        return null;
+    }
+
+    @Override
+    public IBooleanSubscriber getBooleanSubscriber(String key, boolean defaultValue)
+    {
+        return null;
+    }
+
+    @Override
+    public IIntegerSubscriber getIntegerSubscriber(String key)
+    {
+        return null;
+    }
+
+    @Override
+    public IIntegerSubscriber getIntegerSubscriber(String key, int defaultVAlue)
+    {
+        return null;
+    }
+
+    @Override
+    public IStringSubscriber getStringSubscriber(String key)
+    {
+        return null;
+    }
+
+    @Override
+    public IStringSubscriber getStringSubscriber(String key, String defaultValue)
+    {
+        return null;
     }
 }

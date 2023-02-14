@@ -54,15 +54,6 @@ public class CoreRobot<T extends AbstractModule>
         // create mechanisms
         Injector injector = this.getInjector();
 
-        IRobotProvider robotProvider = injector.getInstance(IRobotProvider.class);
-        // IPreferences preferences = 
-        robotProvider.getPreferences();
-
-        //SettingsManager.initAndUpdatePreferences(preferences, TuningConstants.class);
-        //SettingsManager.initAndUpdatePreferences(preferences, HardwareConstants.class);
-        //SettingsManager.initAndUpdatePreferences(preferences, ElectronicsConstants.class);
-        //SettingsManager.initAndUpdatePreferences(preferences, VisionConstants.class);
-
         // create driver
         this.driver = injector.getInstance(IDriver.class);
 
@@ -134,6 +125,15 @@ public class CoreRobot<T extends AbstractModule>
     }
 
     /**
+     * Initialization code for simulation mode should go here.
+     * This code will be called each time the robot enters simulation mode.
+     */
+    public void simulationInit()
+    {
+        this.generalInit(RobotMode.Simulation);
+    }
+
+    /**
      * Periodic code for disabled mode should go here.
      * This code will be called periodically at a regular rate while the robot is in disabled mode.
      */
@@ -164,6 +164,15 @@ public class CoreRobot<T extends AbstractModule>
      * This code will be called periodically at a regular rate while the robot is in test mode.
      */
     public void testPeriodic()
+    {
+        this.generalPeriodic();
+    }
+
+    /**
+     * Periodic code for simulation mode should go here.
+     * This code will be called periodically at a regular rate while the robot is in simulation mode.
+     */
+    public void simulationPeriodic()
     {
         this.generalPeriodic();
     }

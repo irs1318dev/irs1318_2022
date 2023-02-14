@@ -26,8 +26,14 @@ public class OffboardVisionManager implements IMechanism
     private Double gDistance;
     private Double gAngle;
 
+    private IDoubleSubscriber vDistanceSubscriber;
+    private IDoubleSubscriber vAngleSubscriber;
+    private IDoubleSubscriber gDistanceSubscriber;
+    private IDoubleSubscriber gAngleSubscriber;
+    private IIntegerSubscriber heartbeatSubscriber;
+
     private int missedHeartbeats;
-    private double prevHeartbeat;
+    private long prevHeartbeat;
 
     /**
      * Initializes a new OffboardVisionManager
@@ -43,6 +49,11 @@ public class OffboardVisionManager implements IMechanism
 
         this.driverStation = provider.getDriverStation();
         this.networkTable = provider.getNetworkTableProvider();
+        this.vDistanceSubscriber = this.networkTable.getDoubleSubscriber("v.distance", TuningConstants.MAGIC_NULL_VALUE);
+        this.vAngleSubscriber = this.networkTable.getDoubleSubscriber("v.angle", TuningConstants.MAGIC_NULL_VALUE);
+        this.gDistanceSubscriber = this.networkTable.getDoubleSubscriber("g.distance", TuningConstants.MAGIC_NULL_VALUE);
+        this.gAngleSubscriber = this.networkTable.getDoubleSubscriber("g.angle", TuningConstants.MAGIC_NULL_VALUE);
+        this.heartbeatSubscriber = this.networkTable.getIntegerSubscriber("v.heartbeat", 0);
 
         this.vDistance = null;
         this.vAngle = null;
@@ -50,7 +61,7 @@ public class OffboardVisionManager implements IMechanism
         this.gAngle = null;
 
         this.missedHeartbeats = 0;
-        this.prevHeartbeat = 0.0;
+        this.prevHeartbeat = 0L;
     }
 
     /**
@@ -59,12 +70,12 @@ public class OffboardVisionManager implements IMechanism
     @Override
     public void readSensors()
     {
-        this.vDistance = this.networkTable.getSmartDashboardNumber("v.distance");
-        this.vAngle = this.networkTable.getSmartDashboardNumber("v.horizontalAngle");
-        this.gDistance = this.networkTable.getSmartDashboardNumber("g.distance");
-        this.gAngle = this.networkTable.getSmartDashboardNumber("g.horizontalAngle");
+        this.vDistance = this.vDistanceSubscriber.get();
+        this.vAngle = this.vAngleSubscriber.get();
+        this.gDistance = this.gDistanceSubscriber.get();
+        this.gAngle = this.gAngleSubscriber.get();
 
-        double newHeartbeat = this.networkTable.getSmartDashboardNumber("v.heartbeat");
+        long newHeartbeat = this.heartbeatSubscriber.get();
         if (this.prevHeartbeat != newHeartbeat)
         {
             this.missedHeartbeats = 0;

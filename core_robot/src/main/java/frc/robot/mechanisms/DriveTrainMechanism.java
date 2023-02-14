@@ -49,7 +49,7 @@ public class DriveTrainMechanism implements IMechanism
     // the y offsets of the swerve modules from the default center of rotation
     private final double[] moduleOffsetY;
 
-    private final double[] drivetrainSteerMotorAbsoluteOffsets;;
+    private final double[] drivetrainSteerMotorAbsoluteOffsets;
 
     private final IDriver driver;
     private final ILogger logger;
@@ -413,6 +413,12 @@ public class DriveTrainMechanism implements IMechanism
             this.robotYaw = this.imuManager.getAngle();
             this.desiredYaw = this.robotYaw;
             this.angle = 0.0;
+        }
+
+        if (this.driver.getDigital(DigitalOperation.DriveTrainResetXYPosition))
+        {
+            this.xPosition = this.driver.getAnalog(AnalogOperation.DriveTrainStartingXPosition);
+            this.yPosition = this.driver.getAnalog(AnalogOperation.DriveTrainStartingYPosition);
         }
 
         double startingAngle = this.driver.getAnalog(AnalogOperation.PositionStartingAngle);

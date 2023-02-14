@@ -1,16 +1,56 @@
 package frc.robot.common.robotprovider;
 
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableType;
+import edu.wpi.first.networktables.DoubleTopic;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class NetworkTableProvider implements INetworkTableProvider
 {
-    @Override
-    public INetworkTableEntry getNumberSlider(String title, double initialValue)
+    private static NetworkTableInstance instance;
+    private static NetworkTable smartDashboard;
+
+    private static NetworkTableInstance getInstance()
     {
-        SmartDashboard.setDefaultNumber(title, initialValue);
-        return new NetworkTableEntryWrapper(SmartDashboard.getEntry(title));
+        if (NetworkTableProvider.instance == null)
+        {
+            NetworkTableInstance inst = NetworkTableInstance.getDefault();
+            NetworkTableProvider.instance = inst;
+        }
+
+        return NetworkTableProvider.instance;
+    }
+
+    private static NetworkTable getSmartDashboard()
+    {
+        if (NetworkTableProvider.smartDashboard == null)
+        {
+            NetworkTableInstance inst = NetworkTableProvider.getInstance();
+            NetworkTableProvider.smartDashboard = inst.getTable("SmartDashboard");
+        }
+
+        return NetworkTableProvider.smartDashboard;
+    }
+
+    @Override
+    public void startShuffleboardRecording()
+    {
+        Shuffleboard.startRecording();
+    }
+
+    @Override
+    public void stopShuffleboardRecording()
+    {
+        Shuffleboard.stopRecording();
+    }
+
+    @Override
+    public IDoubleSubscriber getNumberSlider(String title, double initialValue)
+    {
+        DoubleTopic number = NetworkTableProvider.getSmartDashboard().getDoubleTopic(title);
+        number.publish().set(initialValue);
+        return new DoubleSubscriberWrapper(number.subscribe(initialValue));
     }
 
     @Override
@@ -27,38 +67,50 @@ public class NetworkTableProvider implements INetworkTableProvider
     }
 
     @Override
-    public double getSmartDashboardNumber(String key)
+    public IDoubleSubscriber getDoubleSubscriber(String key)
     {
-        NetworkTableEntry entry = SmartDashboard.getEntry(key);
-        if (entry != null && entry.getType() == NetworkTableType.kDouble)
-        {
-            return entry.getDouble(0.0);
-        }
-
-        return 0.0;
+        return this.getDoubleSubscriber(key, 0.0);
     }
 
     @Override
-    public boolean getSmartDashboardBoolean(String key)
+    public IDoubleSubscriber getDoubleSubscriber(String key, double defaultValue)
     {
-        NetworkTableEntry entry = SmartDashboard.getEntry(key);
-        if (entry != null && entry.getType() == NetworkTableType.kBoolean)
-        {
-            return entry.getBoolean(false);
-        }
-
-        return false;
+        return new DoubleSubscriberWrapper(NetworkTableProvider.getSmartDashboard().getDoubleTopic(key).subscribe(defaultValue));
     }
 
     @Override
-    public String getSmartDashboardString(String key)
+    public IBooleanSubscriber getBooleanSubscriber(String key)
     {
-        NetworkTableEntry entry = SmartDashboard.getEntry(key);
-        if (entry != null && entry.getType() == NetworkTableType.kString)
-        {
-            return entry.getString("");
-        }
+        return this.getBooleanSubscriber(key, false);
+    }
 
-        return "";
+    @Override
+    public IBooleanSubscriber getBooleanSubscriber(String key, boolean defaultValue)
+    {
+        return new BooleanSubscriberWrapper(NetworkTableProvider.getSmartDashboard().getBooleanTopic(key).subscribe(defaultValue));
+    }
+
+    @Override
+    public IIntegerSubscriber getIntegerSubscriber(String key)
+    {
+        return this.getIntegerSubscriber(key, 0);
+    }
+
+    @Override
+    public IIntegerSubscriber getIntegerSubscriber(String key, int defaultValue)
+    {
+        return new IntegerSubscriberWrapper(NetworkTableProvider.getSmartDashboard().getIntegerTopic(key).subscribe(defaultValue));
+    }
+
+    @Override
+    public IStringSubscriber getStringSubscriber(String key)
+    {
+        return this.getStringSubscriber(key, null);
+    }
+
+    @Override
+    public IStringSubscriber getStringSubscriber(String key, String defaultValue)
+    {
+        return new StringSubscriberWrapper(NetworkTableProvider.getSmartDashboard().getStringTopic(key).subscribe(defaultValue));
     }
 }
