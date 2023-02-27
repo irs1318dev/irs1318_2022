@@ -74,6 +74,9 @@ public class VisionShootSpinTask extends TimedTask
                     }
                 }*/
 
+                // multiply the final velocity we want by CARGO_FLYWHEEL_INCHES_PER_SECOND_TO_MOTOR_VELOCITY and divide by CARGO_FLYWHEEL_MOTOR_PID_KS
+                // above will give us our goal percent velocity for spinup speed
+                
                 this.hasDeterminedSettings = true;
                 this.spinUpSpeed = currentDistance * TuningConstants.CARGO_DISTANCE_TO_VELOCITY_MULTIPLIER; //TuningConstants.CARGO_KNOWN_SHOOTING_FLYWHEEL_SPIN_SPEED[desiredIndex];
                 this.hoodPosition = DigitalOperation.CargoHoodLong; //TuningConstants.CARGO_KNOWN_SHOOTING_HOOD_UP[desiredIndex];

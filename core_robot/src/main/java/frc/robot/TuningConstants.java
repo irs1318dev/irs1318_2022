@@ -260,7 +260,7 @@ public class TuningConstants
     public static final double CARGO_FLYWHEEL_MOTOR_PID_KI = 0.0;
     public static final double CARGO_FLYWHEEL_MOTOR_PID_KD = 0.01;
     public static final double CARGO_FLYWHEEL_MOTOR_PID_KF = 0.0487143; // 1023 / 21000 
-    public static final double CARGO_FLYWHEEL_MOTOR_PID_KS = 21000.0; // max speed we will use, in ticks per 100ms
+    public static final double CARGO_FLYWHEEL_MOTOR_PID_KS = 21000.0; // max speed we will use, in ticks per 100ms yes
 
     public static final boolean CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_ENABLED = true;
     public static final double CARGO_FLYWHEEL_MOTOR_MASTER_VOLTAGE_COMPENSATION_MAXVOLTAGE = 12.0;
@@ -289,12 +289,11 @@ public class TuningConstants
     public static final double[] CARGO_KNOWN_SHOOTING_DISTANCES =
         new double[]
         {
-            // 83.0,
-            //50.0,
+            50.0,
             60.0,
-            //70.0,
-            //80.0,
-            //90.0,
+            70.0,
+            80.0,
+            90.0,
             100.0,
             //110.0,
             // 120.0,
@@ -304,12 +303,11 @@ public class TuningConstants
     public static final DigitalOperation[] CARGO_KNOWN_SHOOTING_HOOD_UP =
         new DigitalOperation[]
         {
-            // DigitalOperation.CargoHoodShort,
-            //DigitalOperation.CargoHoodMedium,
+            DigitalOperation.CargoHoodMedium,
             DigitalOperation.CargoHoodLong,
-            //DigitalOperation.CargoHoodLong,
-            //DigitalOperation.CargoHoodMedium,
-            //DigitalOperation.CargoHoodLong,
+            DigitalOperation.CargoHoodLong,
+            DigitalOperation.CargoHoodMedium,
+            DigitalOperation.CargoHoodLong,
             DigitalOperation.CargoHoodLong,
             //DigitalOperation.CargoHoodLong,
             // DigitalOperation.CargoHoodLong,
@@ -319,12 +317,11 @@ public class TuningConstants
     public static final double[] CARGO_KNOWN_SHOOTING_FLYWHEEL_SPIN_SPEED =
         new double[]
         {
-            // 0.4, //dummy value
-            //0.583,
+            0.583,
             0.67,
-            //0.58,
-            // 0.72,
-            //0.60,
+            0.58,
+            0.72,
+            0.60,
             0.615,
             //0.63,
             // 0.825,
@@ -334,6 +331,13 @@ public class TuningConstants
     
     public static final double CARGO_FLYWHEEL_CUSTOM_SPEED = 0.2;
     
+    // MY FAV CONSTANTS
+    public static final double Y_DISTANCE_SHOOTER_TO_HUB = 80;
+    public static final double X_DISTANCE_FROM_EDGE_OF_HUB_TO_SHOOTING_SPOT = 36;
+    public static final double X_DISTANCE_BUMBER_TO_FLYWHEEL = 20;
+    public static final double G_INCHES = 386.1;
+
+
     public static final double CARGO_DISTANCE_TO_VELOCITY_MULTIPLIER = 0.00615;
 
     public static final double CARGO_FLYWHEEL_POINT_BLANK_HIGH_SPINUP_SPEED = 0.56;

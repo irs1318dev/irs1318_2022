@@ -62,7 +62,7 @@ public class HardwareConstants
     public static final double CARGO_SHOOTER_MEDIUM_ANGLE = 66.0; // degrees
     public static final double CARGO_SHOOTER_LONG_ANGLE = 59.0; // degrees
     public static final double CARGO_SHOOTER_HEIGHT = 19.81; // inches
-    public static final double CARGO_FLYWHEEL_DIAMETER = 4.0; // inches
+    public static final double CARGO_FLYWHEEL_DIAMETER = 5.0; // inches
     public static final double CARGO_FLYWHEEL_TICKS_PER_REVOLUTION = 2048.0;
     public static final double CARGO_FLYWHEEL_GEAR_RATIO = 1.0; // right now, shooter is 1:1
     public static final double CARGO_FLYWHEEL_CIRCUMFERENCE = Math.PI * HardwareConstants.CARGO_FLYWHEEL_DIAMETER;
